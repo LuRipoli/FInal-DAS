@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,38 @@ namespace Modelo
     public class RepositorioClientes
     {
         private readonly Context context;
-        public List<Entidades.Cliente> lista;
+
         public RepositorioClientes()
         {
-            lista = new List<Entidades.Cliente>();
             context = new Context();
+        }
+
+        public IReadOnlyCollection<Cliente> ObtenerClientes()
+        {
+            return context.Clientes.ToList().AsReadOnly();
+        }
+
+        public void AgregarCliente(Cliente unCliente)
+        {
+            context.Clientes.Add(unCliente);
+            context.SaveChanges();
+        }
+
+        public void ModificarCliente(Cliente unCliente)
+        {
+            context.Clientes.Update(unCliente);
+            context.SaveChanges();
+        }
+
+        public void EliminarCliente(Cliente unCliente)
+        {
+            context.Clientes.Remove(unCliente);
+            context.SaveChanges();
+        }
+
+        public Cliente? ObtenerClientePorId(int idCliente)
+        {
+            return context.Clientes.FirstOrDefault(c => c.Id == idCliente);
         }
     }
 }
