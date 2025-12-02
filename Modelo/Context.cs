@@ -13,7 +13,7 @@ namespace Modelo
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Sucursal> Sucursales { get; set; }
         public DbSet<Venta> Ventas { get; set; }
-
+        public int hola;
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer(conexion);
     }
