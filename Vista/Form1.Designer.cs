@@ -28,12 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            btnGestionProductos = new Button();
+            btnGestionClientes = new Button();
+            btnGestionVentas = new Button();
+            btnReportesYConsultas = new Button();
+            SuspendLayout();
+            // 
+            // btnGestionProductos
+            // 
+            btnGestionProductos.Location = new Point(38, 56);
+            btnGestionProductos.Name = "btnGestionProductos";
+            btnGestionProductos.Size = new Size(185, 29);
+            btnGestionProductos.TabIndex = 0;
+            btnGestionProductos.Text = "Gestion de Productos";
+            btnGestionProductos.UseVisualStyleBackColor = true;
+            btnGestionProductos.Click += btnGestionProductos_Click;
+            // 
+            // btnGestionClientes
+            // 
+            btnGestionClientes.Location = new Point(38, 118);
+            btnGestionClientes.Name = "btnGestionClientes";
+            btnGestionClientes.Size = new Size(185, 29);
+            btnGestionClientes.TabIndex = 1;
+            btnGestionClientes.Text = "Gestion de Clientes";
+            btnGestionClientes.UseVisualStyleBackColor = true;
+            btnGestionClientes.Click += btnGestionClientes_Click;
+            // 
+            // btnGestionVentas
+            // 
+            btnGestionVentas.Location = new Point(38, 182);
+            btnGestionVentas.Name = "btnGestionVentas";
+            btnGestionVentas.Size = new Size(185, 29);
+            btnGestionVentas.TabIndex = 2;
+            btnGestionVentas.Text = "Gestion de Ventas";
+            btnGestionVentas.UseVisualStyleBackColor = true;
+            btnGestionVentas.Click += btnGestionVentas_Click;
+            // 
+            // btnReportesYConsultas
+            // 
+            btnReportesYConsultas.Location = new Point(38, 248);
+            btnReportesYConsultas.Name = "btnReportesYConsultas";
+            btnReportesYConsultas.Size = new Size(185, 29);
+            btnReportesYConsultas.TabIndex = 3;
+            btnReportesYConsultas.Text = "Reportes y Clientes";
+            btnReportesYConsultas.UseVisualStyleBackColor = true;
+            btnReportesYConsultas.Click += btnReportesYConsultas_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(277, 334);
+            Controls.Add(btnReportesYConsultas);
+            Controls.Add(btnGestionVentas);
+            Controls.Add(btnGestionClientes);
+            Controls.Add(btnGestionProductos);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnGestionProductos;
+        private Button btnGestionClientes;
+        private Button btnGestionVentas;
+        private Button btnReportesYConsultas;
     }
 }
