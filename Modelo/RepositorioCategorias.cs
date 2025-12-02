@@ -11,12 +11,32 @@ namespace Modelo
     public class RepositorioCategorias
     {
         private readonly Context context;
-        public List<Entidades.Categoria> lista;
-
         public RepositorioCategorias()
         {
-            lista = new List<Entidades.Categoria>();
             context = new Context();
+        }
+        public IReadOnlyCollection<Categoria> ObtenerCategorias()
+        {
+            return context.Categorias.ToList().AsReadOnly();
+        }
+        public void AgrgarCategoria(Categoria unaCategoria)
+        {
+            context.Categorias.Add(unaCategoria);
+            context.SaveChanges();
+        }
+        public void ModificarCategoria(Categoria unaCategoria)
+        {
+            context.Categorias.Update(unaCategoria);
+            context.SaveChanges();
+        }
+        public void EliminarCategoria(Categoria unaCategoria)
+        {
+            context.Categorias.Remove(unaCategoria);
+            context.SaveChanges();
+        }
+        public Categoria? ObtenerCategoriaPorId(int idCategoria)
+        {
+            return context.Categorias.FirstOrDefault(c => c.Id == idCategoria);
         }
     }
 }
