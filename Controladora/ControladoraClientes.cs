@@ -79,9 +79,9 @@ namespace Controladora
             repositorio.EliminarCliente(cliente);
         }
 
-        public Cliente BuscarClientePorId(int idCategoria)
+        public Cliente BuscarClientePorId(int idCliente)
         {
-            var cliente = repositorio.ObtenerClientePorId(idCategoria);
+            var cliente = repositorio.ObtenerClientePorId(idCliente);
 
             if (cliente == null)
                 throw new EntidadNoEncontradaException("No se encontró el cliente especificado.");
