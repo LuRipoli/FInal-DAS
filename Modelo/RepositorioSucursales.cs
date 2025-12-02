@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,11 @@ namespace Modelo
         {
             context.Sucursales.Update(sucursal);
             context.SaveChanges();
+        }
+
+        public Sucursal? ObtenerSucursalPorId(int idCategoria)
+        {
+            return context.Sucursales.FirstOrDefault(c => c.id == idCategoria);
         }
     }
 
