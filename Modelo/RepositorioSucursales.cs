@@ -9,13 +9,36 @@ namespace Modelo
     public class RepositorioSucursales
     {
         private readonly Context context;
-        public List<Entidades.Sucursal> lista;
 
         public RepositorioSucursales()
         {
-            lista = new List<Entidades.Sucursal>();
             context = new Context();
         }
+
+        public IReadOnlyCollection<Entidades.Sucursal> ObtenerSucursales()
+        {
+            return context.Sucursales.ToList().AsReadOnly();
+        }
+
+        public void AgregarSucursal(Entidades.Sucursal sucursal)
+        {
+            context.Sucursales.Add(sucursal);
+            context.SaveChanges();
+        }
+
+        public void EliminarSucursal(Entidades.Sucursal sucursal)
+        {
+            context.Sucursales.Remove(sucursal);
+            context.SaveChanges();
+        }
+
+        public void ModificarSucursal(Entidades.Sucursal sucursal)
+        {
+            context.Sucursales.Update(sucursal);
+            context.SaveChanges();
+        }
     }
+
+
 }
 
