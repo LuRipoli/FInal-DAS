@@ -38,5 +38,9 @@ namespace Modelo
         {
             return context.Categorias.FirstOrDefault(c => c.Id == idCategoria);
         }
+        public Categoria? ObtenerCategoriaPorNombre(string nombreCategoria)
+        {
+            return context.Categorias.FirstOrDefault(c => c.Nombre == nombreCategoria);
+        }
     }
 }
