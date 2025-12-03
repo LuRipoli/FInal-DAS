@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Controladora;
+using Entidades;
+using Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +18,189 @@ namespace Vista
         public Ventana_Gestion_Clientes()
         {
             InitializeComponent();
+            Refrescar();
+            LimpiarCampos();
         }
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+            var controladoraClientes = Controladora.ControladoraClientes.Instancia();
+            grbIngresoDatos.Enabled = true;
+
+            try
+            {
+                string nombre = txtNombre.Text.Trim();
+                string email = txtEmail.Text.Trim();
+
+                if (!rdbMayorista.Checked && !rdbMinorista.Checked)
+                    throw new DatosInvalidosException("Debe seleccionar un tipo de cliente.");
+                int tipoCliente = rdbMinorista.Checked ? 1 : 2;
+                
+                controladoraClientes.AgregarCliente(nombre, email, tipoCliente);
+                MessageBox.Show("Cliente agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                Refrescar();
+                LimpiarCampos();
+                grbIngresoDatos.Enabled = false;
+            }
+            catch (DatosInvalidosException ex)  
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error inesperado:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnModificarCliente_Click(object sender, EventArgs e)
+        {
+            var controladoraClientes = ControladoraClientes.Instancia();
+            grbIngresoDatos.Enabled = true;
+            try
+            {
+                int? id = GetId();
+                if (id != null && txtEmail.Text != "" && txtNombre.Text != "" && (rdbMayorista.Checked || rdbMinorista.Checked))
+                {
+                    string nombre = txtNombre.Text;
+                    string email = txtEmail.Text;
+                    int tipoCliente = rdbMinorista.Checked ? 1 : 2;
+                    controladoraClientes.ModificarCliente((int)id, nombre, email, tipoCliente);
+                    MessageBox.Show("Cliente modificado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Refrescar();
+                    LimpiarCampos();
+                    grbIngresoDatos.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos y seleccione un cliente para modificar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch(DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+            var controladoraClientes = ControladoraClientes.Instancia();
+            try
+            {
+                int? id = GetId();
+                if (id != null)
+                {
+                    controladoraClientes.EliminarCliente((int)id);
+                    MessageBox.Show("Cliente eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Refrescar();
+                    LimpiarCampos();
+                }
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            grbBuscarCliente.Enabled = true;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var controladoraClientes = ControladoraClientes.Instancia();
+            try
+            {
+                if (txtNombreBuscado.Text != "")
+                {
+                    string nombreBuscado = txtNombreBuscado.Text;
+                    var cliente = controladoraClientes.BuscarClientePorNombre(nombreBuscado);
+                    if (cliente != null)
+                    {
+                        var listaClientes = new List<Entidades.Cliente>();
+                        listaClientes.Add(cliente);
+                        dgvClientes.DataSource = listaClientes;
+                        grbBuscarCliente.Enabled = false;
+                        txtNombreBuscado.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
+        }   
+        #region HELPER
+        private void Refrescar()
+        {
+            Controladora.ControladoraClientes controladoraClientes = Controladora.ControladoraClientes.Instancia();
+            var clientes = controladoraClientes.ObtenerClientes();
+            if (clientes.Count == 0)
+                MessageBox.Show("No se encontraron clientes.", "Información",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dgvClientes.DataSource = clientes;
+        }
+        private void LimpiarCampos()
+        {
+            txtNombreBuscado.Clear();
+            txtNombre.Clear();
+            txtEmail.Clear();
+        }
+        private int? GetId()
+        {
+            if (Controladora.ControladoraClientes.Instancia().ObtenerClientes().Count != 0)
+            {
+                try
+                {
+                    return int.Parse(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value.ToString());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
     }
 }
