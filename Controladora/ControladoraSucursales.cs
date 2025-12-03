@@ -22,13 +22,17 @@ namespace Controladora
         }
 
         private ControladoraSucursales() { }
-        public List<Sucursal> ObtenerSucursales()                   //Para obtener todas las sucursales
+        public List<Sucursal> ObtenerSucursales()
         {
-            var listaventas = repositorio.ObtenerSucursales().ToList();
-            if (listaventas == null || listaventas.Count == 0)
+            var sucursales = repositorio.ObtenerSucursales()?.ToList()
+                             ?? new List<Sucursal>();
+
+            if (sucursales.Count == 0)
                 throw new ListaVaciaException("No se encontraron sucursales.");
-            return listaventas;
+
+            return sucursales;
         }
+
 
         public void AgregarSucursal(string nombre, string direccion)
         {
@@ -40,6 +44,9 @@ namespace Controladora
             if (string.IsNullOrWhiteSpace(direccion)) 
             throw new DatosInvalidosException("La dirección no puede estar vacía.");
 
+             if (listasucursales.Any(s => s.direccion.ToLower() == direccion.ToLower()))
+                throw new EntidadYaExistenteException("Ya existe una sucursal en esa dirección.");
+
             Sucursal nuevaSucursal = new Sucursal();
             nuevaSucursal.Nombre = nombre;
             nuevaSucursal.direccion = direccion;
@@ -48,30 +55,40 @@ namespace Controladora
 
         public void ModificarSucursal(int id, string nombre, string direccion)
         {
-            var sucursal =  repositorio.ObtenerSucursalPorId(id);
+            if (id <= 0)
+                throw new DatosInvalidosException("El identificador de la sucursal no es válido.");
+
+            var sucursal = repositorio.ObtenerSucursalPorId(id);
             if (sucursal == null)
                 throw new EntidadNoEncontradaException("No se encontró la sucursal especificada.");
-            if (string.IsNullOrEmpty(nombre)) 
+
+            if (string.IsNullOrWhiteSpace(nombre))
                 throw new DatosInvalidosException("El nombre de la sucursal no puede estar vacío.");
-            var listasucursales = repositorio.ObtenerSucursales();
-            if(listasucursales.Any(s => s.Nombre.ToLower() == nombre.ToLower() && s.id != id))
-                throw new EntidadYaExistenteException("Ya existe una sucursal con ese nombre.");
+
             if (string.IsNullOrWhiteSpace(direccion))
                 throw new DatosInvalidosException("La dirección no puede estar vacía.");
 
+            var sucursales = repositorio.ObtenerSucursales() ?? new List<Sucursal>();
+
+            if (sucursales.Any(s => s.Nombre.ToLower() == nombre.ToLower() && s.id != id))
+                throw new EntidadYaExistenteException("Ya existe una sucursal con ese nombre.");
+
             sucursal.Nombre = nombre;
             sucursal.direccion = direccion;
+
             repositorio.ModificarSucursal(sucursal);
         }
         public void EliminarSucursal(int idSucursal)
         {
-           var sucursal = repositorio.ObtenerSucursalPorId(idSucursal);
+            if (idSucursal <= 0)
+                throw new DatosInvalidosException("El identificador de la sucursal no es válido.");
+
+            var sucursal = repositorio.ObtenerSucursalPorId(idSucursal);
             if (sucursal == null)
                 throw new EntidadNoEncontradaException("No se encontró la sucursal especificada.");
-            repositorio.EliminarSucursal(sucursal);
-        }
 
-      
+            repositorio.EliminarSucursal(sucursal);
+        }   
     }
 }
 
