@@ -40,7 +40,6 @@ namespace Vista
         {
             Ventana_Reportes_Y_Consultas fReportesYConsultas = new Ventana_Reportes_Y_Consultas();
             fReportesYConsultas.Show();
-
             this.Hide();
         }
     }

@@ -26,7 +26,6 @@ namespace Controladora
 
         public void AgregarCliente(string Nombre, string Email, int tipoCliente)
         {
-
             if (string.IsNullOrEmpty(Nombre))
                 throw new DatosInvalidosException("El nombre del cliente no puede estar vacío.");
             var listaClientes = repositorio.ObtenerClientes();
@@ -71,6 +70,8 @@ namespace Controladora
 
         public void EliminarCliente(int idCliente)
         {
+            if(idCliente <= 0)
+                throw new DatosInvalidosException("El ID del cliente no es válido.");
             var cliente = repositorio.ObtenerClientePorId(idCliente);
 
             if (cliente == null)
@@ -81,11 +82,22 @@ namespace Controladora
 
         public Cliente BuscarClientePorId(int idCliente)
         {
+            if (idCliente <= 0)
+                throw new DatosInvalidosException("El ID del cliente no es válido.");
             var cliente = repositorio.ObtenerClientePorId(idCliente);
-
             if (cliente == null)
                 throw new EntidadNoEncontradaException("No se encontró el cliente especificado.");
 
+            return cliente;
+        }
+
+        public Cliente BuscarClientePorNombre(string nombre)
+        {
+            if (string.IsNullOrEmpty(nombre))
+                throw new DatosInvalidosException("El nombre del cliente no puede estar vacío.");
+            var cliente = repositorio.ObtenerClientePorNombre(nombre);
+            if (cliente == null)
+                throw new EntidadNoEncontradaException("No se encontró ningún cliente con ese nombre.");
             return cliente;
         }
     }

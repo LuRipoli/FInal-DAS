@@ -20,7 +20,6 @@ namespace Modelo
         {
             return context.Clientes.ToList().AsReadOnly();
         }
-
         public void AgregarCliente(Cliente unCliente)
         {
             context.Clientes.Add(unCliente);
@@ -42,6 +41,10 @@ namespace Modelo
         public Cliente? ObtenerClientePorId(int idCliente)
         {
             return context.Clientes.FirstOrDefault(c => c.Id == idCliente);
+        }
+        public Cliente? ObtenerClientePorNombre(string nombreCliente)
+        {
+            return context.Clientes.FirstOrDefault(c => c.Nombre == nombreCliente);
         }
     }
 }
