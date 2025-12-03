@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
+            cmbModificar = new GroupBox();
+            label3 = new Label();
+            txtModificarId = new TextBox();
+            btnModificar = new Button();
+            label2 = new Label();
+            txtModificarNombre = new TextBox();
             cmbBuscarId = new GroupBox();
             btnBuscarId = new Button();
             label1 = new Label();
@@ -58,6 +64,7 @@
             btnModificarCategoria = new Button();
             btnAgregarCategoria = new Button();
             pnelppalmedio.SuspendLayout();
+            cmbModificar.SuspendLayout();
             cmbBuscarId.SuspendLayout();
             cmbBuscarNombre.SuspendLayout();
             grbGrillaClientes.SuspendLayout();
@@ -70,6 +77,7 @@
             // pnelppalmedio
             // 
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
+            pnelppalmedio.Controls.Add(cmbModificar);
             pnelppalmedio.Controls.Add(cmbBuscarId);
             pnelppalmedio.Controls.Add(cmbBuscarNombre);
             pnelppalmedio.Controls.Add(grbGrillaClientes);
@@ -78,8 +86,81 @@
             pnelppalmedio.Location = new Point(241, 120);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1060, 620);
+            pnelppalmedio.Size = new Size(1060, 783);
             pnelppalmedio.TabIndex = 15;
+            // 
+            // cmbModificar
+            // 
+            cmbModificar.Controls.Add(label3);
+            cmbModificar.Controls.Add(txtModificarId);
+            cmbModificar.Controls.Add(btnModificar);
+            cmbModificar.Controls.Add(label2);
+            cmbModificar.Controls.Add(txtModificarNombre);
+            cmbModificar.Location = new Point(49, 596);
+            cmbModificar.Margin = new Padding(2);
+            cmbModificar.Name = "cmbModificar";
+            cmbModificar.Padding = new Padding(2);
+            cmbModificar.Size = new Size(317, 176);
+            cmbModificar.TabIndex = 20;
+            cmbModificar.TabStop = false;
+            cmbModificar.Text = "Modificar Categoria";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(15, 105);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(177, 20);
+            label3.TabIndex = 21;
+            label3.Text = "Id Categoria a Modificar";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtModificarId
+            // 
+            txtModificarId.Font = new Font("Segoe UI", 9F);
+            txtModificarId.Location = new Point(15, 127);
+            txtModificarId.Margin = new Padding(2);
+            txtModificarId.Name = "txtModificarId";
+            txtModificarId.Size = new Size(177, 27);
+            txtModificarId.TabIndex = 20;
+            // 
+            // btnModificar
+            // 
+            btnModificar.BackColor = SystemColors.HighlightText;
+            btnModificar.FlatAppearance.BorderSize = 0;
+            btnModificar.FlatStyle = FlatStyle.Flat;
+            btnModificar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.Location = new Point(212, 105);
+            btnModificar.Margin = new Padding(2);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(90, 52);
+            btnModificar.TabIndex = 19;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label2.Location = new Point(49, 42);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(229, 20);
+            label2.TabIndex = 18;
+            label2.Text = "Nuevo Nombre de la Categoria:";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtModificarNombre
+            // 
+            txtModificarNombre.Font = new Font("Segoe UI", 9F);
+            txtModificarNombre.Location = new Point(15, 64);
+            txtModificarNombre.Margin = new Padding(2);
+            txtModificarNombre.Name = "txtModificarNombre";
+            txtModificarNombre.Size = new Size(287, 27);
+            txtModificarNombre.TabIndex = 17;
             // 
             // cmbBuscarId
             // 
@@ -185,11 +266,11 @@
             grbGrillaClientes.BackgroundImageLayout = ImageLayout.None;
             grbGrillaClientes.Controls.Add(dgvClientes);
             grbGrillaClientes.Font = new Font("Segoe UI", 9F);
-            grbGrillaClientes.Location = new Point(394, 33);
+            grbGrillaClientes.Location = new Point(394, 45);
             grbGrillaClientes.Margin = new Padding(2);
             grbGrillaClientes.Name = "grbGrillaClientes";
             grbGrillaClientes.Padding = new Padding(2);
-            grbGrillaClientes.Size = new Size(655, 543);
+            grbGrillaClientes.Size = new Size(655, 727);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
             grbGrillaClientes.Text = "Grilla de Categorias";
@@ -202,36 +283,36 @@
             dgvClientes.AllowUserToResizeRows = false;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvClientes.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle5;
             dgvClientes.Location = new Point(20, 26);
             dgvClientes.Margin = new Padding(2);
             dgvClientes.Name = "dgvClientes";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvClientes.RowHeadersWidth = 62;
-            dgvClientes.Size = new Size(619, 510);
+            dgvClientes.Size = new Size(619, 694);
             dgvClientes.TabIndex = 1;
             // 
             // CmbIngresoDeDatos
@@ -254,12 +335,12 @@
             btnIngresoDeDatos.FlatAppearance.BorderSize = 0;
             btnIngresoDeDatos.FlatStyle = FlatStyle.Flat;
             btnIngresoDeDatos.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnIngresoDeDatos.Location = new Point(99, 92);
+            btnIngresoDeDatos.Location = new Point(99, 108);
             btnIngresoDeDatos.Margin = new Padding(2);
             btnIngresoDeDatos.Name = "btnIngresoDeDatos";
             btnIngresoDeDatos.Size = new Size(117, 52);
             btnIngresoDeDatos.TabIndex = 20;
-            btnIngresoDeDatos.Text = "Buscar";
+            btnIngresoDeDatos.Text = "Agregar";
             btnIngresoDeDatos.UseVisualStyleBackColor = false;
             btnIngresoDeDatos.Click += button2_Click;
             // 
@@ -267,7 +348,7 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblEmail.Location = new Point(121, 22);
+            lblEmail.Location = new Point(121, 38);
             lblEmail.Margin = new Padding(2, 0, 2, 0);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(71, 20);
@@ -278,7 +359,7 @@
             // txtAgregar
             // 
             txtAgregar.Font = new Font("Segoe UI", 9F);
-            txtAgregar.Location = new Point(27, 51);
+            txtAgregar.Location = new Point(27, 67);
             txtAgregar.Margin = new Padding(2);
             txtAgregar.Name = "txtAgregar";
             txtAgregar.Size = new Size(257, 27);
@@ -290,7 +371,7 @@
             btnLimpiarCampos.FlatAppearance.BorderSize = 0;
             btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
             btnLimpiarCampos.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpiarCampos.Location = new Point(37, 68);
+            btnLimpiarCampos.Location = new Point(41, 184);
             btnLimpiarCampos.Margin = new Padding(2);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
             btnLimpiarCampos.Size = new Size(164, 52);
@@ -336,13 +417,13 @@
             pnelppalbotones.Location = new Point(0, 0);
             pnelppalbotones.Margin = new Padding(2);
             pnelppalbotones.Name = "pnelppalbotones";
-            pnelppalbotones.Size = new Size(241, 740);
+            pnelppalbotones.Size = new Size(241, 903);
             pnelppalbotones.TabIndex = 13;
             // 
             // BuscarCategoriaNombre
             // 
             BuscarCategoriaNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            BuscarCategoriaNombre.Location = new Point(37, 415);
+            BuscarCategoriaNombre.Location = new Point(41, 531);
             BuscarCategoriaNombre.Margin = new Padding(2);
             BuscarCategoriaNombre.Name = "BuscarCategoriaNombre";
             BuscarCategoriaNombre.Size = new Size(164, 56);
@@ -353,7 +434,7 @@
             // btnBuscarCategoriaId
             // 
             btnBuscarCategoriaId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnBuscarCategoriaId.Location = new Point(37, 345);
+            btnBuscarCategoriaId.Location = new Point(41, 461);
             btnBuscarCategoriaId.Margin = new Padding(2);
             btnBuscarCategoriaId.Name = "btnBuscarCategoriaId";
             btnBuscarCategoriaId.Size = new Size(164, 56);
@@ -364,7 +445,7 @@
             // btnVolver
             // 
             btnVolver.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnVolver.Location = new Point(37, 487);
+            btnVolver.Location = new Point(41, 603);
             btnVolver.Margin = new Padding(2);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(164, 56);
@@ -375,7 +456,7 @@
             // btnSalir
             // 
             btnSalir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSalir.Location = new Point(37, 557);
+            btnSalir.Location = new Point(41, 673);
             btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(164, 56);
@@ -386,7 +467,7 @@
             // btnEliminarCategoria
             // 
             btnEliminarCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnEliminarCategoria.Location = new Point(37, 275);
+            btnEliminarCategoria.Location = new Point(41, 391);
             btnEliminarCategoria.Margin = new Padding(2);
             btnEliminarCategoria.Name = "btnEliminarCategoria";
             btnEliminarCategoria.Size = new Size(164, 56);
@@ -397,7 +478,7 @@
             // btnModificarCategoria
             // 
             btnModificarCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnModificarCategoria.Location = new Point(37, 204);
+            btnModificarCategoria.Location = new Point(41, 320);
             btnModificarCategoria.Margin = new Padding(2);
             btnModificarCategoria.Name = "btnModificarCategoria";
             btnModificarCategoria.Size = new Size(164, 56);
@@ -409,7 +490,7 @@
             // btnAgregarCategoria
             // 
             btnAgregarCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAgregarCategoria.Location = new Point(37, 136);
+            btnAgregarCategoria.Location = new Point(41, 252);
             btnAgregarCategoria.Margin = new Padding(2);
             btnAgregarCategoria.Name = "btnAgregarCategoria";
             btnAgregarCategoria.Size = new Size(164, 56);
@@ -422,7 +503,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1301, 740);
+            ClientSize = new Size(1301, 903);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             Controls.Add(pnelppalbotones);
@@ -430,6 +511,8 @@
             Text = "Gestion_de_Rubros";
             Load += Gestion_de_Rubros_Load;
             pnelppalmedio.ResumeLayout(false);
+            cmbModificar.ResumeLayout(false);
+            cmbModificar.PerformLayout();
             cmbBuscarId.ResumeLayout(false);
             cmbBuscarId.PerformLayout();
             cmbBuscarNombre.ResumeLayout(false);
@@ -472,5 +555,11 @@
         private Label label1;
         private TextBox textBox1;
         private Button btnIngresoDeDatos;
+        private GroupBox cmbModificar;
+        private Button btnModificar;
+        private Label label2;
+        private TextBox txtModificarNombre;
+        private Label label3;
+        private TextBox txtModificarId;
     }
 }

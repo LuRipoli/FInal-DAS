@@ -31,6 +31,7 @@ namespace Vista
             CmbIngresoDeDatos.Enabled = false;
             cmbBuscarNombre.Enabled = false;
             cmbBuscarId.Enabled = false;
+            cmbModificar.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -55,7 +56,21 @@ namespace Vista
 
         private void btnModificarCategoria_Click(object sender, EventArgs e)
         {
+            cmbModificar.Enabled = true;
+        }
 
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            try 
+            { 
+                controladora.ModificarCategoria(int.Parse(txtModificarId.Text), txtModificarNombre.Text);
+                MessageBox.Show("Categoría modificada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cmbModificar.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
