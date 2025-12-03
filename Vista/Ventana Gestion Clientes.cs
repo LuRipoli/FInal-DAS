@@ -34,8 +34,6 @@ namespace Vista
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             var controladoraClientes = Controladora.ControladoraClientes.Instancia();
-            grbIngresoDatos.Enabled = true;
-
             try
             {
                 string nombre = txtNombre.Text.Trim();
@@ -50,7 +48,6 @@ namespace Vista
                 
                 Refrescar();
                 LimpiarCampos();
-                grbIngresoDatos.Enabled = false;
             }
             catch (DatosInvalidosException ex)  
             {
@@ -65,7 +62,6 @@ namespace Vista
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
             var controladoraClientes = ControladoraClientes.Instancia();
-            grbIngresoDatos.Enabled = true;
             try
             {
                 int? id = GetId();
@@ -78,7 +74,6 @@ namespace Vista
                     MessageBox.Show("Cliente modificado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Refrescar();
                     LimpiarCampos();
-                    grbIngresoDatos.Enabled = false;
                 }
                 else
                 {
@@ -148,6 +143,7 @@ namespace Vista
                     else
                     {
                         MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        grbBuscarCliente.Enabled = false;
                     }
                 }
             }
@@ -171,10 +167,8 @@ namespace Vista
         #region HELPER
         private void Refrescar()
         {
-            Controladora.ControladoraClientes controladoraClientes = Controladora.ControladoraClientes.Instancia();
+            var controladoraClientes = ControladoraClientes.Instancia();
             var clientes = controladoraClientes.ObtenerClientes();
-            if (clientes.Count == 0)
-                MessageBox.Show("No se encontraron clientes.", "Información",MessageBoxButtons.OK, MessageBoxIcon.Information);
             dgvClientes.DataSource = clientes;
         }
         private void LimpiarCampos()
