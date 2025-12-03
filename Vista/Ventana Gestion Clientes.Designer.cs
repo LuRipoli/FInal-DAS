@@ -51,13 +51,13 @@
             pnelppaltitulo = new Panel();
             lblTituloPrograma = new Label();
             pnelppalbotones = new Panel();
+            btnRefrescar = new Button();
             btnBuscarCliente = new Button();
             btnVolver = new Button();
             btnSalir = new Button();
             btnEliminarCliente = new Button();
             btnModificarCliente = new Button();
             btnAgregarCliente = new Button();
-            btnRefrescar = new Button();
             pnelppalmedio.SuspendLayout();
             grbBuscarCliente.SuspendLayout();
             grbGrillaClientes.SuspendLayout();
@@ -86,6 +86,7 @@
             grbBuscarCliente.Controls.Add(btnBuscar);
             grbBuscarCliente.Controls.Add(lblId);
             grbBuscarCliente.Controls.Add(txtNombreBuscado);
+            grbBuscarCliente.Enabled = false;
             grbBuscarCliente.Location = new Point(54, 476);
             grbBuscarCliente.Name = "grbBuscarCliente";
             grbBuscarCliente.Size = new Size(396, 196);
@@ -338,6 +339,17 @@
             pnelppalbotones.Size = new Size(301, 850);
             pnelppalbotones.TabIndex = 10;
             // 
+            // btnRefrescar
+            // 
+            btnRefrescar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnRefrescar.Location = new Point(46, 186);
+            btnRefrescar.Name = "btnRefrescar";
+            btnRefrescar.Size = new Size(205, 70);
+            btnRefrescar.TabIndex = 11;
+            btnRefrescar.Text = "Refrescar Grilla";
+            btnRefrescar.UseVisualStyleBackColor = true;
+            btnRefrescar.Click += btnRefrescar_Click;
+            // 
             // btnBuscarCliente
             // 
             btnBuscarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -403,17 +415,6 @@
             btnAgregarCliente.Text = "Agregar Cliente";
             btnAgregarCliente.UseVisualStyleBackColor = true;
             btnAgregarCliente.Click += btnAgregarCliente_Click;
-            // 
-            // btnRefrescar
-            // 
-            btnRefrescar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnRefrescar.Location = new Point(46, 186);
-            btnRefrescar.Name = "btnRefrescar";
-            btnRefrescar.Size = new Size(205, 70);
-            btnRefrescar.TabIndex = 11;
-            btnRefrescar.Text = "Refrescar Grilla";
-            btnRefrescar.UseVisualStyleBackColor = true;
-            btnRefrescar.Click += btnRefrescar_Click;
             // 
             // Ventana_Gestion_Clientes
             // 
