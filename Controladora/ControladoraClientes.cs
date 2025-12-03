@@ -18,12 +18,7 @@ namespace Controladora
 
         public List<Cliente> ObtenerClientes()
         {
-            var clientes = repositorio.ObtenerClientes()?.ToList() ?? new List<Cliente>();
-
-            if (clientes.Count == 0)
-                throw new ListaVaciaException("No se encontraron clientes.");
-
-            return clientes;
+            return repositorio.ObtenerClientes()?.ToList() ?? new List<Cliente>();
         }
 
         public void AgregarCliente(string Nombre, string Email, int tipoCliente)
@@ -47,7 +42,7 @@ namespace Controladora
             repositorio.AgregarCliente(nuevoCliente);
         }
 
-        public void ModificarClientes(int idCliente, string nuevoNombre, string nuevoEmail,int nuevoTipoCliente)
+        public void ModificarCliente(int idCliente, string nuevoNombre, string nuevoEmail,int nuevoTipoCliente)
         {
             var cliente = repositorio.ObtenerClientePorId(idCliente);
             if (cliente == null)
