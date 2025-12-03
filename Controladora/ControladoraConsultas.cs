@@ -32,9 +32,16 @@ namespace Controladora
 
         public Consulta? ObtenerConsultaPorID(int idConsulta)                   //Para obtener una consulta pr ID
         { 
-            if (idConsulta <= 0)
+            if (idConsulta <=0)
             {
+
+                throw new IdNoEncontradoException(nameof(Consulta));    //Si el ID es negativo, no existe como ID de alguna Consulta. 
                 return null;
+            }
+
+            if (repositorio.ObtenerConsultaPorID(idConsulta) == null)
+            {
+                throw new EntidadNoEncontradaException(nameof(Consulta));  //Si no existe ninguna consulta con ese ID, lanza la excepcion.
             }
             return repositorio.ObtenerConsultaPorID(idConsulta);
         }
@@ -43,9 +50,10 @@ namespace Controladora
         {
             if (consulta == null)
             {
-                throw new ArgumentNullException(nameof(consulta));
-                repositorio.AgregarConsulta(consulta);
+                throw new EntidadNoEncontradaException(nameof(consulta));  //No buscas nada, porque ingresas con una consulta nula, una que no existe.
+               
             }
+            repositorio.AgregarConsulta(consulta);
         }
 
         public bool EliminarConsulta(int idConsulta)

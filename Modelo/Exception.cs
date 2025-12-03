@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class StockNegativoException : Exception
+    public class StockNegativoException : Exception 
     {
         public StockNegativoException(string mensaje) : base(mensaje) { }
     }
@@ -14,11 +14,11 @@ namespace Modelo
     {
         public MovimientoInvalidoException(string mensaje) : base(mensaje) { }
     }
-    public class ListaVaciaException : Exception
+    public class ListaVaciaException : Exception 
     {
         public ListaVaciaException(string mensaje) : base(mensaje) { }
     }
-    public class DatosInvalidosException : Exception
+    public class DatosInvalidosException : Exception 
     {
         public DatosInvalidosException(string mensaje) : base(mensaje) { }
     }
@@ -26,15 +26,15 @@ namespace Modelo
     {
         public OperacionNoPermitidaException(string mensaje) : base(mensaje) { }
     }
-    public class IdNoEncontradoException : Exception
+    public class IdNoEncontradoException : Exception 
     {
         public IdNoEncontradoException(string mensaje) : base(mensaje) { }
     }
-    public class EntidadYaExistenteException: Exception
+    public class EntidadYaExistenteException: Exception 
     {
         public EntidadYaExistenteException(string mensaje) : base(mensaje) { }
     }
-    public class EntidadNoEncontradaException: Exception
+    public class EntidadNoEncontradaException: Exception 
     {
         public EntidadNoEncontradaException(string mensaje) : base(mensaje) { }
     }

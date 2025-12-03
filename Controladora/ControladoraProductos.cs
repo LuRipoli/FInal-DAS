@@ -33,18 +33,26 @@ namespace Controladora
         {
             if (idProducto <= 0)
             {
+                throw new IdNoEncontradoException(nameof(Producto));    //Si el ID es negativo, no existe como ID de algun Producto.
                 return null; 
             }
-            return repositorio.ObtenerProductoPorID(idProducto); 
+            
+            if (repositorio.ObtenerProductoPorID(idProducto) == null)
+            {
+                throw new DatosInvalidosException(nameof(Producto));  //Si no existe ningun producto con ese ID, lanza la excepcion de Datos Inavlidos.
+            }
+
+            return repositorio.ObtenerProductoPorID(idProducto);
         }
 
         public void AgregarProducto(Producto producto)
         {
             if (producto == null)
             {
-                throw new ArgumentNullException(nameof(producto));
-                repositorio.AgregarProducto(producto); 
+                throw new EntidadNoEncontradaException(nameof(producto));    //No buscas nada, porque ingresas con un producto nulo, uno que no existe.
+               
             }
+            repositorio.AgregarProducto(producto);
         }
 
         public void ModificarProducto(Producto producto)
@@ -54,12 +62,18 @@ namespace Controladora
                 throw new ArgumentNullException(nameof(producto));
             }
             repositorio.ModificarProducto(producto); 
+
+            if (repositorio.lista.Count == 0)
+            {
+                throw new ListaVaciaException("No hay productos para modificar en la lista"); // No se encuntra el producto con un ID nulo para poder modificarlo.
+            }
         }
 
         public bool EliminarProducto( int idProducto)
         {
-            if (idProducto <= 0)
+            if (repositorio.ObtenerProductoPorID(idProducto) == null)
             {
+                throw new IdNoEncontradoException("No hay productos para borar en la lista"); // No se encuntra el producto con un ID nulo para poder borrarlo.
                 return false; 
 
             }
