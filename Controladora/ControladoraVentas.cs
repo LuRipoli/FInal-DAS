@@ -34,9 +34,6 @@ namespace Controladora
             return ventas;
         }
 
-
-
-
         public void AgregarVenta(DateTime fecha, int clienteId, int metodoPago, decimal descto, decimal total)
         {
             if (clienteId <= 0)

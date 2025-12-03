@@ -18,10 +18,12 @@ namespace Controladora
 
         public List<Cliente> ObtenerClientes()
         {
-            var listaClientes = repositorio.ObtenerClientes().ToList();
-            if (listaClientes == null || listaClientes.Count == 0)
+            var clientes = repositorio.ObtenerClientes()?.ToList() ?? new List<Cliente>();
+
+            if (clientes.Count == 0)
                 throw new ListaVaciaException("No se encontraron clientes.");
-            return listaClientes;
+
+            return clientes;
         }
 
         public void AgregarCliente(string Nombre, string Email, int tipoCliente)
