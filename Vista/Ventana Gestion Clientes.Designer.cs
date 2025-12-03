@@ -44,9 +44,7 @@
             dgvClientes = new DataGridView();
             grbIngresoDatosProveedores = new GroupBox();
             btnLimpiarCampos = new Button();
-            this.txtEmail = new TextBox();
             lblEmail = new Label();
-            this.lblNombre = new Label();
             txtNombre = new TextBox();
             grbTipoCliente = new GroupBox();
             lblSelección = new Label();
@@ -225,9 +223,7 @@
             // 
             grbIngresoDatosProveedores.Controls.Add(grbTipoCliente);
             grbIngresoDatosProveedores.Controls.Add(btnLimpiarCampos);
-            grbIngresoDatosProveedores.Controls.Add(this.txtEmail);
             grbIngresoDatosProveedores.Controls.Add(lblEmail);
-            grbIngresoDatosProveedores.Controls.Add(this.lblNombre);
             grbIngresoDatosProveedores.Controls.Add(txtNombre);
             grbIngresoDatosProveedores.Location = new Point(51, 73);
             grbIngresoDatosProveedores.Name = "grbIngresoDatosProveedores";
@@ -252,12 +248,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new Font("Segoe UI", 9F);
-            this.txtEmail.Location = new Point(42, 211);
-            this.txtEmail.Multiline = true;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new Size(320, 33);
-            this.txtEmail.TabIndex = 2;
+        
             // 
             // lblEmail
             // 
@@ -272,14 +263,7 @@
             // 
             // lblNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            this.lblNombre.Location = new Point(110, 117);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new Size(181, 25);
-            this.lblNombre.TabIndex = 6;
-            this.lblNombre.Text = "Nombre del Cliente:";
-            this.lblNombre.TextAlign = ContentAlignment.MiddleCenter;
+     
             // 
             // txtNombre
             // 
