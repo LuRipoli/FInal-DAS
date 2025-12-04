@@ -8,7 +8,7 @@ using Entidades;
 
 namespace Controladora
 {
-    internal class ControladoraConsultas
+    public class ControladoraConsultas
     {
         private RepositorioConsultas repositorio = new RepositorioConsultas();
         private static ControladoraConsultas instancia;
