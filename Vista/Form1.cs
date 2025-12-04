@@ -42,5 +42,12 @@ namespace Vista
             fReportesYConsultas.Show();
             this.Hide();
         }
+
+        private void GestionDeCategorias_Click(object sender, EventArgs e)
+        {
+            Gestion_de_Rubros fRubros = new Gestion_de_Rubros();
+            fRubros.Show();
+            this.Hide();
+        }
     }
 }

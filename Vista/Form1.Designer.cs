@@ -32,6 +32,7 @@
             btnGestionClientes = new Button();
             btnGestionVentas = new Button();
             btnReportesYConsultas = new Button();
+            GestionDeCategorias = new Button();
             SuspendLayout();
             // 
             // btnGestionProductos
@@ -74,11 +75,22 @@
             btnReportesYConsultas.UseVisualStyleBackColor = true;
             btnReportesYConsultas.Click += btnReportesYConsultas_Click;
             // 
+            // GestionDeCategorias
+            // 
+            GestionDeCategorias.Location = new Point(38, 310);
+            GestionDeCategorias.Name = "GestionDeCategorias";
+            GestionDeCategorias.Size = new Size(185, 29);
+            GestionDeCategorias.TabIndex = 4;
+            GestionDeCategorias.Text = "Gestion de Categorias";
+            GestionDeCategorias.UseVisualStyleBackColor = true;
+            GestionDeCategorias.Click += GestionDeCategorias_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(277, 334);
+            ClientSize = new Size(277, 363);
+            Controls.Add(GestionDeCategorias);
             Controls.Add(btnReportesYConsultas);
             Controls.Add(btnGestionVentas);
             Controls.Add(btnGestionClientes);
@@ -95,5 +107,6 @@
         private Button btnGestionClientes;
         private Button btnGestionVentas;
         private Button btnReportesYConsultas;
+        private Button GestionDeCategorias;
     }
 }

@@ -32,6 +32,10 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
+            cmbEliminarCategoria = new GroupBox();
+            label4 = new Label();
+            txtEliminarId = new TextBox();
+            btnEliminar = new Button();
             cmbModificar = new GroupBox();
             label3 = new Label();
             txtModificarId = new TextBox();
@@ -41,11 +45,11 @@
             cmbBuscarId = new GroupBox();
             btnBuscarId = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtBuscarId = new TextBox();
             cmbBuscarNombre = new GroupBox();
             btnBuscarNombre = new Button();
             lblId = new Label();
-            txtId = new TextBox();
+            txtBuscarNombre = new TextBox();
             grbGrillaClientes = new GroupBox();
             dgvClientes = new DataGridView();
             CmbIngresoDeDatos = new GroupBox();
@@ -64,6 +68,7 @@
             btnModificarCategoria = new Button();
             btnAgregarCategoria = new Button();
             pnelppalmedio.SuspendLayout();
+            cmbEliminarCategoria.SuspendLayout();
             cmbModificar.SuspendLayout();
             cmbBuscarId.SuspendLayout();
             cmbBuscarNombre.SuspendLayout();
@@ -77,6 +82,7 @@
             // pnelppalmedio
             // 
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
+            pnelppalmedio.Controls.Add(cmbEliminarCategoria);
             pnelppalmedio.Controls.Add(cmbModificar);
             pnelppalmedio.Controls.Add(cmbBuscarId);
             pnelppalmedio.Controls.Add(cmbBuscarNombre);
@@ -88,6 +94,56 @@
             pnelppalmedio.Name = "pnelppalmedio";
             pnelppalmedio.Size = new Size(1060, 783);
             pnelppalmedio.TabIndex = 15;
+            // 
+            // cmbEliminarCategoria
+            // 
+            cmbEliminarCategoria.Controls.Add(label4);
+            cmbEliminarCategoria.Controls.Add(txtEliminarId);
+            cmbEliminarCategoria.Controls.Add(btnEliminar);
+            cmbEliminarCategoria.Location = new Point(394, 660);
+            cmbEliminarCategoria.Margin = new Padding(2);
+            cmbEliminarCategoria.Name = "cmbEliminarCategoria";
+            cmbEliminarCategoria.Padding = new Padding(2);
+            cmbEliminarCategoria.Size = new Size(317, 112);
+            cmbEliminarCategoria.TabIndex = 22;
+            cmbEliminarCategoria.TabStop = false;
+            cmbEliminarCategoria.Text = "Eliminar Categoria";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label4.Location = new Point(19, 41);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(167, 20);
+            label4.TabIndex = 21;
+            label4.Text = "Id Categoria a Eliminar";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtEliminarId
+            // 
+            txtEliminarId.Font = new Font("Segoe UI", 9F);
+            txtEliminarId.Location = new Point(20, 64);
+            txtEliminarId.Margin = new Padding(2);
+            txtEliminarId.Name = "txtEliminarId";
+            txtEliminarId.Size = new Size(177, 27);
+            txtEliminarId.TabIndex = 20;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = SystemColors.HighlightText;
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminar.Location = new Point(217, 42);
+            btnEliminar.Margin = new Padding(2);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(90, 52);
+            btnEliminar.TabIndex = 19;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // cmbModificar
             // 
@@ -166,7 +222,7 @@
             // 
             cmbBuscarId.Controls.Add(btnBuscarId);
             cmbBuscarId.Controls.Add(label1);
-            cmbBuscarId.Controls.Add(textBox1);
+            cmbBuscarId.Controls.Add(txtBuscarId);
             cmbBuscarId.Location = new Point(49, 229);
             cmbBuscarId.Margin = new Padding(2);
             cmbBuscarId.Name = "cmbBuscarId";
@@ -189,6 +245,7 @@
             btnBuscarId.TabIndex = 19;
             btnBuscarId.Text = "Buscar";
             btnBuscarId.UseVisualStyleBackColor = false;
+            btnBuscarId.Click += btnBuscarId_Click;
             // 
             // label1
             // 
@@ -202,20 +259,20 @@
             label1.Text = "Id del Categoria:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // txtBuscarId
             // 
-            textBox1.Font = new Font("Segoe UI", 9F);
-            textBox1.Location = new Point(49, 67);
-            textBox1.Margin = new Padding(2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(220, 27);
-            textBox1.TabIndex = 17;
+            txtBuscarId.Font = new Font("Segoe UI", 9F);
+            txtBuscarId.Location = new Point(49, 67);
+            txtBuscarId.Margin = new Padding(2);
+            txtBuscarId.Name = "txtBuscarId";
+            txtBuscarId.Size = new Size(220, 27);
+            txtBuscarId.TabIndex = 17;
             // 
             // cmbBuscarNombre
             // 
             cmbBuscarNombre.Controls.Add(btnBuscarNombre);
             cmbBuscarNombre.Controls.Add(lblId);
-            cmbBuscarNombre.Controls.Add(txtId);
+            cmbBuscarNombre.Controls.Add(txtBuscarNombre);
             cmbBuscarNombre.Location = new Point(49, 412);
             cmbBuscarNombre.Margin = new Padding(2);
             cmbBuscarNombre.Name = "cmbBuscarNombre";
@@ -252,14 +309,14 @@
             lblId.Text = "Nombre del Categoria:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtId
+            // txtBuscarNombre
             // 
-            txtId.Font = new Font("Segoe UI", 9F);
-            txtId.Location = new Point(49, 67);
-            txtId.Margin = new Padding(2);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(220, 27);
-            txtId.TabIndex = 17;
+            txtBuscarNombre.Font = new Font("Segoe UI", 9F);
+            txtBuscarNombre.Location = new Point(49, 67);
+            txtBuscarNombre.Margin = new Padding(2);
+            txtBuscarNombre.Name = "txtBuscarNombre";
+            txtBuscarNombre.Size = new Size(220, 27);
+            txtBuscarNombre.TabIndex = 17;
             // 
             // grbGrillaClientes
             // 
@@ -270,7 +327,7 @@
             grbGrillaClientes.Margin = new Padding(2);
             grbGrillaClientes.Name = "grbGrillaClientes";
             grbGrillaClientes.Padding = new Padding(2);
-            grbGrillaClientes.Size = new Size(655, 727);
+            grbGrillaClientes.Size = new Size(655, 611);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
             grbGrillaClientes.Text = "Grilla de Categorias";
@@ -312,7 +369,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvClientes.RowHeadersWidth = 62;
-            dgvClientes.Size = new Size(619, 694);
+            dgvClientes.Size = new Size(619, 570);
             dgvClientes.TabIndex = 1;
             // 
             // CmbIngresoDeDatos
@@ -430,6 +487,7 @@
             BuscarCategoriaNombre.TabIndex = 11;
             BuscarCategoriaNombre.Text = "Buscar Categoria Por Nombre";
             BuscarCategoriaNombre.UseVisualStyleBackColor = true;
+            BuscarCategoriaNombre.Click += BuscarCategoriaNombre_Click;
             // 
             // btnBuscarCategoriaId
             // 
@@ -441,6 +499,7 @@
             btnBuscarCategoriaId.TabIndex = 10;
             btnBuscarCategoriaId.Text = "Buscar Categoria Por Id";
             btnBuscarCategoriaId.UseVisualStyleBackColor = true;
+            btnBuscarCategoriaId.Click += btnBuscarCategoriaId_Click;
             // 
             // btnVolver
             // 
@@ -452,6 +511,7 @@
             btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
             // 
             // btnSalir
             // 
@@ -463,6 +523,7 @@
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir del Programa";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // btnEliminarCategoria
             // 
@@ -474,6 +535,7 @@
             btnEliminarCategoria.TabIndex = 6;
             btnEliminarCategoria.Text = "Eliminar Categoria";
             btnEliminarCategoria.UseVisualStyleBackColor = true;
+            btnEliminarCategoria.Click += btnEliminarCategoria_Click;
             // 
             // btnModificarCategoria
             // 
@@ -511,6 +573,8 @@
             Text = "Gestion_de_Rubros";
             Load += Gestion_de_Rubros_Load;
             pnelppalmedio.ResumeLayout(false);
+            cmbEliminarCategoria.ResumeLayout(false);
+            cmbEliminarCategoria.PerformLayout();
             cmbModificar.ResumeLayout(false);
             cmbModificar.PerformLayout();
             cmbBuscarId.ResumeLayout(false);
@@ -533,7 +597,7 @@
         private GroupBox cmbBuscarNombre;
         private Button btnBuscarNombre;
         private Label lblId;
-        private TextBox txtId;
+        private TextBox txtBuscarNombre;
         private GroupBox grbGrillaClientes;
         private DataGridView dgvClientes;
         private GroupBox CmbIngresoDeDatos;
@@ -553,7 +617,7 @@
         private GroupBox cmbBuscarId;
         private Button btnBuscarId;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtBuscarId;
         private Button btnIngresoDeDatos;
         private GroupBox cmbModificar;
         private Button btnModificar;
@@ -561,5 +625,9 @@
         private TextBox txtModificarNombre;
         private Label label3;
         private TextBox txtModificarId;
+        private GroupBox cmbEliminarCategoria;
+        private Label label4;
+        private TextBox txtEliminarId;
+        private Button btnEliminar;
     }
 }
