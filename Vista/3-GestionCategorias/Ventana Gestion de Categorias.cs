@@ -14,7 +14,6 @@ namespace Vista
 {
     public partial class Gestion_de_Rubros : Form
     {
-        var controladora = ControladoraCategorias.Instancia();
         public Gestion_de_Rubros()
         {
             InitializeComponent();
@@ -38,6 +37,7 @@ namespace Vista
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 string aux = txtAgregar.Text;
@@ -53,6 +53,7 @@ namespace Vista
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 if (string.IsNullOrWhiteSpace(txtBuscarNombre.Text))
@@ -103,6 +104,7 @@ namespace Vista
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 controladora.ModificarCategoria(int.Parse(txtModificarId.Text), txtModificarNombre.Text);
@@ -122,7 +124,7 @@ namespace Vista
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 controladora.EliminarCategoria(int.Parse(txtEliminarId.Text));
@@ -161,6 +163,7 @@ namespace Vista
 
         private void btnBuscarId_Click(object sender, EventArgs e)
         {
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 if (!int.TryParse(txtBuscarId.Text?.Trim(), out int categoriaId))
@@ -204,6 +207,7 @@ namespace Vista
 
         public void PrecargarDatos()
         {
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 controladora.AgregarCategoria("Bebidas");
@@ -220,6 +224,7 @@ namespace Vista
 
         public void cargardatosDgvClientes()
         {
+            var controladora = ControladoraCategorias.Instancia();
             try
             {
                 var categorias = controladora.ObtenerCategorias();
