@@ -7,7 +7,10 @@ namespace Controladora
     {
         private RepositorioClientes repositorio = new RepositorioClientes();
         private static ControladoraClientes instancia;
-
+        private ControladoraClientes()
+        {
+            repositorio = new RepositorioClientes();
+        }
         public static ControladoraClientes Instancia()
         {
             if (instancia == null)

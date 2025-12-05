@@ -12,6 +12,10 @@ namespace Controladora
     {
         private RepositorioConsultas repositorio = new RepositorioConsultas();
         private static ControladoraConsultas instancia;
+        private ControladoraConsultas()
+        {
+            repositorio = new RepositorioConsultas();
+        }
         public static ControladoraConsultas Instancia()
         {
             if (instancia == null)

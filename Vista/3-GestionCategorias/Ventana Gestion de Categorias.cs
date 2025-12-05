@@ -14,8 +14,7 @@ namespace Vista
 {
     public partial class Gestion_de_Rubros : Form
     {
-        ControladoraCategorias controladora = new ControladoraCategorias();
-
+        var controladora = ControladoraCategorias.Instancia();
         public Gestion_de_Rubros()
         {
             InitializeComponent();
