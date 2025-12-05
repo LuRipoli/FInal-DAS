@@ -92,5 +92,11 @@ namespace Vista
             Ventana_Gestion_Sucursales fSucursales = new Ventana_Gestion_Sucursales();
             fSucursales.Show();
         }
+
+        private void btnRegistrarIngresos_Click(object sender, EventArgs e)
+        {
+            Ventana_Gestion_Ingresos fIngresos = new Ventana_Gestion_Ingresos();
+            fIngresos.Show();
+        }
     }
 }

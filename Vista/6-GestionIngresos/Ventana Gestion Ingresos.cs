@@ -87,6 +87,11 @@ namespace Vista
         {
             try
             {
+                if (cmbProducto.SelectedIndex == -1)
+                    throw new DatosInvalidosException("Debe seleccionar un producto.");
+                if (cmbSucursal.SelectedIndex == -1)
+                    throw new DatosInvalidosException("Debe seleccionar una sucursal.");
+              
                 int productoId = (int)cmbProducto.SelectedValue;
                 int sucursalId = (int)cmbSucursal.SelectedValue;
                 int cantidad = (int)nudCantidadIngresada.Value;

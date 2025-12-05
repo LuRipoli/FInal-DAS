@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             grbBuscarCliente = new GroupBox();
             btnBuscar = new Button();
@@ -51,12 +51,12 @@
             pnelppaltitulo = new Panel();
             lblTituloPrograma = new Label();
             pnelppalbotones = new Panel();
+            btnModificarCliente = new Button();
             btnRefrescar = new Button();
             btnBuscarCliente = new Button();
             btnVolver = new Button();
             btnSalir = new Button();
             btnEliminarCliente = new Button();
-            btnModificarCliente = new Button();
             btnAgregarCliente = new Button();
             pnelppalmedio.SuspendLayout();
             grbBuscarCliente.SuspendLayout();
@@ -87,6 +87,7 @@
             grbBuscarCliente.Controls.Add(lblId);
             grbBuscarCliente.Controls.Add(txtNombreBuscado);
             grbBuscarCliente.Enabled = false;
+            grbBuscarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbBuscarCliente.Location = new Point(54, 476);
             grbBuscarCliente.Name = "grbBuscarCliente";
             grbBuscarCliente.Size = new Size(396, 196);
@@ -132,7 +133,7 @@
             // 
             grbGrillaClientes.BackgroundImageLayout = ImageLayout.None;
             grbGrillaClientes.Controls.Add(dgvClientes);
-            grbGrillaClientes.Font = new Font("Segoe UI", 9F);
+            grbGrillaClientes.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbGrillaClientes.Location = new Point(477, 29);
             grbGrillaClientes.Name = "grbGrillaClientes";
             grbGrillaClientes.Size = new Size(819, 643);
@@ -148,36 +149,38 @@
             dgvClientes.AllowUserToResizeRows = false;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle5;
-            dgvClientes.Location = new Point(25, 42);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvClientes.Dock = DockStyle.Fill;
+            dgvClientes.Location = new Point(3, 27);
             dgvClientes.Margin = new Padding(2);
             dgvClientes.Name = "dgvClientes";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dgvClientes.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvClientes.RowHeadersWidth = 62;
-            dgvClientes.Size = new Size(774, 589);
+            dgvClientes.Size = new Size(813, 613);
             dgvClientes.TabIndex = 1;
             // 
             // grbIngresoDatos
@@ -188,6 +191,7 @@
             grbIngresoDatos.Controls.Add(btnLimpiarCampos);
             grbIngresoDatos.Controls.Add(lblEmail);
             grbIngresoDatos.Controls.Add(txtNombre);
+            grbIngresoDatos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbIngresoDatos.Location = new Point(54, 30);
             grbIngresoDatos.Name = "grbIngresoDatos";
             grbIngresoDatos.Size = new Size(399, 431);
@@ -339,6 +343,17 @@
             pnelppalbotones.Size = new Size(301, 850);
             pnelppalbotones.TabIndex = 10;
             // 
+            // btnModificarCliente
+            // 
+            btnModificarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnModificarCliente.Location = new Point(46, 358);
+            btnModificarCliente.Name = "btnModificarCliente";
+            btnModificarCliente.Size = new Size(205, 70);
+            btnModificarCliente.TabIndex = 5;
+            btnModificarCliente.Text = "Modificar Cliente";
+            btnModificarCliente.UseVisualStyleBackColor = true;
+            btnModificarCliente.Click += btnModificarCliente_Click;
+            // 
             // btnRefrescar
             // 
             btnRefrescar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -393,17 +408,6 @@
             btnEliminarCliente.Text = "Eliminar Cliente";
             btnEliminarCliente.UseVisualStyleBackColor = true;
             btnEliminarCliente.Click += btnEliminarCliente_Click;
-            // 
-            // btnModificarCliente
-            // 
-            btnModificarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnModificarCliente.Location = new Point(46, 358);
-            btnModificarCliente.Name = "btnModificarCliente";
-            btnModificarCliente.Size = new Size(205, 70);
-            btnModificarCliente.TabIndex = 5;
-            btnModificarCliente.Text = "Modificar Cliente";
-            btnModificarCliente.UseVisualStyleBackColor = true;
-            btnModificarCliente.Click += btnModificarCliente_Click;
             // 
             // btnAgregarCliente
             // 

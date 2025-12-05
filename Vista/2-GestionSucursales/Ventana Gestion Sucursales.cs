@@ -147,6 +147,10 @@ namespace Vista
                     Refrescar();
                     LimpiarCampos();
                 }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione una sucursal para eliminar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (EntidadNoEncontradaException ex)
             {

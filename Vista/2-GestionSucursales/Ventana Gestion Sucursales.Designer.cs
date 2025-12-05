@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             grbBuscarSucursal = new GroupBox();
             btnBuscar = new Button();
@@ -138,13 +140,30 @@
             dgvSucursales.AllowUserToDeleteRows = false;
             dgvSucursales.AllowUserToResizeColumns = false;
             dgvSucursales.AllowUserToResizeRows = false;
-            dgvSucursales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvSucursales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSucursales.BackgroundColor = SystemColors.GrayText;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvSucursales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvSucursales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSucursales.Dock = DockStyle.Fill;
             dgvSucursales.Location = new Point(3, 27);
             dgvSucursales.Margin = new Padding(2);
             dgvSucursales.Name = "dgvSucursales";
+            dgvSucursales.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvSucursales.RowHeadersWidth = 62;
             dgvSucursales.Size = new Size(813, 483);
             dgvSucursales.TabIndex = 1;
