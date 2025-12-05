@@ -1,3 +1,5 @@
+using Controladora;
+
 namespace Vista
 {
     public partial class Form1 : Form
@@ -9,7 +11,7 @@ namespace Vista
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Refrescar();
         }
 
         private void btnGestionProductos_Click(object sender, EventArgs e)
@@ -42,5 +44,17 @@ namespace Vista
             Gestion_de_Rubros fRubros = new Gestion_de_Rubros();
             fRubros.Show();
         }
+        #region HELPER
+        private void Refrescar()
+        {
+            var controladoraProductos = ControladoraProductos.Instancia();
+            var productosBajoStock = controladoraProductos.ObtenerProductosBajoStock();
+            dgvProductosBajoStock.DataSource = productosBajoStock;
+
+            var controladoraVentas = ControladoraVentas.Instancia();
+            var ventasSemanales = controladoraVentas.ObtenerVentasdelaSemana();
+            dgvVentasSemanales.DataSource = ventasSemanales;
+        }
+        #endregion
     }
 }

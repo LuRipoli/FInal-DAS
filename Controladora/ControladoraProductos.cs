@@ -8,7 +8,7 @@ using Entidades;
 
 namespace Controladora
 {
-    internal class ControladoraProductos
+    public class ControladoraProductos
     {
         private RepositorioProductos repositorio = new RepositorioProductos();
         private static ControladoraProductos instancia;
@@ -26,7 +26,7 @@ namespace Controladora
 
         public IReadOnlyCollection<Entidades.Producto> ObtenerProducto()        //Para obtener todos los productos
         {
-            return repositorio.ObtenerProducto().ToList();
+            return repositorio.ObtenerProducto()?.ToList() ?? new List<Producto>();
         }
 
         public Producto? ObtenerProductoPorID(int idProducto)                   //Para obtener un producto pr ID
@@ -91,7 +91,7 @@ namespace Controladora
 
         public List<Producto> ObtenerProductosBajoStock()
         {
-            return repositorio.ObtenerProductosBajoStock().ToList();
+            return repositorio.ObtenerProductosBajoStock()?.ToList() ?? new List<Producto>();
         }
     }
 }

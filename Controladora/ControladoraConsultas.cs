@@ -27,7 +27,7 @@ namespace Controladora
 
         public IReadOnlyCollection<Entidades.Consulta> ObtenerConsulta()        //Para obtener todas las consultas
         {
-            return repositorio.ObtenerConsulta();
+            return repositorio.ObtenerConsulta()?.ToList() ?? new List<Consulta>();
         }
 
         public Consulta? ObtenerConsultaPorID(int idConsulta)                   //Para obtener una consulta pr ID

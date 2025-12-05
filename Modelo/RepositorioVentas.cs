@@ -43,5 +43,10 @@ namespace Modelo
         {
             return context.Ventas.FirstOrDefault(c => c.Id == idCategoria);
         }
+
+        public IReadOnlyCollection<Entidades.Venta> ObtenerVentasdelaSemana()
+        {
+            return context.Ventas.Where(v => v.Fecha >= DateTime.Now.AddDays(-7)).ToList().AsReadOnly();
+        }
     }
 }

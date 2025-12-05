@@ -26,12 +26,12 @@ namespace Controladora
 
         public List<Venta> ObtenerVentas()
         {
-            var ventas = repositorio.ObtenerVentas()?.ToList() ?? new List<Venta>();
+            return repositorio.ObtenerVentas()?.ToList() ?? new List<Venta>();
+        }
 
-            if (ventas.Count == 0)
-                throw new ListaVaciaException("No se encontraron ventas.");
-
-            return ventas;
+        public List<Venta> ObtenerVentasdelaSemana()
+        {
+            return repositorio.ObtenerVentasdelaSemana()?.ToList() ?? new List<Venta>();
         }
 
         public void AgregarVenta(DateTime fecha, int clienteId, int metodoPago, decimal descto, decimal total)

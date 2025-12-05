@@ -22,7 +22,7 @@ namespace Controladora
 
         public List<Categoria> ObtenerCategorias()
         {
-            return repositorio.ObtenerCategorias().ToList();
+            return repositorio.ObtenerCategorias()?.ToList() ?? new List<Categoria>();
         }
 
         public void AgregarCategoria(string Nombre)

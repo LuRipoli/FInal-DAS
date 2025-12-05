@@ -24,9 +24,7 @@ namespace Controladora
         private ControladoraSucursales() { }
         public List<Sucursal> ObtenerSucursales()
         {
-            var sucursales = repositorio.ObtenerSucursales()?.ToList()
-                             ?? new List<Sucursal>();
-            return sucursales;
+            return repositorio.ObtenerSucursales()?.ToList() ?? new List<Sucursal>();
         }
 
         public void AgregarSucursal(string nombre, string direccion)

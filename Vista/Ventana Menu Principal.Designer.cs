@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnelppaltitulo = new Panel();
             btnSalir = new Button();
             lblTituloGR = new Label();
@@ -44,9 +44,9 @@
             panel2 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             grbProductosBajoStock = new GroupBox();
-            dataGridView1 = new DataGridView();
+            dgvProductosBajoStock = new DataGridView();
             grbVentasSemana = new GroupBox();
-            dataGridView2 = new DataGridView();
+            dgvVentasSemanales = new DataGridView();
             pnelppaltitulo.SuspendLayout();
             pnelppalmedio.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -54,9 +54,9 @@
             panel2.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             grbProductosBajoStock.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosBajoStock).BeginInit();
             grbVentasSemana.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVentasSemanales).BeginInit();
             SuspendLayout();
             // 
             // pnelppaltitulo
@@ -239,7 +239,7 @@
             // 
             // grbProductosBajoStock
             // 
-            grbProductosBajoStock.Controls.Add(dataGridView1);
+            grbProductosBajoStock.Controls.Add(dgvProductosBajoStock);
             grbProductosBajoStock.Dock = DockStyle.Fill;
             grbProductosBajoStock.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbProductosBajoStock.Location = new Point(13, 13);
@@ -249,33 +249,33 @@
             grbProductosBajoStock.TabStop = false;
             grbProductosBajoStock.Text = "Productos bajo Stock";
             // 
-            // dataGridView1
+            // dgvProductosBajoStock
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 27);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(588, 487);
-            dataGridView1.TabIndex = 0;
+            dgvProductosBajoStock.AllowUserToAddRows = false;
+            dgvProductosBajoStock.AllowUserToDeleteRows = false;
+            dgvProductosBajoStock.AllowUserToResizeColumns = false;
+            dgvProductosBajoStock.AllowUserToResizeRows = false;
+            dgvProductosBajoStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvProductosBajoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvProductosBajoStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductosBajoStock.Dock = DockStyle.Fill;
+            dgvProductosBajoStock.Location = new Point(3, 27);
+            dgvProductosBajoStock.Name = "dgvProductosBajoStock";
+            dgvProductosBajoStock.ReadOnly = true;
+            dgvProductosBajoStock.RowHeadersWidth = 62;
+            dgvProductosBajoStock.Size = new Size(588, 487);
+            dgvProductosBajoStock.TabIndex = 0;
             // 
             // grbVentasSemana
             // 
-            grbVentasSemana.Controls.Add(dataGridView2);
+            grbVentasSemana.Controls.Add(dgvVentasSemanales);
             grbVentasSemana.Dock = DockStyle.Fill;
             grbVentasSemana.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbVentasSemana.Location = new Point(613, 13);
@@ -285,29 +285,29 @@
             grbVentasSemana.TabStop = false;
             grbVentasSemana.Text = "Ventas de la Semana";
             // 
-            // dataGridView2
+            // dgvVentasSemanales
             // 
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.AllowUserToResizeColumns = false;
-            dataGridView2.AllowUserToResizeRows = false;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Dock = DockStyle.Fill;
-            dataGridView2.Location = new Point(3, 27);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.Size = new Size(589, 487);
-            dataGridView2.TabIndex = 0;
+            dgvVentasSemanales.AllowUserToAddRows = false;
+            dgvVentasSemanales.AllowUserToDeleteRows = false;
+            dgvVentasSemanales.AllowUserToResizeColumns = false;
+            dgvVentasSemanales.AllowUserToResizeRows = false;
+            dgvVentasSemanales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvVentasSemanales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvVentasSemanales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVentasSemanales.Dock = DockStyle.Fill;
+            dgvVentasSemanales.Location = new Point(3, 27);
+            dgvVentasSemanales.Name = "dgvVentasSemanales";
+            dgvVentasSemanales.ReadOnly = true;
+            dgvVentasSemanales.RowHeadersWidth = 62;
+            dgvVentasSemanales.Size = new Size(589, 487);
+            dgvVentasSemanales.TabIndex = 0;
             // 
             // Form1
             // 
@@ -331,9 +331,9 @@
             panel2.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             grbProductosBajoStock.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductosBajoStock).EndInit();
             grbVentasSemana.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVentasSemanales).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -354,7 +354,7 @@
         private TableLayoutPanel tableLayoutPanel2;
         private GroupBox grbProductosBajoStock;
         private GroupBox grbVentasSemana;
-        private DataGridView dataGridView1;
-        private DataGridView dataGridView2;
+        private DataGridView dgvProductosBajoStock;
+        private DataGridView dgvVentasSemanales;
     }
 }
