@@ -22,36 +22,7 @@ namespace Vista
             LimpiarCampos();
         }
 
-        #region
-        public void Refrescar()
-        {
-            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
-            var listaSucursales = controladoraSucursales.ObtenerSucursales();
-            dgvSucursales.DataSource = listaSucursales;
-        }
-        public void LimpiarCampos()
-        {
-            txtDireccion.Text = txtNombre.Text = txtNombreBuscado.Text = "";
-        }
-        public int? GetId()
-        {
-            if (Controladora.ControladoraSucursales.Instancia().ObtenerSucursales().Count != 0)
-            {
-                try
-                {
-                    return int.Parse(dgvSucursales.Rows[dgvSucursales.CurrentRow.Index].Cells[0].Value.ToString());
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion
+       
 
         private void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
@@ -199,5 +170,35 @@ namespace Vista
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #region HELPER
+        public void Refrescar()
+        {
+            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
+            var listaSucursales = controladoraSucursales.ObtenerSucursales();
+            dgvSucursales.DataSource = listaSucursales;
+        }
+        public void LimpiarCampos()
+        {
+            txtDireccion.Text = txtNombre.Text = txtNombreBuscado.Text = "";
+        }
+        public int? GetId()
+        {
+            if (Controladora.ControladoraSucursales.Instancia().ObtenerSucursales().Count != 0)
+            {
+                try
+                {
+                    return int.Parse(dgvSucursales.Rows[dgvSucursales.CurrentRow.Index].Cells[0].Value.ToString());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
     }
 }

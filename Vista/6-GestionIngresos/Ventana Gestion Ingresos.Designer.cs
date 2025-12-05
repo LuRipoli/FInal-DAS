@@ -82,7 +82,7 @@
             grbBuscarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbBuscarSucursal.Location = new Point(54, 318);
             grbBuscarSucursal.Name = "grbBuscarSucursal";
-            grbBuscarSucursal.Size = new Size(396, 215);
+            grbBuscarSucursal.Size = new Size(396, 210);
             grbBuscarSucursal.TabIndex = 19;
             grbBuscarSucursal.TabStop = false;
             grbBuscarSucursal.Text = "Buscar Sucursal";
