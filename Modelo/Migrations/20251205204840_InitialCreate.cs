@@ -60,14 +60,14 @@ namespace Modelo.Migrations
                 name: "Sucursales",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    direccion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sucursales", x => x.id);
+                    table.PrimaryKey("PK_Sucursales", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,35 +96,60 @@ namespace Modelo.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false),
-                    categoriaId = table.Column<int>(type: "int", nullable: false),
-                    Sucursalid = table.Column<int>(type: "int", nullable: true)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Productos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Productos_Categorias_categoriaId",
-                        column: x => x.categoriaId,
+                        name: "FK_Productos_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "Categorias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StockPorSucursales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductoId = table.Column<int>(type: "int", nullable: false),
+                    SucursalId = table.Column<int>(type: "int", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StockPorSucursales", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Productos_Sucursales_Sucursalid",
-                        column: x => x.Sucursalid,
+                        name: "FK_StockPorSucursales_Productos_ProductoId",
+                        column: x => x.ProductoId,
+                        principalTable: "Productos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StockPorSucursales_Sucursales_SucursalId",
+                        column: x => x.SucursalId,
                         principalTable: "Sucursales",
-                        principalColumn: "id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_categoriaId",
+                name: "IX_Productos_CategoriaId",
                 table: "Productos",
-                column: "categoriaId");
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_Sucursalid",
-                table: "Productos",
-                column: "Sucursalid");
+                name: "IX_StockPorSucursales_ProductoId",
+                table: "StockPorSucursales",
+                column: "ProductoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StockPorSucursales_SucursalId",
+                table: "StockPorSucursales",
+                column: "SucursalId");
         }
 
         /// <inheritdoc />
@@ -137,16 +162,19 @@ namespace Modelo.Migrations
                 name: "Consultas");
 
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "StockPorSucursales");
 
             migrationBuilder.DropTable(
                 name: "Ventas");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "Productos");
 
             migrationBuilder.DropTable(
                 name: "Sucursales");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
         }
     }
 }

@@ -12,8 +12,10 @@ namespace Controladora
     {
         private readonly RepositorioStockPorSucursal repositorio;
         private static ControladoraStocksPorSucursal instancia;
-
-
+        private ControladoraStocksPorSucursal()
+        {
+            repositorio = new RepositorioStockPorSucursal();
+        }
         public static ControladoraStocksPorSucursal Instancia()
         {
             if (instancia == null)

@@ -12,7 +12,7 @@ using Modelo;
 namespace Modelo.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251204193654_InitialCreate")]
+    [Migration("20251205204840_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -103,6 +103,9 @@ namespace Modelo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,41 +117,56 @@ namespace Modelo.Migrations
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Stock")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Sucursalid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("categoriaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("Sucursalid");
-
-                    b.HasIndex("categoriaId");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("Entidades.Sucursal", b =>
+            modelBuilder.Entity("Entidades.StockPorSucursal", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SucursalId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.HasIndex("SucursalId");
+
+                    b.ToTable("StockPorSucursales");
+                });
+
+            modelBuilder.Entity("Entidades.Sucursal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("direccion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Sucursales");
                 });
@@ -183,22 +201,42 @@ namespace Modelo.Migrations
 
             modelBuilder.Entity("Entidades.Producto", b =>
                 {
-                    b.HasOne("Entidades.Sucursal", null)
-                        .WithMany("StockProductos")
-                        .HasForeignKey("Sucursalid");
-
-                    b.HasOne("Entidades.Categoria", "categoria")
+                    b.HasOne("Entidades.Categoria", "Categoria")
                         .WithMany()
-                        .HasForeignKey("categoriaId")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("categoria");
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("Entidades.StockPorSucursal", b =>
+                {
+                    b.HasOne("Entidades.Producto", "Producto")
+                        .WithMany("StocksPorSucursal")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entidades.Sucursal", "Sucursal")
+                        .WithMany("StocksPorSucursal")
+                        .HasForeignKey("SucursalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("Sucursal");
+                });
+
+            modelBuilder.Entity("Entidades.Producto", b =>
+                {
+                    b.Navigation("StocksPorSucursal");
                 });
 
             modelBuilder.Entity("Entidades.Sucursal", b =>
                 {
-                    b.Navigation("StockProductos");
+                    b.Navigation("StocksPorSucursal");
                 });
 #pragma warning restore 612, 618
         }

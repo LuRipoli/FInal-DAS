@@ -12,7 +12,10 @@ namespace Controladora
     {
         private RepositorioSucursales repositorio = new RepositorioSucursales();
         private static ControladoraSucursales instancia;
-
+        private ControladoraSucursales()
+        {
+            repositorio = new RepositorioSucursales();
+        }
         public static ControladoraSucursales Instancia()
         {
             if (instancia == null)
@@ -20,8 +23,6 @@ namespace Controladora
 
             return instancia;
         }
-
-        private ControladoraSucursales() { }
         public List<Sucursal> ObtenerSucursales()
         {
             return repositorio.ObtenerSucursales()?.ToList() ?? new List<Sucursal>();

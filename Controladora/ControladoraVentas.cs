@@ -12,7 +12,10 @@ namespace Controladora
     {
         private RepositorioVentas repositorio = new RepositorioVentas();
         private static ControladoraVentas instancia;
-
+        private ControladoraVentas()
+        {
+            repositorio = new RepositorioVentas();
+        }
         public static ControladoraVentas Instancia()
         {
             if (instancia == null)
@@ -21,7 +24,6 @@ namespace Controladora
             return instancia;
         }
 
-        private ControladoraVentas() { }
 
 
         public List<Venta> ObtenerVentas()

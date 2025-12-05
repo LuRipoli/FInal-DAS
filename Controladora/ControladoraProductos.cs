@@ -12,7 +12,10 @@ namespace Controladora
     {
         private RepositorioProductos repositorio = new RepositorioProductos();
         private static ControladoraProductos instancia;
-
+        private ControladoraProductos()
+        {
+            repositorio = new RepositorioProductos();
+        }
         public static ControladoraProductos Instancia()
         {
             if (instancia == null)
@@ -21,7 +24,6 @@ namespace Controladora
             return instancia;
         }
 
-        private ControladoraProductos() { }
 
 
         public IReadOnlyCollection<Entidades.Producto> ObtenerProducto()        //Para obtener todos los productos
