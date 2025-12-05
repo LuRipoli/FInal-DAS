@@ -41,7 +41,7 @@ namespace Modelo
 
         public Sucursal? ObtenerSucursalPorId(int idCategoria)
         {
-            return context.Sucursales.FirstOrDefault(c => c.id == idCategoria);
+            return context.Sucursales.FirstOrDefault(c => c.Id == idCategoria);
         }
         public Sucursal? BuscarSucursalPorNombre(string nombreSucursal)
         {

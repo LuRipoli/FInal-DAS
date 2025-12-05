@@ -50,10 +50,6 @@ namespace Modelo
             return context.Productos.FirstOrDefault(c => c.Id == idProducto);
         }
 
-        public IReadOnlyCollection<Entidades.Producto> ObtenerProductosBajoStock()
-        {
-            return context.Productos.Where(c => c.Stock <= 25).ToList().AsReadOnly();
-        }
     }
 
 }

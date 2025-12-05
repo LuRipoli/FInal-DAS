@@ -47,8 +47,8 @@ namespace Vista
         #region HELPER
         private void Refrescar()
         {
-            var controladoraProductos = ControladoraProductos.Instancia();
-            var productosBajoStock = controladoraProductos.ObtenerProductosBajoStock();
+            var controladoraStockPorSucursal = ControladoraStocksPorSucursal.Instancia();
+            var productosBajoStock = controladoraStockPorSucursal.ObtenerProductosBajoStockPorSucursal();
             dgvProductosBajoStock.DataSource = productosBajoStock;
             AplicarColoresProductosBajoStock();
             var controladoraVentas = ControladoraVentas.Instancia();

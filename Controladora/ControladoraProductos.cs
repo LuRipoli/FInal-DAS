@@ -89,9 +89,6 @@ namespace Controladora
             return true; 
         }
 
-        public List<Producto> ObtenerProductosBajoStock()
-        {
-            return repositorio.ObtenerProductosBajoStock()?.ToList() ?? new List<Producto>();
-        }
+        
     }
 }

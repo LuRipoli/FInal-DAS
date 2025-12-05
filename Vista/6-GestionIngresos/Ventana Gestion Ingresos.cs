@@ -1,0 +1,167 @@
+﻿using Controladora;
+using Entidades;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Vista
+{
+    public partial class Ventana_Gestion_Ingresos : Form
+    {
+        public Ventana_Gestion_Ingresos()
+        {
+            InitializeComponent();
+            CargarCombos();
+            Refrescar();
+            LimpiarCampos();
+            dgvStock.CellFormatting += dgvStock_CellFormatting;
+        }
+        #region HELPER
+        private void Refrescar()
+        {
+            var controladora = ControladoraStocksPorSucursal.Instancia();
+            var lista = controladora.ObtenerStocks().OrderBy(s => s.Sucursal.Nombre).ThenBy(s => s.Cantidad).Select(s => new { Sucursal = s.Sucursal.Nombre, Producto = s.Producto.Nombre, Stock = s.Cantidad }).ToList();
+            dgvStock.DataSource = lista;
+        }
+
+        private void CargarCombos()
+        {
+            var ctrlProductos = ControladoraProductos.Instancia();
+            var ctrlSucursales = ControladoraSucursales.Instancia();
+
+            cmbProducto.DataSource = ctrlProductos.ObtenerProducto().ToList();
+            cmbProducto.DisplayMember = "Nombre";
+            cmbProducto.ValueMember = "Id";
+
+            cmbSucursal.DataSource = ctrlSucursales.ObtenerSucursales().ToList();
+            cmbSucursal.DisplayMember = "Nombre";
+            cmbSucursal.ValueMember = "Id";
+        }
+
+        private void LimpiarCampos()
+        {
+            txtIdBuscado.Text = "";
+            nudCantidadIngresada.Value = 0;
+
+            if (cmbProducto.Items.Count > 0) cmbProducto.SelectedIndex = 0;
+            if (cmbSucursal.Items.Count > 0) cmbSucursal.SelectedIndex = 0;
+        }
+        private void dgvStock_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvStock.Columns[e.ColumnIndex].Name == "Stock" && e.Value != null)
+            {
+                if (int.TryParse(e.Value.ToString(), out int stock))
+                {
+                    if (stock <= 10)
+                    {
+                        e.CellStyle.BackColor = Color.Red;
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+                    else if (stock <= 15)
+                    {
+                        e.CellStyle.BackColor = Color.Orange;
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                    else if (stock <= 25)
+                    {
+                        e.CellStyle.BackColor = Color.Yellow;
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        e.CellStyle.BackColor = Color.Green;
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+        }
+        #endregion
+
+        private void btnAgregarStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int productoId = (int)cmbProducto.SelectedValue;
+                int sucursalId = (int)cmbSucursal.SelectedValue;
+                int cantidad = (int)nudCantidadIngresada.Value;
+
+                if (cantidad <= 0)
+                    throw new DatosInvalidosException("La cantidad debe ser mayor a cero.");
+
+                var controladora = ControladoraStocksPorSucursal.Instancia();
+                controladora.ModificarStock(productoId, sucursalId, cantidad, 1);
+
+                MessageBox.Show("Stock agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Refrescar();
+                LimpiarCampos();
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Entidad no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBuscarSucursal_Click(object sender, EventArgs e)
+        {
+            grbBuscarSucursal.Enabled = true;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtIdBuscado.Text.Trim() == "")
+                    throw new DatosInvalidosException("Debe ingresar un ID de sucursal.");
+
+                int idSucursal = int.Parse(txtIdBuscado.Text.Trim());
+
+                var controladora = ControladoraStocksPorSucursal.Instancia();
+                var lista = controladora.ObtenerStocks().Where(s => s.Sucursal.Id == idSucursal).OrderBy(s => s.Cantidad).Select(s => new { Sucursal = s.Sucursal.Nombre, Producto = s.Producto.Nombre, Stock = s.Cantidad }).ToList();
+                if (lista.Count == 0)
+                    throw new EntidadNoEncontradaException("No hay stocks para esa sucursal.");
+
+                dgvStock.DataSource = lista;
+
+                txtIdBuscado.Clear();
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "No encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}

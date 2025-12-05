@@ -53,7 +53,7 @@ namespace Controladora
                     stock.QuitarStock(cantidad); 
                     break;
 
-                case 1: // Agregar stock
+                case 1: 
                     stock.AgregarStock(cantidad);
                     break;
 

@@ -37,12 +37,12 @@ namespace Controladora
             if (string.IsNullOrWhiteSpace(direccion)) 
             throw new DatosInvalidosException("La dirección no puede estar vacía.");
 
-             if (listasucursales.Any(s => s.direccion.ToLower() == direccion.ToLower()))
+             if (listasucursales.Any(s => s.Direccion.ToLower() == direccion.ToLower()))
                 throw new EntidadYaExistenteException("Ya existe una sucursal en esa dirección.");
 
             Sucursal nuevaSucursal = new Sucursal();
             nuevaSucursal.Nombre = nombre;
-            nuevaSucursal.direccion = direccion;
+            nuevaSucursal.Direccion = direccion;
             repositorio.AgregarSucursal(nuevaSucursal);
         }
 
@@ -63,11 +63,11 @@ namespace Controladora
 
             var sucursales = repositorio.ObtenerSucursales() ?? new List<Sucursal>();
 
-            if (sucursales.Any(s => s.Nombre.ToLower() == nombre.ToLower() && s.id != id))
+            if (sucursales.Any(s => s.Nombre.ToLower() == nombre.ToLower() && s.Id != id))
                 throw new EntidadYaExistenteException("Ya existe una sucursal con ese nombre.");
 
             sucursal.Nombre = nombre;
-            sucursal.direccion = direccion;
+            sucursal.Direccion = direccion;
 
             repositorio.ModificarSucursal(sucursal);
         }

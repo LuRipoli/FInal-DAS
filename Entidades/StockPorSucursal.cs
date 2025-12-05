@@ -8,14 +8,14 @@ namespace Entidades
 {
     public class StockPorSucursal
     {
-        public int Id { get; set; }
+    public int Id { get; set; }
     public int ProductoId { get; set; }
     public Producto Producto { get; set; }
 
     public int SucursalId { get; set; }
     public Sucursal Sucursal { get; set; }
 
-    public int Cantidad { get; private set; }  // 
+    public int Cantidad { get; set; }  
 
     public void AgregarStock(int cantidad)
     {
