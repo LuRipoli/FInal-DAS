@@ -26,7 +26,7 @@ namespace Controladora
 
         public IReadOnlyCollection<Entidades.Producto> ObtenerProducto()        //Para obtener todos los productos
         {
-            return repositorio.ObtenerProducto();
+            return repositorio.ObtenerProducto().ToList();
         }
 
         public Producto? ObtenerProductoPorID(int idProducto)                   //Para obtener un producto pr ID
@@ -87,6 +87,11 @@ namespace Controladora
 
             repositorio.EliminarProducto(producto);
             return true; 
+        }
+
+        public List<Producto> ObtenerProductosBajoStock()
+        {
+            return repositorio.ObtenerProductosBajoStock().ToList();
         }
     }
 }

@@ -22,10 +22,7 @@ namespace Controladora
 
         public List<Categoria> ObtenerCategorias()
         {
-            var listaCategorias = repositorio.ObtenerCategorias().ToList();
-            if(listaCategorias == null || listaCategorias.Count == 0)
-                throw new ListaVaciaException("No se encontraron categorías.");
-            return listaCategorias;
+            return repositorio.ObtenerCategorias().ToList();
         }
 
         public void AgregarCategoria(string Nombre)
