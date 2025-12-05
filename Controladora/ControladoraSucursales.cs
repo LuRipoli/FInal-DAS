@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Controladora
 {
-    internal class ControladoraSucursales
+    public class ControladoraSucursales
     {
         private RepositorioSucursales repositorio = new RepositorioSucursales();
         private static ControladoraSucursales instancia;
@@ -26,13 +26,8 @@ namespace Controladora
         {
             var sucursales = repositorio.ObtenerSucursales()?.ToList()
                              ?? new List<Sucursal>();
-
-            if (sucursales.Count == 0)
-                throw new ListaVaciaException("No se encontraron sucursales.");
-
             return sucursales;
         }
-
 
         public void AgregarSucursal(string nombre, string direccion)
         {

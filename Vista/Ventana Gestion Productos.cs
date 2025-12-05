@@ -21,11 +21,11 @@ namespace Vista
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-        
-        
+
+
         private void lblNombre_Click(object sender, EventArgs e)
         {
 
@@ -63,15 +63,20 @@ namespace Vista
 
         private void btnModificarProducto_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
 
         }
