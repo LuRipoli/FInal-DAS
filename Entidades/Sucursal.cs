@@ -9,9 +9,9 @@ namespace Entidades
     //direccion, nombre y stock de productos
     public class Sucursal
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
-        public string direccion { get; set; }
-        public List<Producto> StockProductos { get; set; } = new List<Producto>();
+        public string Direccion { get; set; }
+        public List<StockPorSucursal> StocksPorSucursal { get; set; } = new();
     }
 }
