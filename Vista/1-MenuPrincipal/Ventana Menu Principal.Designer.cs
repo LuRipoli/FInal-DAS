@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnelppaltitulo = new Panel();
             btnSalir = new Button();
             lblTituloGR = new Label();
             pnelppalmedio = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
+            btnGestionarSucursales = new Button();
             btnReportesYConsultas = new Button();
             btnGestionVentas = new Button();
             btnGestionProductos = new Button();
@@ -68,7 +69,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1220, 80);
+            pnelppaltitulo.Size = new Size(1633, 80);
             pnelppaltitulo.TabIndex = 15;
             // 
             // btnSalir
@@ -76,19 +77,19 @@
             btnSalir.BackColor = SystemColors.ControlLightLight;
             btnSalir.Dock = DockStyle.Right;
             btnSalir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSalir.Location = new Point(1045, 0);
+            btnSalir.Location = new Point(1487, 0);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(175, 80);
+            btnSalir.Size = new Size(146, 80);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir del Programa";
             btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
             // 
             // lblTituloGR
             // 
-            lblTituloGR.Anchor = AnchorStyles.Bottom;
             lblTituloGR.AutoSize = true;
             lblTituloGR.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTituloGR.Location = new Point(220, 14);
+            lblTituloGR.Location = new Point(427, 13);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
             lblTituloGR.Size = new Size(795, 54);
@@ -100,43 +101,61 @@
             // 
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
             pnelppalmedio.Controls.Add(tableLayoutPanel1);
-            pnelppalmedio.Location = new Point(0, 84);
+            pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1221, 152);
+            pnelppalmedio.Size = new Size(1632, 152);
             pnelppalmedio.TabIndex = 16;
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.ColumnCount = 5;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Controls.Add(btnReportesYConsultas, 4, 0);
-            tableLayoutPanel1.Controls.Add(btnGestionVentas, 3, 0);
+            tableLayoutPanel1.ColumnCount = 6;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.Controls.Add(btnGestionarSucursales, 0, 0);
+            tableLayoutPanel1.Controls.Add(btnReportesYConsultas, 5, 0);
+            tableLayoutPanel1.Controls.Add(btnGestionVentas, 4, 0);
             tableLayoutPanel1.Controls.Add(btnGestionProductos, 2, 0);
-            tableLayoutPanel1.Controls.Add(GestionDeCategorias, 0, 0);
-            tableLayoutPanel1.Controls.Add(btnGestionClientes, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Controls.Add(GestionDeCategorias, 1, 0);
+            tableLayoutPanel1.Controls.Add(btnGestionClientes, 3, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1221, 150);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(1632, 152);
             tableLayoutPanel1.TabIndex = 8;
+            // 
+            // btnGestionarSucursales
+            // 
+            btnGestionarSucursales.Cursor = Cursors.Hand;
+            btnGestionarSucursales.Dock = DockStyle.Fill;
+            btnGestionarSucursales.FlatAppearance.BorderSize = 0;
+            btnGestionarSucursales.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnGestionarSucursales.Location = new Point(10, 10);
+            btnGestionarSucursales.Margin = new Padding(10);
+            btnGestionarSucursales.Name = "btnGestionarSucursales";
+            btnGestionarSucursales.Size = new Size(252, 132);
+            btnGestionarSucursales.TabIndex = 5;
+            btnGestionarSucursales.Text = "Gestión de Sucursales";
+            btnGestionarSucursales.UseVisualStyleBackColor = true;
+            btnGestionarSucursales.Click += btnGestionarSucursales_Click;
             // 
             // btnReportesYConsultas
             // 
             btnReportesYConsultas.Cursor = Cursors.Hand;
             btnReportesYConsultas.Dock = DockStyle.Fill;
             btnReportesYConsultas.FlatAppearance.BorderSize = 0;
-            btnReportesYConsultas.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReportesYConsultas.Location = new Point(986, 10);
+            btnReportesYConsultas.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnReportesYConsultas.Location = new Point(1370, 10);
             btnReportesYConsultas.Margin = new Padding(10);
             btnReportesYConsultas.Name = "btnReportesYConsultas";
-            btnReportesYConsultas.Size = new Size(225, 130);
+            btnReportesYConsultas.Size = new Size(252, 132);
             btnReportesYConsultas.TabIndex = 3;
             btnReportesYConsultas.Text = "Reportes y Consultas";
             btnReportesYConsultas.UseVisualStyleBackColor = true;
@@ -147,11 +166,11 @@
             btnGestionVentas.Cursor = Cursors.Hand;
             btnGestionVentas.Dock = DockStyle.Fill;
             btnGestionVentas.FlatAppearance.BorderSize = 0;
-            btnGestionVentas.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnGestionVentas.Location = new Point(742, 10);
+            btnGestionVentas.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnGestionVentas.Location = new Point(1098, 10);
             btnGestionVentas.Margin = new Padding(10);
             btnGestionVentas.Name = "btnGestionVentas";
-            btnGestionVentas.Size = new Size(224, 130);
+            btnGestionVentas.Size = new Size(252, 132);
             btnGestionVentas.TabIndex = 2;
             btnGestionVentas.Text = "Gestion de Ventas";
             btnGestionVentas.UseVisualStyleBackColor = true;
@@ -162,11 +181,11 @@
             btnGestionProductos.Cursor = Cursors.Hand;
             btnGestionProductos.Dock = DockStyle.Fill;
             btnGestionProductos.FlatAppearance.BorderSize = 0;
-            btnGestionProductos.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnGestionProductos.Location = new Point(498, 10);
+            btnGestionProductos.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnGestionProductos.Location = new Point(554, 10);
             btnGestionProductos.Margin = new Padding(10);
             btnGestionProductos.Name = "btnGestionProductos";
-            btnGestionProductos.Size = new Size(224, 130);
+            btnGestionProductos.Size = new Size(252, 132);
             btnGestionProductos.TabIndex = 0;
             btnGestionProductos.Text = "Gestion de Productos";
             btnGestionProductos.UseVisualStyleBackColor = true;
@@ -177,11 +196,11 @@
             GestionDeCategorias.Cursor = Cursors.Hand;
             GestionDeCategorias.Dock = DockStyle.Fill;
             GestionDeCategorias.FlatAppearance.BorderSize = 0;
-            GestionDeCategorias.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            GestionDeCategorias.Location = new Point(10, 10);
+            GestionDeCategorias.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            GestionDeCategorias.Location = new Point(282, 10);
             GestionDeCategorias.Margin = new Padding(10);
             GestionDeCategorias.Name = "GestionDeCategorias";
-            GestionDeCategorias.Size = new Size(224, 130);
+            GestionDeCategorias.Size = new Size(252, 132);
             GestionDeCategorias.TabIndex = 4;
             GestionDeCategorias.Text = "Gestion de Categorias";
             GestionDeCategorias.UseVisualStyleBackColor = true;
@@ -192,11 +211,11 @@
             btnGestionClientes.Cursor = Cursors.Hand;
             btnGestionClientes.Dock = DockStyle.Fill;
             btnGestionClientes.FlatAppearance.BorderSize = 0;
-            btnGestionClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnGestionClientes.Location = new Point(254, 10);
+            btnGestionClientes.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnGestionClientes.Location = new Point(826, 10);
             btnGestionClientes.Margin = new Padding(10);
             btnGestionClientes.Name = "btnGestionClientes";
-            btnGestionClientes.Size = new Size(224, 130);
+            btnGestionClientes.Size = new Size(252, 132);
             btnGestionClientes.TabIndex = 1;
             btnGestionClientes.Text = "Gestion de Clientes";
             btnGestionClientes.UseVisualStyleBackColor = true;
@@ -209,16 +228,15 @@
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(0, 237);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1221, 543);
+            panel1.Size = new Size(1635, 546);
             panel1.TabIndex = 8;
             // 
             // panel2
             // 
             panel2.Controls.Add(tableLayoutPanel2);
-            panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1221, 543);
+            panel2.Size = new Size(1632, 543);
             panel2.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -234,7 +252,7 @@
             tableLayoutPanel2.Padding = new Padding(10);
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(1221, 543);
+            tableLayoutPanel2.Size = new Size(1632, 543);
             tableLayoutPanel2.TabIndex = 8;
             // 
             // grbProductosBajoStock
@@ -244,7 +262,7 @@
             grbProductosBajoStock.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbProductosBajoStock.Location = new Point(13, 13);
             grbProductosBajoStock.Name = "grbProductosBajoStock";
-            grbProductosBajoStock.Size = new Size(594, 517);
+            grbProductosBajoStock.Size = new Size(800, 517);
             grbProductosBajoStock.TabIndex = 0;
             grbProductosBajoStock.TabStop = false;
             grbProductosBajoStock.Text = "Productos bajo Stock";
@@ -256,21 +274,21 @@
             dgvProductosBajoStock.AllowUserToResizeColumns = false;
             dgvProductosBajoStock.AllowUserToResizeRows = false;
             dgvProductosBajoStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvProductosBajoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvProductosBajoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvProductosBajoStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductosBajoStock.Dock = DockStyle.Fill;
             dgvProductosBajoStock.Location = new Point(3, 27);
             dgvProductosBajoStock.Name = "dgvProductosBajoStock";
             dgvProductosBajoStock.ReadOnly = true;
             dgvProductosBajoStock.RowHeadersWidth = 62;
-            dgvProductosBajoStock.Size = new Size(588, 487);
+            dgvProductosBajoStock.Size = new Size(794, 487);
             dgvProductosBajoStock.TabIndex = 0;
             // 
             // grbVentasSemana
@@ -278,9 +296,9 @@
             grbVentasSemana.Controls.Add(dgvVentasSemanales);
             grbVentasSemana.Dock = DockStyle.Fill;
             grbVentasSemana.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grbVentasSemana.Location = new Point(613, 13);
+            grbVentasSemana.Location = new Point(819, 13);
             grbVentasSemana.Name = "grbVentasSemana";
-            grbVentasSemana.Size = new Size(595, 517);
+            grbVentasSemana.Size = new Size(800, 517);
             grbVentasSemana.TabIndex = 1;
             grbVentasSemana.TabStop = false;
             grbVentasSemana.Text = "Ventas de la Semana";
@@ -292,21 +310,21 @@
             dgvVentasSemanales.AllowUserToResizeColumns = false;
             dgvVentasSemanales.AllowUserToResizeRows = false;
             dgvVentasSemanales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvVentasSemanales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvVentasSemanales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvVentasSemanales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVentasSemanales.Dock = DockStyle.Fill;
             dgvVentasSemanales.Location = new Point(3, 27);
             dgvVentasSemanales.Name = "dgvVentasSemanales";
             dgvVentasSemanales.ReadOnly = true;
             dgvVentasSemanales.RowHeadersWidth = 62;
-            dgvVentasSemanales.Size = new Size(589, 487);
+            dgvVentasSemanales.Size = new Size(794, 487);
             dgvVentasSemanales.TabIndex = 0;
             // 
             // Form1
@@ -314,7 +332,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            ClientSize = new Size(1220, 841);
+            ClientSize = new Size(1633, 808);
             Controls.Add(panel1);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
@@ -356,5 +374,6 @@
         private GroupBox grbVentasSemana;
         private DataGridView dgvProductosBajoStock;
         private DataGridView dgvVentasSemanales;
+        private Button btnGestionarSucursales;
     }
 }

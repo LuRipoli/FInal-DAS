@@ -50,11 +50,47 @@ namespace Vista
             var controladoraProductos = ControladoraProductos.Instancia();
             var productosBajoStock = controladoraProductos.ObtenerProductosBajoStock();
             dgvProductosBajoStock.DataSource = productosBajoStock;
-
+            AplicarColoresProductosBajoStock();
             var controladoraVentas = ControladoraVentas.Instancia();
             var ventasSemanales = controladoraVentas.ObtenerVentasdelaSemana();
             dgvVentasSemanales.DataSource = ventasSemanales;
         }
+
+        private void AplicarColoresProductosBajoStock()
+        {
+            foreach (DataGridViewRow row in dgvProductosBajoStock.Rows)
+            {
+                if (row.Cells["Stock"].Value != null && int.TryParse(row.Cells["Stock"].Value.ToString(), out int stock))
+                {
+                    if (stock <= 10)
+                    {
+                        row.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                        row.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
+                    }
+                    else if (stock > 10 && stock <= 15)
+                    {
+                        row.DefaultCellStyle.BackColor = System.Drawing.Color.Orange;
+                        row.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                    else if (stock <= 25)
+                    {
+                        row.DefaultCellStyle.BackColor = System.Drawing.Color.Yellow;
+                        row.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    }
+                }
+            }
+        }
         #endregion
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnGestionarSucursales_Click(object sender, EventArgs e)
+        {
+            Ventana_Gestion_Sucursales fSucursales = new Ventana_Gestion_Sucursales();
+            fSucursales.Show();
+        }
     }
 }

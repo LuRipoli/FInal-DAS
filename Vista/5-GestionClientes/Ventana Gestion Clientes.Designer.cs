@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class Ventana_Gestion_Ventas
+    partial class Ventana_Gestion_Clientes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             grbBuscarCliente = new GroupBox();
             btnBuscar = new Button();
             lblId = new Label();
-            txtId = new TextBox();
+            txtNombreBuscado = new TextBox();
             grbGrillaClientes = new GroupBox();
             dgvClientes = new DataGridView();
-            grbIngresoDatosProveedores = new GroupBox();
+            grbIngresoDatos = new GroupBox();
+            txtEmail = new TextBox();
+            label3 = new Label();
             grbTipoCliente = new GroupBox();
             lblSelección = new Label();
             rdbMinorista = new RadioButton();
             rdbMayorista = new RadioButton();
             btnLimpiarCampos = new Button();
-            txtEmail = new TextBox();
             lblEmail = new Label();
-            lblNombre = new Label();
             txtNombre = new TextBox();
             pnelppaltitulo = new Panel();
             lblTituloPrograma = new Label();
             pnelppalbotones = new Panel();
-            btnCliente = new Button();
+            btnRefrescar = new Button();
+            btnBuscarCliente = new Button();
             btnVolver = new Button();
             btnSalir = new Button();
             btnEliminarCliente = new Button();
@@ -61,7 +62,7 @@
             grbBuscarCliente.SuspendLayout();
             grbGrillaClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
-            grbIngresoDatosProveedores.SuspendLayout();
+            grbIngresoDatos.SuspendLayout();
             grbTipoCliente.SuspendLayout();
             pnelppaltitulo.SuspendLayout();
             pnelppalbotones.SuspendLayout();
@@ -72,22 +73,23 @@
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
             pnelppalmedio.Controls.Add(grbBuscarCliente);
             pnelppalmedio.Controls.Add(grbGrillaClientes);
-            pnelppalmedio.Controls.Add(grbIngresoDatosProveedores);
+            pnelppalmedio.Controls.Add(grbIngresoDatos);
             pnelppalmedio.Dock = DockStyle.Fill;
             pnelppalmedio.Location = new Point(301, 150);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1421, 768);
-            pnelppalmedio.TabIndex = 15;
+            pnelppalmedio.Size = new Size(1331, 700);
+            pnelppalmedio.TabIndex = 12;
             // 
             // grbBuscarCliente
             // 
             grbBuscarCliente.Controls.Add(btnBuscar);
             grbBuscarCliente.Controls.Add(lblId);
-            grbBuscarCliente.Controls.Add(txtId);
-            grbBuscarCliente.Location = new Point(54, 527);
+            grbBuscarCliente.Controls.Add(txtNombreBuscado);
+            grbBuscarCliente.Enabled = false;
+            grbBuscarCliente.Location = new Point(54, 476);
             grbBuscarCliente.Name = "grbBuscarCliente";
-            grbBuscarCliente.Size = new Size(396, 226);
+            grbBuscarCliente.Size = new Size(396, 196);
             grbBuscarCliente.TabIndex = 19;
             grbBuscarCliente.TabStop = false;
             grbBuscarCliente.Text = "Buscar Cliente";
@@ -98,41 +100,42 @@
             btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.Location = new Point(116, 131);
+            btnBuscar.Location = new Point(124, 118);
             btnBuscar.Margin = new Padding(2);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(146, 65);
             btnBuscar.TabIndex = 19;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // lblId
             // 
             lblId.AutoSize = true;
             lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblId.Location = new Point(101, 46);
+            lblId.Location = new Point(101, 34);
             lblId.Name = "lblId";
             lblId.Size = new Size(181, 25);
             lblId.TabIndex = 18;
             lblId.Text = "Nombre del Cliente:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtId
+            // txtNombreBuscado
             // 
-            txtId.Font = new Font("Segoe UI", 9F);
-            txtId.Location = new Point(61, 84);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(274, 31);
-            txtId.TabIndex = 17;
+            txtNombreBuscado.Font = new Font("Segoe UI", 9F);
+            txtNombreBuscado.Location = new Point(61, 72);
+            txtNombreBuscado.Name = "txtNombreBuscado";
+            txtNombreBuscado.Size = new Size(274, 31);
+            txtNombreBuscado.TabIndex = 17;
             // 
             // grbGrillaClientes
             // 
             grbGrillaClientes.BackgroundImageLayout = ImageLayout.None;
             grbGrillaClientes.Controls.Add(dgvClientes);
             grbGrillaClientes.Font = new Font("Segoe UI", 9F);
-            grbGrillaClientes.Location = new Point(482, 73);
+            grbGrillaClientes.Location = new Point(477, 29);
             grbGrillaClientes.Name = "grbGrillaClientes";
-            grbGrillaClientes.Size = new Size(819, 579);
+            grbGrillaClientes.Size = new Size(819, 643);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
             grbGrillaClientes.Text = "Grilla de Clientes";
@@ -143,54 +146,73 @@
             dgvClientes.AllowUserToDeleteRows = false;
             dgvClientes.AllowUserToResizeColumns = false;
             dgvClientes.AllowUserToResizeRows = false;
-            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle5;
             dgvClientes.Location = new Point(25, 42);
             dgvClientes.Margin = new Padding(2);
             dgvClientes.Name = "dgvClientes";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvClientes.RowHeadersWidth = 62;
-            dgvClientes.Size = new Size(774, 518);
+            dgvClientes.Size = new Size(774, 589);
             dgvClientes.TabIndex = 1;
             // 
-            // grbIngresoDatosProveedores
+            // grbIngresoDatos
             // 
-            grbIngresoDatosProveedores.Controls.Add(grbTipoCliente);
-            grbIngresoDatosProveedores.Controls.Add(btnLimpiarCampos);
-            grbIngresoDatosProveedores.Controls.Add(txtEmail);
-            grbIngresoDatosProveedores.Controls.Add(lblEmail);
-            grbIngresoDatosProveedores.Controls.Add(lblNombre);
-            grbIngresoDatosProveedores.Controls.Add(txtNombre);
-            grbIngresoDatosProveedores.Location = new Point(51, 73);
-            grbIngresoDatosProveedores.Name = "grbIngresoDatosProveedores";
-            grbIngresoDatosProveedores.Size = new Size(399, 431);
-            grbIngresoDatosProveedores.TabIndex = 17;
-            grbIngresoDatosProveedores.TabStop = false;
-            grbIngresoDatosProveedores.Text = "Ingreso de Datos";
+            grbIngresoDatos.Controls.Add(txtEmail);
+            grbIngresoDatos.Controls.Add(label3);
+            grbIngresoDatos.Controls.Add(grbTipoCliente);
+            grbIngresoDatos.Controls.Add(btnLimpiarCampos);
+            grbIngresoDatos.Controls.Add(lblEmail);
+            grbIngresoDatos.Controls.Add(txtNombre);
+            grbIngresoDatos.Location = new Point(54, 30);
+            grbIngresoDatos.Name = "grbIngresoDatos";
+            grbIngresoDatos.Size = new Size(399, 431);
+            grbIngresoDatos.TabIndex = 17;
+            grbIngresoDatos.TabStop = false;
+            grbIngresoDatos.Text = "Ingreso de Datos";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Font = new Font("Segoe UI", 9F);
+            txtEmail.Location = new Point(42, 223);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(320, 31);
+            txtEmail.TabIndex = 21;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(112, 112);
+            label3.Name = "label3";
+            label3.Size = new Size(181, 25);
+            label3.TabIndex = 20;
+            label3.Text = "Nombre del Cliente:";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // grbTipoCliente
             // 
@@ -210,7 +232,7 @@
             // 
             lblSelección.AutoSize = true;
             lblSelección.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblSelección.Location = new Point(32, 44);
+            lblSelección.Location = new Point(33, 45);
             lblSelección.Margin = new Padding(2, 0, 2, 0);
             lblSelección.Name = "lblSelección";
             lblSelección.Size = new Size(263, 25);
@@ -222,7 +244,7 @@
             // 
             rdbMinorista.AutoSize = true;
             rdbMinorista.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            rdbMinorista.Location = new Point(32, 84);
+            rdbMinorista.Location = new Point(33, 85);
             rdbMinorista.Margin = new Padding(2);
             rdbMinorista.Name = "rdbMinorista";
             rdbMinorista.Size = new Size(118, 29);
@@ -235,7 +257,7 @@
             // 
             rdbMayorista.AutoSize = true;
             rdbMayorista.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            rdbMayorista.Location = new Point(173, 84);
+            rdbMayorista.Location = new Point(174, 85);
             rdbMayorista.Margin = new Padding(2);
             rdbMayorista.Name = "rdbMayorista";
             rdbMayorista.Size = new Size(122, 29);
@@ -250,7 +272,7 @@
             btnLimpiarCampos.FlatAppearance.BorderSize = 0;
             btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
             btnLimpiarCampos.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpiarCampos.Location = new Point(119, 42);
+            btnLimpiarCampos.Location = new Point(122, 39);
             btnLimpiarCampos.Margin = new Padding(2);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
             btnLimpiarCampos.Size = new Size(146, 65);
@@ -258,41 +280,21 @@
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
             // 
-            // txtEmail
-            // 
-            txtEmail.Font = new Font("Segoe UI", 9F);
-            txtEmail.Location = new Point(42, 211);
-            txtEmail.Multiline = true;
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(320, 33);
-            txtEmail.TabIndex = 2;
-            // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblEmail.Location = new Point(167, 181);
+            lblEmail.Location = new Point(167, 192);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(63, 25);
             lblEmail.TabIndex = 10;
             lblEmail.Text = "Email:";
             lblEmail.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblNombre
-            // 
-            lblNombre.AutoSize = true;
-            lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNombre.Location = new Point(110, 117);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(181, 25);
-            lblNombre.TabIndex = 6;
-            lblNombre.Text = "Nombre del Cliente:";
-            lblNombre.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 9F);
-            txtNombre.Location = new Point(42, 145);
+            txtNombre.Location = new Point(42, 153);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(320, 31);
             txtNombre.TabIndex = 0;
@@ -305,8 +307,8 @@
             pnelppaltitulo.Location = new Point(301, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1421, 150);
-            pnelppaltitulo.TabIndex = 14;
+            pnelppaltitulo.Size = new Size(1331, 150);
+            pnelppaltitulo.TabIndex = 11;
             // 
             // lblTituloPrograma
             // 
@@ -315,104 +317,123 @@
             lblTituloPrograma.Location = new Point(458, 50);
             lblTituloPrograma.Margin = new Padding(2, 0, 2, 0);
             lblTituloPrograma.Name = "lblTituloPrograma";
-            lblTituloPrograma.Size = new Size(361, 54);
+            lblTituloPrograma.Size = new Size(384, 54);
             lblTituloPrograma.TabIndex = 0;
-            lblTituloPrograma.Text = "Gestión de Ventas";
+            lblTituloPrograma.Text = "Gestión de Clientes";
             lblTituloPrograma.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnelppalbotones
             // 
             pnelppalbotones.BackColor = SystemColors.GrayText;
-            pnelppalbotones.Controls.Add(btnCliente);
+            pnelppalbotones.Controls.Add(btnModificarCliente);
+            pnelppalbotones.Controls.Add(btnRefrescar);
+            pnelppalbotones.Controls.Add(btnBuscarCliente);
             pnelppalbotones.Controls.Add(btnVolver);
             pnelppalbotones.Controls.Add(btnSalir);
             pnelppalbotones.Controls.Add(btnEliminarCliente);
-            pnelppalbotones.Controls.Add(btnModificarCliente);
             pnelppalbotones.Controls.Add(btnAgregarCliente);
             pnelppalbotones.Dock = DockStyle.Left;
             pnelppalbotones.Location = new Point(0, 0);
             pnelppalbotones.Margin = new Padding(2);
             pnelppalbotones.Name = "pnelppalbotones";
-            pnelppalbotones.Size = new Size(301, 918);
-            pnelppalbotones.TabIndex = 13;
+            pnelppalbotones.Size = new Size(301, 850);
+            pnelppalbotones.TabIndex = 10;
             // 
-            // btnCliente
+            // btnRefrescar
             // 
-            btnCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnCliente.Location = new Point(46, 521);
-            btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(205, 70);
-            btnCliente.TabIndex = 10;
-            btnCliente.Text = "Buscar Cliente";
-            btnCliente.UseVisualStyleBackColor = true;
+            btnRefrescar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnRefrescar.Location = new Point(46, 186);
+            btnRefrescar.Name = "btnRefrescar";
+            btnRefrescar.Size = new Size(205, 70);
+            btnRefrescar.TabIndex = 11;
+            btnRefrescar.Text = "Refrescar Grilla";
+            btnRefrescar.UseVisualStyleBackColor = true;
+            btnRefrescar.Click += btnRefrescar_Click;
+            // 
+            // btnBuscarCliente
+            // 
+            btnBuscarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnBuscarCliente.Location = new Point(46, 531);
+            btnBuscarCliente.Name = "btnBuscarCliente";
+            btnBuscarCliente.Size = new Size(205, 70);
+            btnBuscarCliente.TabIndex = 10;
+            btnBuscarCliente.Text = "Buscar Cliente";
+            btnBuscarCliente.UseVisualStyleBackColor = true;
+            btnBuscarCliente.Click += btnBuscarCliente_Click;
             // 
             // btnVolver
             // 
             btnVolver.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnVolver.Location = new Point(46, 609);
+            btnVolver.Location = new Point(46, 619);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(205, 70);
             btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
             // 
             // btnSalir
             // 
             btnSalir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSalir.Location = new Point(46, 696);
+            btnSalir.Location = new Point(46, 705);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(205, 70);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir del Programa";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // btnEliminarCliente
             // 
             btnEliminarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnEliminarCliente.Location = new Point(46, 434);
+            btnEliminarCliente.Location = new Point(46, 444);
             btnEliminarCliente.Name = "btnEliminarCliente";
             btnEliminarCliente.Size = new Size(205, 70);
             btnEliminarCliente.TabIndex = 6;
             btnEliminarCliente.Text = "Eliminar Cliente";
             btnEliminarCliente.UseVisualStyleBackColor = true;
+            btnEliminarCliente.Click += btnEliminarCliente_Click;
             // 
             // btnModificarCliente
             // 
             btnModificarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnModificarCliente.Location = new Point(46, 345);
+            btnModificarCliente.Location = new Point(46, 358);
             btnModificarCliente.Name = "btnModificarCliente";
             btnModificarCliente.Size = new Size(205, 70);
             btnModificarCliente.TabIndex = 5;
             btnModificarCliente.Text = "Modificar Cliente";
             btnModificarCliente.UseVisualStyleBackColor = true;
+            btnModificarCliente.Click += btnModificarCliente_Click;
             // 
             // btnAgregarCliente
             // 
             btnAgregarCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAgregarCliente.Location = new Point(46, 260);
+            btnAgregarCliente.Location = new Point(46, 270);
             btnAgregarCliente.Name = "btnAgregarCliente";
             btnAgregarCliente.Size = new Size(205, 70);
             btnAgregarCliente.TabIndex = 4;
             btnAgregarCliente.Text = "Agregar Cliente";
             btnAgregarCliente.UseVisualStyleBackColor = true;
+            btnAgregarCliente.Click += btnAgregarCliente_Click;
             // 
-            // Ventana_Gestion_Ventas
+            // Ventana_Gestion_Clientes
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1722, 918);
+            ClientSize = new Size(1632, 850);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             Controls.Add(pnelppalbotones);
-            Name = "Ventana_Gestion_Ventas";
-            Text = "Ventana_Gestion_Ventas";
+            Name = "Ventana_Gestion_Clientes";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Ventana_Gestion_Clientes";
             pnelppalmedio.ResumeLayout(false);
             grbBuscarCliente.ResumeLayout(false);
             grbBuscarCliente.PerformLayout();
             grbGrillaClientes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
-            grbIngresoDatosProveedores.ResumeLayout(false);
-            grbIngresoDatosProveedores.PerformLayout();
+            grbIngresoDatos.ResumeLayout(false);
+            grbIngresoDatos.PerformLayout();
             grbTipoCliente.ResumeLayout(false);
             grbTipoCliente.PerformLayout();
             pnelppaltitulo.ResumeLayout(false);
@@ -424,30 +445,41 @@
         #endregion
 
         private Panel pnelppalmedio;
-        private GroupBox grbBuscarCliente;
-        private Button btnBuscar;
-        private Label lblId;
-        private TextBox txtId;
-        private GroupBox grbGrillaClientes;
-        private DataGridView dgvClientes;
-        private GroupBox grbIngresoDatosProveedores;
-        private GroupBox grbTipoCliente;
-        private Label lblSelección;
-        private RadioButton rdbMinorista;
-        private RadioButton rdbMayorista;
-        private Button btnLimpiarCampos;
-        private TextBox txtEmail;
-        private Label lblEmail;
-        private Label lblNombre;
-        private TextBox txtNombre;
         private Panel pnelppaltitulo;
         private Label lblTituloPrograma;
         private Panel pnelppalbotones;
-        private Button btnCliente;
+        private Button btnAgregarCuenta;
         private Button btnVolver;
+        private Label label1;
         private Button btnSalir;
         private Button btnEliminarCliente;
         private Button btnModificarCliente;
         private Button btnAgregarCliente;
+        private GroupBox grbGrillaClientes;
+        private DataGridView dgvClientes;
+        private GroupBox grbIngresoDatos;
+        private ComboBox cbRubro;
+        private Button btnLimpiarCampos;
+        private Label label2;
+        private TextBox txtemailProveedor;
+        private Label lblDireccion;
+        private Label lblEmail;
+        private Label lbltelefonoproveedor;
+        private Label lblNombreProveedor;
+        private TextBox txttelefonoProveedor;
+        private TextBox txtDireccionProveedor;
+        private TextBox txtNombre;
+        private GroupBox grbTipoCliente;
+        private Label lblSelección;
+        private RadioButton rdbMinorista;
+        private RadioButton rdbMayorista;
+        private GroupBox grbBuscarCliente;
+        private Button btnBuscar;
+        private Label lblId;
+        private TextBox txtNombreBuscado;
+        private Button btnBuscarCliente;
+        private TextBox txtEmail;
+        private Label label3;
+        private Button btnRefrescar;
     }
 }

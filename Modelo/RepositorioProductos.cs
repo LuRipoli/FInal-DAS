@@ -52,7 +52,7 @@ namespace Modelo
 
         public IReadOnlyCollection<Entidades.Producto> ObtenerProductosBajoStock()
         {
-            return context.Productos.Where(c => c.Stock < 20).ToList().AsReadOnly();
+            return context.Productos.Where(c => c.Stock <= 25).ToList().AsReadOnly();
         }
     }
 

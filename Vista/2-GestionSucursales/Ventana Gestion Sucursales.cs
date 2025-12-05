@@ -1,0 +1,198 @@
+﻿using Controladora;
+using Modelo;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Vista
+{
+    public partial class Ventana_Gestion_Sucursales : Form
+    {
+        public Ventana_Gestion_Sucursales()
+        {
+            InitializeComponent();
+            Refrescar();
+            LimpiarCampos();
+        }
+
+        #region
+        public void Refrescar()
+        {
+            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
+            var listaSucursales = controladoraSucursales.ObtenerSucursales();
+            dgvSucursales.DataSource = listaSucursales;
+        }
+        public void LimpiarCampos()
+        {
+            txtDireccion.Text = txtNombre.Text = txtNombreBuscado.Text = "";
+        }
+        public int? GetId()
+        {
+            if (Controladora.ControladoraSucursales.Instancia().ObtenerSucursales().Count != 0)
+            {
+                try
+                {
+                    return int.Parse(dgvSucursales.Rows[dgvSucursales.CurrentRow.Index].Cells[0].Value.ToString());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnBuscarSucursal_Click(object sender, EventArgs e)
+        {
+            grbBuscarSucursal.Enabled = true;
+        }
+
+        private void btnAgregarSucursal_Click(object sender, EventArgs e)
+        {
+            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
+            try
+            {
+                if (txtDireccion.Text.Trim() == "" || txtNombre.Text.Trim() == "")
+                    throw new DatosInvalidosException("Los campos no pueden estar vacíos.");
+
+                string nombre = txtNombre.Text.Trim();
+                string direccion = txtDireccion.Text.Trim();
+
+                controladoraSucursales.AgregarSucursal(nombre, direccion);
+                MessageBox.Show("Sucursal agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Refrescar();
+                LimpiarCampos();
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error inesperado:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnModificarSucursal_Click(object sender, EventArgs e)
+        {
+            var controladoraSucursales = ControladoraSucursales.Instancia();
+            try
+            {
+                int? id = GetId();
+                if (id != null && txtDireccion.Text != "" && txtNombre.Text != "")
+                {
+                    string nombre = txtNombre.Text;
+                    string direccion = txtDireccion.Text;
+                    controladoraSucursales.ModificarSucursal((int)id, nombre, direccion);
+                    MessageBox.Show("Sucursal modificada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Refrescar();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos y seleccione una sucursal para modificar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEliminarSucursal_Click(object sender, EventArgs e)
+        {
+            var controladoraSucursales = ControladoraSucursales.Instancia();
+            try
+            {
+                int? id = GetId();
+                if (id != null)
+                {
+                    controladoraSucursales.EliminarSucursal((int)id);
+                    MessageBox.Show("Sucursal eliminada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Refrescar();
+                    LimpiarCampos();
+                }
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var controladoraSucursales = ControladoraSucursales.Instancia();
+            try
+            {
+                if (txtNombreBuscado.Text != "")
+                {
+                    string nombreBuscado = txtNombreBuscado.Text;
+                    var sucursal = controladoraSucursales.BuscarSucursalPorNombre(nombreBuscado);
+                    if (sucursal != null)
+                    {
+                        var listaSucursales = new List<Entidades.Sucursal>();
+                        listaSucursales.Add(sucursal);
+                        dgvSucursales.DataSource = listaSucursales;
+                        grbBuscarSucursal.Enabled = false;
+                        txtNombreBuscado.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        grbBuscarSucursal.Enabled = false;
+                    }
+                }
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+}

@@ -43,6 +43,10 @@ namespace Modelo
         {
             return context.Sucursales.FirstOrDefault(c => c.id == idCategoria);
         }
+        public Sucursal? BuscarSucursalPorNombre(string nombreSucursal)
+        {
+            return context.Sucursales.FirstOrDefault(s => s.Nombre == nombreSucursal);
+        }
     }
 
 

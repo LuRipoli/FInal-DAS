@@ -82,6 +82,16 @@ namespace Controladora
 
             repositorio.EliminarSucursal(sucursal);
         }   
+
+        public Sucursal BuscarSucursalPorNombre(string nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+                throw new DatosInvalidosException("El nombre de la sucursal no puede estar vacío.");
+            var sucursal = repositorio.BuscarSucursalPorNombre(nombre);
+            if (sucursal == null)
+                throw new EntidadNoEncontradaException("No se encontró la sucursal especificada.");
+            return sucursal;
+        }
     }
 }
 
