@@ -44,7 +44,11 @@ namespace Vista
             var controladoraCategorias = ControladoraCategorias.Instancia();
             cmbCategoria.SelectedIndex = -1;
             cmbCategoria.DataSource = null;
-            cmbCategoria.DataSource = controladoraCategorias.ObtenerCategorias().ToList();
+            var categorias = controladoraCategorias.ObtenerCategorias();
+            foreach (var x in categorias)
+            {
+                cmbCategoria.Items.Add(x.Nombre);
+            }
         }
         private int? GetId()
         {
