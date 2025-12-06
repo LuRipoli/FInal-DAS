@@ -12,7 +12,7 @@ using Modelo;
 namespace Modelo.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251205204840_InitialCreate")]
+    [Migration("20251206143837_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
