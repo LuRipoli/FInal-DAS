@@ -26,6 +26,7 @@ namespace Controladora
 
         public void AgregarCliente(string Nombre, string Email, int tipoCliente)
         {
+
             if (string.IsNullOrEmpty(Nombre))
                 throw new DatosInvalidosException("El nombre del cliente no puede estar vacío.");
             var listaClientes = repositorio.ObtenerClientes();
