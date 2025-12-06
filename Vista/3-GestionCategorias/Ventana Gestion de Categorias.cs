@@ -32,7 +32,6 @@ namespace Vista
             cmbModificar.Enabled = false;
             cmbEliminarCategoria.Enabled = false;
             cargardatosDgvClientes();
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -204,7 +203,7 @@ namespace Vista
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        /*
         public void PrecargarDatos()
         {
             var controladora = ControladoraCategorias.Instancia();
@@ -218,10 +217,11 @@ namespace Vista
             }
             catch (Exception)
             {
-                // Ignorar errores si las categorías ya existen
+                
+                
             }
         }
-
+        */
         public void cargardatosDgvClientes()
         {
             var controladora = ControladoraCategorias.Instancia();

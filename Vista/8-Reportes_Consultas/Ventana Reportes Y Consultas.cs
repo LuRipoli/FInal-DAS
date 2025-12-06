@@ -97,9 +97,32 @@ namespace Vista
             combocliente.SelectedIndex = -1;
             combosucursal.SelectedIndex = -1;
             combometodo.SelectedIndex = -1;
+        }
 
-            rdminorista.Checked = false;
-            rdmayorista.Checked = false;
+        private void btnaplicar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(combocliente.Text) || !string.IsNullOrEmpty(combosucursal.Text) || !string.IsNullOrEmpty(combometodo.Text))
+                {
+                    Consulta consulta = new Consulta
+                    {
+                        Fecha = fechadesde.Value,
+                        Fecha= fechahasta.Value,
+                        ClienteId = combocliente.Text,
+                        SucursalId = combosucursal.Text,
+                        MetodoPago = combometodo.Text
+                    };
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un filtro para aplicar la búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
