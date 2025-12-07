@@ -337,11 +337,12 @@
             tlpTipoCliente.Controls.Add(rdbMinorista, 0, 0);
             tlpTipoCliente.Controls.Add(rdbMayorista, 1, 0);
             tlpTipoCliente.Dock = DockStyle.Fill;
-            tlpTipoCliente.Location = new Point(406, 150);
+            tlpTipoCliente.Location = new Point(413, 157);
+            tlpTipoCliente.Margin = new Padding(10);
             tlpTipoCliente.Name = "tlpTipoCliente";
             tlpTipoCliente.RowCount = 1;
             tlpTipoCliente.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpTipoCliente.Size = new Size(392, 86);
+            tlpTipoCliente.Size = new Size(378, 72);
             tlpTipoCliente.TabIndex = 20;
             // 
             // rdbMinorista
@@ -350,9 +351,9 @@
             rdbMinorista.AutoSize = true;
             rdbMinorista.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbMinorista.ForeColor = Color.DarkSlateGray;
-            rdbMinorista.Location = new Point(3, 23);
+            rdbMinorista.Location = new Point(3, 16);
             rdbMinorista.Name = "rdbMinorista";
-            rdbMinorista.Size = new Size(190, 39);
+            rdbMinorista.Size = new Size(183, 39);
             rdbMinorista.TabIndex = 0;
             rdbMinorista.TabStop = true;
             rdbMinorista.Text = "Minorista";
@@ -365,9 +366,9 @@
             rdbMayorista.AutoSize = true;
             rdbMayorista.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbMayorista.ForeColor = Color.DarkSlateGray;
-            rdbMayorista.Location = new Point(199, 23);
+            rdbMayorista.Location = new Point(192, 16);
             rdbMayorista.Name = "rdbMayorista";
-            rdbMayorista.Size = new Size(190, 39);
+            rdbMayorista.Size = new Size(183, 39);
             rdbMayorista.TabIndex = 1;
             rdbMayorista.TabStop = true;
             rdbMayorista.Text = "Mayorista";

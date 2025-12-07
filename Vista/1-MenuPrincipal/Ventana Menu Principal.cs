@@ -48,12 +48,14 @@ namespace Vista
         private void Refrescar()
         {
             var controladoraStockPorSucursal = ControladoraStocksPorSucursal.Instancia();
-            var productosBajoStock = controladoraStockPorSucursal.ObtenerProductosBajoStockPorSucursal();
+            var productosBajoStock = controladoraStockPorSucursal.ObtenerProductosBajoStockPorSucursal().Select(s => new {Producto = s.Producto.Nombre,Sucursal = s.Sucursal.Nombre,StockRestante = s.Cantidad}).ToList();
             dgvProductosBajoStock.DataSource = productosBajoStock;
+            dgvProductosBajoStock.Columns["StockRestante"].HeaderText = "Stock Restante";
             AplicarColoresProductosBajoStock();
             var controladoraVentas = ControladoraVentas.Instancia();
-            var ventasSemanales = controladoraVentas.ObtenerVentasdelaSemana();
-            dgvVentasSemanales.DataSource = ventasSemanales;
+            var ventasSemanales = controladoraVentas.ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = v.Total, Descuento = v.Descuento }).ToList();
+            dgvVentasSemanales.DataSource = ventasSemanales;     
+            dgvVentasSemanales.Columns["MetodoDePago"].HeaderText = "Método de Pago";
         }
 
         private void AplicarColoresProductosBajoStock()

@@ -140,6 +140,8 @@ namespace Vista
                         dgvClientes.DataSource = listaClientes;
                         if (dgvClientes.Columns["Id"] != null)
                             dgvClientes.Columns["Id"].Visible = false;
+                        if (dgvClientes.Columns["TipoCliente"] != null)
+                            dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
                         btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
                         txtNombreBuscado.Clear();
@@ -174,6 +176,8 @@ namespace Vista
             dgvClientes.DataSource = clientes;
             if (dgvClientes.Columns["Id"] != null)
                 dgvClientes.Columns["Id"].Visible = false;
+            if (dgvClientes.Columns["TipoCliente"] != null)
+                dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
         }
         private void LimpiarCampos()
         {

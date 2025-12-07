@@ -133,6 +133,7 @@
             lblNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.ForeColor = Color.DarkSlateGray;
             lblNombre.Location = new Point(6, 66);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(329, 35);
@@ -143,11 +144,11 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombre.Font = new Font("Segoe UI", 12F);
-            txtNombre.Location = new Point(349, 64);
+            txtNombre.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombre.Location = new Point(349, 63);
             txtNombre.Margin = new Padding(8);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(319, 39);
+            txtNombre.Size = new Size(319, 42);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -190,6 +191,7 @@
             lblId.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblId.AutoSize = true;
             lblId.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblId.ForeColor = Color.DarkSlateGray;
             lblId.Location = new Point(6, 66);
             lblId.Name = "lblId";
             lblId.Size = new Size(329, 35);
@@ -200,11 +202,11 @@
             // txtNombreBuscado
             // 
             txtNombreBuscado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombreBuscado.Font = new Font("Segoe UI", 12F);
-            txtNombreBuscado.Location = new Point(349, 64);
+            txtNombreBuscado.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombreBuscado.Location = new Point(349, 63);
             txtNombreBuscado.Margin = new Padding(8);
             txtNombreBuscado.Name = "txtNombreBuscado";
-            txtNombreBuscado.Size = new Size(319, 39);
+            txtNombreBuscado.Size = new Size(319, 42);
             txtNombreBuscado.TabIndex = 17;
             // 
             // btnBuscar

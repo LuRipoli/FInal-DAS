@@ -32,6 +32,10 @@ namespace Vista
             var controladoraProductos = ControladoraProductos.Instancia();
             dgvProductos.DataSource = null;
             dgvProductos.DataSource = controladoraProductos.ObtenerProducto();
+            if (dgvProductos.Columns["Id"] != null)
+                dgvProductos.Columns["Id"].Visible = false;
+            if (dgvProductos.Columns["CategoriaId"] != null)
+                dgvProductos.Columns["CategoriaId"].Visible = false;
         }
         private void LimpiarCampos()
         {
@@ -70,10 +74,6 @@ namespace Vista
         }
         #endregion
 
-        private void btnLimpiarCampos_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -183,10 +183,22 @@ namespace Vista
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        {
+            btnBuscar.Enabled = true;
+            tlpBuscar.Enabled = true;
+        }
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
+
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             var controladora = ControladoraProductos.Instancia();
-            try
+            /*try
             {
                 if (txtNombreBuscado.Text != "")
                 {
@@ -196,12 +208,17 @@ namespace Vista
                     {
                         var lista = new List<Producto> { producto };
                         dgvProductos.DataSource = lista;
+                        if (dgvProductos.Columns["Id"] != null)
+                            dgvProductos.Columns["Id"].Visible = false;
+                        if (dgvProductos.Columns["CategoriaId"] != null)
+                            dgvProductos.Columns["CategoriaId"].Visible = false;
+
                         txtNombreBuscado.Clear();
                     }
                     else
                     {
                       MessageBox.Show("No se encontró ningún producto con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }*/
+                    }
                 }
             }
             catch (DatosInvalidosException ex)
@@ -215,12 +232,12 @@ namespace Vista
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
-        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        private void btnLimpiarCampos_Click_1(object sender, EventArgs e)
         {
-            grbBuscarProducto.Enabled = true;
+            LimpiarCampos();
         }
     }
 }

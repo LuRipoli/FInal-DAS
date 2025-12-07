@@ -15,6 +15,7 @@ namespace Entidades
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
         public MetodoPago MetodoPago { get; set; }   // Efectivo / Tarjeta / Transferencia
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }

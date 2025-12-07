@@ -70,7 +70,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1647, 80);
+            pnelppaltitulo.Size = new Size(1608, 80);
             pnelppaltitulo.TabIndex = 15;
             // 
             // btnSalir
@@ -83,7 +83,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(1557, 0);
+            btnSalir.Location = new Point(1518, 0);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(90, 80);
             btnSalir.TabIndex = 7;
@@ -100,7 +100,7 @@
             lblTituloGR.Location = new Point(0, 0);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
-            lblTituloGR.Size = new Size(1647, 80);
+            lblTituloGR.Size = new Size(1608, 80);
             lblTituloGR.TabIndex = 1;
             lblTituloGR.Text = "Sistema de Gestión de Electrodomésticos";
             lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
@@ -113,15 +113,15 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 232);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1647, 542);
+            panel1.Size = new Size(1608, 542);
             panel1.TabIndex = 8;
             // 
             // tlpDatos
             // 
             tlpDatos.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
             tlpDatos.ColumnCount = 2;
-            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tlpDatos.Controls.Add(grbProductosBajoStock, 1, 0);
             tlpDatos.Controls.Add(grbVentasSemana, 0, 0);
             tlpDatos.Dock = DockStyle.Fill;
@@ -129,8 +129,8 @@
             tlpDatos.Name = "tlpDatos";
             tlpDatos.Padding = new Padding(10);
             tlpDatos.RowCount = 1;
-            tlpDatos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpDatos.Size = new Size(1647, 542);
+            tlpDatos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDatos.Size = new Size(1608, 542);
             tlpDatos.TabIndex = 8;
             // 
             // grbProductosBajoStock
@@ -140,9 +140,9 @@
             grbProductosBajoStock.FlatStyle = FlatStyle.Flat;
             grbProductosBajoStock.Font = new Font("Calibri", 14F, FontStyle.Bold);
             grbProductosBajoStock.ForeColor = Color.DarkSlateGray;
-            grbProductosBajoStock.Location = new Point(828, 16);
+            grbProductosBajoStock.Location = new Point(966, 16);
             grbProductosBajoStock.Name = "grbProductosBajoStock";
-            grbProductosBajoStock.Size = new Size(803, 510);
+            grbProductosBajoStock.Size = new Size(626, 510);
             grbProductosBajoStock.TabIndex = 0;
             grbProductosBajoStock.TabStop = false;
             grbProductosBajoStock.Text = "Productos bajo Stock";
@@ -178,7 +178,7 @@
             dgvProductosBajoStock.ReadOnly = true;
             dgvProductosBajoStock.RowHeadersVisible = false;
             dgvProductosBajoStock.RowHeadersWidth = 62;
-            dgvProductosBajoStock.Size = new Size(797, 469);
+            dgvProductosBajoStock.Size = new Size(620, 469);
             dgvProductosBajoStock.TabIndex = 0;
             // 
             // grbVentasSemana
@@ -191,7 +191,7 @@
             grbVentasSemana.Location = new Point(16, 16);
             grbVentasSemana.Name = "grbVentasSemana";
             grbVentasSemana.RightToLeft = RightToLeft.No;
-            grbVentasSemana.Size = new Size(803, 510);
+            grbVentasSemana.Size = new Size(941, 510);
             grbVentasSemana.TabIndex = 1;
             grbVentasSemana.TabStop = false;
             grbVentasSemana.Text = "Ventas de la Semana";
@@ -227,7 +227,7 @@
             dgvVentasSemanales.ReadOnly = true;
             dgvVentasSemanales.RowHeadersVisible = false;
             dgvVentasSemanales.RowHeadersWidth = 62;
-            dgvVentasSemanales.Size = new Size(797, 469);
+            dgvVentasSemanales.Size = new Size(935, 469);
             dgvVentasSemanales.TabIndex = 0;
             // 
             // tlpBotones
@@ -254,7 +254,7 @@
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.Size = new Size(1647, 152);
+            tlpBotones.Size = new Size(1608, 152);
             tlpBotones.TabIndex = 8;
             // 
             // btnRegistrarIngresos
@@ -264,14 +264,14 @@
             btnRegistrarIngresos.Dock = DockStyle.Fill;
             btnRegistrarIngresos.FlatAppearance.BorderSize = 0;
             btnRegistrarIngresos.FlatStyle = FlatStyle.Flat;
-            btnRegistrarIngresos.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnRegistrarIngresos.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnRegistrarIngresos.ForeColor = Color.DarkSlateGray;
-            btnRegistrarIngresos.Location = new Point(939, 3);
+            btnRegistrarIngresos.Location = new Point(919, 3);
             btnRegistrarIngresos.Margin = new Padding(0);
             btnRegistrarIngresos.Name = "btnRegistrarIngresos";
-            btnRegistrarIngresos.Size = new Size(231, 146);
+            btnRegistrarIngresos.Size = new Size(226, 146);
             btnRegistrarIngresos.TabIndex = 6;
-            btnRegistrarIngresos.Text = " Ingresos\r\n ➕";
+            btnRegistrarIngresos.Text = "Ingresos ➕";
             btnRegistrarIngresos.UseVisualStyleBackColor = false;
             btnRegistrarIngresos.Click += btnRegistrarIngresos_Click;
             // 
@@ -282,12 +282,12 @@
             btnGestionarSucursales.Dock = DockStyle.Fill;
             btnGestionarSucursales.FlatAppearance.BorderSize = 0;
             btnGestionarSucursales.FlatStyle = FlatStyle.Flat;
-            btnGestionarSucursales.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnGestionarSucursales.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnGestionarSucursales.ForeColor = Color.DarkSlateGray;
             btnGestionarSucursales.Location = new Point(3, 3);
             btnGestionarSucursales.Margin = new Padding(0);
             btnGestionarSucursales.Name = "btnGestionarSucursales";
-            btnGestionarSucursales.Size = new Size(231, 146);
+            btnGestionarSucursales.Size = new Size(226, 146);
             btnGestionarSucursales.TabIndex = 5;
             btnGestionarSucursales.Text = "Sucursales 🏬";
             btnGestionarSucursales.UseVisualStyleBackColor = false;
@@ -300,14 +300,14 @@
             btnReportesYConsultas.Dock = DockStyle.Fill;
             btnReportesYConsultas.FlatAppearance.BorderSize = 0;
             btnReportesYConsultas.FlatStyle = FlatStyle.Flat;
-            btnReportesYConsultas.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnReportesYConsultas.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnReportesYConsultas.ForeColor = Color.DarkSlateGray;
-            btnReportesYConsultas.Location = new Point(1407, 3);
+            btnReportesYConsultas.Location = new Point(1377, 3);
             btnReportesYConsultas.Margin = new Padding(0);
             btnReportesYConsultas.Name = "btnReportesYConsultas";
-            btnReportesYConsultas.Size = new Size(237, 146);
+            btnReportesYConsultas.Size = new Size(228, 146);
             btnReportesYConsultas.TabIndex = 3;
-            btnReportesYConsultas.Text = " Reportes \r\n📊";
+            btnReportesYConsultas.Text = "Reportes 📊";
             btnReportesYConsultas.UseVisualStyleBackColor = false;
             btnReportesYConsultas.Click += btnReportesYConsultas_Click;
             // 
@@ -318,14 +318,14 @@
             btnRegistrarVentas.Dock = DockStyle.Fill;
             btnRegistrarVentas.FlatAppearance.BorderSize = 0;
             btnRegistrarVentas.FlatStyle = FlatStyle.Flat;
-            btnRegistrarVentas.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnRegistrarVentas.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnRegistrarVentas.ForeColor = Color.DarkSlateGray;
-            btnRegistrarVentas.Location = new Point(1173, 3);
+            btnRegistrarVentas.Location = new Point(1148, 3);
             btnRegistrarVentas.Margin = new Padding(0);
             btnRegistrarVentas.Name = "btnRegistrarVentas";
-            btnRegistrarVentas.Size = new Size(231, 146);
+            btnRegistrarVentas.Size = new Size(226, 146);
             btnRegistrarVentas.TabIndex = 2;
-            btnRegistrarVentas.Text = " Ventas \r\n💸";
+            btnRegistrarVentas.Text = "Ventas 💸";
             btnRegistrarVentas.UseVisualStyleBackColor = false;
             btnRegistrarVentas.Click += btnGestionVentas_Click;
             // 
@@ -336,12 +336,12 @@
             btnGestionProductos.Dock = DockStyle.Fill;
             btnGestionProductos.FlatAppearance.BorderSize = 0;
             btnGestionProductos.FlatStyle = FlatStyle.Flat;
-            btnGestionProductos.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnGestionProductos.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnGestionProductos.ForeColor = Color.DarkSlateGray;
-            btnGestionProductos.Location = new Point(471, 3);
+            btnGestionProductos.Location = new Point(461, 3);
             btnGestionProductos.Margin = new Padding(0);
             btnGestionProductos.Name = "btnGestionProductos";
-            btnGestionProductos.Size = new Size(231, 146);
+            btnGestionProductos.Size = new Size(226, 146);
             btnGestionProductos.TabIndex = 0;
             btnGestionProductos.Text = "Productos 📦 ";
             btnGestionProductos.UseVisualStyleBackColor = false;
@@ -354,12 +354,12 @@
             GestionDeCategorias.Dock = DockStyle.Fill;
             GestionDeCategorias.FlatAppearance.BorderSize = 0;
             GestionDeCategorias.FlatStyle = FlatStyle.Flat;
-            GestionDeCategorias.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            GestionDeCategorias.Font = new Font("Calibri", 18F, FontStyle.Bold);
             GestionDeCategorias.ForeColor = Color.DarkSlateGray;
-            GestionDeCategorias.Location = new Point(237, 3);
+            GestionDeCategorias.Location = new Point(232, 3);
             GestionDeCategorias.Margin = new Padding(0);
             GestionDeCategorias.Name = "GestionDeCategorias";
-            GestionDeCategorias.Size = new Size(231, 146);
+            GestionDeCategorias.Size = new Size(226, 146);
             GestionDeCategorias.TabIndex = 4;
             GestionDeCategorias.Text = "Categorias 📂 ";
             GestionDeCategorias.UseVisualStyleBackColor = false;
@@ -372,14 +372,14 @@
             btnGestionClientes.Dock = DockStyle.Fill;
             btnGestionClientes.FlatAppearance.BorderSize = 0;
             btnGestionClientes.FlatStyle = FlatStyle.Flat;
-            btnGestionClientes.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnGestionClientes.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnGestionClientes.ForeColor = Color.DarkSlateGray;
-            btnGestionClientes.Location = new Point(705, 3);
+            btnGestionClientes.Location = new Point(690, 3);
             btnGestionClientes.Margin = new Padding(0);
             btnGestionClientes.Name = "btnGestionClientes";
-            btnGestionClientes.Size = new Size(231, 146);
+            btnGestionClientes.Size = new Size(226, 146);
             btnGestionClientes.TabIndex = 1;
-            btnGestionClientes.Text = " Clientes \r\n👤";
+            btnGestionClientes.Text = "Clientes 👤";
             btnGestionClientes.UseVisualStyleBackColor = false;
             btnGestionClientes.Click += btnGestionClientes_Click;
             // 
@@ -391,7 +391,7 @@
             pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1647, 152);
+            pnelppalmedio.Size = new Size(1608, 152);
             pnelppalmedio.TabIndex = 16;
             // 
             // Form1
@@ -399,14 +399,15 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            ClientSize = new Size(1647, 774);
+            ClientSize = new Size(1608, 774);
             Controls.Add(panel1);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(4);
-            MinimumSize = new Size(1603, 830);
+            MaximumSize = new Size(1630, 830);
+            MinimumSize = new Size(1630, 830);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu Principal";
