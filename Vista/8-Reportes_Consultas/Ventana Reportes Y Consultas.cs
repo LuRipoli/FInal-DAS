@@ -105,14 +105,14 @@ namespace Vista
             {
                 if (!string.IsNullOrEmpty(combocliente.Text) || !string.IsNullOrEmpty(combosucursal.Text) || !string.IsNullOrEmpty(combometodo.Text))
                 {
-                   /* Consulta consulta = new Consulta
-                    {
-                        Fecha = fechadesde.Value,
-                        Fecha= fechahasta.Value,
-                        ClienteId = combocliente.Text,
-                        SucursalId = combosucursal.Text,
-                        MetodoPago = combometodo.Text
-                    };*/
+                    /* Consulta consulta = new Consulta
+                     {
+                         Fecha = fechadesde.Value,
+                         Fecha= fechahasta.Value,
+                         ClienteId = combocliente.Text,
+                         SucursalId = combosucursal.Text,
+                         MetodoPago = combometodo.Text
+                     };*/
                 }
                 else
                 {
@@ -123,6 +123,13 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 menu = new Form1();
+            menu.Show();
         }
     }
 }

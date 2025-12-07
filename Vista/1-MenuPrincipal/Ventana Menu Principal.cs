@@ -16,12 +16,14 @@ namespace Vista
 
         private void btnGestionProductos_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Ventana_Gestion_Productos fProductos = new Ventana_Gestion_Productos();
             fProductos.Show();
         }
 
         private void btnGestionClientes_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Ventana_Gestion_Clientes fClientes = new Ventana_Gestion_Clientes();
             fClientes.Show();
 
@@ -29,18 +31,21 @@ namespace Vista
 
         private void btnGestionVentas_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Ventana_Gestion_Ventas fVentas = new Ventana_Gestion_Ventas();
             fVentas.Show();
         }
 
         private void btnReportesYConsultas_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Ventana_Reportes_Y_Consultas fReportesYConsultas = new Ventana_Reportes_Y_Consultas();
             fReportesYConsultas.Show();
         }
 
         private void GestionDeCategorias_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Gestion_de_Rubros fRubros = new Gestion_de_Rubros();
             fRubros.Show();
         }
@@ -91,12 +96,14 @@ namespace Vista
 
         private void btnGestionarSucursales_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Ventana_Gestion_Sucursales fSucursales = new Ventana_Gestion_Sucursales();
             fSucursales.Show();
         }
 
         private void btnRegistrarIngresos_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Ventana_Gestion_Stock fIngresos = new Ventana_Gestion_Stock();
             fIngresos.Show();
         }

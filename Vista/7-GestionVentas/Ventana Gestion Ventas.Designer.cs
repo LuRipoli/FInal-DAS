@@ -33,9 +33,11 @@
             btnBuscar = new Button();
             lblId = new Label();
             txtNombreBuscado = new TextBox();
-            grbGrillaSucursales = new GroupBox();
+            grbGrillaVentas = new GroupBox();
             dgvSucursales = new DataGridView();
             grbIngresoDatos = new GroupBox();
+            cmbProducto = new ComboBox();
+            label5 = new Label();
             btnAgregar = new Button();
             grbMetodoDePago = new GroupBox();
             rbtTransferencia = new RadioButton();
@@ -54,15 +56,13 @@
             pnelppaltitulo = new Panel();
             lblTituloPrograma = new Label();
             pnelppalbotones = new Panel();
-            btnBuscarSucursal = new Button();
+            btnBuscarVenta = new Button();
             btnVolver = new Button();
             btnSalir = new Button();
-            btnAgregarSucursal = new Button();
-            cmbProducto = new ComboBox();
-            label5 = new Label();
+            btnAgregarVenta = new Button();
             pnelppalmedio.SuspendLayout();
             grbBuscarSucursal.SuspendLayout();
-            grbGrillaSucursales.SuspendLayout();
+            grbGrillaVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSucursales).BeginInit();
             grbIngresoDatos.SuspendLayout();
             grbMetodoDePago.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
             pnelppalmedio.Controls.Add(grbBuscarSucursal);
-            pnelppalmedio.Controls.Add(grbGrillaSucursales);
+            pnelppalmedio.Controls.Add(grbGrillaVentas);
             pnelppalmedio.Controls.Add(grbIngresoDatos);
             pnelppalmedio.Dock = DockStyle.Fill;
             pnelppalmedio.Location = new Point(241, 120);
@@ -134,19 +134,19 @@
             txtNombreBuscado.Size = new Size(257, 27);
             txtNombreBuscado.TabIndex = 17;
             // 
-            // grbGrillaSucursales
+            // grbGrillaVentas
             // 
-            grbGrillaSucursales.BackgroundImageLayout = ImageLayout.None;
-            grbGrillaSucursales.Controls.Add(dgvSucursales);
-            grbGrillaSucursales.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grbGrillaSucursales.Location = new Point(386, 58);
-            grbGrillaSucursales.Margin = new Padding(2);
-            grbGrillaSucursales.Name = "grbGrillaSucursales";
-            grbGrillaSucursales.Padding = new Padding(2);
-            grbGrillaSucursales.Size = new Size(655, 463);
-            grbGrillaSucursales.TabIndex = 18;
-            grbGrillaSucursales.TabStop = false;
-            grbGrillaSucursales.Text = "Grilla de Sucursales";
+            grbGrillaVentas.BackgroundImageLayout = ImageLayout.None;
+            grbGrillaVentas.Controls.Add(dgvSucursales);
+            grbGrillaVentas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            grbGrillaVentas.Location = new Point(386, 58);
+            grbGrillaVentas.Margin = new Padding(2);
+            grbGrillaVentas.Name = "grbGrillaVentas";
+            grbGrillaVentas.Padding = new Padding(2);
+            grbGrillaVentas.Size = new Size(655, 463);
+            grbGrillaVentas.TabIndex = 18;
+            grbGrillaVentas.TabStop = false;
+            grbGrillaVentas.Text = "Grilla de Ventas";
             // 
             // dgvSucursales
             // 
@@ -189,6 +189,26 @@
             grbIngresoDatos.TabIndex = 17;
             grbIngresoDatos.TabStop = false;
             grbIngresoDatos.Text = "Ingreso de Datos";
+            // 
+            // cmbProducto
+            // 
+            cmbProducto.FormattingEnabled = true;
+            cmbProducto.Location = new Point(91, 181);
+            cmbProducto.Name = "cmbProducto";
+            cmbProducto.Size = new Size(144, 28);
+            cmbProducto.TabIndex = 29;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label5.Location = new Point(95, 161);
+            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(77, 20);
+            label5.TabIndex = 28;
+            label5.Text = "Producto:";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnAgregar
             // 
@@ -377,27 +397,28 @@
             // pnelppalbotones
             // 
             pnelppalbotones.BackColor = SystemColors.GrayText;
-            pnelppalbotones.Controls.Add(btnBuscarSucursal);
+            pnelppalbotones.Controls.Add(btnBuscarVenta);
             pnelppalbotones.Controls.Add(btnVolver);
             pnelppalbotones.Controls.Add(btnSalir);
-            pnelppalbotones.Controls.Add(btnAgregarSucursal);
+            pnelppalbotones.Controls.Add(btnAgregarVenta);
             pnelppalbotones.Dock = DockStyle.Left;
             pnelppalbotones.Location = new Point(0, 0);
             pnelppalbotones.Margin = new Padding(2);
             pnelppalbotones.Name = "pnelppalbotones";
             pnelppalbotones.Size = new Size(241, 820);
             pnelppalbotones.TabIndex = 13;
+            pnelppalbotones.Paint += pnelppalbotones_Paint;
             // 
-            // btnBuscarSucursal
+            // btnBuscarVenta
             // 
-            btnBuscarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnBuscarSucursal.Location = new Point(38, 302);
-            btnBuscarSucursal.Margin = new Padding(2);
-            btnBuscarSucursal.Name = "btnBuscarSucursal";
-            btnBuscarSucursal.Size = new Size(164, 56);
-            btnBuscarSucursal.TabIndex = 10;
-            btnBuscarSucursal.Text = "Buscar Sucursal";
-            btnBuscarSucursal.UseVisualStyleBackColor = true;
+            btnBuscarVenta.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnBuscarVenta.Location = new Point(38, 302);
+            btnBuscarVenta.Margin = new Padding(2);
+            btnBuscarVenta.Name = "btnBuscarVenta";
+            btnBuscarVenta.Size = new Size(164, 56);
+            btnBuscarVenta.TabIndex = 10;
+            btnBuscarVenta.Text = "Buscar Venta";
+            btnBuscarVenta.UseVisualStyleBackColor = true;
             // 
             // btnVolver
             // 
@@ -409,6 +430,7 @@
             btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
             // 
             // btnSalir
             // 
@@ -420,38 +442,19 @@
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir del Programa";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
-            // btnAgregarSucursal
+            // btnAgregarVenta
             // 
-            btnAgregarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAgregarSucursal.Location = new Point(38, 236);
-            btnAgregarSucursal.Margin = new Padding(2);
-            btnAgregarSucursal.Name = "btnAgregarSucursal";
-            btnAgregarSucursal.Size = new Size(164, 56);
-            btnAgregarSucursal.TabIndex = 4;
-            btnAgregarSucursal.Text = "Agregar Sucursal";
-            btnAgregarSucursal.UseVisualStyleBackColor = true;
-            btnAgregarSucursal.Click += btnAgregarSucursal_Click;
-            // 
-            // cmbProducto
-            // 
-            cmbProducto.FormattingEnabled = true;
-            cmbProducto.Location = new Point(91, 181);
-            cmbProducto.Name = "cmbProducto";
-            cmbProducto.Size = new Size(144, 28);
-            cmbProducto.TabIndex = 29;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label5.Location = new Point(95, 161);
-            label5.Margin = new Padding(2, 0, 2, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(77, 20);
-            label5.TabIndex = 28;
-            label5.Text = "Producto:";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
+            btnAgregarVenta.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAgregarVenta.Location = new Point(38, 236);
+            btnAgregarVenta.Margin = new Padding(2);
+            btnAgregarVenta.Name = "btnAgregarVenta";
+            btnAgregarVenta.Size = new Size(164, 56);
+            btnAgregarVenta.TabIndex = 4;
+            btnAgregarVenta.Text = "Agregar Venta";
+            btnAgregarVenta.UseVisualStyleBackColor = true;
+            btnAgregarVenta.Click += btnAgregarSucursal_Click;
             // 
             // Ventana_Gestion_Ventas
             // 
@@ -468,7 +471,7 @@
             pnelppalmedio.ResumeLayout(false);
             grbBuscarSucursal.ResumeLayout(false);
             grbBuscarSucursal.PerformLayout();
-            grbGrillaSucursales.ResumeLayout(false);
+            grbGrillaVentas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSucursales).EndInit();
             grbIngresoDatos.ResumeLayout(false);
             grbIngresoDatos.PerformLayout();
@@ -487,17 +490,17 @@
         private Button btnBuscar;
         private Label lblId;
         private TextBox txtNombreBuscado;
-        private GroupBox grbGrillaSucursales;
+        private GroupBox grbGrillaVentas;
         private DataGridView dgvSucursales;
         private GroupBox grbIngresoDatos;
         private Label lblNombre;
         private Panel pnelppaltitulo;
         private Label lblTituloPrograma;
         private Panel pnelppalbotones;
-        private Button btnBuscarSucursal;
+        private Button btnBuscarVenta;
         private Button btnVolver;
         private Button btnSalir;
-        private Button btnAgregarSucursal;
+        private Button btnAgregarVenta;
         private TextBox txtTotal;
         private Label label3;
         private TextBox txtDescuento;

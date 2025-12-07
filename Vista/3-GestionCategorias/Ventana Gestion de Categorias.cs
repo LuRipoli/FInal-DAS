@@ -90,6 +90,8 @@ namespace Vista
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            Form1 menu = new Form1();
+            menu.Show();
             this.Close();
         }
 

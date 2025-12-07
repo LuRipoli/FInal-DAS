@@ -96,5 +96,22 @@ namespace Vista
                 cmbSucursales.Items.Add(suc.Nombre);
             }
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Form1 menu = new Form1();
+            menu.Show();
+            this.Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pnelppalbotones_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

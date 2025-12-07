@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             Grpfiltros = new GroupBox();
+            txtNombreVendedor = new TextBox();
+            label1 = new Label();
             fechahasta = new DateTimePicker();
             label6 = new Label();
             fechadesde = new DateTimePicker();
@@ -56,8 +58,6 @@
             btnreporteproductoss = new Button();
             btnreportecliente = new Button();
             btnreporteventas = new Button();
-            label1 = new Label();
-            txtNombreVendedor = new TextBox();
             pnelppalmedio.SuspendLayout();
             Grpfiltros.SuspendLayout();
             grbGrillaClientes.SuspendLayout();
@@ -103,6 +103,22 @@
             Grpfiltros.TabIndex = 19;
             Grpfiltros.TabStop = false;
             Grpfiltros.Text = "Filtros";
+            // 
+            // txtNombreVendedor
+            // 
+            txtNombreVendedor.Location = new Point(676, 50);
+            txtNombreVendedor.Name = "txtNombreVendedor";
+            txtNombreVendedor.Size = new Size(261, 27);
+            txtNombreVendedor.TabIndex = 20;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(676, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(157, 20);
+            label1.TabIndex = 15;
+            label1.Text = "Nombre del Vendedor";
             // 
             // fechahasta
             // 
@@ -236,34 +252,34 @@
             dgvreporte.AllowUserToResizeRows = false;
             dgvreporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvreporte.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvreporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvreporte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvreporte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvreporte.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvreporte.DefaultCellStyle = dataGridViewCellStyle2;
             dgvreporte.Location = new Point(17, 24);
             dgvreporte.Margin = new Padding(1);
             dgvreporte.Name = "dgvreporte";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvreporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvreporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvreporte.RowHeadersWidth = 62;
             dgvreporte.Size = new Size(946, 382);
             dgvreporte.TabIndex = 1;
@@ -328,6 +344,7 @@
             btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
             // 
             // btnSalir
             // 
@@ -372,22 +389,6 @@
             btnreporteventas.TabIndex = 4;
             btnreporteventas.Text = "Reporte de Ventas";
             btnreporteventas.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(676, 28);
-            label1.Name = "label1";
-            label1.Size = new Size(157, 20);
-            label1.TabIndex = 15;
-            label1.Text = "Nombre del Vendedor";
-            // 
-            // txtNombreVendedor
-            // 
-            txtNombreVendedor.Location = new Point(676, 50);
-            txtNombreVendedor.Name = "txtNombreVendedor";
-            txtNombreVendedor.Size = new Size(261, 27);
-            txtNombreVendedor.TabIndex = 20;
             // 
             // Ventana_Reportes_Y_Consultas
             // 
