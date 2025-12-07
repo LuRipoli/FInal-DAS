@@ -19,6 +19,7 @@ namespace Entidades
         public MetodoPago MetodoPago { get; set; }   // Efectivo / Tarjeta / Transferencia
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
+        public Producto Producto { get; set; }
     }
 
     public enum MetodoPago

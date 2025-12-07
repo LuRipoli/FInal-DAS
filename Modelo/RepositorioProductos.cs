@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,11 @@ namespace Modelo
         public Producto? ObtenerProductoPorID(int idProducto)
         {
             return context.Productos.FirstOrDefault(c => c.Id == idProducto);
+        }
+
+        public Producto ObtenerProductoPorNombre (string nombre)
+        {
+            return context.Productos.FirstOrDefault(c => c.Nombre == nombre);
         }
 
     }

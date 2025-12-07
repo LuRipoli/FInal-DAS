@@ -36,7 +36,7 @@ namespace Controladora
             return repositorio.ObtenerVentasdelaSemana()?.ToList() ?? new List<Venta>();
         }
 
-        public void AgregarVenta(DateTime fecha, int clienteId, int metodoPago, decimal descto, decimal total)
+        public void AgregarVenta(DateTime fecha, int clienteId, MetodoPago metodoPago, decimal descto, decimal total, Producto producto)
         {
             if (clienteId <= 0)
                 throw new DatosInvalidosException("El cliente es obligatorio.");
@@ -65,7 +65,8 @@ namespace Controladora
                 ClienteId = clienteId,
                 MetodoPago = (MetodoPago)metodoPago,
                 Descuento = descto,
-                Total = total
+                Total = total,
+                Producto = producto
             };
             repositorio.AgregarVenta(nuevaVenta);
         }

@@ -35,28 +35,37 @@
             txtNombreBuscado = new TextBox();
             grbGrillaSucursales = new GroupBox();
             dgvSucursales = new DataGridView();
-            grbIngresoDatosSucursal = new GroupBox();
-            txtDireccion = new TextBox();
-            lblDireccion = new Label();
-            btnLimpiarCampos = new Button();
-            txtEmail = new TextBox();
-            lblEmail = new Label();
+            grbIngresoDatos = new GroupBox();
+            btnAgregar = new Button();
+            grbMetodoDePago = new GroupBox();
+            rbtTransferencia = new RadioButton();
+            rbtTarjeta = new RadioButton();
+            rbtEfectivo = new RadioButton();
+            dtpFecha = new DateTimePicker();
+            label4 = new Label();
+            txtTotal = new TextBox();
+            label3 = new Label();
+            txtDescuento = new TextBox();
+            label2 = new Label();
+            cmbClientes = new ComboBox();
+            label1 = new Label();
+            cmbSucursales = new ComboBox();
             lblNombre = new Label();
-            txtNombre = new TextBox();
             pnelppaltitulo = new Panel();
             lblTituloPrograma = new Label();
             pnelppalbotones = new Panel();
             btnBuscarSucursal = new Button();
             btnVolver = new Button();
             btnSalir = new Button();
-            btnEliminarSucursal = new Button();
-            btnModificarSucursal = new Button();
             btnAgregarSucursal = new Button();
+            cmbProducto = new ComboBox();
+            label5 = new Label();
             pnelppalmedio.SuspendLayout();
             grbBuscarSucursal.SuspendLayout();
             grbGrillaSucursales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSucursales).BeginInit();
-            grbIngresoDatosSucursal.SuspendLayout();
+            grbIngresoDatos.SuspendLayout();
+            grbMetodoDePago.SuspendLayout();
             pnelppaltitulo.SuspendLayout();
             pnelppalbotones.SuspendLayout();
             SuspendLayout();
@@ -66,13 +75,14 @@
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
             pnelppalmedio.Controls.Add(grbBuscarSucursal);
             pnelppalmedio.Controls.Add(grbGrillaSucursales);
-            pnelppalmedio.Controls.Add(grbIngresoDatosSucursal);
+            pnelppalmedio.Controls.Add(grbIngresoDatos);
             pnelppalmedio.Dock = DockStyle.Fill;
-            pnelppalmedio.Location = new Point(301, 150);
+            pnelppalmedio.Location = new Point(241, 120);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1421, 693);
+            pnelppalmedio.Size = new Size(1137, 700);
             pnelppalmedio.TabIndex = 15;
+            pnelppalmedio.Paint += pnelppalmedio_Paint;
             // 
             // grbBuscarSucursal
             // 
@@ -80,9 +90,11 @@
             grbBuscarSucursal.Controls.Add(lblId);
             grbBuscarSucursal.Controls.Add(txtNombreBuscado);
             grbBuscarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grbBuscarSucursal.Location = new Point(54, 437);
+            grbBuscarSucursal.Location = new Point(41, 486);
+            grbBuscarSucursal.Margin = new Padding(2);
             grbBuscarSucursal.Name = "grbBuscarSucursal";
-            grbBuscarSucursal.Size = new Size(396, 215);
+            grbBuscarSucursal.Padding = new Padding(2);
+            grbBuscarSucursal.Size = new Size(317, 138);
             grbBuscarSucursal.TabIndex = 19;
             grbBuscarSucursal.TabStop = false;
             grbBuscarSucursal.Text = "Buscar Sucursal";
@@ -93,10 +105,10 @@
             btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.Location = new Point(123, 114);
+            btnBuscar.Location = new Point(103, 78);
             btnBuscar.Margin = new Padding(2);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(146, 65);
+            btnBuscar.Size = new Size(117, 35);
             btnBuscar.TabIndex = 19;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
@@ -105,9 +117,10 @@
             // 
             lblId.AutoSize = true;
             lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblId.Location = new Point(101, 33);
+            lblId.Location = new Point(81, 20);
+            lblId.Margin = new Padding(2, 0, 2, 0);
             lblId.Name = "lblId";
-            lblId.Size = new Size(188, 25);
+            lblId.Size = new Size(154, 20);
             lblId.TabIndex = 18;
             lblId.Text = "Nombre de Sucursal:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
@@ -115,9 +128,10 @@
             // txtNombreBuscado
             // 
             txtNombreBuscado.Font = new Font("Segoe UI", 9F);
-            txtNombreBuscado.Location = new Point(39, 66);
+            txtNombreBuscado.Location = new Point(31, 47);
+            txtNombreBuscado.Margin = new Padding(2);
             txtNombreBuscado.Name = "txtNombreBuscado";
-            txtNombreBuscado.Size = new Size(320, 31);
+            txtNombreBuscado.Size = new Size(257, 27);
             txtNombreBuscado.TabIndex = 17;
             // 
             // grbGrillaSucursales
@@ -125,9 +139,11 @@
             grbGrillaSucursales.BackgroundImageLayout = ImageLayout.None;
             grbGrillaSucursales.Controls.Add(dgvSucursales);
             grbGrillaSucursales.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grbGrillaSucursales.Location = new Point(482, 73);
+            grbGrillaSucursales.Location = new Point(386, 58);
+            grbGrillaSucursales.Margin = new Padding(2);
             grbGrillaSucursales.Name = "grbGrillaSucursales";
-            grbGrillaSucursales.Size = new Size(819, 579);
+            grbGrillaSucursales.Padding = new Padding(2);
+            grbGrillaSucursales.Size = new Size(655, 463);
             grbGrillaSucursales.TabIndex = 18;
             grbGrillaSucursales.TabStop = false;
             grbGrillaSucursales.Text = "Grilla de Sucursales";
@@ -141,122 +157,219 @@
             dgvSucursales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvSucursales.BackgroundColor = SystemColors.GrayText;
             dgvSucursales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSucursales.Location = new Point(25, 42);
+            dgvSucursales.Location = new Point(20, 34);
             dgvSucursales.Margin = new Padding(2);
             dgvSucursales.Name = "dgvSucursales";
             dgvSucursales.RowHeadersWidth = 62;
-            dgvSucursales.Size = new Size(774, 518);
+            dgvSucursales.Size = new Size(619, 414);
             dgvSucursales.TabIndex = 1;
             // 
-            // grbIngresoDatosSucursal
+            // grbIngresoDatos
             // 
-            grbIngresoDatosSucursal.Controls.Add(txtDireccion);
-            grbIngresoDatosSucursal.Controls.Add(lblDireccion);
-            grbIngresoDatosSucursal.Controls.Add(btnLimpiarCampos);
-            grbIngresoDatosSucursal.Controls.Add(txtEmail);
-            grbIngresoDatosSucursal.Controls.Add(lblEmail);
-            grbIngresoDatosSucursal.Controls.Add(lblNombre);
-            grbIngresoDatosSucursal.Controls.Add(txtNombre);
-            grbIngresoDatosSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grbIngresoDatosSucursal.Location = new Point(51, 73);
-            grbIngresoDatosSucursal.Name = "grbIngresoDatosSucursal";
-            grbIngresoDatosSucursal.Size = new Size(399, 358);
-            grbIngresoDatosSucursal.TabIndex = 17;
-            grbIngresoDatosSucursal.TabStop = false;
-            grbIngresoDatosSucursal.Text = "Ingreso de Datos";
+            grbIngresoDatos.Controls.Add(cmbProducto);
+            grbIngresoDatos.Controls.Add(label5);
+            grbIngresoDatos.Controls.Add(btnAgregar);
+            grbIngresoDatos.Controls.Add(grbMetodoDePago);
+            grbIngresoDatos.Controls.Add(dtpFecha);
+            grbIngresoDatos.Controls.Add(label4);
+            grbIngresoDatos.Controls.Add(txtTotal);
+            grbIngresoDatos.Controls.Add(label3);
+            grbIngresoDatos.Controls.Add(txtDescuento);
+            grbIngresoDatos.Controls.Add(label2);
+            grbIngresoDatos.Controls.Add(cmbClientes);
+            grbIngresoDatos.Controls.Add(label1);
+            grbIngresoDatos.Controls.Add(cmbSucursales);
+            grbIngresoDatos.Controls.Add(lblNombre);
+            grbIngresoDatos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            grbIngresoDatos.Location = new Point(41, 58);
+            grbIngresoDatos.Margin = new Padding(2);
+            grbIngresoDatos.Name = "grbIngresoDatos";
+            grbIngresoDatos.Padding = new Padding(2);
+            grbIngresoDatos.Size = new Size(319, 411);
+            grbIngresoDatos.TabIndex = 17;
+            grbIngresoDatos.TabStop = false;
+            grbIngresoDatos.Text = "Ingreso de Datos";
             // 
-            // txtDireccion
+            // btnAgregar
             // 
-            txtDireccion.Font = new Font("Segoe UI", 9F);
-            txtDireccion.Location = new Point(42, 298);
-            txtDireccion.Multiline = true;
-            txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(320, 33);
-            txtDireccion.TabIndex = 17;
+            btnAgregar.BackColor = SystemColors.HighlightText;
+            btnAgregar.FlatAppearance.BorderSize = 0;
+            btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.Location = new Point(105, 363);
+            btnAgregar.Margin = new Padding(2);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(117, 34);
+            btnAgregar.TabIndex = 20;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += button1_Click;
             // 
-            // lblDireccion
+            // grbMetodoDePago
             // 
-            lblDireccion.AutoSize = true;
-            lblDireccion.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblDireccion.Location = new Point(147, 266);
-            lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(97, 25);
-            lblDireccion.TabIndex = 18;
-            lblDireccion.Text = "Dirección:";
-            lblDireccion.TextAlign = ContentAlignment.MiddleCenter;
+            grbMetodoDePago.Controls.Add(rbtTransferencia);
+            grbMetodoDePago.Controls.Add(rbtTarjeta);
+            grbMetodoDePago.Controls.Add(rbtEfectivo);
+            grbMetodoDePago.Location = new Point(5, 274);
+            grbMetodoDePago.Name = "grbMetodoDePago";
+            grbMetodoDePago.Size = new Size(309, 84);
+            grbMetodoDePago.TabIndex = 27;
+            grbMetodoDePago.TabStop = false;
+            grbMetodoDePago.Text = "Metodo de Pago";
             // 
-            // btnLimpiarCampos
+            // rbtTransferencia
             // 
-            btnLimpiarCampos.BackColor = SystemColors.HighlightText;
-            btnLimpiarCampos.FlatAppearance.BorderSize = 0;
-            btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
-            btnLimpiarCampos.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpiarCampos.Location = new Point(126, 41);
-            btnLimpiarCampos.Margin = new Padding(2);
-            btnLimpiarCampos.Name = "btnLimpiarCampos";
-            btnLimpiarCampos.Size = new Size(146, 65);
-            btnLimpiarCampos.TabIndex = 16;
-            btnLimpiarCampos.Text = "Limpiar Campos";
-            btnLimpiarCampos.UseVisualStyleBackColor = false;
+            rbtTransferencia.AutoSize = true;
+            rbtTransferencia.Location = new Point(6, 54);
+            rbtTransferencia.Name = "rbtTransferencia";
+            rbtTransferencia.Size = new Size(124, 24);
+            rbtTransferencia.TabIndex = 22;
+            rbtTransferencia.TabStop = true;
+            rbtTransferencia.Text = "Transferencia";
+            rbtTransferencia.UseVisualStyleBackColor = true;
             // 
-            // txtEmail
+            // rbtTarjeta
             // 
-            txtEmail.Font = new Font("Segoe UI", 9F);
-            txtEmail.Location = new Point(42, 221);
-            txtEmail.Multiline = true;
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(320, 33);
-            txtEmail.TabIndex = 2;
+            rbtTarjeta.AutoSize = true;
+            rbtTarjeta.Location = new Point(186, 26);
+            rbtTarjeta.Name = "rbtTarjeta";
+            rbtTarjeta.Size = new Size(78, 24);
+            rbtTarjeta.TabIndex = 21;
+            rbtTarjeta.TabStop = true;
+            rbtTarjeta.Text = "Tarjeta";
+            rbtTarjeta.UseVisualStyleBackColor = true;
             // 
-            // lblEmail
+            // rbtEfectivo
             // 
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblEmail.Location = new Point(167, 191);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(63, 25);
-            lblEmail.TabIndex = 10;
-            lblEmail.Text = "Email:";
-            lblEmail.TextAlign = ContentAlignment.MiddleCenter;
+            rbtEfectivo.AutoSize = true;
+            rbtEfectivo.Location = new Point(6, 26);
+            rbtEfectivo.Name = "rbtEfectivo";
+            rbtEfectivo.Size = new Size(86, 24);
+            rbtEfectivo.TabIndex = 20;
+            rbtEfectivo.TabStop = true;
+            rbtEfectivo.Text = "Efectivo";
+            rbtEfectivo.UseVisualStyleBackColor = true;
+            // 
+            // dtpFecha
+            // 
+            dtpFecha.Location = new Point(5, 241);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(309, 27);
+            dtpFecha.TabIndex = 26;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label4.Location = new Point(9, 218);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(53, 20);
+            label4.TabIndex = 25;
+            label4.Text = "Fecha:";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtTotal
+            // 
+            txtTotal.Font = new Font("Segoe UI", 9F);
+            txtTotal.Location = new Point(170, 117);
+            txtTotal.Margin = new Padding(2);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(144, 27);
+            txtTotal.TabIndex = 23;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(174, 95);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(48, 20);
+            label3.TabIndex = 24;
+            label3.Text = "Total:";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtDescuento
+            // 
+            txtDescuento.Font = new Font("Segoe UI", 9F);
+            txtDescuento.Location = new Point(5, 117);
+            txtDescuento.Margin = new Padding(2);
+            txtDescuento.Name = "txtDescuento";
+            txtDescuento.Size = new Size(144, 27);
+            txtDescuento.TabIndex = 20;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label2.Location = new Point(9, 95);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(125, 20);
+            label2.TabIndex = 22;
+            label2.Text = "% de Descuento:";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // cmbClientes
+            // 
+            cmbClientes.FormattingEnabled = true;
+            cmbClientes.Location = new Point(170, 57);
+            cmbClientes.Name = "cmbClientes";
+            cmbClientes.Size = new Size(144, 28);
+            cmbClientes.TabIndex = 21;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label1.Location = new Point(174, 37);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(61, 20);
+            label1.TabIndex = 20;
+            label1.Text = "Cliente:";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // cmbSucursales
+            // 
+            cmbSucursales.FormattingEnabled = true;
+            cmbSucursales.Location = new Point(5, 57);
+            cmbSucursales.Name = "cmbSucursales";
+            cmbSucursales.Size = new Size(144, 28);
+            cmbSucursales.TabIndex = 19;
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNombre.Location = new Point(110, 127);
+            lblNombre.Location = new Point(9, 37);
+            lblNombre.Margin = new Padding(2, 0, 2, 0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(188, 25);
+            lblNombre.Size = new Size(71, 20);
             lblNombre.TabIndex = 6;
-            lblNombre.Text = "Nombre de Sucursal:";
+            lblNombre.Text = "Sucursal:";
             lblNombre.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtNombre
-            // 
-            txtNombre.Font = new Font("Segoe UI", 9F);
-            txtNombre.Location = new Point(42, 155);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(320, 31);
-            txtNombre.TabIndex = 0;
             // 
             // pnelppaltitulo
             // 
             pnelppaltitulo.BackColor = SystemColors.ControlLightLight;
             pnelppaltitulo.Controls.Add(lblTituloPrograma);
             pnelppaltitulo.Dock = DockStyle.Top;
-            pnelppaltitulo.Location = new Point(301, 0);
+            pnelppaltitulo.Location = new Point(241, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1421, 150);
+            pnelppaltitulo.Size = new Size(1137, 120);
             pnelppaltitulo.TabIndex = 14;
             // 
             // lblTituloPrograma
             // 
             lblTituloPrograma.AutoSize = true;
             lblTituloPrograma.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTituloPrograma.Location = new Point(458, 50);
+            lblTituloPrograma.Location = new Point(366, 40);
             lblTituloPrograma.Margin = new Padding(2, 0, 2, 0);
             lblTituloPrograma.Name = "lblTituloPrograma";
-            lblTituloPrograma.Size = new Size(361, 54);
+            lblTituloPrograma.Size = new Size(305, 46);
             lblTituloPrograma.TabIndex = 0;
             lblTituloPrograma.Text = "Gestión de Ventas";
             lblTituloPrograma.TextAlign = ContentAlignment.MiddleCenter;
@@ -267,22 +380,21 @@
             pnelppalbotones.Controls.Add(btnBuscarSucursal);
             pnelppalbotones.Controls.Add(btnVolver);
             pnelppalbotones.Controls.Add(btnSalir);
-            pnelppalbotones.Controls.Add(btnEliminarSucursal);
-            pnelppalbotones.Controls.Add(btnModificarSucursal);
             pnelppalbotones.Controls.Add(btnAgregarSucursal);
             pnelppalbotones.Dock = DockStyle.Left;
             pnelppalbotones.Location = new Point(0, 0);
             pnelppalbotones.Margin = new Padding(2);
             pnelppalbotones.Name = "pnelppalbotones";
-            pnelppalbotones.Size = new Size(301, 843);
+            pnelppalbotones.Size = new Size(241, 820);
             pnelppalbotones.TabIndex = 13;
             // 
             // btnBuscarSucursal
             // 
             btnBuscarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnBuscarSucursal.Location = new Point(46, 521);
+            btnBuscarSucursal.Location = new Point(38, 302);
+            btnBuscarSucursal.Margin = new Padding(2);
             btnBuscarSucursal.Name = "btnBuscarSucursal";
-            btnBuscarSucursal.Size = new Size(205, 70);
+            btnBuscarSucursal.Size = new Size(164, 56);
             btnBuscarSucursal.TabIndex = 10;
             btnBuscarSucursal.Text = "Buscar Sucursal";
             btnBuscarSucursal.UseVisualStyleBackColor = true;
@@ -290,9 +402,10 @@
             // btnVolver
             // 
             btnVolver.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnVolver.Location = new Point(46, 609);
+            btnVolver.Location = new Point(38, 372);
+            btnVolver.Margin = new Padding(2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(205, 70);
+            btnVolver.Size = new Size(164, 56);
             btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = true;
@@ -300,51 +413,55 @@
             // btnSalir
             // 
             btnSalir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSalir.Location = new Point(46, 696);
+            btnSalir.Location = new Point(38, 442);
+            btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(205, 70);
+            btnSalir.Size = new Size(164, 56);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir del Programa";
             btnSalir.UseVisualStyleBackColor = true;
             // 
-            // btnEliminarSucursal
-            // 
-            btnEliminarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnEliminarSucursal.Location = new Point(46, 434);
-            btnEliminarSucursal.Name = "btnEliminarSucursal";
-            btnEliminarSucursal.Size = new Size(205, 70);
-            btnEliminarSucursal.TabIndex = 6;
-            btnEliminarSucursal.Text = "Eliminar Sucursal";
-            btnEliminarSucursal.UseVisualStyleBackColor = true;
-            // 
-            // btnModificarSucursal
-            // 
-            btnModificarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnModificarSucursal.Location = new Point(46, 345);
-            btnModificarSucursal.Name = "btnModificarSucursal";
-            btnModificarSucursal.Size = new Size(205, 70);
-            btnModificarSucursal.TabIndex = 5;
-            btnModificarSucursal.Text = "Modificar Sucursal";
-            btnModificarSucursal.UseVisualStyleBackColor = true;
-            // 
             // btnAgregarSucursal
             // 
             btnAgregarSucursal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAgregarSucursal.Location = new Point(46, 260);
+            btnAgregarSucursal.Location = new Point(38, 236);
+            btnAgregarSucursal.Margin = new Padding(2);
             btnAgregarSucursal.Name = "btnAgregarSucursal";
-            btnAgregarSucursal.Size = new Size(205, 70);
+            btnAgregarSucursal.Size = new Size(164, 56);
             btnAgregarSucursal.TabIndex = 4;
             btnAgregarSucursal.Text = "Agregar Sucursal";
             btnAgregarSucursal.UseVisualStyleBackColor = true;
+            btnAgregarSucursal.Click += btnAgregarSucursal_Click;
+            // 
+            // cmbProducto
+            // 
+            cmbProducto.FormattingEnabled = true;
+            cmbProducto.Location = new Point(91, 181);
+            cmbProducto.Name = "cmbProducto";
+            cmbProducto.Size = new Size(144, 28);
+            cmbProducto.TabIndex = 29;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label5.Location = new Point(95, 161);
+            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(77, 20);
+            label5.TabIndex = 28;
+            label5.Text = "Producto:";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Ventana_Gestion_Ventas
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1722, 843);
+            ClientSize = new Size(1378, 820);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             Controls.Add(pnelppalbotones);
+            Margin = new Padding(2);
             Name = "Ventana_Gestion_Ventas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ventana_Gestion_Ventas";
@@ -353,8 +470,10 @@
             grbBuscarSucursal.PerformLayout();
             grbGrillaSucursales.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSucursales).EndInit();
-            grbIngresoDatosSucursal.ResumeLayout(false);
-            grbIngresoDatosSucursal.PerformLayout();
+            grbIngresoDatos.ResumeLayout(false);
+            grbIngresoDatos.PerformLayout();
+            grbMetodoDePago.ResumeLayout(false);
+            grbMetodoDePago.PerformLayout();
             pnelppaltitulo.ResumeLayout(false);
             pnelppaltitulo.PerformLayout();
             pnelppalbotones.ResumeLayout(false);
@@ -370,22 +489,30 @@
         private TextBox txtNombreBuscado;
         private GroupBox grbGrillaSucursales;
         private DataGridView dgvSucursales;
-        private GroupBox grbIngresoDatosSucursal;
-        private Button btnLimpiarCampos;
-        private TextBox txtEmail;
-        private Label lblEmail;
+        private GroupBox grbIngresoDatos;
         private Label lblNombre;
-        private TextBox txtNombre;
         private Panel pnelppaltitulo;
         private Label lblTituloPrograma;
         private Panel pnelppalbotones;
         private Button btnBuscarSucursal;
         private Button btnVolver;
         private Button btnSalir;
-        private Button btnEliminarSucursal;
-        private Button btnModificarSucursal;
         private Button btnAgregarSucursal;
-        private TextBox txtDireccion;
-        private Label lblDireccion;
+        private TextBox txtTotal;
+        private Label label3;
+        private TextBox txtDescuento;
+        private Label label2;
+        private ComboBox cmbClientes;
+        private Label label1;
+        private ComboBox cmbSucursales;
+        private GroupBox grbMetodoDePago;
+        private RadioButton rbtTransferencia;
+        private RadioButton rbtTarjeta;
+        private RadioButton rbtEfectivo;
+        private DateTimePicker dtpFecha;
+        private Label label4;
+        private Button btnAgregar;
+        private ComboBox cmbProducto;
+        private Label label5;
     }
 }
