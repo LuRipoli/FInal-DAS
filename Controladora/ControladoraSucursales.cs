@@ -12,6 +12,7 @@ namespace Controladora
     {
         private RepositorioSucursales repositorio = new RepositorioSucursales();
         private static ControladoraSucursales instancia;
+
         private ControladoraSucursales()
         {
             repositorio = new RepositorioSucursales();
@@ -45,6 +46,8 @@ namespace Controladora
             nuevaSucursal.Nombre = nombre;
             nuevaSucursal.Direccion = direccion;
             repositorio.AgregarSucursal(nuevaSucursal);
+            var controladoraStock = ControladoraStocksPorSucursal.Instancia();
+            controladoraStock.InicializarStockParaSucursalNueva(nuevaSucursal.Id);
         }
 
         public void ModificarSucursal(int id, string nombre, string direccion)

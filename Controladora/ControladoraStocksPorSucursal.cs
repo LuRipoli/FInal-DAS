@@ -89,5 +89,31 @@ namespace Controladora
         {
             return repositorio.ObtenerStockPorSucursal(productoId, sucursalId);
         }
+        public void InicializarStockParaProductoNuevo(int productoId)
+        {
+            var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales();
+            foreach (var sucursal in sucursales)
+            {
+                var nuevoStock = new StockPorSucursal();
+                nuevoStock.ProductoId = productoId;
+                nuevoStock.SucursalId = sucursal.Id;
+                nuevoStock.Cantidad = 0;
+
+                repositorio.AgregarStockPorSucursal(nuevoStock);
+            }
+        }
+        public void InicializarStockParaSucursalNueva(int sucursalId)
+        {
+            var productos = ControladoraProductos.Instancia().ObtenerProducto();
+            foreach (var producto in productos)
+            {
+                var nuevoStock = new StockPorSucursal();
+                nuevoStock.ProductoId = producto.Id;
+                nuevoStock.SucursalId = sucursalId;
+                nuevoStock.Cantidad = 0;
+
+                repositorio.AgregarStockPorSucursal(nuevoStock);
+            }
+        }
     }
 }
