@@ -42,14 +42,14 @@ namespace Vista
                 if (!rdbMayorista.Checked && !rdbMinorista.Checked)
                     throw new DatosInvalidosException("Debe seleccionar un tipo de cliente.");
                 int tipoCliente = rdbMinorista.Checked ? 1 : 2;
-                
+
                 controladoraClientes.AgregarCliente(nombre, email, tipoCliente);
                 MessageBox.Show("Cliente agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                 Refrescar();
                 LimpiarCampos();
             }
-            catch (DatosInvalidosException ex)  
+            catch (DatosInvalidosException ex)
             {
                 MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -80,7 +80,7 @@ namespace Vista
                     MessageBox.Show("Por favor, complete todos los campos y seleccione un cliente para modificar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch(DatosInvalidosException ex)
+            catch (DatosInvalidosException ex)
             {
                 MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -120,7 +120,8 @@ namespace Vista
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
-            grbBuscarCliente.Enabled = true;
+            btnBuscar.Enabled = true;
+            tlpBuscar.Enabled = true;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -137,13 +138,17 @@ namespace Vista
                         var listaClientes = new List<Entidades.Cliente>();
                         listaClientes.Add(cliente);
                         dgvClientes.DataSource = listaClientes;
-                        grbBuscarCliente.Enabled = false;
+                        if (dgvClientes.Columns["Id"] != null)
+                            dgvClientes.Columns["Id"].Visible = false;
+                        btnBuscar.Enabled = false;
+                        tlpBuscar.Enabled = false;
                         txtNombreBuscado.Clear();
                     }
                     else
                     {
                         MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        grbBuscarCliente.Enabled = false;
+                        btnBuscar.Enabled = false;
+                        tlpBuscar.Enabled = false;
                     }
                 }
             }
@@ -160,20 +165,19 @@ namespace Vista
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnRefrescar_Click(object sender, EventArgs e)
-        {
-            Refrescar();
-        }   
+        
         #region HELPER
         private void Refrescar()
         {
             var controladoraClientes = ControladoraClientes.Instancia();
             var clientes = controladoraClientes.ObtenerClientes();
             dgvClientes.DataSource = clientes;
+            if (dgvClientes.Columns["Id"] != null)
+                dgvClientes.Columns["Id"].Visible = false;
         }
         private void LimpiarCampos()
         {
-            txtNombreBuscado.Clear();
+            //txtNombreBuscado.Clear();
             txtNombre.Clear();
             txtEmail.Clear();
         }
@@ -196,5 +200,10 @@ namespace Vista
             }
         }
         #endregion
+
+        private void btnRefrescar_Click_1(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
     }
 }

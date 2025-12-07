@@ -25,7 +25,7 @@ namespace Vista
             Refrescar();
             LimpiarCampos();
         }
-        
+
         private void btnModificar_Click(object sender, EventArgs e)
         {
             var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
@@ -102,48 +102,11 @@ namespace Vista
         {
             LimpiarCampos();
         }
-       
-        private void btnBuscar_Click_1(object sender, EventArgs e)
-        {
-            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
-            try
-            {
-                if (txtNombreBuscado.Text.Trim() != "")
-                {
-                    string nombre = txtNombreBuscado.Text.Trim();
-                    var categoria = controladoraCategorias.BuscarCategoriaPorNombre(nombre);
-
-
-                    if (categoria != null)
-                    {
-                        dgvCategorias.DataSource = new List<Entidades.Categoria> { categoria };
-                        grbBuscarCategoria.Enabled = false;
-                        txtNombreBuscado.Clear();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró ninguna categoría con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        grbBuscarCategoria.Enabled = false;
-                    }
-                }
-            }
-            catch (DatosInvalidosException ex)
-            {
-                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (EntidadNoEncontradaException ex)
-            {
-                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void btnBuscarCategoria_Click(object sender, EventArgs e)
         {
-            grbBuscarCategoria.Enabled = true;
+            btnBuscar.Enabled = true;
+            tlpBuscar.Enabled = true;
         }
 
         private void btnAgregarCategoria_Click(object sender, EventArgs e)
@@ -172,12 +135,15 @@ namespace Vista
                 MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         #region HELPER
         private void Refrescar()
         {
             var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             dgvCategorias.DataSource = controladoraCategorias.ObtenerCategorias();
+            if (dgvCategorias.Columns["Id"] != null)
+                dgvCategorias.Columns["Id"].Visible = false;
+
         }
         private void LimpiarCampos()
         {
@@ -199,6 +165,53 @@ namespace Vista
             return null;
         }
         #endregion
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
+            try
+            {
+                if (txtNombreBuscado.Text.Trim() != "")
+                {
+                    string nombre = txtNombreBuscado.Text.Trim();
+                    var categoria = controladoraCategorias.BuscarCategoriaPorNombre(nombre);
+
+
+                    if (categoria != null)
+                    {
+                        dgvCategorias.DataSource = new List<Entidades.Categoria> { categoria };
+                        if (dgvCategorias.Columns["Id"] != null)
+                            dgvCategorias.Columns["Id"].Visible = false;
+                        btnBuscar.Enabled = false;
+                        tlpBuscar.Enabled = false;
+                        txtNombreBuscado.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ninguna categoría con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnBuscar.Enabled = false;
+                        tlpBuscar.Enabled = false;
+                    }
+                }
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 

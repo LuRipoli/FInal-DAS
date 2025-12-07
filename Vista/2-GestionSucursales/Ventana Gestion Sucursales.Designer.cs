@@ -28,22 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             tlpDivision = new TableLayoutPanel();
             grbGrillaSucursales = new GroupBox();
+            btnRefrescar = new Button();
             dgvSucursales = new DataGridView();
             grbManejodeDatos = new GroupBox();
-            grbIngresoDatos = new GroupBox();
             tlpIngreso = new TableLayoutPanel();
             lblNombre = new Label();
             txtDireccion = new TextBox();
             lblDireccion = new Label();
             txtNombre = new TextBox();
             btnLimpiarCampos = new Button();
-            grbBuscarCategoria = new GroupBox();
             tlpBuscar = new TableLayoutPanel();
             lblId = new Label();
             txtNombreBuscado = new TextBox();
@@ -62,9 +61,7 @@
             grbGrillaSucursales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSucursales).BeginInit();
             grbManejodeDatos.SuspendLayout();
-            grbIngresoDatos.SuspendLayout();
             tlpIngreso.SuspendLayout();
-            grbBuscarCategoria.SuspendLayout();
             tlpBuscar.SuspendLayout();
             tlpBotones.SuspendLayout();
             pnelppaltitulo.SuspendLayout();
@@ -103,6 +100,7 @@
             // grbGrillaSucursales
             // 
             grbGrillaSucursales.BackgroundImageLayout = ImageLayout.None;
+            grbGrillaSucursales.Controls.Add(btnRefrescar);
             grbGrillaSucursales.Controls.Add(dgvSucursales);
             grbGrillaSucursales.Dock = DockStyle.Fill;
             grbGrillaSucursales.FlatStyle = FlatStyle.Flat;
@@ -116,6 +114,19 @@
             grbGrillaSucursales.TabStop = false;
             grbGrillaSucursales.Text = "Grilla de Sucursales";
             // 
+            // btnRefrescar
+            // 
+            btnRefrescar.FlatAppearance.BorderSize = 0;
+            btnRefrescar.FlatStyle = FlatStyle.Flat;
+            btnRefrescar.Font = new Font("Calibri", 16F, FontStyle.Bold);
+            btnRefrescar.Location = new Point(551, -7);
+            btnRefrescar.Name = "btnRefrescar";
+            btnRefrescar.Size = new Size(40, 43);
+            btnRefrescar.TabIndex = 2;
+            btnRefrescar.Text = "🔄";
+            btnRefrescar.UseVisualStyleBackColor = true;
+            btnRefrescar.Click += btnRefrescar_Click;
+            // 
             // dgvSucursales
             // 
             dgvSucursales.AllowUserToAddRows = false;
@@ -124,36 +135,36 @@
             dgvSucursales.AllowUserToResizeRows = false;
             dgvSucursales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSucursales.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvSucursales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvSucursales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvSucursales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvSucursales.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvSucursales.DefaultCellStyle = dataGridViewCellStyle2;
             dgvSucursales.Dock = DockStyle.Fill;
             dgvSucursales.Location = new Point(3, 38);
             dgvSucursales.Margin = new Padding(20);
             dgvSucursales.Name = "dgvSucursales";
             dgvSucursales.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvSucursales.RowHeadersVisible = false;
             dgvSucursales.RowHeadersWidth = 62;
             dgvSucursales.Size = new Size(584, 460);
@@ -161,8 +172,10 @@
             // 
             // grbManejodeDatos
             // 
-            grbManejodeDatos.Controls.Add(grbIngresoDatos);
-            grbManejodeDatos.Controls.Add(grbBuscarCategoria);
+            grbManejodeDatos.Controls.Add(tlpIngreso);
+            grbManejodeDatos.Controls.Add(btnLimpiarCampos);
+            grbManejodeDatos.Controls.Add(tlpBuscar);
+            grbManejodeDatos.Controls.Add(btnBuscar);
             grbManejodeDatos.Dock = DockStyle.Fill;
             grbManejodeDatos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             grbManejodeDatos.Location = new Point(13, 13);
@@ -172,22 +185,6 @@
             grbManejodeDatos.Size = new Size(590, 501);
             grbManejodeDatos.TabIndex = 17;
             grbManejodeDatos.TabStop = false;
-            // 
-            // grbIngresoDatos
-            // 
-            grbIngresoDatos.Controls.Add(tlpIngreso);
-            grbIngresoDatos.Controls.Add(btnLimpiarCampos);
-            grbIngresoDatos.Dock = DockStyle.Top;
-            grbIngresoDatos.FlatStyle = FlatStyle.Flat;
-            grbIngresoDatos.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grbIngresoDatos.ForeColor = Color.DarkSlateGray;
-            grbIngresoDatos.Location = new Point(0, 24);
-            grbIngresoDatos.Name = "grbIngresoDatos";
-            grbIngresoDatos.Padding = new Padding(0);
-            grbIngresoDatos.Size = new Size(590, 278);
-            grbIngresoDatos.TabIndex = 21;
-            grbIngresoDatos.TabStop = false;
-            grbIngresoDatos.Text = "Ingreso de Datos";
             // 
             // tlpIngreso
             // 
@@ -199,14 +196,14 @@
             tlpIngreso.Controls.Add(txtDireccion, 1, 1);
             tlpIngreso.Controls.Add(lblDireccion, 0, 1);
             tlpIngreso.Controls.Add(txtNombre, 1, 0);
-            tlpIngreso.Dock = DockStyle.Fill;
-            tlpIngreso.Location = new Point(0, 100);
+            tlpIngreso.Dock = DockStyle.Top;
+            tlpIngreso.Location = new Point(0, 89);
             tlpIngreso.Name = "tlpIngreso";
             tlpIngreso.RowCount = 2;
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpIngreso.Size = new Size(590, 178);
-            tlpIngreso.TabIndex = 19;
+            tlpIngreso.TabIndex = 24;
             // 
             // lblNombre
             // 
@@ -264,31 +261,13 @@
             btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
             btnLimpiarCampos.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLimpiarCampos.ForeColor = Color.White;
-            btnLimpiarCampos.Location = new Point(0, 35);
+            btnLimpiarCampos.Location = new Point(0, 24);
             btnLimpiarCampos.Margin = new Padding(0);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
             btnLimpiarCampos.Size = new Size(590, 65);
-            btnLimpiarCampos.TabIndex = 16;
+            btnLimpiarCampos.TabIndex = 23;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
-            btnLimpiarCampos.Click += btnLimpiarCampos_Click;
-            // 
-            // grbBuscarCategoria
-            // 
-            grbBuscarCategoria.Controls.Add(tlpBuscar);
-            grbBuscarCategoria.Controls.Add(btnBuscar);
-            grbBuscarCategoria.Dock = DockStyle.Bottom;
-            grbBuscarCategoria.Enabled = false;
-            grbBuscarCategoria.FlatStyle = FlatStyle.Flat;
-            grbBuscarCategoria.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grbBuscarCategoria.ForeColor = Color.DarkSlateGray;
-            grbBuscarCategoria.Location = new Point(0, 298);
-            grbBuscarCategoria.Name = "grbBuscarCategoria";
-            grbBuscarCategoria.Padding = new Padding(10);
-            grbBuscarCategoria.Size = new Size(590, 203);
-            grbBuscarCategoria.TabIndex = 20;
-            grbBuscarCategoria.TabStop = false;
-            grbBuscarCategoria.Text = "Buscar Sucursal";
             // 
             // tlpBuscar
             // 
@@ -298,34 +277,35 @@
             tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpBuscar.Controls.Add(lblId, 0, 0);
             tlpBuscar.Controls.Add(txtNombreBuscado, 1, 0);
-            tlpBuscar.Dock = DockStyle.Fill;
-            tlpBuscar.Location = new Point(10, 45);
+            tlpBuscar.Dock = DockStyle.Bottom;
+            tlpBuscar.Enabled = false;
+            tlpBuscar.Location = new Point(0, 258);
             tlpBuscar.Name = "tlpBuscar";
             tlpBuscar.RowCount = 1;
             tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBuscar.Size = new Size(570, 83);
-            tlpBuscar.TabIndex = 20;
+            tlpBuscar.Size = new Size(590, 178);
+            tlpBuscar.TabIndex = 22;
             // 
             // lblId
             // 
             lblId.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblId.AutoSize = true;
             lblId.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblId.Location = new Point(6, 24);
+            lblId.Location = new Point(6, 71);
             lblId.Name = "lblId";
-            lblId.Size = new Size(274, 35);
+            lblId.Size = new Size(284, 35);
             lblId.TabIndex = 18;
-            lblId.Text = "Nombre de Sucursal:";
+            lblId.Text = "Sucursal Buscada:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtNombreBuscado
             // 
             txtNombreBuscado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtNombreBuscado.Font = new Font("Segoe UI", 12F);
-            txtNombreBuscado.Location = new Point(294, 22);
+            txtNombreBuscado.Location = new Point(304, 69);
             txtNombreBuscado.Margin = new Padding(8);
             txtNombreBuscado.Name = "txtNombreBuscado";
-            txtNombreBuscado.Size = new Size(265, 39);
+            txtNombreBuscado.Size = new Size(275, 39);
             txtNombreBuscado.TabIndex = 17;
             // 
             // btnBuscar
@@ -333,18 +313,19 @@
             btnBuscar.BackColor = Color.DarkSlateGray;
             btnBuscar.Cursor = Cursors.Hand;
             btnBuscar.Dock = DockStyle.Bottom;
+            btnBuscar.Enabled = false;
             btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(10, 128);
+            btnBuscar.Location = new Point(0, 436);
             btnBuscar.Margin = new Padding(0);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(570, 65);
-            btnBuscar.TabIndex = 19;
+            btnBuscar.Size = new Size(590, 65);
+            btnBuscar.TabIndex = 21;
             btnBuscar.Text = "Buscar Sucursal";
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
+            btnBuscar.Click += btnBuscar_Click_1;
             // 
             // tlpBotones
             // 
@@ -457,7 +438,7 @@
             lblTituloGR.BackColor = Color.Transparent;
             lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
             lblTituloGR.ForeColor = Color.White;
-            lblTituloGR.Location = new Point(364, 6);
+            lblTituloGR.Location = new Point(379, 6);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
             lblTituloGR.Size = new Size(548, 68);
@@ -517,10 +498,8 @@
             grbGrillaSucursales.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSucursales).EndInit();
             grbManejodeDatos.ResumeLayout(false);
-            grbIngresoDatos.ResumeLayout(false);
             tlpIngreso.ResumeLayout(false);
             tlpIngreso.PerformLayout();
-            grbBuscarCategoria.ResumeLayout(false);
             tlpBuscar.ResumeLayout(false);
             tlpBuscar.PerformLayout();
             tlpBotones.ResumeLayout(false);
@@ -532,17 +511,9 @@
         #endregion
 
         private Panel pnelppalmedio;
-        private Button btnBuscar;
-        private Label lblId;
-        private TextBox txtNombreBuscado;
         private GroupBox grbGrillaSucursales;
         private DataGridView dgvSucursales;
         private GroupBox grbManejodeDatos;
-        private TextBox txtDireccion;
-        private Label lblDireccion;
-        private Button btnLimpiarCampos;
-        private Label lblNombre;
-        private TextBox txtNombre;
         private Panel pnelppaltitulo;
         private Button btnBuscarSucursal;
         private Button btnVolver;
@@ -553,9 +524,16 @@
         private TableLayoutPanel tlpBotones;
         private Label lblTituloGR;
         private TableLayoutPanel tlpDivision;
-        private GroupBox grbIngresoDatos;
-        private GroupBox grbBuscarCategoria;
+        private Button btnRefrescar;
         private TableLayoutPanel tlpIngreso;
+        private Label lblNombre;
+        private TextBox txtDireccion;
+        private Label lblDireccion;
+        private TextBox txtNombre;
+        private Button btnLimpiarCampos;
         private TableLayoutPanel tlpBuscar;
+        private Label lblId;
+        private TextBox txtNombreBuscado;
+        private Button btnBuscar;
     }
 }

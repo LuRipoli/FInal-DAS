@@ -22,7 +22,7 @@ namespace Vista
             LimpiarCampos();
         }
 
-       
+
 
         private void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
@@ -41,7 +41,8 @@ namespace Vista
 
         private void btnBuscarSucursal_Click(object sender, EventArgs e)
         {
-            grbBuscarCategoria.Enabled = true;
+            btnBuscar.Enabled = true;
+            tlpBuscar.Enabled = true;
         }
 
         private void btnAgregarSucursal_Click(object sender, EventArgs e)
@@ -133,49 +134,14 @@ namespace Vista
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            var controladoraSucursales = ControladoraSucursales.Instancia();
-            try
-            {
-                if (txtNombreBuscado.Text != "")
-                {
-                    string nombreBuscado = txtNombreBuscado.Text;
-                    var sucursal = controladoraSucursales.BuscarSucursalPorNombre(nombreBuscado);
-                    if (sucursal != null)
-                    {
-                        var listaSucursales = new List<Entidades.Sucursal>();
-                        listaSucursales.Add(sucursal);
-                        dgvSucursales.DataSource = listaSucursales;
-                        grbBuscarCategoria.Enabled = false;
-                        txtNombreBuscado.Clear();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        grbBuscarCategoria.Enabled = false;
-                    }
-                }
-            }
-            catch (DatosInvalidosException ex)
-            {
-                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (EntidadNoEncontradaException ex)
-            {
-                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         #region HELPER
         public void Refrescar()
         {
             var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
             var listaSucursales = controladoraSucursales.ObtenerSucursales();
             dgvSucursales.DataSource = listaSucursales;
+            if (dgvSucursales.Columns["Id"] != null)
+                dgvSucursales.Columns["Id"].Visible = false;
         }
         public void LimpiarCampos()
         {
@@ -200,5 +166,51 @@ namespace Vista
             }
         }
         #endregion
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
+
+        private void btnBuscar_Click_1(object sender, EventArgs e)
+        {
+            var controladoraSucursales = ControladoraSucursales.Instancia();
+            try
+            {
+                if (txtNombreBuscado.Text != "")
+                {
+                    string nombreBuscado = txtNombreBuscado.Text;
+                    var sucursal = controladoraSucursales.BuscarSucursalPorNombre(nombreBuscado);
+                    if (sucursal != null)
+                    {
+                        var listaSucursales = new List<Entidades.Sucursal>();
+                        listaSucursales.Add(sucursal);
+                        dgvSucursales.DataSource = listaSucursales;
+                        if (dgvSucursales.Columns["Id"] != null)
+                            dgvSucursales.Columns["Id"].Visible = false; btnBuscar.Enabled = false;
+                        tlpBuscar.Enabled = false;
+                        txtNombreBuscado.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnBuscar.Enabled = false;
+                        tlpBuscar.Enabled = false;
+                    }
+                }
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

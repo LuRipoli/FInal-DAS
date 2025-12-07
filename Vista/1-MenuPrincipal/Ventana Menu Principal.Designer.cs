@@ -94,12 +94,13 @@
             // lblTituloGR
             // 
             lblTituloGR.BackColor = Color.Transparent;
+            lblTituloGR.Dock = DockStyle.Fill;
             lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
             lblTituloGR.ForeColor = Color.White;
             lblTituloGR.Location = new Point(0, 0);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
-            lblTituloGR.Size = new Size(1581, 80);
+            lblTituloGR.Size = new Size(1647, 80);
             lblTituloGR.TabIndex = 1;
             lblTituloGR.Text = "Sistema de Gestión de Electrodomésticos";
             lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
