@@ -1,4 +1,5 @@
 ﻿using Controladora;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,76 +20,38 @@ namespace Vista
             InitializeComponent();
         }
 
-        private void btnAgregarCategoria_Click(object sender, EventArgs e)
-        {
-            CmbIngresoDeDatos.Enabled = true;
-        }
-
         private void Gestion_de_Rubros_Load(object sender, EventArgs e)
         {
-            CmbIngresoDeDatos.Enabled = false;
-            cmbBuscarNombre.Enabled = false;
-            cmbBuscarId.Enabled = false;
-            cmbModificar.Enabled = false;
-            cmbEliminarCategoria.Enabled = false;
-            cargardatosDgvClientes();
+            Refrescar();
+            LimpiarCampos();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        
+        private void btnModificar_Click(object sender, EventArgs e)
         {
-            var controladora = ControladoraCategorias.Instancia();
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             try
             {
-                string aux = txtAgregar.Text;
-                controladora.AgregarCategoria(aux);
-                MessageBox.Show("Categoría agregada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CmbIngresoDeDatos.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            var controladora = ControladoraCategorias.Instancia();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(txtBuscarNombre.Text))
+                int? id = GetId();
+                if (id != null && txtNombre.Text != "")
                 {
-                    MessageBox.Show("El nombre de la categoría no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var categoria = controladora.BuscarCategoriaPorNombre(txtBuscarNombre.Text.Trim());
-
-                if (categoria != null)
-                {
-                    dgvClientes.Rows.Clear();
-
-                    if (dgvClientes.Columns.Count == 0)
-                    {
-                        dgvClientes.Columns.Add("Id", "Id");
-                        dgvClientes.Columns.Add("Nombre", "Nombre");
-                    }
-
-                    dgvClientes.Rows.Add(categoria.Id, categoria.Nombre);
-
-                    if (dgvClientes.Rows.Count > 0)
-                    {
-                        dgvClientes.ClearSelection();
-                        dgvClientes.Rows[0].Selected = true;
-                    }
-
-                    MessageBox.Show("Categoría encontrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string nombre = txtNombre.Text.Trim();
+                    controladoraCategorias.ModificarCategoria((int)id, nombre);
+                    MessageBox.Show("Categoría modificada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Refrescar();
+                    LimpiarCampos();
                 }
                 else
                 {
-                    dgvClientes.Rows.Clear();
-                    MessageBox.Show("Categoría no encontrada", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Complete el campo y seleccione una categoría para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -96,166 +59,146 @@ namespace Vista
             }
         }
 
-        private void btnModificarCategoria_Click(object sender, EventArgs e)
-        {
-            cmbModificar.Enabled = true;
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            var controladora = ControladoraCategorias.Instancia();
-            try
-            {
-                controladora.ModificarCategoria(int.Parse(txtModificarId.Text), txtModificarNombre.Text);
-                MessageBox.Show("Categoría modificada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                cmbModificar.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnEliminarCategoria_Click(object sender, EventArgs e)
-        {
-            cmbEliminarCategoria.Enabled = true;
-        }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var controladora = ControladoraCategorias.Instancia();
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             try
             {
-                controladora.EliminarCategoria(int.Parse(txtEliminarId.Text));
-                MessageBox.Show("Categoría eliminada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                cmbEliminarCategoria.Enabled = false;
+                int? id = GetId();
+                if (id != null)
+                {
+                    controladoraCategorias.EliminarCategoria((int)id);
+                    MessageBox.Show("Categoría eliminada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Refrescar();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una categoría para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnBuscarCategoriaId_Click(object sender, EventArgs e)
-        {
-            cmbBuscarId.Enabled = true;
-        }
-
-        private void BuscarCategoriaNombre_Click(object sender, EventArgs e)
-        {
-            cmbBuscarNombre.Enabled = true;
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 vistaBase = new Form1();
-            vistaBase.Show();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Form1 vistaBase = new Form1();
-            vistaBase.Close();
             Application.Exit();
         }
 
-        private void btnBuscarId_Click(object sender, EventArgs e)
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
-            var controladora = ControladoraCategorias.Instancia();
+            LimpiarCampos();
+        }
+       
+        private void btnBuscar_Click_1(object sender, EventArgs e)
+        {
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             try
             {
-                if (!int.TryParse(txtBuscarId.Text?.Trim(), out int categoriaId))
+                if (txtNombreBuscado.Text.Trim() != "")
                 {
-                    MessageBox.Show("Id inválido. Introduzca un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                    string nombre = txtNombreBuscado.Text.Trim();
+                    var categoria = controladoraCategorias.BuscarCategoriaPorNombre(nombre);
 
-                var categoria = controladora.BuscarCategoriaPorId(categoriaId);
-                if (categoria != null)
-                {
-                    dgvClientes.Rows.Clear();
 
-                    if (dgvClientes.Columns.Count == 0)
+                    if (categoria != null)
                     {
-                        dgvClientes.Columns.Add("Id", "Id");
-                        dgvClientes.Columns.Add("Nombre", "Nombre");
+                        dgvCategorias.DataSource = new List<Entidades.Categoria> { categoria };
+                        grbBuscarCategoria.Enabled = false;
+                        txtNombreBuscado.Clear();
                     }
-
-                    dgvClientes.Rows.Add(categoria.Id, categoria.Nombre);
-
-                    if (dgvClientes.Rows.Count > 0)
+                    else
                     {
-                        dgvClientes.ClearSelection();
-                        dgvClientes.Rows[0].Selected = true;
+                        MessageBox.Show("No se encontró ninguna categoría con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        grbBuscarCategoria.Enabled = false;
                     }
-
-                    MessageBox.Show("Categoría encontrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
-                {
-                    dgvClientes.Rows.Clear();
-                    MessageBox.Show("Categoría no encontrada", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (EntidadNoEncontradaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        /*
-        public void PrecargarDatos()
+
+        private void btnBuscarCategoria_Click(object sender, EventArgs e)
         {
-            var controladora = ControladoraCategorias.Instancia();
-            try
-            {
-                controladora.AgregarCategoria("Bebidas");
-                controladora.AgregarCategoria("Snacks");
-                controladora.AgregarCategoria("Lácteos");
-                controladora.AgregarCategoria("Carnes");
-                controladora.AgregarCategoria("Verduras");
-            }
-            catch (Exception)
-            {
-                
-                
-            }
+            grbBuscarCategoria.Enabled = true;
         }
-        */
-        public void cargardatosDgvClientes()
+
+        private void btnAgregarCategoria_Click(object sender, EventArgs e)
         {
-            var controladora = ControladoraCategorias.Instancia();
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             try
             {
-                var categorias = controladora.ObtenerCategorias();
-                dgvClientes.Rows.Clear();
+                if (txtNombre.Text.Trim() == "")
+                    throw new DatosInvalidosException("El nombre de la categoría no puede estar vacío.");
 
-                if (dgvClientes.Columns.Count == 0)
-                {
-                    dgvClientes.Columns.Add("Id", "Id");
-                    dgvClientes.Columns.Add("Nombre", "Nombre");
-                    dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                }
 
-                if (categorias == null)
-                {
-                    return;
-                }
+                string nombre = txtNombre.Text.Trim();
+                controladoraCategorias.AgregarCategoria(nombre);
 
-                foreach (var cat in categorias)
-                {
-                    dgvClientes.Rows.Add(cat.Id, cat.Nombre);
-                }
 
-                if (dgvClientes.Rows.Count > 0)
-                {
-                    dgvClientes.ClearSelection();
-                }
+                MessageBox.Show("Categoría agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Refrescar();
+                LimpiarCampos();
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar categorías", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
+        #region HELPER
+        private void Refrescar()
+        {
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
+            dgvCategorias.DataSource = controladoraCategorias.ObtenerCategorias();
+        }
+        private void LimpiarCampos()
+        {
+            txtNombre.Text = txtNombreBuscado.Text = "";
+        }
+        private int? GetId()
+        {
+            if (Controladora.ControladoraCategorias.Instancia().ObtenerCategorias().Count != 0)
+            {
+                try
+                {
+                    return int.Parse(dgvCategorias.Rows[dgvCategorias.CurrentRow.Index].Cells[0].Value.ToString());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            return null;
+        }
+        #endregion
     }
 }
+

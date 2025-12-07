@@ -41,7 +41,7 @@ namespace Vista
 
         private void btnBuscarSucursal_Click(object sender, EventArgs e)
         {
-            grbBuscarSucursal.Enabled = true;
+            grbBuscarCategoria.Enabled = true;
         }
 
         private void btnAgregarSucursal_Click(object sender, EventArgs e)
@@ -147,13 +147,13 @@ namespace Vista
                         var listaSucursales = new List<Entidades.Sucursal>();
                         listaSucursales.Add(sucursal);
                         dgvSucursales.DataSource = listaSucursales;
-                        grbBuscarSucursal.Enabled = false;
+                        grbBuscarCategoria.Enabled = false;
                         txtNombreBuscado.Clear();
                     }
                     else
                     {
                         MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        grbBuscarSucursal.Enabled = false;
+                        grbBuscarCategoria.Enabled = false;
                     }
                 }
             }

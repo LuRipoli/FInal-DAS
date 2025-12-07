@@ -32,586 +32,494 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
-            cmbEliminarCategoria = new GroupBox();
-            label4 = new Label();
-            txtEliminarId = new TextBox();
-            btnEliminar = new Button();
-            cmbModificar = new GroupBox();
-            label3 = new Label();
-            txtModificarId = new TextBox();
-            btnModificar = new Button();
-            label2 = new Label();
-            txtModificarNombre = new TextBox();
-            cmbBuscarId = new GroupBox();
-            btnBuscarId = new Button();
-            label1 = new Label();
-            txtBuscarId = new TextBox();
-            cmbBuscarNombre = new GroupBox();
-            btnBuscarNombre = new Button();
+            tlpDivision = new TableLayoutPanel();
+            grbManejodeDatos = new GroupBox();
+            grbBuscarCategoria = new GroupBox();
+            tlpBuscar = new TableLayoutPanel();
             lblId = new Label();
-            txtBuscarNombre = new TextBox();
+            txtNombreBuscado = new TextBox();
+            btnBuscar = new Button();
+            grbIngresoDatos = new GroupBox();
+            tlpIngreso = new TableLayoutPanel();
+            lblNombre = new Label();
+            txtNombre = new TextBox();
+            btnLimpiarCampos = new Button();
             grbGrillaClientes = new GroupBox();
-            dgvClientes = new DataGridView();
-            CmbIngresoDeDatos = new GroupBox();
-            btnIngresoDeDatos = new Button();
-            lblEmail = new Label();
-            txtAgregar = new TextBox();
-            pnelppaltitulo = new Panel();
-            lblTituloGR = new Label();
-            pnelppalbotones = new Panel();
-            BuscarCategoriaNombre = new Button();
-            btnBuscarCategoriaId = new Button();
+            dgvCategorias = new DataGridView();
+            tlpBotones = new TableLayoutPanel();
+            btnAgregarCategoria = new Button();
+            btnEliminar = new Button();
+            btnModificar = new Button();
+            btnBuscarCategoria = new Button();
             btnVolver = new Button();
             btnSalir = new Button();
-            btnEliminarCategoria = new Button();
-            btnModificarCategoria = new Button();
-            btnAgregarCategoria = new Button();
+            pnelppaltitulo = new Panel();
+            lblTituloGR = new Label();
             pnelppalmedio.SuspendLayout();
-            cmbEliminarCategoria.SuspendLayout();
-            cmbModificar.SuspendLayout();
-            cmbBuscarId.SuspendLayout();
-            cmbBuscarNombre.SuspendLayout();
+            tlpDivision.SuspendLayout();
+            grbManejodeDatos.SuspendLayout();
+            grbBuscarCategoria.SuspendLayout();
+            tlpBuscar.SuspendLayout();
+            grbIngresoDatos.SuspendLayout();
+            tlpIngreso.SuspendLayout();
             grbGrillaClientes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
-            CmbIngresoDeDatos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
+            tlpBotones.SuspendLayout();
             pnelppaltitulo.SuspendLayout();
-            pnelppalbotones.SuspendLayout();
             SuspendLayout();
             // 
             // pnelppalmedio
             // 
             pnelppalmedio.BackColor = SystemColors.ActiveCaption;
-            pnelppalmedio.Controls.Add(cmbEliminarCategoria);
-            pnelppalmedio.Controls.Add(cmbModificar);
-            pnelppalmedio.Controls.Add(cmbBuscarId);
-            pnelppalmedio.Controls.Add(cmbBuscarNombre);
-            pnelppalmedio.Controls.Add(grbGrillaClientes);
-            pnelppalmedio.Controls.Add(CmbIngresoDeDatos);
+            pnelppalmedio.Controls.Add(tlpDivision);
+            pnelppalmedio.Controls.Add(tlpBotones);
             pnelppalmedio.Dock = DockStyle.Fill;
-            pnelppalmedio.Location = new Point(241, 120);
+            pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1060, 724);
+            pnelppalmedio.Size = new Size(1408, 664);
             pnelppalmedio.TabIndex = 15;
             // 
-            // cmbEliminarCategoria
+            // tlpDivision
             // 
-            cmbEliminarCategoria.Controls.Add(label4);
-            cmbEliminarCategoria.Controls.Add(txtEliminarId);
-            cmbEliminarCategoria.Controls.Add(btnEliminar);
-            cmbEliminarCategoria.Location = new Point(394, 660);
-            cmbEliminarCategoria.Margin = new Padding(2);
-            cmbEliminarCategoria.Name = "cmbEliminarCategoria";
-            cmbEliminarCategoria.Padding = new Padding(2);
-            cmbEliminarCategoria.Size = new Size(317, 112);
-            cmbEliminarCategoria.TabIndex = 22;
-            cmbEliminarCategoria.TabStop = false;
-            cmbEliminarCategoria.Text = "Eliminar Categoria";
+            tlpDivision.BackColor = SystemColors.AppWorkspace;
+            tlpDivision.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+            tlpDivision.ColumnCount = 2;
+            tlpDivision.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpDivision.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpDivision.Controls.Add(grbManejodeDatos, 0, 0);
+            tlpDivision.Controls.Add(grbGrillaClientes, 1, 0);
+            tlpDivision.Dock = DockStyle.Fill;
+            tlpDivision.Location = new Point(0, 150);
+            tlpDivision.Name = "tlpDivision";
+            tlpDivision.RowCount = 1;
+            tlpDivision.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpDivision.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpDivision.Size = new Size(1408, 514);
+            tlpDivision.TabIndex = 24;
             // 
-            // label4
+            // grbManejodeDatos
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(19, 41);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(167, 20);
-            label4.TabIndex = 21;
-            label4.Text = "Id Categoria a Eliminar";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
+            grbManejodeDatos.Controls.Add(grbBuscarCategoria);
+            grbManejodeDatos.Controls.Add(grbIngresoDatos);
+            grbManejodeDatos.Dock = DockStyle.Fill;
+            grbManejodeDatos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            grbManejodeDatos.Location = new Point(13, 13);
+            grbManejodeDatos.Margin = new Padding(10);
+            grbManejodeDatos.Name = "grbManejodeDatos";
+            grbManejodeDatos.Padding = new Padding(0);
+            grbManejodeDatos.Size = new Size(679, 488);
+            grbManejodeDatos.TabIndex = 19;
+            grbManejodeDatos.TabStop = false;
             // 
-            // txtEliminarId
+            // grbBuscarCategoria
             // 
-            txtEliminarId.Font = new Font("Segoe UI", 9F);
-            txtEliminarId.Location = new Point(20, 64);
-            txtEliminarId.Margin = new Padding(2);
-            txtEliminarId.Name = "txtEliminarId";
-            txtEliminarId.Size = new Size(177, 27);
-            txtEliminarId.TabIndex = 20;
+            grbBuscarCategoria.Controls.Add(tlpBuscar);
+            grbBuscarCategoria.Controls.Add(btnBuscar);
+            grbBuscarCategoria.Dock = DockStyle.Bottom;
+            grbBuscarCategoria.Enabled = false;
+            grbBuscarCategoria.FlatStyle = FlatStyle.Flat;
+            grbBuscarCategoria.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grbBuscarCategoria.ForeColor = Color.DarkSlateGray;
+            grbBuscarCategoria.Location = new Point(0, 268);
+            grbBuscarCategoria.Name = "grbBuscarCategoria";
+            grbBuscarCategoria.Padding = new Padding(10);
+            grbBuscarCategoria.Size = new Size(679, 220);
+            grbBuscarCategoria.TabIndex = 23;
+            grbBuscarCategoria.TabStop = false;
+            grbBuscarCategoria.Text = "Buscar Sucursal";
             // 
-            // btnEliminar
+            // tlpBuscar
             // 
-            btnEliminar.BackColor = SystemColors.HighlightText;
-            btnEliminar.FlatAppearance.BorderSize = 0;
-            btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEliminar.Location = new Point(217, 42);
-            btnEliminar.Margin = new Padding(2);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(90, 52);
-            btnEliminar.TabIndex = 19;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
-            // 
-            // cmbModificar
-            // 
-            cmbModificar.Controls.Add(label3);
-            cmbModificar.Controls.Add(txtModificarId);
-            cmbModificar.Controls.Add(btnModificar);
-            cmbModificar.Controls.Add(label2);
-            cmbModificar.Controls.Add(txtModificarNombre);
-            cmbModificar.Location = new Point(49, 596);
-            cmbModificar.Margin = new Padding(2);
-            cmbModificar.Name = "cmbModificar";
-            cmbModificar.Padding = new Padding(2);
-            cmbModificar.Size = new Size(317, 176);
-            cmbModificar.TabIndex = 20;
-            cmbModificar.TabStop = false;
-            cmbModificar.Text = "Modificar Categoria";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(15, 105);
-            label3.Margin = new Padding(2, 0, 2, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(177, 20);
-            label3.TabIndex = 21;
-            label3.Text = "Id Categoria a Modificar";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtModificarId
-            // 
-            txtModificarId.Font = new Font("Segoe UI", 9F);
-            txtModificarId.Location = new Point(15, 127);
-            txtModificarId.Margin = new Padding(2);
-            txtModificarId.Name = "txtModificarId";
-            txtModificarId.Size = new Size(177, 27);
-            txtModificarId.TabIndex = 20;
-            // 
-            // btnModificar
-            // 
-            btnModificar.BackColor = SystemColors.HighlightText;
-            btnModificar.FlatAppearance.BorderSize = 0;
-            btnModificar.FlatStyle = FlatStyle.Flat;
-            btnModificar.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnModificar.Location = new Point(212, 105);
-            btnModificar.Margin = new Padding(2);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(90, 52);
-            btnModificar.TabIndex = 19;
-            btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(49, 42);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(229, 20);
-            label2.TabIndex = 18;
-            label2.Text = "Nuevo Nombre de la Categoria:";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtModificarNombre
-            // 
-            txtModificarNombre.Font = new Font("Segoe UI", 9F);
-            txtModificarNombre.Location = new Point(15, 64);
-            txtModificarNombre.Margin = new Padding(2);
-            txtModificarNombre.Name = "txtModificarNombre";
-            txtModificarNombre.Size = new Size(287, 27);
-            txtModificarNombre.TabIndex = 17;
-            // 
-            // cmbBuscarId
-            // 
-            cmbBuscarId.Controls.Add(btnBuscarId);
-            cmbBuscarId.Controls.Add(label1);
-            cmbBuscarId.Controls.Add(txtBuscarId);
-            cmbBuscarId.Location = new Point(49, 229);
-            cmbBuscarId.Margin = new Padding(2);
-            cmbBuscarId.Name = "cmbBuscarId";
-            cmbBuscarId.Padding = new Padding(2);
-            cmbBuscarId.Size = new Size(317, 164);
-            cmbBuscarId.TabIndex = 20;
-            cmbBuscarId.TabStop = false;
-            cmbBuscarId.Text = "Buscar Categoria por Id";
-            // 
-            // btnBuscarId
-            // 
-            btnBuscarId.BackColor = SystemColors.HighlightText;
-            btnBuscarId.FlatAppearance.BorderSize = 0;
-            btnBuscarId.FlatStyle = FlatStyle.Flat;
-            btnBuscarId.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscarId.Location = new Point(93, 105);
-            btnBuscarId.Margin = new Padding(2);
-            btnBuscarId.Name = "btnBuscarId";
-            btnBuscarId.Size = new Size(117, 52);
-            btnBuscarId.TabIndex = 19;
-            btnBuscarId.Text = "Buscar";
-            btnBuscarId.UseVisualStyleBackColor = false;
-            btnBuscarId.Click += btnBuscarId_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(93, 32);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(123, 20);
-            label1.TabIndex = 18;
-            label1.Text = "Id del Categoria:";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtBuscarId
-            // 
-            txtBuscarId.Font = new Font("Segoe UI", 9F);
-            txtBuscarId.Location = new Point(49, 67);
-            txtBuscarId.Margin = new Padding(2);
-            txtBuscarId.Name = "txtBuscarId";
-            txtBuscarId.Size = new Size(220, 27);
-            txtBuscarId.TabIndex = 17;
-            // 
-            // cmbBuscarNombre
-            // 
-            cmbBuscarNombre.Controls.Add(btnBuscarNombre);
-            cmbBuscarNombre.Controls.Add(lblId);
-            cmbBuscarNombre.Controls.Add(txtBuscarNombre);
-            cmbBuscarNombre.Location = new Point(49, 412);
-            cmbBuscarNombre.Margin = new Padding(2);
-            cmbBuscarNombre.Name = "cmbBuscarNombre";
-            cmbBuscarNombre.Padding = new Padding(2);
-            cmbBuscarNombre.Size = new Size(317, 164);
-            cmbBuscarNombre.TabIndex = 19;
-            cmbBuscarNombre.TabStop = false;
-            cmbBuscarNombre.Text = "Buscar Categoria por nombre";
-            // 
-            // btnBuscarNombre
-            // 
-            btnBuscarNombre.BackColor = SystemColors.HighlightText;
-            btnBuscarNombre.FlatAppearance.BorderSize = 0;
-            btnBuscarNombre.FlatStyle = FlatStyle.Flat;
-            btnBuscarNombre.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscarNombre.Location = new Point(93, 105);
-            btnBuscarNombre.Margin = new Padding(2);
-            btnBuscarNombre.Name = "btnBuscarNombre";
-            btnBuscarNombre.Size = new Size(117, 52);
-            btnBuscarNombre.TabIndex = 19;
-            btnBuscarNombre.Text = "Buscar";
-            btnBuscarNombre.UseVisualStyleBackColor = false;
-            btnBuscarNombre.Click += btnBuscar_Click;
+            tlpBuscar.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+            tlpBuscar.ColumnCount = 2;
+            tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpBuscar.Controls.Add(lblId, 0, 0);
+            tlpBuscar.Controls.Add(txtNombreBuscado, 1, 0);
+            tlpBuscar.Dock = DockStyle.Fill;
+            tlpBuscar.Location = new Point(10, 45);
+            tlpBuscar.Name = "tlpBuscar";
+            tlpBuscar.RowCount = 1;
+            tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpBuscar.Size = new Size(659, 100);
+            tlpBuscar.TabIndex = 20;
             // 
             // lblId
             // 
+            lblId.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblId.AutoSize = true;
-            lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblId.Location = new Point(70, 35);
-            lblId.Margin = new Padding(2, 0, 2, 0);
+            lblId.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblId.Location = new Point(6, 32);
             lblId.Name = "lblId";
-            lblId.Size = new Size(167, 20);
+            lblId.Size = new Size(319, 35);
             lblId.TabIndex = 18;
-            lblId.Text = "Nombre del Categoria:";
+            lblId.Text = "Nombre de Categoria:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtBuscarNombre
+            // txtNombreBuscado
             // 
-            txtBuscarNombre.Font = new Font("Segoe UI", 9F);
-            txtBuscarNombre.Location = new Point(49, 67);
-            txtBuscarNombre.Margin = new Padding(2);
-            txtBuscarNombre.Name = "txtBuscarNombre";
-            txtBuscarNombre.Size = new Size(220, 27);
-            txtBuscarNombre.TabIndex = 17;
+            txtNombreBuscado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtNombreBuscado.Font = new Font("Segoe UI", 12F);
+            txtNombreBuscado.Location = new Point(339, 30);
+            txtNombreBuscado.Margin = new Padding(8);
+            txtNombreBuscado.Name = "txtNombreBuscado";
+            txtNombreBuscado.Size = new Size(309, 39);
+            txtNombreBuscado.TabIndex = 17;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.BackColor = Color.DarkSlateGray;
+            btnBuscar.Cursor = Cursors.Hand;
+            btnBuscar.Dock = DockStyle.Bottom;
+            btnBuscar.FlatAppearance.BorderSize = 0;
+            btnBuscar.FlatStyle = FlatStyle.Flat;
+            btnBuscar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscar.ForeColor = Color.White;
+            btnBuscar.Location = new Point(10, 145);
+            btnBuscar.Margin = new Padding(0);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(659, 65);
+            btnBuscar.TabIndex = 19;
+            btnBuscar.Text = "Buscar Categoria";
+            btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click_1;
+            // 
+            // grbIngresoDatos
+            // 
+            grbIngresoDatos.Controls.Add(tlpIngreso);
+            grbIngresoDatos.Controls.Add(btnLimpiarCampos);
+            grbIngresoDatos.Dock = DockStyle.Top;
+            grbIngresoDatos.FlatStyle = FlatStyle.Flat;
+            grbIngresoDatos.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grbIngresoDatos.ForeColor = Color.DarkSlateGray;
+            grbIngresoDatos.Location = new Point(0, 24);
+            grbIngresoDatos.Name = "grbIngresoDatos";
+            grbIngresoDatos.Padding = new Padding(0);
+            grbIngresoDatos.Size = new Size(679, 243);
+            grbIngresoDatos.TabIndex = 22;
+            grbIngresoDatos.TabStop = false;
+            grbIngresoDatos.Text = "Ingreso de Datos";
+            // 
+            // tlpIngreso
+            // 
+            tlpIngreso.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+            tlpIngreso.ColumnCount = 2;
+            tlpIngreso.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpIngreso.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpIngreso.Controls.Add(lblNombre, 0, 0);
+            tlpIngreso.Controls.Add(txtNombre, 1, 0);
+            tlpIngreso.Dock = DockStyle.Fill;
+            tlpIngreso.Location = new Point(0, 100);
+            tlpIngreso.Name = "tlpIngreso";
+            tlpIngreso.RowCount = 1;
+            tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpIngreso.Size = new Size(679, 143);
+            tlpIngreso.TabIndex = 19;
+            // 
+            // lblNombre
+            // 
+            lblNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.Location = new Point(6, 54);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(329, 35);
+            lblNombre.TabIndex = 6;
+            lblNombre.Text = "Nombre de Categoria:";
+            lblNombre.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtNombre
+            // 
+            txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtNombre.Font = new Font("Segoe UI", 12F);
+            txtNombre.Location = new Point(349, 52);
+            txtNombre.Margin = new Padding(8);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(319, 39);
+            txtNombre.TabIndex = 0;
+            txtNombre.TextAlign = HorizontalAlignment.Center;
+            // 
+            // btnLimpiarCampos
+            // 
+            btnLimpiarCampos.BackColor = Color.DarkSlateGray;
+            btnLimpiarCampos.Cursor = Cursors.Hand;
+            btnLimpiarCampos.Dock = DockStyle.Top;
+            btnLimpiarCampos.FlatAppearance.BorderSize = 0;
+            btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
+            btnLimpiarCampos.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimpiarCampos.ForeColor = Color.White;
+            btnLimpiarCampos.Location = new Point(0, 35);
+            btnLimpiarCampos.Margin = new Padding(0);
+            btnLimpiarCampos.Name = "btnLimpiarCampos";
+            btnLimpiarCampos.Size = new Size(679, 65);
+            btnLimpiarCampos.TabIndex = 16;
+            btnLimpiarCampos.Text = "Limpiar Campos";
+            btnLimpiarCampos.UseVisualStyleBackColor = false;
+            btnLimpiarCampos.Click += btnLimpiarCampos_Click;
             // 
             // grbGrillaClientes
             // 
             grbGrillaClientes.BackgroundImageLayout = ImageLayout.None;
-            grbGrillaClientes.Controls.Add(dgvClientes);
-            grbGrillaClientes.Font = new Font("Segoe UI", 9F);
-            grbGrillaClientes.Location = new Point(394, 45);
+            grbGrillaClientes.Controls.Add(dgvCategorias);
+            grbGrillaClientes.Dock = DockStyle.Fill;
+            grbGrillaClientes.FlatStyle = FlatStyle.Flat;
+            grbGrillaClientes.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grbGrillaClientes.ForeColor = Color.DarkSlateGray;
+            grbGrillaClientes.Location = new Point(707, 5);
             grbGrillaClientes.Margin = new Padding(2);
             grbGrillaClientes.Name = "grbGrillaClientes";
             grbGrillaClientes.Padding = new Padding(2);
-            grbGrillaClientes.Size = new Size(655, 611);
+            grbGrillaClientes.Size = new Size(696, 504);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
             grbGrillaClientes.Text = "Grilla de Categorias";
             // 
-            // dgvClientes
+            // dgvCategorias
             // 
-            dgvClientes.AllowUserToAddRows = false;
-            dgvClientes.AllowUserToDeleteRows = false;
-            dgvClientes.AllowUserToResizeColumns = false;
-            dgvClientes.AllowUserToResizeRows = false;
-            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvClientes.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvCategorias.AllowUserToAddRows = false;
+            dgvCategorias.AllowUserToDeleteRows = false;
+            dgvCategorias.AllowUserToResizeColumns = false;
+            dgvCategorias.AllowUserToResizeRows = false;
+            dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCategorias.BackgroundColor = SystemColors.GrayText;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvClientes.Location = new Point(20, 26);
-            dgvClientes.Margin = new Padding(2);
-            dgvClientes.Name = "dgvClientes";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvCategorias.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvCategorias.Dock = DockStyle.Fill;
+            dgvCategorias.Location = new Point(2, 37);
+            dgvCategorias.Margin = new Padding(20);
+            dgvCategorias.Name = "dgvCategorias";
+            dgvCategorias.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvClientes.RowHeadersWidth = 62;
-            dgvClientes.Size = new Size(619, 570);
-            dgvClientes.TabIndex = 1;
+            dgvCategorias.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvCategorias.RowHeadersVisible = false;
+            dgvCategorias.RowHeadersWidth = 62;
+            dgvCategorias.Size = new Size(692, 465);
+            dgvCategorias.TabIndex = 1;
             // 
-            // CmbIngresoDeDatos
+            // tlpBotones
             // 
-            CmbIngresoDeDatos.Controls.Add(btnIngresoDeDatos);
-            CmbIngresoDeDatos.Controls.Add(lblEmail);
-            CmbIngresoDeDatos.Controls.Add(txtAgregar);
-            CmbIngresoDeDatos.Location = new Point(49, 45);
-            CmbIngresoDeDatos.Margin = new Padding(2);
-            CmbIngresoDeDatos.Name = "CmbIngresoDeDatos";
-            CmbIngresoDeDatos.Padding = new Padding(2);
-            CmbIngresoDeDatos.Size = new Size(319, 164);
-            CmbIngresoDeDatos.TabIndex = 17;
-            CmbIngresoDeDatos.TabStop = false;
-            CmbIngresoDeDatos.Text = "Ingreso de Datos";
+            tlpBotones.BackColor = Color.PaleTurquoise;
+            tlpBotones.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+            tlpBotones.ColumnCount = 4;
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpBotones.Controls.Add(btnAgregarCategoria, 0, 0);
+            tlpBotones.Controls.Add(btnEliminar, 2, 0);
+            tlpBotones.Controls.Add(btnModificar, 1, 0);
+            tlpBotones.Controls.Add(btnBuscarCategoria, 3, 0);
+            tlpBotones.Dock = DockStyle.Top;
+            tlpBotones.Location = new Point(0, 0);
+            tlpBotones.Name = "tlpBotones";
+            tlpBotones.RowCount = 1;
+            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpBotones.Size = new Size(1408, 150);
+            tlpBotones.TabIndex = 23;
             // 
-            // btnIngresoDeDatos
+            // btnAgregarCategoria
             // 
-            btnIngresoDeDatos.BackColor = SystemColors.HighlightText;
-            btnIngresoDeDatos.FlatAppearance.BorderSize = 0;
-            btnIngresoDeDatos.FlatStyle = FlatStyle.Flat;
-            btnIngresoDeDatos.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnIngresoDeDatos.Location = new Point(99, 108);
-            btnIngresoDeDatos.Margin = new Padding(2);
-            btnIngresoDeDatos.Name = "btnIngresoDeDatos";
-            btnIngresoDeDatos.Size = new Size(117, 52);
-            btnIngresoDeDatos.TabIndex = 20;
-            btnIngresoDeDatos.Text = "Agregar";
-            btnIngresoDeDatos.UseVisualStyleBackColor = false;
-            btnIngresoDeDatos.Click += button2_Click;
+            btnAgregarCategoria.Cursor = Cursors.Hand;
+            btnAgregarCategoria.Dock = DockStyle.Fill;
+            btnAgregarCategoria.FlatStyle = FlatStyle.Flat;
+            btnAgregarCategoria.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregarCategoria.ForeColor = Color.DarkSlateGray;
+            btnAgregarCategoria.Location = new Point(3, 3);
+            btnAgregarCategoria.Margin = new Padding(0);
+            btnAgregarCategoria.Name = "btnAgregarCategoria";
+            btnAgregarCategoria.Size = new Size(348, 144);
+            btnAgregarCategoria.TabIndex = 4;
+            btnAgregarCategoria.Text = "Agregar ➕";
+            btnAgregarCategoria.UseVisualStyleBackColor = true;
+            btnAgregarCategoria.Click += btnAgregarCategoria_Click;
             // 
-            // lblEmail
+            // btnEliminar
             // 
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblEmail.Location = new Point(121, 38);
-            lblEmail.Margin = new Padding(2, 0, 2, 0);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(71, 20);
-            lblEmail.TabIndex = 10;
-            lblEmail.Text = "Nombre:";
-            lblEmail.TextAlign = ContentAlignment.MiddleCenter;
+            btnEliminar.BackColor = Color.PaleTurquoise;
+            btnEliminar.Dock = DockStyle.Fill;
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminar.ForeColor = Color.DarkSlateGray;
+            btnEliminar.Location = new Point(707, 5);
+            btnEliminar.Margin = new Padding(2);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(344, 140);
+            btnEliminar.TabIndex = 19;
+            btnEliminar.Text = "Eliminar 🗑️";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
-            // txtAgregar
+            // btnModificar
             // 
-            txtAgregar.Font = new Font("Segoe UI", 9F);
-            txtAgregar.Location = new Point(27, 67);
-            txtAgregar.Margin = new Padding(2);
-            txtAgregar.Name = "txtAgregar";
-            txtAgregar.Size = new Size(257, 27);
-            txtAgregar.TabIndex = 0;
+            btnModificar.BackColor = Color.PaleTurquoise;
+            btnModificar.Dock = DockStyle.Fill;
+            btnModificar.FlatAppearance.BorderSize = 0;
+            btnModificar.FlatStyle = FlatStyle.Flat;
+            btnModificar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.ForeColor = Color.DarkSlateGray;
+            btnModificar.Location = new Point(356, 5);
+            btnModificar.Margin = new Padding(2);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(344, 140);
+            btnModificar.TabIndex = 19;
+            btnModificar.Text = "Modificar 🛠️";
+            btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click;
             // 
-            // pnelppaltitulo
+            // btnBuscarCategoria
             // 
-            pnelppaltitulo.BackColor = SystemColors.ControlLightLight;
-            pnelppaltitulo.Controls.Add(lblTituloGR);
-            pnelppaltitulo.Dock = DockStyle.Top;
-            pnelppaltitulo.Location = new Point(241, 0);
-            pnelppaltitulo.Margin = new Padding(2);
-            pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1060, 120);
-            pnelppaltitulo.TabIndex = 14;
-            // 
-            // lblTituloGR
-            // 
-            lblTituloGR.AutoSize = true;
-            lblTituloGR.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTituloGR.Location = new Point(377, 37);
-            lblTituloGR.Margin = new Padding(2, 0, 2, 0);
-            lblTituloGR.Name = "lblTituloGR";
-            lblTituloGR.Size = new Size(368, 46);
-            lblTituloGR.TabIndex = 1;
-            lblTituloGR.Text = "Gestión de Categorias";
-            lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnelppalbotones
-            // 
-            pnelppalbotones.BackColor = SystemColors.GrayText;
-            pnelppalbotones.Controls.Add(BuscarCategoriaNombre);
-            pnelppalbotones.Controls.Add(btnBuscarCategoriaId);
-            pnelppalbotones.Controls.Add(btnVolver);
-            pnelppalbotones.Controls.Add(btnSalir);
-            pnelppalbotones.Controls.Add(btnEliminarCategoria);
-            pnelppalbotones.Controls.Add(btnModificarCategoria);
-            pnelppalbotones.Controls.Add(btnAgregarCategoria);
-            pnelppalbotones.Dock = DockStyle.Left;
-            pnelppalbotones.Location = new Point(0, 0);
-            pnelppalbotones.Margin = new Padding(2);
-            pnelppalbotones.Name = "pnelppalbotones";
-            pnelppalbotones.Size = new Size(241, 844);
-            pnelppalbotones.TabIndex = 13;
-            // 
-            // BuscarCategoriaNombre
-            // 
-            BuscarCategoriaNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            BuscarCategoriaNombre.Location = new Point(41, 531);
-            BuscarCategoriaNombre.Margin = new Padding(2);
-            BuscarCategoriaNombre.Name = "BuscarCategoriaNombre";
-            BuscarCategoriaNombre.Size = new Size(164, 56);
-            BuscarCategoriaNombre.TabIndex = 11;
-            BuscarCategoriaNombre.Text = "Buscar Categoria Por Nombre";
-            BuscarCategoriaNombre.UseVisualStyleBackColor = true;
-            BuscarCategoriaNombre.Click += BuscarCategoriaNombre_Click;
-            // 
-            // btnBuscarCategoriaId
-            // 
-            btnBuscarCategoriaId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnBuscarCategoriaId.Location = new Point(41, 461);
-            btnBuscarCategoriaId.Margin = new Padding(2);
-            btnBuscarCategoriaId.Name = "btnBuscarCategoriaId";
-            btnBuscarCategoriaId.Size = new Size(164, 56);
-            btnBuscarCategoriaId.TabIndex = 10;
-            btnBuscarCategoriaId.Text = "Buscar Categoria Por Id";
-            btnBuscarCategoriaId.UseVisualStyleBackColor = true;
-            btnBuscarCategoriaId.Click += btnBuscarCategoriaId_Click;
+            btnBuscarCategoria.Cursor = Cursors.Hand;
+            btnBuscarCategoria.Dock = DockStyle.Fill;
+            btnBuscarCategoria.FlatStyle = FlatStyle.Flat;
+            btnBuscarCategoria.Font = new Font("Calibri", 20F, FontStyle.Bold);
+            btnBuscarCategoria.ForeColor = Color.DarkSlateGray;
+            btnBuscarCategoria.Location = new Point(1056, 3);
+            btnBuscarCategoria.Margin = new Padding(0);
+            btnBuscarCategoria.Name = "btnBuscarCategoria";
+            btnBuscarCategoria.Size = new Size(349, 144);
+            btnBuscarCategoria.TabIndex = 10;
+            btnBuscarCategoria.Text = "Buscar 🔍";
+            btnBuscarCategoria.UseVisualStyleBackColor = true;
+            btnBuscarCategoria.Click += btnBuscarCategoria_Click;
             // 
             // btnVolver
             // 
-            btnVolver.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnVolver.Location = new Point(41, 603);
+            btnVolver.Dock = DockStyle.Left;
+            btnVolver.FlatStyle = FlatStyle.Flat;
+            btnVolver.Font = new Font("Calibri", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVolver.ForeColor = Color.White;
+            btnVolver.Location = new Point(0, 0);
             btnVolver.Margin = new Padding(2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(164, 56);
+            btnVolver.Size = new Size(90, 80);
             btnVolver.TabIndex = 9;
-            btnVolver.Text = "Volver";
+            btnVolver.Text = "↩️";
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += btnVolver_Click;
             // 
             // btnSalir
             // 
-            btnSalir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSalir.Location = new Point(41, 673);
+            btnSalir.Dock = DockStyle.Right;
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.ForeColor = Color.White;
+            btnSalir.Location = new Point(1318, 0);
             btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(164, 56);
+            btnSalir.Size = new Size(90, 80);
             btnSalir.TabIndex = 7;
-            btnSalir.Text = "Salir del Programa";
+            btnSalir.Text = "❌";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
-            // btnEliminarCategoria
+            // pnelppaltitulo
             // 
-            btnEliminarCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnEliminarCategoria.Location = new Point(41, 391);
-            btnEliminarCategoria.Margin = new Padding(2);
-            btnEliminarCategoria.Name = "btnEliminarCategoria";
-            btnEliminarCategoria.Size = new Size(164, 56);
-            btnEliminarCategoria.TabIndex = 6;
-            btnEliminarCategoria.Text = "Eliminar Categoria";
-            btnEliminarCategoria.UseVisualStyleBackColor = true;
-            btnEliminarCategoria.Click += btnEliminarCategoria_Click;
+            pnelppaltitulo.BackColor = Color.DarkSlateGray;
+            pnelppaltitulo.Controls.Add(lblTituloGR);
+            pnelppaltitulo.Controls.Add(btnVolver);
+            pnelppaltitulo.Controls.Add(btnSalir);
+            pnelppaltitulo.Dock = DockStyle.Top;
+            pnelppaltitulo.Location = new Point(0, 0);
+            pnelppaltitulo.Margin = new Padding(2);
+            pnelppaltitulo.Name = "pnelppaltitulo";
+            pnelppaltitulo.Size = new Size(1408, 80);
+            pnelppaltitulo.TabIndex = 14;
             // 
-            // btnModificarCategoria
+            // lblTituloGR
             // 
-            btnModificarCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnModificarCategoria.Location = new Point(41, 320);
-            btnModificarCategoria.Margin = new Padding(2);
-            btnModificarCategoria.Name = "btnModificarCategoria";
-            btnModificarCategoria.Size = new Size(164, 56);
-            btnModificarCategoria.TabIndex = 5;
-            btnModificarCategoria.Text = "Modificar Categoria";
-            btnModificarCategoria.UseVisualStyleBackColor = true;
-            btnModificarCategoria.Click += btnModificarCategoria_Click;
-            // 
-            // btnAgregarCategoria
-            // 
-            btnAgregarCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAgregarCategoria.Location = new Point(41, 252);
-            btnAgregarCategoria.Margin = new Padding(2);
-            btnAgregarCategoria.Name = "btnAgregarCategoria";
-            btnAgregarCategoria.Size = new Size(164, 56);
-            btnAgregarCategoria.TabIndex = 4;
-            btnAgregarCategoria.Text = "Agregar Categoria";
-            btnAgregarCategoria.UseVisualStyleBackColor = true;
-            btnAgregarCategoria.Click += btnAgregarCategoria_Click;
+            lblTituloGR.Anchor = AnchorStyles.Top;
+            lblTituloGR.AutoSize = true;
+            lblTituloGR.BackColor = Color.Transparent;
+            lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
+            lblTituloGR.ForeColor = Color.White;
+            lblTituloGR.Location = new Point(429, 8);
+            lblTituloGR.Margin = new Padding(2, 0, 2, 0);
+            lblTituloGR.Name = "lblTituloGR";
+            lblTituloGR.Size = new Size(549, 68);
+            lblTituloGR.TabIndex = 11;
+            lblTituloGR.Text = "Gestión de Categorías:";
+            lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Gestion_de_Rubros
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1301, 844);
+            ClientSize = new Size(1408, 744);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
-            Controls.Add(pnelppalbotones);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            Margin = new Padding(4);
+            MaximumSize = new Size(1430, 800);
+            MinimumSize = new Size(1430, 800);
             Name = "Gestion_de_Rubros";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gestion_de_Rubros";
+            Text = "Categorías";
             Load += Gestion_de_Rubros_Load;
             pnelppalmedio.ResumeLayout(false);
-            cmbEliminarCategoria.ResumeLayout(false);
-            cmbEliminarCategoria.PerformLayout();
-            cmbModificar.ResumeLayout(false);
-            cmbModificar.PerformLayout();
-            cmbBuscarId.ResumeLayout(false);
-            cmbBuscarId.PerformLayout();
-            cmbBuscarNombre.ResumeLayout(false);
-            cmbBuscarNombre.PerformLayout();
+            tlpDivision.ResumeLayout(false);
+            grbManejodeDatos.ResumeLayout(false);
+            grbBuscarCategoria.ResumeLayout(false);
+            tlpBuscar.ResumeLayout(false);
+            tlpBuscar.PerformLayout();
+            grbIngresoDatos.ResumeLayout(false);
+            tlpIngreso.ResumeLayout(false);
+            tlpIngreso.PerformLayout();
             grbGrillaClientes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
-            CmbIngresoDeDatos.ResumeLayout(false);
-            CmbIngresoDeDatos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
+            tlpBotones.ResumeLayout(false);
             pnelppaltitulo.ResumeLayout(false);
             pnelppaltitulo.PerformLayout();
-            pnelppalbotones.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel pnelppalmedio;
-        private GroupBox cmbBuscarNombre;
-        private Button btnBuscarNombre;
-        private Label lblId;
-        private TextBox txtBuscarNombre;
         private GroupBox grbGrillaClientes;
-        private DataGridView dgvClientes;
-        private GroupBox CmbIngresoDeDatos;
-        private Label lblEmail;
-        private TextBox txtAgregar;
-        private Panel pnelppaltitulo;
-        private Panel pnelppalbotones;
-        private Button btnBuscarCategoriaId;
+        private DataGridView dgvCategorias;
+        private Button btnBuscarCategoria;
         private Button btnVolver;
         private Button btnSalir;
-        private Button btnEliminarCategoria;
-        private Button btnModificarCategoria;
         private Button btnAgregarCategoria;
-        private Label lblTituloGR;
-        private Button BuscarCategoriaNombre;
-        private GroupBox cmbBuscarId;
-        private Button btnBuscarId;
-        private Label label1;
-        private TextBox txtBuscarId;
-        private Button btnIngresoDeDatos;
-        private GroupBox cmbModificar;
         private Button btnModificar;
-        private Label label2;
-        private TextBox txtModificarNombre;
-        private Label label3;
-        private TextBox txtModificarId;
-        private GroupBox cmbEliminarCategoria;
-        private Label label4;
-        private TextBox txtEliminarId;
         private Button btnEliminar;
+        private Panel pnelppaltitulo;
+        private Label lblTituloGR;
+        private TableLayoutPanel tlpBotones;
+        private TableLayoutPanel tlpDivision;
+        private GroupBox grbManejodeDatos;
+        private GroupBox grbIngresoDatos;
+        private TableLayoutPanel tlpIngreso;
+        private Label lblNombre;
+        private TextBox txtNombre;
+        private Button btnLimpiarCampos;
+        private GroupBox grbBuscarCategoria;
+        private TableLayoutPanel tlpBuscar;
+        private Label lblId;
+        private TextBox txtNombreBuscado;
+        private Button btnBuscar;
     }
 }
