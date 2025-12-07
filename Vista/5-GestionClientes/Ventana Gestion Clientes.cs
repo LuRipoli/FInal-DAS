@@ -30,8 +30,49 @@ namespace Vista
         {
             Application.Exit();
         }
+        #region HELPER
+        private void Refrescar()
+        {
+            var controladoraClientes = ControladoraClientes.Instancia();
+            var clientes = controladoraClientes.ObtenerClientes();
+            dgvClientes.DataSource = clientes;
+            if (dgvClientes.Columns["Id"] != null)
+                dgvClientes.Columns["Id"].Visible = false;
+            if (dgvClientes.Columns["TipoCliente"] != null)
+                dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
+        }
+        private void LimpiarCampos()
+        {
+            //txtNombreBuscado.Clear();
+            txtNombre.Clear();
+            txtEmail.Clear();
+        }
+        private int? GetId()
+        {
+            if (Controladora.ControladoraClientes.Instancia().ObtenerClientes().Count != 0)
+            {
+                try
+                {
+                    return int.Parse(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value.ToString());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
 
-        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        private void btnRefrescar_Click_1(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
+
+        private void btnAgregarCliente_Click_1(object sender, EventArgs e)
         {
             var controladoraClientes = Controladora.ControladoraClientes.Instancia();
             try
@@ -59,7 +100,7 @@ namespace Vista
             }
         }
 
-        private void btnModificarCliente_Click(object sender, EventArgs e)
+        private void btnModificarCliente_Click_1(object sender, EventArgs e)
         {
             var controladoraClientes = ControladoraClientes.Instancia();
             try
@@ -94,7 +135,7 @@ namespace Vista
             }
         }
 
-        private void btnEliminarCliente_Click(object sender, EventArgs e)
+        private void btnEliminarCliente_Click_1(object sender, EventArgs e)
         {
             var controladoraClientes = ControladoraClientes.Instancia();
             try
@@ -118,13 +159,18 @@ namespace Vista
             }
         }
 
-        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        private void btnBuscarCliente_Click_1(object sender, EventArgs e)
         {
-            btnBuscar.Enabled = true;
             tlpBuscar.Enabled = true;
+            btnBuscar.Enabled = true;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             var controladoraClientes = ControladoraClientes.Instancia();
             try
@@ -166,48 +212,6 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        
-        #region HELPER
-        private void Refrescar()
-        {
-            var controladoraClientes = ControladoraClientes.Instancia();
-            var clientes = controladoraClientes.ObtenerClientes();
-            dgvClientes.DataSource = clientes;
-            if (dgvClientes.Columns["Id"] != null)
-                dgvClientes.Columns["Id"].Visible = false;
-            if (dgvClientes.Columns["TipoCliente"] != null)
-                dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
-        }
-        private void LimpiarCampos()
-        {
-            //txtNombreBuscado.Clear();
-            txtNombre.Clear();
-            txtEmail.Clear();
-        }
-        private int? GetId()
-        {
-            if (Controladora.ControladoraClientes.Instancia().ObtenerClientes().Count != 0)
-            {
-                try
-                {
-                    return int.Parse(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value.ToString());
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion
-
-        private void btnRefrescar_Click_1(object sender, EventArgs e)
-        {
-            Refrescar();
         }
     }
 }

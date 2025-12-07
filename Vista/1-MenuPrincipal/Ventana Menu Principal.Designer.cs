@@ -32,6 +32,8 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnelppaltitulo = new Panel();
             btnSalir = new Button();
             lblTituloGR = new Label();
@@ -70,7 +72,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1608, 80);
+            pnelppaltitulo.Size = new Size(1698, 80);
             pnelppaltitulo.TabIndex = 15;
             // 
             // btnSalir
@@ -83,7 +85,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(1518, 0);
+            btnSalir.Location = new Point(1608, 0);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(90, 80);
             btnSalir.TabIndex = 7;
@@ -100,7 +102,7 @@
             lblTituloGR.Location = new Point(0, 0);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
-            lblTituloGR.Size = new Size(1608, 80);
+            lblTituloGR.Size = new Size(1698, 80);
             lblTituloGR.TabIndex = 1;
             lblTituloGR.Text = "Sistema de Gestión de Electrodomésticos";
             lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
@@ -113,15 +115,15 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 232);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1608, 542);
+            panel1.Size = new Size(1698, 542);
             panel1.TabIndex = 8;
             // 
             // tlpDatos
             // 
             tlpDatos.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
             tlpDatos.ColumnCount = 2;
-            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.5F));
+            tlpDatos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.5F));
             tlpDatos.Controls.Add(grbProductosBajoStock, 1, 0);
             tlpDatos.Controls.Add(grbVentasSemana, 0, 0);
             tlpDatos.Dock = DockStyle.Fill;
@@ -130,7 +132,7 @@
             tlpDatos.Padding = new Padding(10);
             tlpDatos.RowCount = 1;
             tlpDatos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDatos.Size = new Size(1608, 542);
+            tlpDatos.Size = new Size(1698, 542);
             tlpDatos.TabIndex = 8;
             // 
             // grbProductosBajoStock
@@ -140,9 +142,9 @@
             grbProductosBajoStock.FlatStyle = FlatStyle.Flat;
             grbProductosBajoStock.Font = new Font("Calibri", 14F, FontStyle.Bold);
             grbProductosBajoStock.ForeColor = Color.DarkSlateGray;
-            grbProductosBajoStock.Location = new Point(966, 16);
+            grbProductosBajoStock.Location = new Point(978, 16);
             grbProductosBajoStock.Name = "grbProductosBajoStock";
-            grbProductosBajoStock.Size = new Size(626, 510);
+            grbProductosBajoStock.Size = new Size(704, 510);
             grbProductosBajoStock.TabIndex = 0;
             grbProductosBajoStock.TabStop = false;
             grbProductosBajoStock.Text = "Productos bajo Stock";
@@ -176,9 +178,17 @@
             dgvProductosBajoStock.Location = new Point(3, 38);
             dgvProductosBajoStock.Name = "dgvProductosBajoStock";
             dgvProductosBajoStock.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvProductosBajoStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvProductosBajoStock.RowHeadersVisible = false;
             dgvProductosBajoStock.RowHeadersWidth = 62;
-            dgvProductosBajoStock.Size = new Size(620, 469);
+            dgvProductosBajoStock.Size = new Size(698, 469);
             dgvProductosBajoStock.TabIndex = 0;
             // 
             // grbVentasSemana
@@ -191,7 +201,7 @@
             grbVentasSemana.Location = new Point(16, 16);
             grbVentasSemana.Name = "grbVentasSemana";
             grbVentasSemana.RightToLeft = RightToLeft.No;
-            grbVentasSemana.Size = new Size(941, 510);
+            grbVentasSemana.Size = new Size(953, 510);
             grbVentasSemana.TabIndex = 1;
             grbVentasSemana.TabStop = false;
             grbVentasSemana.Text = "Ventas de la Semana";
@@ -204,30 +214,38 @@
             dgvVentasSemanales.AllowUserToResizeRows = false;
             dgvVentasSemanales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvVentasSemanales.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvVentasSemanales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvVentasSemanales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
             dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvVentasSemanales.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvVentasSemanales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvVentasSemanales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvVentasSemanales.DefaultCellStyle = dataGridViewCellStyle5;
             dgvVentasSemanales.Dock = DockStyle.Fill;
             dgvVentasSemanales.Location = new Point(3, 38);
             dgvVentasSemanales.Name = "dgvVentasSemanales";
             dgvVentasSemanales.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvVentasSemanales.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvVentasSemanales.RowHeadersVisible = false;
             dgvVentasSemanales.RowHeadersWidth = 62;
-            dgvVentasSemanales.Size = new Size(935, 469);
+            dgvVentasSemanales.Size = new Size(947, 469);
             dgvVentasSemanales.TabIndex = 0;
             // 
             // tlpBotones
@@ -254,7 +272,7 @@
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.Size = new Size(1608, 152);
+            tlpBotones.Size = new Size(1698, 152);
             tlpBotones.TabIndex = 8;
             // 
             // btnRegistrarIngresos
@@ -266,10 +284,10 @@
             btnRegistrarIngresos.FlatStyle = FlatStyle.Flat;
             btnRegistrarIngresos.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnRegistrarIngresos.ForeColor = Color.DarkSlateGray;
-            btnRegistrarIngresos.Location = new Point(919, 3);
+            btnRegistrarIngresos.Location = new Point(971, 3);
             btnRegistrarIngresos.Margin = new Padding(0);
             btnRegistrarIngresos.Name = "btnRegistrarIngresos";
-            btnRegistrarIngresos.Size = new Size(226, 146);
+            btnRegistrarIngresos.Size = new Size(239, 146);
             btnRegistrarIngresos.TabIndex = 6;
             btnRegistrarIngresos.Text = "Ingresos ➕";
             btnRegistrarIngresos.UseVisualStyleBackColor = false;
@@ -287,7 +305,7 @@
             btnGestionarSucursales.Location = new Point(3, 3);
             btnGestionarSucursales.Margin = new Padding(0);
             btnGestionarSucursales.Name = "btnGestionarSucursales";
-            btnGestionarSucursales.Size = new Size(226, 146);
+            btnGestionarSucursales.Size = new Size(239, 146);
             btnGestionarSucursales.TabIndex = 5;
             btnGestionarSucursales.Text = "Sucursales 🏬";
             btnGestionarSucursales.UseVisualStyleBackColor = false;
@@ -302,10 +320,10 @@
             btnReportesYConsultas.FlatStyle = FlatStyle.Flat;
             btnReportesYConsultas.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnReportesYConsultas.ForeColor = Color.DarkSlateGray;
-            btnReportesYConsultas.Location = new Point(1377, 3);
+            btnReportesYConsultas.Location = new Point(1455, 3);
             btnReportesYConsultas.Margin = new Padding(0);
             btnReportesYConsultas.Name = "btnReportesYConsultas";
-            btnReportesYConsultas.Size = new Size(228, 146);
+            btnReportesYConsultas.Size = new Size(240, 146);
             btnReportesYConsultas.TabIndex = 3;
             btnReportesYConsultas.Text = "Reportes 📊";
             btnReportesYConsultas.UseVisualStyleBackColor = false;
@@ -320,10 +338,10 @@
             btnRegistrarVentas.FlatStyle = FlatStyle.Flat;
             btnRegistrarVentas.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnRegistrarVentas.ForeColor = Color.DarkSlateGray;
-            btnRegistrarVentas.Location = new Point(1148, 3);
+            btnRegistrarVentas.Location = new Point(1213, 3);
             btnRegistrarVentas.Margin = new Padding(0);
             btnRegistrarVentas.Name = "btnRegistrarVentas";
-            btnRegistrarVentas.Size = new Size(226, 146);
+            btnRegistrarVentas.Size = new Size(239, 146);
             btnRegistrarVentas.TabIndex = 2;
             btnRegistrarVentas.Text = "Ventas 💸";
             btnRegistrarVentas.UseVisualStyleBackColor = false;
@@ -338,10 +356,10 @@
             btnGestionProductos.FlatStyle = FlatStyle.Flat;
             btnGestionProductos.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnGestionProductos.ForeColor = Color.DarkSlateGray;
-            btnGestionProductos.Location = new Point(461, 3);
+            btnGestionProductos.Location = new Point(487, 3);
             btnGestionProductos.Margin = new Padding(0);
             btnGestionProductos.Name = "btnGestionProductos";
-            btnGestionProductos.Size = new Size(226, 146);
+            btnGestionProductos.Size = new Size(239, 146);
             btnGestionProductos.TabIndex = 0;
             btnGestionProductos.Text = "Productos 📦 ";
             btnGestionProductos.UseVisualStyleBackColor = false;
@@ -356,10 +374,10 @@
             GestionDeCategorias.FlatStyle = FlatStyle.Flat;
             GestionDeCategorias.Font = new Font("Calibri", 18F, FontStyle.Bold);
             GestionDeCategorias.ForeColor = Color.DarkSlateGray;
-            GestionDeCategorias.Location = new Point(232, 3);
+            GestionDeCategorias.Location = new Point(245, 3);
             GestionDeCategorias.Margin = new Padding(0);
             GestionDeCategorias.Name = "GestionDeCategorias";
-            GestionDeCategorias.Size = new Size(226, 146);
+            GestionDeCategorias.Size = new Size(239, 146);
             GestionDeCategorias.TabIndex = 4;
             GestionDeCategorias.Text = "Categorias 📂 ";
             GestionDeCategorias.UseVisualStyleBackColor = false;
@@ -374,10 +392,10 @@
             btnGestionClientes.FlatStyle = FlatStyle.Flat;
             btnGestionClientes.Font = new Font("Calibri", 18F, FontStyle.Bold);
             btnGestionClientes.ForeColor = Color.DarkSlateGray;
-            btnGestionClientes.Location = new Point(690, 3);
+            btnGestionClientes.Location = new Point(729, 3);
             btnGestionClientes.Margin = new Padding(0);
             btnGestionClientes.Name = "btnGestionClientes";
-            btnGestionClientes.Size = new Size(226, 146);
+            btnGestionClientes.Size = new Size(239, 146);
             btnGestionClientes.TabIndex = 1;
             btnGestionClientes.Text = "Clientes 👤";
             btnGestionClientes.UseVisualStyleBackColor = false;
@@ -391,7 +409,7 @@
             pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1608, 152);
+            pnelppalmedio.Size = new Size(1698, 152);
             pnelppalmedio.TabIndex = 16;
             // 
             // Form1
@@ -399,14 +417,13 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            ClientSize = new Size(1608, 774);
+            ClientSize = new Size(1698, 774);
             Controls.Add(panel1);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(4);
-            MaximumSize = new Size(1630, 830);
             MinimumSize = new Size(1630, 830);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;

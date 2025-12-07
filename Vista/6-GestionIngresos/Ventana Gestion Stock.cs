@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class Ventana_Gestion_Ingresos : Form
+    public partial class Ventana_Gestion_Stock : Form
     {
-        public Ventana_Gestion_Ingresos()
+        public Ventana_Gestion_Stock()
         {
             InitializeComponent();
             CargarCombos();
@@ -91,7 +91,7 @@ namespace Vista
                     throw new DatosInvalidosException("Debe seleccionar un producto.");
                 if (cmbSucursal.SelectedIndex == -1)
                     throw new DatosInvalidosException("Debe seleccionar una sucursal.");
-              
+
                 int productoId = (int)cmbProducto.SelectedValue;
                 int sucursalId = (int)cmbSucursal.SelectedValue;
                 int cantidad = (int)nudCantidadIngresada.Value;
@@ -124,10 +124,29 @@ namespace Vista
 
         private void btnBuscarSucursal_Click(object sender, EventArgs e)
         {
-            grbBuscarSucursal.Enabled = true;
+            tlpBuscar.Enabled = true;
+            btnBuscar.Enabled = true;
+        }
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
+
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -142,7 +161,8 @@ namespace Vista
                     throw new EntidadNoEncontradaException("No hay stocks para esa sucursal.");
 
                 dgvStock.DataSource = lista;
-
+                tlpBuscar.Enabled = false;
+                btnBuscar.Enabled = false;
                 txtIdBuscado.Clear();
             }
             catch (DatosInvalidosException ex)
@@ -158,15 +178,8 @@ namespace Vista
                 MessageBox.Show("Error inesperado: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
+            tlpBuscar.Enabled = false;
+            btnBuscar.Enabled = false;
         }
     }
 }

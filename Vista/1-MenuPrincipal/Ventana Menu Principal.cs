@@ -97,7 +97,7 @@ namespace Vista
 
         private void btnRegistrarIngresos_Click(object sender, EventArgs e)
         {
-            Ventana_Gestion_Ingresos fIngresos = new Ventana_Gestion_Ingresos();
+            Ventana_Gestion_Stock fIngresos = new Ventana_Gestion_Stock();
             fIngresos.Show();
         }
     }
