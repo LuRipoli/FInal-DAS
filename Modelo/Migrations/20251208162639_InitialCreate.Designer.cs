@@ -12,7 +12,7 @@ using Modelo;
 namespace Modelo.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251207224916_InitialCreate")]
+    [Migration("20251208162639_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -185,6 +185,9 @@ namespace Modelo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
@@ -197,7 +200,14 @@ namespace Modelo.Migrations
                     b.Property<int>("MetodoPago")
                         .HasColumnType("int");
 
+                    b.Property<string>("NombreVendedor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SucursalId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
@@ -208,6 +218,8 @@ namespace Modelo.Migrations
                     b.HasIndex("ClienteId");
 
                     b.HasIndex("ProductoId");
+
+                    b.HasIndex("SucursalId");
 
                     b.ToTable("Ventas");
                 });
@@ -283,9 +295,17 @@ namespace Modelo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entidades.Sucursal", "Sucursal")
+                        .WithMany()
+                        .HasForeignKey("SucursalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Cliente");
 
                     b.Navigation("Producto");
+
+                    b.Navigation("Sucursal");
                 });
 
             modelBuilder.Entity("Entidades.Producto", b =>

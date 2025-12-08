@@ -18,83 +18,98 @@ namespace Vista
         public Ventana_Gestion_Ventas()
         {
             InitializeComponent();
-            grbIngresoDatos.Enabled = false;
-            PrecargaCmbs();
+            Refrescar();
+            PrecargarCombos();
+            LimpiarCampos();
         }
-
-        private void pnelppalmedio_Paint(object sender, PaintEventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Agregar Venta
         {
 
+            try
+            {
+                if (cmbClientes.SelectedIndex == -1 || cmbProducto.SelectedIndex == -1 || cmbSucursales.SelectedIndex == -1)
+                    throw new DatosInvalidosException("Debe completar todos los campos.");
+
+
+                if (string.IsNullOrWhiteSpace(txtNombreVendedor.Text))
+                    throw new DatosInvalidosException("Debe ingresar el nombre del vendedor.");
+
+
+                if (nudCantidad.Value <= 0)
+                    throw new DatosInvalidosException("La cantidad vendida debe ser mayor a 0.");
+
+
+                MetodoPago metodo = rdbEfectivo.Checked ? MetodoPago.Efectivo : rbtTransferencia.Checked ? MetodoPago.Transferencia : rdbTarjeta.Checked ? MetodoPago.Tarjeta : throw new DatosInvalidosException("Debe seleccionar un método de pago.");
+
+
+                Cliente cliente = (Cliente)cmbClientes.SelectedItem;
+                Producto producto = (Producto)cmbProducto.SelectedItem;
+                Sucursal sucursal = (Sucursal)cmbSucursales.SelectedItem;
+
+
+                DateTime fecha = dtpFecha.Value;
+                decimal total = nudTotal.Value;
+                decimal descuento = nudDescuento.Value;
+                int cantidad = (int)nudCantidad.Value;
+                if (txtNombreVendedor.Text.Trim() == "")
+                    throw new DatosInvalidosException("El nombre del vendedor no puede estar vacío.");
+                string nombreVendedor = txtNombreVendedor.Text.Trim();
+
+
+                controladora.AgregarVenta(fecha, cliente.Id, metodo, descuento, total, producto, sucursal, cantidad, nombreVendedor);
+
+
+                MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Refrescar();
+                LimpiarCampos();
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MetodoPago mp;
-            if (rbtEfectivo.Checked)
-                mp = MetodoPago.Efectivo;
-            else if (rbtTarjeta.Checked)
-                mp = MetodoPago.Tarjeta;
-            else if (rbtTransferencia.Checked)
-                mp = MetodoPago.Transferencia;
-            else
-            {
-                MessageBox.Show("Método de pago no seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!int.TryParse(cmbClientes.Text, out int clienteId))
-            {
-                MessageBox.Show("Cliente inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Obtener el producto buscándolo en la colección que sí devuelve objetos Producto
-            var productos = ControladoraProductos.Instancia().ObtenerProducto();
-            var productoSeleccionado = productos.FirstOrDefault(p => string.Equals(p.Nombre, Convert.ToString(cmbProducto.Text), StringComparison.CurrentCultureIgnoreCase));
-            if (productoSeleccionado == null)
-            {
-                MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!decimal.TryParse(txtDescuento.Text, out decimal descuento))
-            {
-                descuento = 0m; // o mostrar error según la lógica deseada
-            }
-
-            if (!decimal.TryParse(txtTotal.Text, out decimal total))
-            {
-                MessageBox.Show("Total inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            controladora.AgregarVenta(dtpFecha.Value, clienteId, mp, descuento, total, productoSeleccionado);
-        }
-
-        private void btnAgregarSucursal_Click(object sender, EventArgs e)
-        {
-            grbIngresoDatos.Enabled = true;
-        }
-
-        public void PrecargaCmbs()
+        public void PrecargarCombos()
         {
             var clientes = ControladoraClientes.Instancia().ObtenerClientes();
-            foreach (var cliente in clientes)
-            {
-                cmbClientes.Items.Add(cliente.Id);
-            }
+            foreach (var cliente in clientes) 
+                cmbClientes.Items.Add(cliente);
+
 
             var productos = ControladoraProductos.Instancia().ObtenerProducto();
-            foreach (var producto in productos)
-            {
-                cmbProducto.Items.Add(producto.Nombre);
-            }
+            foreach (var producto in productos) 
+                cmbProducto.Items.Add(producto);
 
-            var sucursal = ControladoraSucursales.Instancia().ObtenerSucursales();
-            foreach (var suc in sucursal)
-            {
-                cmbSucursales.Items.Add(suc.Nombre);
-            }
+
+            var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales();
+            foreach (var sucursal in sucursales) 
+                cmbSucursales.Items.Add(sucursal);
+        }
+        private void Refrescar()
+        {
+            var ventas = controladora.ObtenerVentas();
+            dgvVentas.DataSource = ventas;
+        }
+        private void LimpiarCampos()
+        {
+            cmbClientes.SelectedIndex = -1;
+            cmbProducto.SelectedIndex = -1;
+            cmbSucursales.SelectedIndex = -1;
+            nudTotal.Value = 0;
+            nudDescuento.Value = 0;
+            nudCantidad.Value = 0;
+            txtNombreVendedor.Text = string.Empty;
+            rdbEfectivo.Checked = false;
+            rdbTransferencia.Checked = false;
+            rdbTarjeta.Checked = false;
+            dtpFecha.Value = DateTime.Now;
+            dtpFechaBuscada.Value = DateTime.Now;
+            tlpBuscar.Enabled = false;
+            btnBuscar.Enabled = false;
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -109,9 +124,41 @@ namespace Vista
             Application.Exit();
         }
 
-        private void pnelppalbotones_Paint(object sender, PaintEventArgs e)
+        private void btnBuscarVenta_Click(object sender, EventArgs e)
         {
+            tlpBuscar.Enabled = true;
+            btnBuscar.Enabled = true;
+        }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime fechaBuscada = dtpFechaBuscada.Value.Date;
+                var ventas = controladora.ObtenerVentas().Where(v => v.Fecha.Date == fechaBuscada).ToList();
+
+                if (ventas.Count == 0)
+                    MessageBox.Show("No se encontraron ventas para la fecha seleccionada.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                dgvVentas.DataSource = null;
+                dgvVentas.DataSource = ventas;
+                tlpBuscar.Enabled = false;
+                btnBuscar.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar las ventas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
+        }
+
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }

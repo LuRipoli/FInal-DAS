@@ -16,10 +16,15 @@ namespace Entidades
         public DateTime Fecha { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        public MetodoPago MetodoPago { get; set; }   // Efectivo / Tarjeta / Transferencia
+        public MetodoPago MetodoPago { get; set; }
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
         public Producto Producto { get; set; }
+        public int SucursalId { get; set; }         
+        public Sucursal Sucursal { get; set; }    
+        public int Cantidad { get; set; }
+        public string NombreVendedor { get; set; }
+
     }
 
     public enum MetodoPago

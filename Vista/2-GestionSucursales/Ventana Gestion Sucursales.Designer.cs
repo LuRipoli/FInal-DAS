@@ -73,10 +73,10 @@
             pnelppalmedio.Controls.Add(tlpDivision);
             pnelppalmedio.Controls.Add(tlpBotones);
             pnelppalmedio.Dock = DockStyle.Fill;
-            pnelppalmedio.Location = new Point(0, 64);
+            pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1030, 448);
+            pnelppalmedio.Size = new Size(1282, 549);
             pnelppalmedio.TabIndex = 18;
             // 
             // tlpDivision
@@ -89,14 +89,14 @@
             tlpDivision.Controls.Add(grbGrillaSucursales, 1, 0);
             tlpDivision.Controls.Add(grbManejodeDatos, 0, 0);
             tlpDivision.Dock = DockStyle.Fill;
-            tlpDivision.Location = new Point(0, 123);
+            tlpDivision.Location = new Point(0, 152);
             tlpDivision.Margin = new Padding(2);
-            tlpDivision.MaximumSize = new Size(1027, 319);
-            tlpDivision.MinimumSize = new Size(1027, 319);
+            tlpDivision.MaximumSize = new Size(1284, 399);
+            tlpDivision.MinimumSize = new Size(1284, 399);
             tlpDivision.Name = "tlpDivision";
             tlpDivision.RowCount = 1;
             tlpDivision.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDivision.Size = new Size(1027, 319);
+            tlpDivision.Size = new Size(1284, 399);
             tlpDivision.TabIndex = 21;
             // 
             // grbGrillaSucursales
@@ -108,11 +108,11 @@
             grbGrillaSucursales.FlatStyle = FlatStyle.Flat;
             grbGrillaSucursales.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbGrillaSucursales.ForeColor = Color.DarkSlateGray;
-            grbGrillaSucursales.Location = new Point(472, 11);
-            grbGrillaSucursales.Margin = new Padding(8);
+            grbGrillaSucursales.Location = new Point(589, 13);
+            grbGrillaSucursales.Margin = new Padding(10);
             grbGrillaSucursales.Name = "grbGrillaSucursales";
             grbGrillaSucursales.Padding = new Padding(2);
-            grbGrillaSucursales.Size = new Size(544, 297);
+            grbGrillaSucursales.Size = new Size(682, 373);
             grbGrillaSucursales.TabIndex = 18;
             grbGrillaSucursales.TabStop = false;
             grbGrillaSucursales.Text = "Grilla de Sucursales";
@@ -122,10 +122,10 @@
             btnRefrescar.FlatAppearance.BorderSize = 0;
             btnRefrescar.FlatStyle = FlatStyle.Flat;
             btnRefrescar.Font = new Font("Calibri", 16F, FontStyle.Bold);
-            btnRefrescar.Location = new Point(510, -6);
+            btnRefrescar.Location = new Point(638, -8);
             btnRefrescar.Margin = new Padding(2);
             btnRefrescar.Name = "btnRefrescar";
-            btnRefrescar.Size = new Size(32, 34);
+            btnRefrescar.Size = new Size(40, 42);
             btnRefrescar.TabIndex = 2;
             btnRefrescar.Text = "🔄";
             btnRefrescar.UseVisualStyleBackColor = true;
@@ -157,8 +157,8 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvSucursales.DefaultCellStyle = dataGridViewCellStyle2;
             dgvSucursales.Dock = DockStyle.Fill;
-            dgvSucursales.Location = new Point(2, 31);
-            dgvSucursales.Margin = new Padding(16);
+            dgvSucursales.Location = new Point(2, 37);
+            dgvSucursales.Margin = new Padding(20);
             dgvSucursales.Name = "dgvSucursales";
             dgvSucursales.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -171,7 +171,7 @@
             dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvSucursales.RowHeadersVisible = false;
             dgvSucursales.RowHeadersWidth = 62;
-            dgvSucursales.Size = new Size(540, 264);
+            dgvSucursales.Size = new Size(678, 334);
             dgvSucursales.TabIndex = 1;
             // 
             // grbManejodeDatos
@@ -182,11 +182,11 @@
             grbManejodeDatos.Controls.Add(btnBuscar);
             grbManejodeDatos.Dock = DockStyle.Fill;
             grbManejodeDatos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            grbManejodeDatos.Location = new Point(11, 11);
-            grbManejodeDatos.Margin = new Padding(8);
+            grbManejodeDatos.Location = new Point(13, 13);
+            grbManejodeDatos.Margin = new Padding(10);
             grbManejodeDatos.Name = "grbManejodeDatos";
             grbManejodeDatos.Padding = new Padding(0);
-            grbManejodeDatos.Size = new Size(442, 297);
+            grbManejodeDatos.Size = new Size(553, 373);
             grbManejodeDatos.TabIndex = 17;
             grbManejodeDatos.TabStop = false;
             // 
@@ -201,13 +201,13 @@
             tlpIngreso.Controls.Add(lblDireccion, 0, 1);
             tlpIngreso.Controls.Add(txtNombre, 1, 0);
             tlpIngreso.Dock = DockStyle.Top;
-            tlpIngreso.Location = new Point(0, 72);
+            tlpIngreso.Location = new Point(0, 89);
             tlpIngreso.Margin = new Padding(2);
             tlpIngreso.Name = "tlpIngreso";
             tlpIngreso.RowCount = 2;
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpIngreso.Size = new Size(442, 122);
+            tlpIngreso.Size = new Size(553, 152);
             tlpIngreso.TabIndex = 24;
             // 
             // lblNombre
@@ -217,10 +217,10 @@
             lblNombre.BackColor = SystemColors.AppWorkspace;
             lblNombre.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNombre.ForeColor = Color.DarkSlateGray;
-            lblNombre.Location = new Point(5, 3);
+            lblNombre.Location = new Point(5, 21);
             lblNombre.Margin = new Padding(2, 0, 2, 0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(212, 56);
+            lblNombre.Size = new Size(268, 35);
             lblNombre.TabIndex = 6;
             lblNombre.Text = "Nombre de Sucursal:";
             lblNombre.TextAlign = ContentAlignment.MiddleCenter;
@@ -229,11 +229,11 @@
             // 
             txtDireccion.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtDireccion.Font = new Font("Segoe UI", 12F);
-            txtDireccion.Location = new Point(228, 74);
-            txtDireccion.Margin = new Padding(6);
+            txtDireccion.Location = new Point(286, 93);
+            txtDireccion.Margin = new Padding(8);
             txtDireccion.Multiline = true;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(205, 32);
+            txtDireccion.Size = new Size(256, 39);
             txtDireccion.TabIndex = 17;
             txtDireccion.TextAlign = HorizontalAlignment.Center;
             // 
@@ -243,10 +243,10 @@
             lblDireccion.AutoSize = true;
             lblDireccion.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDireccion.ForeColor = Color.DarkSlateGray;
-            lblDireccion.Location = new Point(5, 76);
+            lblDireccion.Location = new Point(5, 95);
             lblDireccion.Margin = new Padding(2, 0, 2, 0);
             lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(212, 29);
+            lblDireccion.Size = new Size(268, 35);
             lblDireccion.TabIndex = 18;
             lblDireccion.Text = "Dirección:";
             lblDireccion.TextAlign = ContentAlignment.MiddleCenter;
@@ -255,10 +255,10 @@
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtNombre.Font = new Font("Segoe UI", 12F);
-            txtNombre.Location = new Point(228, 14);
-            txtNombre.Margin = new Padding(6);
+            txtNombre.Location = new Point(286, 19);
+            txtNombre.Margin = new Padding(8);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(205, 34);
+            txtNombre.Size = new Size(256, 39);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -271,10 +271,10 @@
             btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
             btnLimpiarCampos.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLimpiarCampos.ForeColor = Color.White;
-            btnLimpiarCampos.Location = new Point(0, 20);
+            btnLimpiarCampos.Location = new Point(0, 24);
             btnLimpiarCampos.Margin = new Padding(0);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
-            btnLimpiarCampos.Size = new Size(442, 52);
+            btnLimpiarCampos.Size = new Size(553, 65);
             btnLimpiarCampos.TabIndex = 23;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
@@ -289,12 +289,12 @@
             tlpBuscar.Controls.Add(txtNombreBuscado, 1, 0);
             tlpBuscar.Dock = DockStyle.Bottom;
             tlpBuscar.Enabled = false;
-            tlpBuscar.Location = new Point(0, 189);
+            tlpBuscar.Location = new Point(0, 238);
             tlpBuscar.Margin = new Padding(2);
             tlpBuscar.Name = "tlpBuscar";
             tlpBuscar.RowCount = 1;
             tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBuscar.Size = new Size(442, 56);
+            tlpBuscar.Size = new Size(553, 70);
             tlpBuscar.TabIndex = 22;
             // 
             // lblId
@@ -303,10 +303,10 @@
             lblId.AutoSize = true;
             lblId.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblId.ForeColor = Color.DarkSlateGray;
-            lblId.Location = new Point(5, 13);
+            lblId.Location = new Point(5, 17);
             lblId.Margin = new Padding(2, 0, 2, 0);
             lblId.Name = "lblId";
-            lblId.Size = new Size(212, 29);
+            lblId.Size = new Size(268, 35);
             lblId.TabIndex = 18;
             lblId.Text = "Sucursal Buscada:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
@@ -315,10 +315,10 @@
             // 
             txtNombreBuscado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtNombreBuscado.Font = new Font("Segoe UI", 12F);
-            txtNombreBuscado.Location = new Point(228, 11);
-            txtNombreBuscado.Margin = new Padding(6);
+            txtNombreBuscado.Location = new Point(286, 15);
+            txtNombreBuscado.Margin = new Padding(8);
             txtNombreBuscado.Name = "txtNombreBuscado";
-            txtNombreBuscado.Size = new Size(205, 34);
+            txtNombreBuscado.Size = new Size(256, 39);
             txtNombreBuscado.TabIndex = 17;
             // 
             // btnBuscar
@@ -331,10 +331,10 @@
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(0, 245);
+            btnBuscar.Location = new Point(0, 308);
             btnBuscar.Margin = new Padding(0);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(442, 52);
+            btnBuscar.Size = new Size(553, 65);
             btnBuscar.TabIndex = 21;
             btnBuscar.Text = "Buscar Sucursal";
             btnBuscar.UseVisualStyleBackColor = false;
@@ -360,7 +360,7 @@
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.Size = new Size(1030, 123);
+            tlpBotones.Size = new Size(1282, 152);
             tlpBotones.TabIndex = 20;
             // 
             // btnBuscarSucursal
@@ -372,10 +372,10 @@
             btnBuscarSucursal.FlatStyle = FlatStyle.Flat;
             btnBuscarSucursal.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarSucursal.ForeColor = Color.DarkSlateGray;
-            btnBuscarSucursal.Location = new Point(771, 3);
+            btnBuscarSucursal.Location = new Point(960, 3);
             btnBuscarSucursal.Margin = new Padding(0);
             btnBuscarSucursal.Name = "btnBuscarSucursal";
-            btnBuscarSucursal.Size = new Size(256, 117);
+            btnBuscarSucursal.Size = new Size(319, 146);
             btnBuscarSucursal.TabIndex = 10;
             btnBuscarSucursal.Text = "Buscar 🔍";
             btnBuscarSucursal.UseVisualStyleBackColor = false;
@@ -389,10 +389,10 @@
             btnEliminarSucursal.FlatStyle = FlatStyle.Flat;
             btnEliminarSucursal.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEliminarSucursal.ForeColor = Color.DarkSlateGray;
-            btnEliminarSucursal.Location = new Point(515, 3);
+            btnEliminarSucursal.Location = new Point(641, 3);
             btnEliminarSucursal.Margin = new Padding(0);
             btnEliminarSucursal.Name = "btnEliminarSucursal";
-            btnEliminarSucursal.Size = new Size(253, 117);
+            btnEliminarSucursal.Size = new Size(316, 146);
             btnEliminarSucursal.TabIndex = 6;
             btnEliminarSucursal.Text = "Eliminar 🗑️";
             btnEliminarSucursal.UseVisualStyleBackColor = true;
@@ -406,10 +406,10 @@
             btnModificarSucursal.FlatStyle = FlatStyle.Flat;
             btnModificarSucursal.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificarSucursal.ForeColor = Color.DarkSlateGray;
-            btnModificarSucursal.Location = new Point(259, 3);
+            btnModificarSucursal.Location = new Point(322, 3);
             btnModificarSucursal.Margin = new Padding(0);
             btnModificarSucursal.Name = "btnModificarSucursal";
-            btnModificarSucursal.Size = new Size(253, 117);
+            btnModificarSucursal.Size = new Size(316, 146);
             btnModificarSucursal.TabIndex = 5;
             btnModificarSucursal.Text = "Modificar 🛠️";
             btnModificarSucursal.UseVisualStyleBackColor = true;
@@ -426,7 +426,7 @@
             btnAgregarSucursal.Location = new Point(3, 3);
             btnAgregarSucursal.Margin = new Padding(0);
             btnAgregarSucursal.Name = "btnAgregarSucursal";
-            btnAgregarSucursal.Size = new Size(253, 117);
+            btnAgregarSucursal.Size = new Size(316, 146);
             btnAgregarSucursal.TabIndex = 4;
             btnAgregarSucursal.Text = "Agregar ➕";
             btnAgregarSucursal.UseVisualStyleBackColor = true;
@@ -442,7 +442,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1030, 64);
+            pnelppaltitulo.Size = new Size(1282, 80);
             pnelppaltitulo.TabIndex = 17;
             // 
             // lblTituloGR
@@ -452,10 +452,10 @@
             lblTituloGR.BackColor = Color.Transparent;
             lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
             lblTituloGR.ForeColor = Color.White;
-            lblTituloGR.Location = new Point(328, 5);
+            lblTituloGR.Location = new Point(407, 6);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
-            lblTituloGR.Size = new Size(464, 58);
+            lblTituloGR.Size = new Size(548, 68);
             lblTituloGR.TabIndex = 10;
             lblTituloGR.Text = "Gestión de Sucursales:";
             lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
@@ -472,7 +472,7 @@
             btnVolver.Location = new Point(0, 0);
             btnVolver.Margin = new Padding(2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(72, 64);
+            btnVolver.Size = new Size(96, 80);
             btnVolver.TabIndex = 9;
             btnVolver.Text = "↩️";
             btnVolver.UseVisualStyleBackColor = true;
@@ -486,10 +486,10 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(958, 0);
+            btnSalir.Location = new Point(1192, 0);
             btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(72, 64);
+            btnSalir.Size = new Size(90, 80);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "❌";
             btnSalir.UseVisualStyleBackColor = true;
@@ -497,15 +497,15 @@
             // 
             // Ventana_Gestion_Sucursales
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1030, 512);
+            ClientSize = new Size(1282, 629);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(2);
-            MaximumSize = new Size(1048, 559);
-            MinimumSize = new Size(1048, 559);
+            MaximumSize = new Size(1304, 685);
+            MinimumSize = new Size(1304, 685);
             Name = "Ventana_Gestion_Sucursales";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sucursales";

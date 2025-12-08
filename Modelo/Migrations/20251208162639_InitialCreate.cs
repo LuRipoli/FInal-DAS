@@ -148,7 +148,10 @@ namespace Modelo.Migrations
                     MetodoPago = table.Column<int>(type: "int", nullable: false),
                     Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ProductoId = table.Column<int>(type: "int", nullable: false)
+                    ProductoId = table.Column<int>(type: "int", nullable: false),
+                    SucursalId = table.Column<int>(type: "int", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    NombreVendedor = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -163,6 +166,12 @@ namespace Modelo.Migrations
                         name: "FK_Ventas_Productos_ProductoId",
                         column: x => x.ProductoId,
                         principalTable: "Productos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ventas_Sucursales_SucursalId",
+                        column: x => x.SucursalId,
+                        principalTable: "Sucursales",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -206,6 +215,11 @@ namespace Modelo.Migrations
                 name: "IX_Ventas_ProductoId",
                 table: "Ventas",
                 column: "ProductoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ventas_SucursalId",
+                table: "Ventas",
+                column: "SucursalId");
         }
 
         /// <inheritdoc />
@@ -221,13 +235,13 @@ namespace Modelo.Migrations
                 name: "Ventas");
 
             migrationBuilder.DropTable(
-                name: "Sucursales");
-
-            migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Productos");
+
+            migrationBuilder.DropTable(
+                name: "Sucursales");
 
             migrationBuilder.DropTable(
                 name: "Categorias");
