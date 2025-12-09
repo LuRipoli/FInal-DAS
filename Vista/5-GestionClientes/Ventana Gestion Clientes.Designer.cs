@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnelppaltitulo = new Panel();
             lblTituloGR = new Label();
             btnSalir = new Button();
@@ -82,7 +82,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1468, 80);
+            pnelppaltitulo.Size = new Size(1392, 80);
             pnelppaltitulo.TabIndex = 11;
             // 
             // lblTituloGR
@@ -92,7 +92,7 @@
             lblTituloGR.BackColor = Color.Transparent;
             lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
             lblTituloGR.ForeColor = Color.White;
-            lblTituloGR.Location = new Point(498, 6);
+            lblTituloGR.Location = new Point(460, 6);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
             lblTituloGR.Size = new Size(489, 68);
@@ -107,7 +107,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(1378, 0);
+            btnSalir.Location = new Point(1302, 0);
             btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(90, 80);
@@ -152,7 +152,7 @@
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.Size = new Size(1468, 100);
+            tlpBotones.Size = new Size(1392, 100);
             tlpBotones.TabIndex = 23;
             // 
             // btnEliminarCliente
@@ -163,10 +163,10 @@
             btnEliminarCliente.FlatStyle = FlatStyle.Flat;
             btnEliminarCliente.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEliminarCliente.ForeColor = Color.DarkSlateGray;
-            btnEliminarCliente.Location = new Point(737, 5);
+            btnEliminarCliente.Location = new Point(699, 5);
             btnEliminarCliente.Margin = new Padding(2);
             btnEliminarCliente.Name = "btnEliminarCliente";
-            btnEliminarCliente.Size = new Size(359, 90);
+            btnEliminarCliente.Size = new Size(340, 90);
             btnEliminarCliente.TabIndex = 6;
             btnEliminarCliente.Text = "Eliminar 🗑️";
             btnEliminarCliente.UseVisualStyleBackColor = true;
@@ -180,10 +180,10 @@
             btnModificarCliente.FlatStyle = FlatStyle.Flat;
             btnModificarCliente.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificarCliente.ForeColor = Color.DarkSlateGray;
-            btnModificarCliente.Location = new Point(371, 5);
+            btnModificarCliente.Location = new Point(352, 5);
             btnModificarCliente.Margin = new Padding(2);
             btnModificarCliente.Name = "btnModificarCliente";
-            btnModificarCliente.Size = new Size(359, 90);
+            btnModificarCliente.Size = new Size(340, 90);
             btnModificarCliente.TabIndex = 5;
             btnModificarCliente.Text = "Modificar 🛠️";
             btnModificarCliente.UseVisualStyleBackColor = true;
@@ -197,10 +197,10 @@
             btnBuscarCliente.FlatStyle = FlatStyle.Flat;
             btnBuscarCliente.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarCliente.ForeColor = Color.DarkSlateGray;
-            btnBuscarCliente.Location = new Point(1103, 5);
+            btnBuscarCliente.Location = new Point(1046, 5);
             btnBuscarCliente.Margin = new Padding(2);
             btnBuscarCliente.Name = "btnBuscarCliente";
-            btnBuscarCliente.Size = new Size(360, 90);
+            btnBuscarCliente.Size = new Size(341, 90);
             btnBuscarCliente.TabIndex = 10;
             btnBuscarCliente.Text = "Buscar 🔍";
             btnBuscarCliente.UseVisualStyleBackColor = true;
@@ -217,7 +217,7 @@
             btnAgregarCliente.Location = new Point(5, 5);
             btnAgregarCliente.Margin = new Padding(2);
             btnAgregarCliente.Name = "btnAgregarCliente";
-            btnAgregarCliente.Size = new Size(359, 90);
+            btnAgregarCliente.Size = new Size(340, 90);
             btnAgregarCliente.TabIndex = 4;
             btnAgregarCliente.Text = "Agregar ➕";
             btnAgregarCliente.UseVisualStyleBackColor = true;
@@ -230,7 +230,7 @@
             panel1.Location = new Point(0, 180);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1468, 448);
+            panel1.Size = new Size(1392, 448);
             panel1.TabIndex = 24;
             // 
             // tableLayoutPanel2
@@ -247,7 +247,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1468, 448);
+            tableLayoutPanel2.Size = new Size(1392, 448);
             tableLayoutPanel2.TabIndex = 24;
             // 
             // grbGrillaClientes
@@ -259,11 +259,11 @@
             grbGrillaClientes.Dock = DockStyle.Fill;
             grbGrillaClientes.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbGrillaClientes.ForeColor = Color.DarkSlateGray;
-            grbGrillaClientes.Location = new Point(662, 2);
+            grbGrillaClientes.Location = new Point(628, 2);
             grbGrillaClientes.Margin = new Padding(2);
             grbGrillaClientes.Name = "grbGrillaClientes";
             grbGrillaClientes.Padding = new Padding(2);
-            grbGrillaClientes.Size = new Size(804, 444);
+            grbGrillaClientes.Size = new Size(762, 444);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
             grbGrillaClientes.Text = "Grilla de Clientes";
@@ -274,7 +274,7 @@
             btnRefrescar.FlatStyle = FlatStyle.Flat;
             btnRefrescar.Font = new Font("Calibri", 16F, FontStyle.Bold);
             btnRefrescar.ForeColor = Color.DarkSlateGray;
-            btnRefrescar.Location = new Point(755, -5);
+            btnRefrescar.Location = new Point(719, -5);
             btnRefrescar.Margin = new Padding(2);
             btnRefrescar.Name = "btnRefrescar";
             btnRefrescar.Size = new Size(40, 42);
@@ -290,39 +290,39 @@
             dgvClientes.AllowUserToResizeRows = false;
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle5;
             dgvClientes.Dock = DockStyle.Fill;
             dgvClientes.Location = new Point(2, 37);
             dgvClientes.Margin = new Padding(20);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvClientes.RowHeadersVisible = false;
             dgvClientes.RowHeadersWidth = 62;
-            dgvClientes.Size = new Size(800, 405);
+            dgvClientes.Size = new Size(758, 405);
             dgvClientes.TabIndex = 1;
             // 
             // grbDatos
@@ -336,7 +336,7 @@
             grbDatos.Margin = new Padding(2);
             grbDatos.Name = "grbDatos";
             grbDatos.Padding = new Padding(2);
-            grbDatos.Size = new Size(656, 444);
+            grbDatos.Size = new Size(622, 444);
             grbDatos.TabIndex = 19;
             grbDatos.TabStop = false;
             // 
@@ -355,7 +355,7 @@
             tlpBuscar.Name = "tlpBuscar";
             tlpBuscar.RowCount = 1;
             tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBuscar.Size = new Size(652, 74);
+            tlpBuscar.Size = new Size(618, 74);
             tlpBuscar.TabIndex = 23;
             // 
             // cmbClientes
@@ -363,10 +363,10 @@
             cmbClientes.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbClientes.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.FormattingEnabled = true;
-            cmbClientes.Location = new Point(331, 15);
+            cmbClientes.Location = new Point(314, 15);
             cmbClientes.Margin = new Padding(4);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(314, 43);
+            cmbClientes.Size = new Size(297, 43);
             cmbClientes.TabIndex = 22;
             // 
             // label1
@@ -378,7 +378,7 @@
             label1.Location = new Point(5, 19);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(317, 35);
+            label1.Size = new Size(300, 35);
             label1.TabIndex = 18;
             label1.Text = "Cliente Buscado:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -396,7 +396,7 @@
             btnBuscar.Location = new Point(2, 377);
             btnBuscar.Margin = new Padding(0);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(652, 65);
+            btnBuscar.Size = new Size(618, 65);
             btnBuscar.TabIndex = 22;
             btnBuscar.Text = "Buscar Cliente";
             btnBuscar.UseVisualStyleBackColor = false;
@@ -422,7 +422,7 @@
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpIngreso.Size = new Size(652, 214);
+            tlpIngreso.Size = new Size(618, 214);
             tlpIngreso.TabIndex = 21;
             // 
             // label2
@@ -434,7 +434,7 @@
             label2.Location = new Point(5, 152);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(317, 35);
+            label2.Size = new Size(300, 35);
             label2.TabIndex = 19;
             label2.Text = "Tipo de Cliente";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -448,7 +448,7 @@
             lblNombre.Location = new Point(5, 15);
             lblNombre.Margin = new Padding(2, 0, 2, 0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(317, 35);
+            lblNombre.Size = new Size(300, 35);
             lblNombre.TabIndex = 6;
             lblNombre.Text = "Nombre del Cliente:";
             lblNombre.TextAlign = ContentAlignment.MiddleCenter;
@@ -457,11 +457,11 @@
             // 
             txtEmail.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtEmail.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtEmail.Location = new Point(331, 76);
+            txtEmail.Location = new Point(314, 76);
             txtEmail.Margin = new Padding(4);
             txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(314, 39);
+            txtEmail.Size = new Size(297, 39);
             txtEmail.TabIndex = 17;
             txtEmail.TextAlign = HorizontalAlignment.Center;
             // 
@@ -474,7 +474,7 @@
             lblDireccion.Location = new Point(5, 78);
             lblDireccion.Margin = new Padding(2, 0, 2, 0);
             lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(317, 35);
+            lblDireccion.Size = new Size(300, 35);
             lblDireccion.TabIndex = 18;
             lblDireccion.Text = "Email:";
             lblDireccion.TextAlign = ContentAlignment.MiddleCenter;
@@ -483,10 +483,10 @@
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtNombre.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(331, 12);
+            txtNombre.Location = new Point(314, 12);
             txtNombre.Margin = new Padding(4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(314, 42);
+            txtNombre.Size = new Size(297, 42);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -499,12 +499,12 @@
             tlpTipoCliente.Controls.Add(rdbMayorista, 1, 0);
             tlpTipoCliente.Dock = DockStyle.Fill;
             tlpTipoCliente.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tlpTipoCliente.Location = new Point(331, 133);
+            tlpTipoCliente.Location = new Point(314, 133);
             tlpTipoCliente.Margin = new Padding(4);
             tlpTipoCliente.Name = "tlpTipoCliente";
             tlpTipoCliente.RowCount = 1;
             tlpTipoCliente.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpTipoCliente.Size = new Size(314, 74);
+            tlpTipoCliente.Size = new Size(297, 74);
             tlpTipoCliente.TabIndex = 20;
             // 
             // rdbMinorista
@@ -516,7 +516,7 @@
             rdbMinorista.Location = new Point(2, 20);
             rdbMinorista.Margin = new Padding(2);
             rdbMinorista.Name = "rdbMinorista";
-            rdbMinorista.Size = new Size(153, 33);
+            rdbMinorista.Size = new Size(144, 33);
             rdbMinorista.TabIndex = 0;
             rdbMinorista.TabStop = true;
             rdbMinorista.Text = "Minorista";
@@ -529,10 +529,10 @@
             rdbMayorista.AutoSize = true;
             rdbMayorista.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbMayorista.ForeColor = Color.DarkSlateGray;
-            rdbMayorista.Location = new Point(159, 20);
+            rdbMayorista.Location = new Point(150, 20);
             rdbMayorista.Margin = new Padding(2);
             rdbMayorista.Name = "rdbMayorista";
-            rdbMayorista.Size = new Size(153, 33);
+            rdbMayorista.Size = new Size(145, 33);
             rdbMayorista.TabIndex = 1;
             rdbMayorista.TabStop = true;
             rdbMayorista.Text = "Mayorista";
@@ -551,7 +551,7 @@
             btnLimpiarCampos.Location = new Point(2, 26);
             btnLimpiarCampos.Margin = new Padding(0);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
-            btnLimpiarCampos.Size = new Size(652, 65);
+            btnLimpiarCampos.Size = new Size(618, 65);
             btnLimpiarCampos.TabIndex = 20;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
@@ -562,14 +562,14 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PaleTurquoise;
-            ClientSize = new Size(1468, 628);
+            ClientSize = new Size(1392, 628);
             Controls.Add(panel1);
             Controls.Add(tlpBotones);
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(2);
-            MaximumSize = new Size(1490, 684);
-            MinimumSize = new Size(1490, 684);
+            MaximumSize = new Size(1414, 684);
+            MinimumSize = new Size(1414, 684);
             Name = "Ventana_Gestion_Clientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
