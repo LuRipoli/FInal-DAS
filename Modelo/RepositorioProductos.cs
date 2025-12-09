@@ -24,9 +24,6 @@ namespace Modelo
         {
             return context.Productos.ToList().AsReadOnly(); 
         }
-
-
-
         public void AgregarProducto (Entidades.Producto producto)
         {
             context.Productos.Add(producto);
@@ -51,7 +48,7 @@ namespace Modelo
             return context.Productos.FirstOrDefault(c => c.Id == idProducto);
         }
 
-        public Producto ObtenerProductoPorNombre (string nombre)
+        public Producto? ObtenerProductoPorNombre (string nombre)
         {
             return context.Productos.FirstOrDefault(c => c.Nombre == nombre);
         }

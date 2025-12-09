@@ -42,11 +42,16 @@ namespace Vista
             cmbSucursal.DataSource = ctrlSucursales.ObtenerSucursales().ToList();
             cmbSucursal.DisplayMember = "Nombre";
             cmbSucursal.ValueMember = "Id";
+
+            foreach (var sucursal in ctrlSucursales.ObtenerSucursales())
+            {
+                cmbSucursales.Items.Add(sucursal.Id);
+            }
         }
 
         private void LimpiarCampos()
         {
-            txtIdBuscado.Text = "";
+            cmbSucursales.SelectedIndex=-1;
             nudCantidadIngresada.Value = 0;
 
             if (cmbProducto.Items.Count > 0) cmbProducto.SelectedIndex = 0;
@@ -152,10 +157,10 @@ namespace Vista
         {
             try
             {
-                if (txtIdBuscado.Text.Trim() == "")
+                if (cmbSucursales.SelectedIndex != -1)
                     throw new DatosInvalidosException("Debe ingresar un ID de sucursal.");
 
-                int idSucursal = int.Parse(txtIdBuscado.Text.Trim());
+                int idSucursal = int.Parse(cmbSucursales.Text.Trim());
 
                 var controladora = ControladoraStocksPorSucursal.Instancia();
                 var lista = controladora.ObtenerStocks().Where(s => s.Sucursal.Id == idSucursal).OrderBy(s => s.Cantidad).Select(s => new { Sucursal = s.Sucursal.Nombre, Producto = s.Producto.Nombre, Stock = s.Cantidad }).ToList();
@@ -165,7 +170,7 @@ namespace Vista
                 dgvStock.DataSource = lista;
                 tlpBuscar.Enabled = false;
                 btnBuscar.Enabled = false;
-                txtIdBuscado.Clear();
+                cmbSucursales.SelectedIndex = -1;
             }
             catch (DatosInvalidosException ex)
             {

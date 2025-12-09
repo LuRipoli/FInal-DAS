@@ -36,16 +36,27 @@ namespace Vista
         private void Refrescar()
         {
             var controladoraClientes = ControladoraClientes.Instancia();
-            var clientes = controladoraClientes.ObtenerClientes();
+            var clientes = controladoraClientes.ObtenerClientes().OrderBy(x => x.TipoCliente).ThenBy(x => x.Nombre).ToList();
             dgvClientes.DataSource = clientes;
             if (dgvClientes.Columns["Id"] != null)
                 dgvClientes.Columns["Id"].Visible = false;
             if (dgvClientes.Columns["TipoCliente"] != null)
                 dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
+            CargarComboClientes();
+        }
+        private void CargarComboClientes()
+        {
+            cmbClientes.DataSource = null;
+            var controladoraClientes = ControladoraClientes.Instancia();
+            var clientes = controladoraClientes.ObtenerClientes();
+            foreach (var cliente in clientes)
+            {
+                cmbClientes.Items.Add(cliente.Nombre);
+            }
         }
         private void LimpiarCampos()
         {
-            //txtNombreBuscado.Clear();
+            cmbClientes.SelectedIndex = -1;
             txtNombre.Clear();
             txtEmail.Clear();
         }
@@ -177,9 +188,9 @@ namespace Vista
             var controladoraClientes = ControladoraClientes.Instancia();
             try
             {
-                if (txtNombreBuscado.Text != "")
+                if (cmbClientes.SelectedIndex!= -1)
                 {
-                    string nombreBuscado = txtNombreBuscado.Text;
+                    string nombreBuscado = cmbClientes.Text;
                     var cliente = controladoraClientes.BuscarClientePorNombre(nombreBuscado);
                     if (cliente != null)
                     {
@@ -192,7 +203,7 @@ namespace Vista
                             dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
                         btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
-                        txtNombreBuscado.Clear();
+                        cmbClientes.SelectedIndex=-1;
                     }
                     else
                     {

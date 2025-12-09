@@ -140,14 +140,16 @@ namespace Vista
         public void Refrescar()
         {
             var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
-            var listaSucursales = controladoraSucursales.ObtenerSucursales();
+            var listaSucursales = controladoraSucursales.ObtenerSucursales().OrderBy(x => x.Nombre).ToList();
             dgvSucursales.DataSource = listaSucursales;
             if (dgvSucursales.Columns["Id"] != null)
                 dgvSucursales.Columns["Id"].Visible = false;
+            CargarComboSucursales();
         }
         public void LimpiarCampos()
         {
-            txtDireccion.Text = txtNombre.Text = txtNombreBuscado.Text = "";
+            txtDireccion.Text = txtNombre.Text =  "";
+            cmbSucursal.SelectedIndex = -1;
         }
         public int? GetId()
         {
@@ -173,15 +175,27 @@ namespace Vista
         {
             Refrescar();
         }
+        private void CargarComboSucursales()
+        {
+            cmbSucursal.Items.Clear();
+            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
+            var lista = controladoraSucursales.ObtenerSucursales(); 
+
+            foreach (var sucursal in lista)
+            {
+                cmbSucursal.Items.Add(sucursal.Nombre);
+            }
+
+        }
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             var controladoraSucursales = ControladoraSucursales.Instancia();
             try
             {
-                if (txtNombreBuscado.Text != "")
+                if (cmbSucursal.SelectedIndex!=-1)
                 {
-                    string nombreBuscado = txtNombreBuscado.Text;
+                    string nombreBuscado = cmbSucursal.Text;
                     var sucursal = controladoraSucursales.BuscarSucursalPorNombre(nombreBuscado);
                     if (sucursal != null)
                     {
@@ -191,7 +205,7 @@ namespace Vista
                         if (dgvSucursales.Columns["Id"] != null)
                             dgvSucursales.Columns["Id"].Visible = false; btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
-                        txtNombreBuscado.Clear();
+                        cmbSucursal.SelectedIndex=-1;
                     }
                     else
                     {

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             grbGrillaStockPorSucursal = new GroupBox();
@@ -46,7 +46,7 @@
             cmbSucursal = new ComboBox();
             lblCantidad = new Label();
             tlpBuscar = new TableLayoutPanel();
-            txtIdBuscado = new TextBox();
+            cmbSucursales = new ComboBox();
             lblId = new Label();
             btnBuscar = new Button();
             tlpBotones = new TableLayoutPanel();
@@ -133,35 +133,35 @@
             dgvStock.AllowUserToResizeRows = false;
             dgvStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStock.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvStock.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvStock.DefaultCellStyle = dataGridViewCellStyle2;
             dgvStock.Dock = DockStyle.Fill;
             dgvStock.Location = new Point(3, 38);
             dgvStock.Margin = new Padding(2);
             dgvStock.Name = "dgvStock";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvStock.RowHeadersWidth = 62;
             dgvStock.Size = new Size(699, 429);
             dgvStock.TabIndex = 1;
@@ -239,10 +239,10 @@
             cmbProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbProducto.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProducto.FormattingEnabled = true;
-            cmbProducto.Location = new Point(296, 12);
-            cmbProducto.Margin = new Padding(8);
+            cmbProducto.Location = new Point(292, 12);
+            cmbProducto.Margin = new Padding(4);
             cmbProducto.Name = "cmbProducto";
-            cmbProducto.Size = new Size(267, 43);
+            cmbProducto.Size = new Size(275, 43);
             cmbProducto.TabIndex = 21;
             // 
             // lblSucursal
@@ -262,10 +262,10 @@
             // 
             nudCantidadIngresada.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             nudCantidadIngresada.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudCantidadIngresada.Location = new Point(296, 144);
-            nudCantidadIngresada.Margin = new Padding(8);
+            nudCantidadIngresada.Location = new Point(292, 144);
+            nudCantidadIngresada.Margin = new Padding(4);
             nudCantidadIngresada.Name = "nudCantidadIngresada";
-            nudCantidadIngresada.Size = new Size(267, 42);
+            nudCantidadIngresada.Size = new Size(275, 42);
             nudCantidadIngresada.TabIndex = 23;
             nudCantidadIngresada.TextAlign = HorizontalAlignment.Center;
             // 
@@ -274,10 +274,10 @@
             cmbSucursal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbSucursal.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursal.FormattingEnabled = true;
-            cmbSucursal.Location = new Point(296, 77);
-            cmbSucursal.Margin = new Padding(8);
+            cmbSucursal.Location = new Point(292, 77);
+            cmbSucursal.Margin = new Padding(4);
             cmbSucursal.Name = "cmbSucursal";
-            cmbSucursal.Size = new Size(267, 43);
+            cmbSucursal.Size = new Size(275, 43);
             cmbSucursal.TabIndex = 22;
             // 
             // lblCantidad
@@ -299,9 +299,10 @@
             tlpBuscar.ColumnCount = 2;
             tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpBuscar.Controls.Add(txtIdBuscado, 1, 0);
+            tlpBuscar.Controls.Add(cmbSucursales, 1, 0);
             tlpBuscar.Controls.Add(lblId, 0, 0);
             tlpBuscar.Dock = DockStyle.Bottom;
+            tlpBuscar.Enabled = false;
             tlpBuscar.Location = new Point(3, 292);
             tlpBuscar.Name = "tlpBuscar";
             tlpBuscar.RowCount = 1;
@@ -309,15 +310,16 @@
             tlpBuscar.Size = new Size(574, 116);
             tlpBuscar.TabIndex = 25;
             // 
-            // txtIdBuscado
+            // cmbSucursales
             // 
-            txtIdBuscado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtIdBuscado.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtIdBuscado.Location = new Point(296, 37);
-            txtIdBuscado.Margin = new Padding(8);
-            txtIdBuscado.Name = "txtIdBuscado";
-            txtIdBuscado.Size = new Size(267, 42);
-            txtIdBuscado.TabIndex = 20;
+            cmbSucursales.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbSucursales.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursales.FormattingEnabled = true;
+            cmbSucursales.Location = new Point(292, 36);
+            cmbSucursales.Margin = new Padding(4);
+            cmbSucursales.Name = "cmbSucursales";
+            cmbSucursales.Size = new Size(275, 43);
+            cmbSucursales.TabIndex = 23;
             // 
             // lblId
             // 
@@ -329,7 +331,7 @@
             lblId.Name = "lblId";
             lblId.Size = new Size(276, 35);
             lblId.TabIndex = 19;
-            lblId.Text = "ID Sucursal Buscada:";
+            lblId.Text = "Sucursal Buscada:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnBuscar
@@ -515,8 +517,8 @@
         private Button btnBuscar;
         private Label lblId;
         private TableLayoutPanel tlpRegistroStock;
-        private TextBox txtIdBuscado;
         private Button btnRefrescar;
         private Button btnLimpiarCampos;
+        private ComboBox cmbSucursales;
     }
 }

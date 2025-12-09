@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             tlpDivision = new TableLayoutPanel();
             grbGrillaSucursales = new GroupBox();
@@ -44,8 +44,8 @@
             txtNombre = new TextBox();
             btnLimpiarCampos = new Button();
             tlpBuscar = new TableLayoutPanel();
+            cmbSucursal = new ComboBox();
             lblId = new Label();
-            txtNombreBuscado = new TextBox();
             btnBuscar = new Button();
             tlpBotones = new TableLayoutPanel();
             btnBuscarSucursal = new Button();
@@ -69,14 +69,14 @@
             // 
             // pnelppalmedio
             // 
-            pnelppalmedio.BackColor = SystemColors.ActiveCaption;
+            pnelppalmedio.BackColor = SystemColors.AppWorkspace;
             pnelppalmedio.Controls.Add(tlpDivision);
             pnelppalmedio.Controls.Add(tlpBotones);
             pnelppalmedio.Dock = DockStyle.Fill;
             pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1282, 549);
+            pnelppalmedio.Size = new Size(1283, 499);
             pnelppalmedio.TabIndex = 18;
             // 
             // tlpDivision
@@ -89,7 +89,7 @@
             tlpDivision.Controls.Add(grbGrillaSucursales, 1, 0);
             tlpDivision.Controls.Add(grbManejodeDatos, 0, 0);
             tlpDivision.Dock = DockStyle.Fill;
-            tlpDivision.Location = new Point(0, 152);
+            tlpDivision.Location = new Point(0, 100);
             tlpDivision.Margin = new Padding(2);
             tlpDivision.MaximumSize = new Size(1284, 399);
             tlpDivision.MinimumSize = new Size(1284, 399);
@@ -139,36 +139,36 @@
             dgvSucursales.AllowUserToResizeRows = false;
             dgvSucursales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSucursales.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvSucursales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvSucursales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvSucursales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvSucursales.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvSucursales.DefaultCellStyle = dataGridViewCellStyle5;
             dgvSucursales.Dock = DockStyle.Fill;
             dgvSucursales.Location = new Point(2, 37);
             dgvSucursales.Margin = new Padding(20);
             dgvSucursales.Name = "dgvSucursales";
             dgvSucursales.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvSucursales.RowHeadersVisible = false;
             dgvSucursales.RowHeadersWidth = 62;
             dgvSucursales.Size = new Size(678, 334);
@@ -207,6 +207,7 @@
             tlpIngreso.RowCount = 2;
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpIngreso.Size = new Size(553, 152);
             tlpIngreso.TabIndex = 24;
             // 
@@ -229,11 +230,11 @@
             // 
             txtDireccion.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtDireccion.Font = new Font("Segoe UI", 12F);
-            txtDireccion.Location = new Point(286, 93);
-            txtDireccion.Margin = new Padding(8);
+            txtDireccion.Location = new Point(282, 93);
+            txtDireccion.Margin = new Padding(4);
             txtDireccion.Multiline = true;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(256, 39);
+            txtDireccion.Size = new Size(264, 39);
             txtDireccion.TabIndex = 17;
             txtDireccion.TextAlign = HorizontalAlignment.Center;
             // 
@@ -255,10 +256,10 @@
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtNombre.Font = new Font("Segoe UI", 12F);
-            txtNombre.Location = new Point(286, 19);
-            txtNombre.Margin = new Padding(8);
+            txtNombre.Location = new Point(282, 19);
+            txtNombre.Margin = new Padding(4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(256, 39);
+            txtNombre.Size = new Size(264, 39);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -285,8 +286,8 @@
             tlpBuscar.ColumnCount = 2;
             tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpBuscar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpBuscar.Controls.Add(cmbSucursal, 1, 0);
             tlpBuscar.Controls.Add(lblId, 0, 0);
-            tlpBuscar.Controls.Add(txtNombreBuscado, 1, 0);
             tlpBuscar.Dock = DockStyle.Bottom;
             tlpBuscar.Enabled = false;
             tlpBuscar.Location = new Point(0, 238);
@@ -296,6 +297,17 @@
             tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpBuscar.Size = new Size(553, 70);
             tlpBuscar.TabIndex = 22;
+            // 
+            // cmbSucursal
+            // 
+            cmbSucursal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbSucursal.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursal.FormattingEnabled = true;
+            cmbSucursal.Location = new Point(282, 13);
+            cmbSucursal.Margin = new Padding(4);
+            cmbSucursal.Name = "cmbSucursal";
+            cmbSucursal.Size = new Size(264, 43);
+            cmbSucursal.TabIndex = 23;
             // 
             // lblId
             // 
@@ -310,16 +322,6 @@
             lblId.TabIndex = 18;
             lblId.Text = "Sucursal Buscada:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtNombreBuscado
-            // 
-            txtNombreBuscado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombreBuscado.Font = new Font("Segoe UI", 12F);
-            txtNombreBuscado.Location = new Point(286, 15);
-            txtNombreBuscado.Margin = new Padding(8);
-            txtNombreBuscado.Name = "txtNombreBuscado";
-            txtNombreBuscado.Size = new Size(256, 39);
-            txtNombreBuscado.TabIndex = 17;
             // 
             // btnBuscar
             // 
@@ -359,8 +361,8 @@
             tlpBotones.Margin = new Padding(2);
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.Size = new Size(1282, 152);
+            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 94F));
+            tlpBotones.Size = new Size(1283, 100);
             tlpBotones.TabIndex = 20;
             // 
             // btnBuscarSucursal
@@ -372,10 +374,10 @@
             btnBuscarSucursal.FlatStyle = FlatStyle.Flat;
             btnBuscarSucursal.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscarSucursal.ForeColor = Color.DarkSlateGray;
-            btnBuscarSucursal.Location = new Point(960, 3);
+            btnBuscarSucursal.Location = new Point(963, 3);
             btnBuscarSucursal.Margin = new Padding(0);
             btnBuscarSucursal.Name = "btnBuscarSucursal";
-            btnBuscarSucursal.Size = new Size(319, 146);
+            btnBuscarSucursal.Size = new Size(317, 94);
             btnBuscarSucursal.TabIndex = 10;
             btnBuscarSucursal.Text = "Buscar 🔍";
             btnBuscarSucursal.UseVisualStyleBackColor = false;
@@ -389,10 +391,10 @@
             btnEliminarSucursal.FlatStyle = FlatStyle.Flat;
             btnEliminarSucursal.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEliminarSucursal.ForeColor = Color.DarkSlateGray;
-            btnEliminarSucursal.Location = new Point(641, 3);
+            btnEliminarSucursal.Location = new Point(643, 3);
             btnEliminarSucursal.Margin = new Padding(0);
             btnEliminarSucursal.Name = "btnEliminarSucursal";
-            btnEliminarSucursal.Size = new Size(316, 146);
+            btnEliminarSucursal.Size = new Size(317, 94);
             btnEliminarSucursal.TabIndex = 6;
             btnEliminarSucursal.Text = "Eliminar 🗑️";
             btnEliminarSucursal.UseVisualStyleBackColor = true;
@@ -406,10 +408,10 @@
             btnModificarSucursal.FlatStyle = FlatStyle.Flat;
             btnModificarSucursal.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificarSucursal.ForeColor = Color.DarkSlateGray;
-            btnModificarSucursal.Location = new Point(322, 3);
+            btnModificarSucursal.Location = new Point(323, 3);
             btnModificarSucursal.Margin = new Padding(0);
             btnModificarSucursal.Name = "btnModificarSucursal";
-            btnModificarSucursal.Size = new Size(316, 146);
+            btnModificarSucursal.Size = new Size(317, 94);
             btnModificarSucursal.TabIndex = 5;
             btnModificarSucursal.Text = "Modificar 🛠️";
             btnModificarSucursal.UseVisualStyleBackColor = true;
@@ -426,7 +428,7 @@
             btnAgregarSucursal.Location = new Point(3, 3);
             btnAgregarSucursal.Margin = new Padding(0);
             btnAgregarSucursal.Name = "btnAgregarSucursal";
-            btnAgregarSucursal.Size = new Size(316, 146);
+            btnAgregarSucursal.Size = new Size(317, 94);
             btnAgregarSucursal.TabIndex = 4;
             btnAgregarSucursal.Text = "Agregar ➕";
             btnAgregarSucursal.UseVisualStyleBackColor = true;
@@ -442,7 +444,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1282, 80);
+            pnelppaltitulo.Size = new Size(1283, 80);
             pnelppaltitulo.TabIndex = 17;
             // 
             // lblTituloGR
@@ -486,7 +488,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(1192, 0);
+            btnSalir.Location = new Point(1193, 0);
             btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(90, 80);
@@ -499,13 +501,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1282, 629);
+            ClientSize = new Size(1283, 579);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(2);
-            MaximumSize = new Size(1304, 685);
-            MinimumSize = new Size(1304, 685);
+            MaximumSize = new Size(1305, 635);
+            MinimumSize = new Size(1305, 635);
             Name = "Ventana_Gestion_Sucursales";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sucursales";
@@ -550,7 +552,7 @@
         private Button btnLimpiarCampos;
         private TableLayoutPanel tlpBuscar;
         private Label lblId;
-        private TextBox txtNombreBuscado;
         private Button btnBuscar;
+        private ComboBox cmbSucursal;
     }
 }

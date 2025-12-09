@@ -13,53 +13,18 @@ namespace Vista
         {
             Refrescar();
         }
-
-        private void btnGestionProductos_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Ventana_Gestion_Productos fProductos = new Ventana_Gestion_Productos();
-            fProductos.Show();
-        }
-
-        private void btnGestionClientes_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Ventana_Gestion_Clientes fClientes = new Ventana_Gestion_Clientes();
-            fClientes.Show();
-
-        }
-
-        private void btnGestionVentas_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Ventana_Gestion_Ventas fVentas = new Ventana_Gestion_Ventas();
-            fVentas.Show();
-        }
-
-        private void btnReportesYConsultas_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Ventana_Reportes_Y_Consultas fReportesYConsultas = new Ventana_Reportes_Y_Consultas();
-            fReportesYConsultas.Show();
-        }
-
-        private void GestionDeCategorias_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Gestion_de_Rubros fRubros = new Gestion_de_Rubros();
-            fRubros.Show();
-        }
+   
         #region HELPER
         private void Refrescar()
         {
             var controladoraStockPorSucursal = ControladoraStocksPorSucursal.Instancia();
-            var productosBajoStock = controladoraStockPorSucursal.ObtenerProductosBajoStockPorSucursal().Select(s => new {Producto = s.Producto.Nombre,Sucursal = s.Sucursal.Nombre,StockRestante = s.Cantidad}).ToList();
+            var productosBajoStock = controladoraStockPorSucursal.ObtenerProductosBajoStockPorSucursal().Select(s => new { Producto = s.Producto.Nombre, Sucursal = s.Sucursal.Nombre, StockRestante = s.Cantidad }).ToList();
             dgvProductosBajoStock.DataSource = productosBajoStock;
             dgvProductosBajoStock.Columns["StockRestante"].HeaderText = "Stock Restante";
             AplicarColoresProductosBajoStock();
             var controladoraVentas = ControladoraVentas.Instancia();
             var ventasSemanales = controladoraVentas.ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = v.Total, Descuento = v.Descuento }).ToList();
-            dgvVentasSemanales.DataSource = ventasSemanales;     
+            dgvVentasSemanales.DataSource = ventasSemanales;
             dgvVentasSemanales.Columns["MetodoDePago"].HeaderText = "Método de Pago";
         }
 
@@ -94,18 +59,53 @@ namespace Vista
             Application.Exit();
         }
 
-        private void btnGestionarSucursales_Click(object sender, EventArgs e)
+        private void btnGestionarSucursales_Click_1(object sender, EventArgs e)
         {
             this.Hide();
             Ventana_Gestion_Sucursales fSucursales = new Ventana_Gestion_Sucursales();
             fSucursales.Show();
         }
 
-        private void btnRegistrarIngresos_Click(object sender, EventArgs e)
+        private void GestionDeCategorias_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Gestion_de_Rubros fRubros = new Gestion_de_Rubros();
+            fRubros.Show();
+        }
+
+        private void btnGestionProductos_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Ventana_Gestion_Productos fProductos = new Ventana_Gestion_Productos();
+            fProductos.Show();
+        }
+
+        private void btnGestionClientes_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Ventana_Gestion_Clientes fClientes = new Ventana_Gestion_Clientes();
+            fClientes.Show();
+        }
+
+        private void btnRegistrarIngresos_Click_1(object sender, EventArgs e)
         {
             this.Hide();
             Ventana_Gestion_Stock fIngresos = new Ventana_Gestion_Stock();
             fIngresos.Show();
+        }
+
+        private void btnRegistrarVentas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Ventana_Gestion_Ventas fVentas = new Ventana_Gestion_Ventas();
+            fVentas.Show();
+        }
+
+        private void btnReportesYConsultas_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Ventana_Reportes_Y_Consultas fReportesYConsultas = new Ventana_Reportes_Y_Consultas();
+            fReportesYConsultas.Show();
         }
     }
 }

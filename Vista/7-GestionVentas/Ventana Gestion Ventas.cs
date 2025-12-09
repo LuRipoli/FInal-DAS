@@ -76,22 +76,22 @@ namespace Vista
         public void PrecargarCombos()
         {
             var clientes = ControladoraClientes.Instancia().ObtenerClientes();
-            foreach (var cliente in clientes) 
-                cmbClientes.Items.Add(cliente);
+            foreach (var cliente in clientes)
+                cmbClientes.Items.Add(cliente.Nombre);
 
 
             var productos = ControladoraProductos.Instancia().ObtenerProducto();
-            foreach (var producto in productos) 
-                cmbProducto.Items.Add(producto);
+            foreach (var producto in productos)
+                cmbProducto.Items.Add(producto.Nombre);
 
 
             var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales();
-            foreach (var sucursal in sucursales) 
-                cmbSucursales.Items.Add(sucursal);
+            foreach (var sucursal in sucursales)
+                cmbSucursales.Items.Add(sucursal.Nombre);
         }
         private void Refrescar()
         {
-            var ventas = controladora.ObtenerVentas();
+            var ventas = controladora.ObtenerVentas().OrderBy(x => x.Fecha).ThenBy(x => x.Sucursal.Nombre);
             dgvVentas.DataSource = ventas;
         }
         private void LimpiarCampos()
@@ -159,6 +159,37 @@ namespace Vista
         private void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+        }
+        private void CalcularTotalVenta()
+        {
+            if (cmbProducto.SelectedIndex != -1 && nudCantidad.Value > 0 && nudDescuento.Value > 0)
+            {
+                var controladoraProducto = ControladoraProductos.Instancia();
+                var producto = controladoraProducto.ObtenerProductoPorNombre(cmbProducto.Text);
+                if (producto != null)
+                {
+                    decimal precioUnitario = producto.Precio;
+                    decimal subtotal = precioUnitario * nudCantidad.Value;
+                    decimal descuento = (subtotal * nudDescuento.Value) / 100;
+                    decimal total = subtotal - descuento;
+                    
+                    nudTotal.Value = total;
+                }
+            }
+        }   
+        private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalcularTotalVenta();
+        }
+
+        private void nudCantidad_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularTotalVenta();
+        }
+
+        private void nudDescuento_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularTotalVenta();
         }
     }
 }

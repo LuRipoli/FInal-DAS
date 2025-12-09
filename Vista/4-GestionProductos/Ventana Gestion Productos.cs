@@ -31,7 +31,7 @@ namespace Vista
         {
             var controladoraProductos = ControladoraProductos.Instancia();
             dgvProductos.DataSource = null;
-            dgvProductos.DataSource = controladoraProductos.ObtenerProducto();
+            dgvProductos.DataSource = controladoraProductos.ObtenerProducto().OrderBy(x => x.Categoria.Nombre).ThenBy(x => x.Nombre).ToList();
             if (dgvProductos.Columns["Id"] != null)
                 dgvProductos.Columns["Id"].Visible = false;
             if (dgvProductos.Columns["CategoriaId"] != null)
@@ -39,10 +39,12 @@ namespace Vista
         }
         private void LimpiarCampos()
         {
-            txtNombre.Text = txtDescripcion.Text = txtNombreBuscado.Text = "";
+            txtNombre.Text = txtDescripcion.Text = "";
             nudPrecio.Value = 0;
             cmbCategoria.SelectedIndex = -1;
+            cmbProducto.SelectedIndex = -1;
         }
+        
         private void CargarCampos()
         {
             var controladoraCategorias = ControladoraCategorias.Instancia();
@@ -52,6 +54,13 @@ namespace Vista
             foreach (var x in categorias)
             {
                 cmbCategoria.Items.Add(x.Nombre);
+            }
+            cmbProducto.DataSource = null;
+            var productos = ControladoraProductos.Instancia().ObtenerProducto();
+
+            foreach (var producto in productos)
+            {
+                cmbProducto.Items.Add(producto.Nombre);
             }
         }
         private int? GetId()
@@ -202,9 +211,9 @@ namespace Vista
             var controladora = ControladoraProductos.Instancia();
             /*try
             {
-                if (txtNombreBuscado.Text != "")
+                if (cmbProducto.SelectedIndex != -1)
                 {
-                    string nombreBuscado = txtNombreBuscado.Text;
+                    string nombreBuscado = cmbProducto.Text;
                     /*var producto = controladora.BuscarProductoPorNombre(nombreBuscado);
                     if (producto != null)
                     {
@@ -214,8 +223,7 @@ namespace Vista
                             dgvProductos.Columns["Id"].Visible = false;
                         if (dgvProductos.Columns["CategoriaId"] != null)
                             dgvProductos.Columns["CategoriaId"].Visible = false;
-
-                        txtNombreBuscado.Clear();
+                        cmbProducto.SelectedIndex = -1;
                     }
                     else
                     {
@@ -235,7 +243,7 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }*/
-        }
+                }
 
         private void btnLimpiarCampos_Click_1(object sender, EventArgs e)
         {

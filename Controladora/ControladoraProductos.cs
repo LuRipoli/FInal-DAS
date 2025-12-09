@@ -91,9 +91,9 @@ namespace Controladora
             return true; 
         }
 
-        public void obtenerProductoPorNombre(string nombre)
+        public Producto ObtenerProductoPorNombre(string nombre)
         {
-            repositorio.ObtenerProductoPorNombre(nombre);
+           return repositorio.ObtenerProductoPorNombre(nombre);
         }
 
         

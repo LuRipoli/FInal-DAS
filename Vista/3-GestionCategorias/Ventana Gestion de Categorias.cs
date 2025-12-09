@@ -142,14 +142,27 @@ namespace Vista
         private void Refrescar()
         {
             var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
-            dgvCategorias.DataSource = controladoraCategorias.ObtenerCategorias();
+            dgvCategorias.DataSource = controladoraCategorias.ObtenerCategorias().OrderBy(x => x.Nombre).ToList();
             if (dgvCategorias.Columns["Id"] != null)
                 dgvCategorias.Columns["Id"].Visible = false;
+            CargarComboCategorias();
 
+        }
+        private void CargarComboCategorias()
+        {
+            cmbCategoria.Items.Clear();
+            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
+            var lista = controladoraCategorias.ObtenerCategorias();
+
+            foreach (var sucursal in lista)
+            {
+                cmbCategoria.Items.Add(sucursal.Nombre);
+            }
         }
         private void LimpiarCampos()
         {
-            txtNombre.Text = txtNombreBuscado.Text = "";
+            txtNombre.Text = "";
+            cmbCategoria.SelectedIndex = -1;
         }
         private int? GetId()
         {
@@ -178,9 +191,9 @@ namespace Vista
             var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             try
             {
-                if (txtNombreBuscado.Text.Trim() != "")
+                if (cmbCategoria.SelectedIndex!= -1)
                 {
-                    string nombre = txtNombreBuscado.Text.Trim();
+                    string nombre = cmbCategoria.Text.Trim();
                     var categoria = controladoraCategorias.BuscarCategoriaPorNombre(nombre);
 
 
@@ -191,7 +204,7 @@ namespace Vista
                             dgvCategorias.Columns["Id"].Visible = false;
                         btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
-                        txtNombreBuscado.Clear();
+                        cmbCategoria.SelectedIndex = -1;
                     }
                     else
                     {
