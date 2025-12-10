@@ -54,10 +54,10 @@
             cmbProducto = new ComboBox();
             lblSucursal = new Label();
             cmbSucursales = new ComboBox();
-            lblCantidad = new Label();
             nudTotal = new NumericUpDown();
             cmbClientes = new ComboBox();
             dtpFecha = new DateTimePicker();
+            lblCantidad = new Label();
             tlpBuscar = new TableLayoutPanel();
             dtpFechaBuscada = new DateTimePicker();
             label6 = new Label();
@@ -431,19 +431,6 @@
             cmbSucursales.Size = new Size(496, 43);
             cmbSucursales.TabIndex = 22;
             // 
-            // lblCantidad
-            // 
-            lblCantidad.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblCantidad.AutoSize = true;
-            lblCantidad.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCantidad.ForeColor = Color.DarkSlateGray;
-            lblCantidad.Location = new Point(6, 419);
-            lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(301, 35);
-            lblCantidad.TabIndex = 20;
-            lblCantidad.Text = "Total de la Venta: ($)";
-            lblCantidad.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // nudTotal
             // 
             nudTotal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -477,6 +464,19 @@
             dtpFecha.Name = "dtpFecha";
             dtpFecha.Size = new Size(496, 42);
             dtpFecha.TabIndex = 26;
+            // 
+            // lblCantidad
+            // 
+            lblCantidad.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblCantidad.AutoSize = true;
+            lblCantidad.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCantidad.ForeColor = Color.DarkSlateGray;
+            lblCantidad.Location = new Point(6, 419);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(301, 35);
+            lblCantidad.TabIndex = 20;
+            lblCantidad.Text = "Total de la Venta: ($)";
+            lblCantidad.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tlpBuscar
             // 
@@ -528,7 +528,7 @@
             grbGrillaVentas.Location = new Point(833, 5);
             grbGrillaVentas.Margin = new Padding(5);
             grbGrillaVentas.Name = "grbGrillaVentas";
-            grbGrillaVentas.Padding = new Padding(2);
+            grbGrillaVentas.Padding = new Padding(5);
             grbGrillaVentas.Size = new Size(818, 753);
             grbGrillaVentas.TabIndex = 18;
             grbGrillaVentas.TabStop = false;
@@ -574,7 +574,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvVentas.DefaultCellStyle = dataGridViewCellStyle2;
             dgvVentas.Dock = DockStyle.Fill;
-            dgvVentas.Location = new Point(2, 37);
+            dgvVentas.Location = new Point(5, 40);
             dgvVentas.Margin = new Padding(20);
             dgvVentas.Name = "dgvVentas";
             dgvVentas.ReadOnly = true;
@@ -586,8 +586,9 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvVentas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvVentas.RowHeadersVisible = false;
             dgvVentas.RowHeadersWidth = 62;
-            dgvVentas.Size = new Size(814, 714);
+            dgvVentas.Size = new Size(808, 708);
             dgvVentas.TabIndex = 1;
             // 
             // tlpDivision

@@ -235,7 +235,7 @@
             grbGrillaClientes.Location = new Point(611, 2);
             grbGrillaClientes.Margin = new Padding(2);
             grbGrillaClientes.Name = "grbGrillaClientes";
-            grbGrillaClientes.Padding = new Padding(2);
+            grbGrillaClientes.Padding = new Padding(5);
             grbGrillaClientes.Size = new Size(741, 513);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
@@ -281,7 +281,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvProductos.DefaultCellStyle = dataGridViewCellStyle2;
             dgvProductos.Dock = DockStyle.Fill;
-            dgvProductos.Location = new Point(2, 37);
+            dgvProductos.Location = new Point(5, 40);
             dgvProductos.Margin = new Padding(0);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.ReadOnly = true;
@@ -295,7 +295,7 @@
             dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvProductos.RowHeadersVisible = false;
             dgvProductos.RowHeadersWidth = 62;
-            dgvProductos.Size = new Size(737, 474);
+            dgvProductos.Size = new Size(731, 468);
             dgvProductos.TabIndex = 1;
             // 
             // grbManejoDatos

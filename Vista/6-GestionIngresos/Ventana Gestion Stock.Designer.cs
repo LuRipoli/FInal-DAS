@@ -78,7 +78,7 @@
             pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1291, 628);
+            pnelppalmedio.Size = new Size(1291, 542);
             pnelppalmedio.TabIndex = 21;
             // 
             // tableLayoutPanel2
@@ -89,11 +89,11 @@
             tableLayoutPanel2.Controls.Add(grbGrillaStockPorSucursal, 1, 0);
             tableLayoutPanel2.Controls.Add(grbDatos, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 152);
+            tableLayoutPanel2.Location = new Point(0, 100);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1291, 476);
+            tableLayoutPanel2.Size = new Size(1291, 442);
             tableLayoutPanel2.TabIndex = 24;
             // 
             // grbGrillaStockPorSucursal
@@ -106,7 +106,8 @@
             grbGrillaStockPorSucursal.ForeColor = Color.DarkSlateGray;
             grbGrillaStockPorSucursal.Location = new Point(583, 3);
             grbGrillaStockPorSucursal.Name = "grbGrillaStockPorSucursal";
-            grbGrillaStockPorSucursal.Size = new Size(705, 470);
+            grbGrillaStockPorSucursal.Padding = new Padding(5);
+            grbGrillaStockPorSucursal.Size = new Size(705, 436);
             grbGrillaStockPorSucursal.TabIndex = 18;
             grbGrillaStockPorSucursal.TabStop = false;
             grbGrillaStockPorSucursal.Text = "Grilla Stock Por Sucursal";
@@ -151,7 +152,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvStock.DefaultCellStyle = dataGridViewCellStyle2;
             dgvStock.Dock = DockStyle.Fill;
-            dgvStock.Location = new Point(3, 38);
+            dgvStock.Location = new Point(5, 40);
             dgvStock.Margin = new Padding(2);
             dgvStock.Name = "dgvStock";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -162,8 +163,9 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvStock.RowHeadersVisible = false;
             dgvStock.RowHeadersWidth = 62;
-            dgvStock.Size = new Size(699, 429);
+            dgvStock.Size = new Size(695, 391);
             dgvStock.TabIndex = 1;
             // 
             // grbDatos
@@ -177,7 +179,7 @@
             grbDatos.Location = new Point(0, 0);
             grbDatos.Margin = new Padding(0);
             grbDatos.Name = "grbDatos";
-            grbDatos.Size = new Size(580, 476);
+            grbDatos.Size = new Size(580, 442);
             grbDatos.TabIndex = 19;
             grbDatos.TabStop = false;
             // 
@@ -303,11 +305,11 @@
             tlpBuscar.Controls.Add(lblId, 0, 0);
             tlpBuscar.Dock = DockStyle.Bottom;
             tlpBuscar.Enabled = false;
-            tlpBuscar.Location = new Point(3, 292);
+            tlpBuscar.Location = new Point(3, 291);
             tlpBuscar.Name = "tlpBuscar";
             tlpBuscar.RowCount = 1;
             tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBuscar.Size = new Size(574, 116);
+            tlpBuscar.Size = new Size(574, 83);
             tlpBuscar.TabIndex = 25;
             // 
             // cmbSucursales
@@ -315,7 +317,7 @@
             cmbSucursales.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbSucursales.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursales.FormattingEnabled = true;
-            cmbSucursales.Location = new Point(292, 36);
+            cmbSucursales.Location = new Point(292, 20);
             cmbSucursales.Margin = new Padding(4);
             cmbSucursales.Name = "cmbSucursales";
             cmbSucursales.Size = new Size(275, 43);
@@ -327,7 +329,7 @@
             lblId.AutoSize = true;
             lblId.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblId.ForeColor = Color.DarkSlateGray;
-            lblId.Location = new Point(6, 40);
+            lblId.Location = new Point(6, 24);
             lblId.Name = "lblId";
             lblId.Size = new Size(276, 35);
             lblId.TabIndex = 19;
@@ -344,7 +346,7 @@
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(3, 408);
+            btnBuscar.Location = new Point(3, 374);
             btnBuscar.Margin = new Padding(0);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(574, 65);
@@ -369,7 +371,7 @@
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpBotones.Size = new Size(1291, 152);
+            tlpBotones.Size = new Size(1291, 100);
             tlpBotones.TabIndex = 23;
             // 
             // btnAgregarStock
@@ -382,7 +384,7 @@
             btnAgregarStock.ForeColor = Color.DarkSlateGray;
             btnAgregarStock.Location = new Point(6, 6);
             btnAgregarStock.Name = "btnAgregarStock";
-            btnAgregarStock.Size = new Size(635, 140);
+            btnAgregarStock.Size = new Size(635, 88);
             btnAgregarStock.TabIndex = 4;
             btnAgregarStock.Text = "Ingresar Mercadería ➕";
             btnAgregarStock.UseVisualStyleBackColor = true;
@@ -398,7 +400,7 @@
             btnBuscarSucursal.ForeColor = Color.DarkSlateGray;
             btnBuscarSucursal.Location = new Point(650, 6);
             btnBuscarSucursal.Name = "btnBuscarSucursal";
-            btnBuscarSucursal.Size = new Size(635, 140);
+            btnBuscarSucursal.Size = new Size(635, 88);
             btnBuscarSucursal.TabIndex = 10;
             btnBuscarSucursal.Text = "Buscar Sucursal 🔍";
             btnBuscarSucursal.UseVisualStyleBackColor = true;
@@ -467,12 +469,12 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1291, 708);
+            ClientSize = new Size(1291, 622);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            MaximumSize = new Size(1313, 764);
-            MinimumSize = new Size(1313, 764);
+            MaximumSize = new Size(1313, 678);
+            MinimumSize = new Size(1313, 678);
             Name = "Ventana_Gestion_Stock";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stock";
