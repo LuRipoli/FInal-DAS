@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Modelo
             context = new Context();
         }
 
-        public IReadOnlyCollection<Entidades.Venta> ObtenerVentas()
+        public IReadOnlyCollection<Venta> ObtenerVentas()
         {
-            return context.Ventas.ToList().AsReadOnly();
+            return context.Ventas.Include(v => v.Cliente).Include(v => v.Producto).ThenInclude(p => p.Categoria).Include(v => v.Sucursal).ToList().AsReadOnly();
         }
 
         public void AgregarVenta(Entidades.Venta venta)
@@ -39,16 +40,14 @@ namespace Modelo
             context.SaveChanges();
         }
 
-        public Venta? ObtenerVentaPorId(int idCategoria)
+        public Venta? ObtenerVentaPorId(int idVenta)
         {
-            return context.Ventas.FirstOrDefault(c => c.Id == idCategoria);
+            return context.Ventas.Include(v => v.Cliente).Include(v => v.Producto).Include(v => v.Sucursal).FirstOrDefault(v => v.Id == idVenta);
+        }
+        public IReadOnlyCollection<Venta> ObtenerVentasdelaSemana()
+        {
+            return context.Ventas.Include(v => v.Cliente).Include(v => v.Producto).ThenInclude(p => p.Categoria).Include(v => v.Sucursal).Where(v => v.Fecha >= DateTime.Now.AddDays(-7)).ToList().AsReadOnly();
         }
 
-        
-        public IReadOnlyCollection<Entidades.Venta> ObtenerVentasdelaSemana()
-        {
-            return context.Ventas.Where(v => v.Fecha >= DateTime.Now.AddDays(-7)).ToList().AsReadOnly();
-        }
-        
     }
 }

@@ -18,48 +18,34 @@ namespace Vista
         public Ventana_Gestion_Ventas()
         {
             InitializeComponent();
-            Refrescar();
-            PrecargarCombos();
-            LimpiarCampos();
-        }
-        private void button1_Click(object sender, EventArgs e) //Agregar Venta
-        {
 
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
             try
             {
                 if (cmbClientes.SelectedIndex == -1 || cmbProducto.SelectedIndex == -1 || cmbSucursales.SelectedIndex == -1)
                     throw new DatosInvalidosException("Debe completar todos los campos.");
-
-
                 if (string.IsNullOrWhiteSpace(txtNombreVendedor.Text))
                     throw new DatosInvalidosException("Debe ingresar el nombre del vendedor.");
-
-
                 if (nudCantidad.Value <= 0)
                     throw new DatosInvalidosException("La cantidad vendida debe ser mayor a 0.");
 
-
-                MetodoPago metodo = rdbEfectivo.Checked ? MetodoPago.Efectivo : rbtTransferencia.Checked ? MetodoPago.Transferencia : rdbTarjeta.Checked ? MetodoPago.Tarjeta : throw new DatosInvalidosException("Debe seleccionar un método de pago.");
-
+                MetodoPago metodo = rdbEfectivo.Checked ? MetodoPago.Efectivo : rdbTransferencia.Checked ? MetodoPago.Transferencia : rdbTarjeta.Checked ? MetodoPago.Tarjeta : throw new DatosInvalidosException("Debe seleccionar un método de pago.");
 
                 Cliente cliente = (Cliente)cmbClientes.SelectedItem;
                 Producto producto = (Producto)cmbProducto.SelectedItem;
                 Sucursal sucursal = (Sucursal)cmbSucursales.SelectedItem;
 
-
-                DateTime fecha = dtpFecha.Value;
-                decimal total = nudTotal.Value;
                 decimal descuento = nudDescuento.Value;
                 int cantidad = (int)nudCantidad.Value;
-                if (txtNombreVendedor.Text.Trim() == "")
-                    throw new DatosInvalidosException("El nombre del vendedor no puede estar vacío.");
                 string nombreVendedor = txtNombreVendedor.Text.Trim();
+                DateTime fecha = dtpFecha.Value;
 
-
-                controladora.AgregarVenta(fecha, cliente.Id, metodo, descuento, total, producto, sucursal, cantidad, nombreVendedor);
-
+                controladora.AgregarVenta(fecha, cliente.Id, metodo, descuento, producto, sucursal, cantidad, nombreVendedor);
 
                 MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 Refrescar();
                 LimpiarCampos();
             }
@@ -75,31 +61,38 @@ namespace Vista
 
         public void PrecargarCombos()
         {
-            var clientes = ControladoraClientes.Instancia().ObtenerClientes();
-            foreach (var cliente in clientes)
-                cmbClientes.Items.Add(cliente.Nombre);
+            var clientes = ControladoraClientes.Instancia().ObtenerClientes().ToList();
+            cmbClientes.DataSource = clientes;
+            cmbClientes.DisplayMember = "Nombre";
+            cmbClientes.ValueMember = "Id";
+            cmbClientes.SelectedIndex = -1;
 
+            var productos = ControladoraProductos.Instancia().ObtenerProductos().ToList();
+            cmbProducto.DataSource = productos;
+            cmbProducto.DisplayMember = "Nombre";
+            cmbProducto.ValueMember = "Id";
+            cmbProducto.SelectedIndex = -1;
 
-            var productos = ControladoraProductos.Instancia().ObtenerProducto();
-            foreach (var producto in productos)
-                cmbProducto.Items.Add(producto.Nombre);
-
-
-            var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales();
-            foreach (var sucursal in sucursales)
-                cmbSucursales.Items.Add(sucursal.Nombre);
+            var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales().ToList();
+            cmbSucursales.DataSource = sucursales;
+            cmbSucursales.DisplayMember = "Nombre";
+            cmbSucursales.ValueMember = "Id";
+            cmbSucursales.SelectedIndex = -1;
         }
         private void Refrescar()
         {
-            var ventas = controladora.ObtenerVentas().OrderBy(x => x.Fecha).ThenBy(x => x.Sucursal.Nombre);
+            var ventas = controladora.ObtenerVentas().Select(v => new { v.Id, Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Cliente = v.Cliente.Nombre, Producto = v.Producto.Nombre, Sucursal = v.Sucursal.Nombre, Metodo = v.MetodoPago.ToString(), v.Descuento, v.Cantidad, v.Total, Vendedor = v.NombreVendedor }).OrderBy(x => x.Fecha).ToList();
+
+            dgvVentas.DataSource = null;
             dgvVentas.DataSource = ventas;
+            dgvVentas.ClearSelection();
         }
         private void LimpiarCampos()
         {
             cmbClientes.SelectedIndex = -1;
             cmbProducto.SelectedIndex = -1;
             cmbSucursales.SelectedIndex = -1;
-            nudTotal.Value = 0;
+            txtTotal.Text = "";
             nudDescuento.Value = 0;
             nudCantidad.Value = 0;
             txtNombreVendedor.Text = string.Empty;
@@ -162,21 +155,18 @@ namespace Vista
         }
         private void CalcularTotalVenta()
         {
-            if (cmbProducto.SelectedIndex != -1 && nudCantidad.Value > 0 && nudDescuento.Value > 0)
+            if (cmbProducto.SelectedIndex != -1 && nudCantidad.Value > 0)
             {
-                var controladoraProducto = ControladoraProductos.Instancia();
-                var producto = controladoraProducto.ObtenerProductoPorNombre(cmbProducto.Text);
-                if (producto != null)
-                {
-                    decimal precioUnitario = producto.Precio;
-                    decimal subtotal = precioUnitario * nudCantidad.Value;
-                    decimal descuento = (subtotal * nudDescuento.Value) / 100;
-                    decimal total = subtotal - descuento;
-                    
-                    nudTotal.Value = total;
-                }
+                var producto = (Producto)cmbProducto.SelectedItem;
+
+                decimal precioUnitario = producto.Precio;
+                decimal subtotal = precioUnitario * nudCantidad.Value;
+                decimal descuento = (subtotal * nudDescuento.Value) / 100;
+                decimal total = subtotal - descuento;
+
+                txtTotal.Text = total.ToString("0.00");
             }
-        }   
+        }
         private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcularTotalVenta();
@@ -190,6 +180,13 @@ namespace Vista
         private void nudDescuento_ValueChanged(object sender, EventArgs e)
         {
             CalcularTotalVenta();
+        }
+
+        private void Ventana_Gestion_Ventas_Load(object sender, EventArgs e)
+        {
+            Refrescar();
+            PrecargarCombos();
+            LimpiarCampos();
         }
     }
 }

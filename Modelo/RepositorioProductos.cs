@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,16 @@ namespace Modelo
     public class RepositorioProductos
     {
         private readonly Context context;
-        public List<Entidades.Producto> lista;
 
         public RepositorioProductos()
         {
-            lista = new List<Entidades.Producto>();
             context = new Context();
         }
 
 
         public IReadOnlyCollection<Entidades.Producto> ObtenerProducto()
         {
-            return context.Productos.ToList().AsReadOnly(); 
+            return context.Productos.Include(p => p.Categoria).ToList().AsReadOnly();
         }
         public void AgregarProducto (Entidades.Producto producto)
         {

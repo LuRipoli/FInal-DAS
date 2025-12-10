@@ -143,10 +143,10 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -266,6 +266,7 @@
             nudCantidadIngresada.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nudCantidadIngresada.Location = new Point(292, 144);
             nudCantidadIngresada.Margin = new Padding(4);
+            nudCantidadIngresada.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nudCantidadIngresada.Name = "nudCantidadIngresada";
             nudCantidadIngresada.Size = new Size(275, 42);
             nudCantidadIngresada.TabIndex = 23;
@@ -478,6 +479,7 @@
             Name = "Ventana_Gestion_Stock";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stock";
+            Load += Ventana_Gestion_Stock_Load;
             pnelppalmedio.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             grbGrillaStockPorSucursal.ResumeLayout(false);

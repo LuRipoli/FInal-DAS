@@ -31,11 +31,12 @@ namespace Vista
         {
             var controladoraProductos = ControladoraProductos.Instancia();
             dgvProductos.DataSource = null;
-            dgvProductos.DataSource = controladoraProductos.ObtenerProducto().OrderBy(x => x.Categoria.Nombre).ThenBy(x => x.Nombre).ToList();
-            if (dgvProductos.Columns["Id"] != null)
-                dgvProductos.Columns["Id"].Visible = false;
-            if (dgvProductos.Columns["CategoriaId"] != null)
-                dgvProductos.Columns["CategoriaId"].Visible = false;
+            dgvProductos.DataSource = controladoraProductos.ObtenerProductos().OrderBy(x => x.Categoria.Nombre).ThenBy(x => x.Nombre).Select(x => new { x.Nombre, x.Descripcion, x.Precio, Categoria = x.Categoria.Nombre }).ToList();
+
+            if (dgvProductos.Columns["Id"] != null) dgvProductos.Columns["Id"].Visible = false;
+            if (dgvProductos.Columns["CategoriaId"] != null) dgvProductos.Columns["CategoriaId"].Visible = false;
+
+            dgvProductos.ClearSelection();
         }
         private void LimpiarCampos()
         {
@@ -48,20 +49,29 @@ namespace Vista
         private void CargarCampos()
         {
             var controladoraCategorias = ControladoraCategorias.Instancia();
-            cmbCategoria.SelectedIndex = -1;
-            cmbCategoria.DataSource = null;
-            var categorias = controladoraCategorias.ObtenerCategorias();
-            foreach (var x in categorias)
-            {
-                cmbCategoria.Items.Add(x.Nombre);
-            }
-            cmbProducto.DataSource = null;
-            var productos = ControladoraProductos.Instancia().ObtenerProducto();
 
-            foreach (var producto in productos)
-            {
-                cmbProducto.Items.Add(producto.Nombre);
-            }
+            cmbCategoria.DataSource = null;
+            cmbCategoria.Items.Clear();
+
+            var categorias = controladoraCategorias.ObtenerCategorias().ToList();
+
+            cmbCategoria.DataSource = categorias;
+            cmbCategoria.DisplayMember = "Nombre";   
+            cmbCategoria.ValueMember = "Id";         
+
+            cmbCategoria.SelectedIndex = -1;
+
+
+            cmbProducto.DataSource = null;
+            cmbProducto.Items.Clear();
+
+            var productos = ControladoraProductos.Instancia().ObtenerProductos().ToList();
+
+            cmbProducto.DataSource = productos;
+            cmbProducto.DisplayMember = "Nombre";
+            cmbProducto.ValueMember = "Id";
+
+            cmbProducto.SelectedIndex = -1;
         }
         private int? GetId()
         {
@@ -111,7 +121,7 @@ namespace Vista
                 Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
 
-                //controladora.AgregarProducto(nombre, descripcion, precio, categoria);
+                controladora.AgregarProducto(nombre, descripcion, precio, categoria);
 
 
                 MessageBox.Show("Producto agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -142,7 +152,7 @@ namespace Vista
                     Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
 
-                    //controladora.ModificarProducto((int)id, nombre, descripcion, precio, categoria);
+                    controladora.ModificarProducto((int)id, nombre, descripcion, precio, categoria);
                     MessageBox.Show("Producto modificado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Refrescar();
                     LimpiarCampos();
@@ -209,12 +219,12 @@ namespace Vista
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             var controladora = ControladoraProductos.Instancia();
-            /*try
+            try
             {
                 if (cmbProducto.SelectedIndex != -1)
                 {
                     string nombreBuscado = cmbProducto.Text;
-                    /*var producto = controladora.BuscarProductoPorNombre(nombreBuscado);
+                    var producto = controladora.ObtenerProductoPorNombre(nombreBuscado);
                     if (producto != null)
                     {
                         var lista = new List<Producto> { producto };
@@ -242,7 +252,7 @@ namespace Vista
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+            }
                 }
 
         private void btnLimpiarCampos_Click_1(object sender, EventArgs e)

@@ -22,20 +22,20 @@ namespace Controladora
                 instancia = new ControladoraConsultas();
             return instancia;
         }
-        public IReadOnlyCollection<Entidades.Consulta> ObtenerConsulta()        //Para obtener todas las consultas
+        public IReadOnlyCollection<Entidades.Consulta> ObtenerConsulta()       
         {
             return repositorio.ObtenerConsulta()?.ToList() ?? new List<Consulta>();
         }
-        public Consulta? ObtenerConsultaPorID(int idConsulta)                   //Para obtener una consulta pr ID
+        public Consulta? ObtenerConsultaPorID(int idConsulta)                  
         { 
             if (idConsulta <=0)
             {
-                throw new IdNoEncontradoException(nameof(Consulta));    //Si el ID es negativo, no existe como ID de alguna Consulta. 
+                throw new IdNoEncontradoException(nameof(Consulta));   
                 return null;
             }
             if (repositorio.ObtenerConsultaPorID(idConsulta) == null)
             {
-                throw new EntidadNoEncontradaException(nameof(Consulta));  //Si no existe ninguna consulta con ese ID, lanza la excepcion.
+                throw new EntidadNoEncontradaException(nameof(Consulta));  
             }
             return repositorio.ObtenerConsultaPorID(idConsulta);
         }
@@ -43,7 +43,7 @@ namespace Controladora
         {
             if (consulta == null)
             {
-                throw new EntidadNoEncontradaException(nameof(consulta));  //No buscas nada, porque ingresas con una consulta nula, una que no existe.      
+                throw new EntidadNoEncontradaException(nameof(consulta));
             }
             repositorio.AgregarConsulta(consulta);
         }

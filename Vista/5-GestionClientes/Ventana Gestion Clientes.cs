@@ -18,8 +18,7 @@ namespace Vista
         public Ventana_Gestion_Clientes()
         {
             InitializeComponent();
-            Refrescar();
-            LimpiarCampos();
+
         }
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -42,6 +41,7 @@ namespace Vista
                 dgvClientes.Columns["Id"].Visible = false;
             if (dgvClientes.Columns["TipoCliente"] != null)
                 dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
+            dgvClientes.ClearSelection();
             CargarComboClientes();
         }
         private void CargarComboClientes()
@@ -188,7 +188,7 @@ namespace Vista
             var controladoraClientes = ControladoraClientes.Instancia();
             try
             {
-                if (cmbClientes.SelectedIndex!= -1)
+                if (cmbClientes.SelectedIndex != -1)
                 {
                     string nombreBuscado = cmbClientes.Text;
                     var cliente = controladoraClientes.BuscarClientePorNombre(nombreBuscado);
@@ -203,7 +203,7 @@ namespace Vista
                             dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
                         btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
-                        cmbClientes.SelectedIndex=-1;
+                        cmbClientes.SelectedIndex = -1;
                     }
                     else
                     {
@@ -225,6 +225,12 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Ventana_Gestion_Clientes_Load(object sender, EventArgs e)
+        {
+            Refrescar();
+            LimpiarCampos();
         }
     }
 }

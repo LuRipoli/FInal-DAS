@@ -18,8 +18,7 @@ namespace Vista
         public Ventana_Gestion_Sucursales()
         {
             InitializeComponent();
-            Refrescar();
-            LimpiarCampos();
+
         }
 
 
@@ -144,11 +143,12 @@ namespace Vista
             dgvSucursales.DataSource = listaSucursales;
             if (dgvSucursales.Columns["Id"] != null)
                 dgvSucursales.Columns["Id"].Visible = false;
+            dgvSucursales.ClearSelection();
             CargarComboSucursales();
         }
         public void LimpiarCampos()
         {
-            txtDireccion.Text = txtNombre.Text =  "";
+            txtDireccion.Text = txtNombre.Text = "";
             cmbSucursal.SelectedIndex = -1;
         }
         public int? GetId()
@@ -179,7 +179,7 @@ namespace Vista
         {
             cmbSucursal.Items.Clear();
             var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
-            var lista = controladoraSucursales.ObtenerSucursales(); 
+            var lista = controladoraSucursales.ObtenerSucursales();
 
             foreach (var sucursal in lista)
             {
@@ -193,7 +193,7 @@ namespace Vista
             var controladoraSucursales = ControladoraSucursales.Instancia();
             try
             {
-                if (cmbSucursal.SelectedIndex!=-1)
+                if (cmbSucursal.SelectedIndex != -1)
                 {
                     string nombreBuscado = cmbSucursal.Text;
                     var sucursal = controladoraSucursales.BuscarSucursalPorNombre(nombreBuscado);
@@ -205,7 +205,7 @@ namespace Vista
                         if (dgvSucursales.Columns["Id"] != null)
                             dgvSucursales.Columns["Id"].Visible = false; btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
-                        cmbSucursal.SelectedIndex=-1;
+                        cmbSucursal.SelectedIndex = -1;
                     }
                     else
                     {
@@ -227,6 +227,12 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Ventana_Gestion_Sucursales_Load(object sender, EventArgs e)
+        {
+            Refrescar();
+            LimpiarCampos();
         }
     }
 }

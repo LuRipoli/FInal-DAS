@@ -302,7 +302,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -573,6 +573,7 @@
             Name = "Ventana_Gestion_Clientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
+            Load += Ventana_Gestion_Clientes_Load;
             pnelppaltitulo.ResumeLayout(false);
             pnelppaltitulo.PerformLayout();
             tlpBotones.ResumeLayout(false);

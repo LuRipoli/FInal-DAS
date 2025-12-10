@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             tlpDivision = new TableLayoutPanel();
             grbManejodeDatos = new GroupBox();
@@ -74,7 +74,7 @@
             pnelppalmedio.Location = new Point(0, 80);
             pnelppalmedio.Margin = new Padding(2);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(1078, 464);
+            pnelppalmedio.Size = new Size(1309, 464);
             pnelppalmedio.TabIndex = 15;
             // 
             // tlpDivision
@@ -91,7 +91,7 @@
             tlpDivision.Name = "tlpDivision";
             tlpDivision.RowCount = 1;
             tlpDivision.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDivision.Size = new Size(1078, 364);
+            tlpDivision.Size = new Size(1309, 364);
             tlpDivision.TabIndex = 24;
             // 
             // grbManejodeDatos
@@ -107,7 +107,7 @@
             grbManejodeDatos.Margin = new Padding(10);
             grbManejodeDatos.Name = "grbManejodeDatos";
             grbManejodeDatos.Padding = new Padding(0);
-            grbManejodeDatos.Size = new Size(461, 338);
+            grbManejodeDatos.Size = new Size(565, 338);
             grbManejodeDatos.TabIndex = 19;
             grbManejodeDatos.TabStop = false;
             // 
@@ -124,7 +124,7 @@
             tlpIngreso.Name = "tlpIngreso";
             tlpIngreso.RowCount = 1;
             tlpIngreso.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpIngreso.Size = new Size(461, 96);
+            tlpIngreso.Size = new Size(565, 96);
             tlpIngreso.TabIndex = 24;
             // 
             // lblNombre
@@ -133,10 +133,10 @@
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNombre.ForeColor = Color.DarkSlateGray;
-            lblNombre.Location = new Point(3, 13);
+            lblNombre.Location = new Point(3, 30);
             lblNombre.Margin = new Padding(0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(226, 70);
+            lblNombre.Size = new Size(278, 35);
             lblNombre.TabIndex = 6;
             lblNombre.Text = "Nombre de Categoria:";
             lblNombre.TextAlign = ContentAlignment.MiddleCenter;
@@ -145,10 +145,10 @@
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtNombre.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(240, 27);
+            txtNombre.Location = new Point(292, 27);
             txtNombre.Margin = new Padding(8);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(210, 42);
+            txtNombre.Size = new Size(262, 42);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -164,7 +164,7 @@
             btnLimpiarCampos.Location = new Point(0, 24);
             btnLimpiarCampos.Margin = new Padding(0);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
-            btnLimpiarCampos.Size = new Size(461, 65);
+            btnLimpiarCampos.Size = new Size(565, 65);
             btnLimpiarCampos.TabIndex = 23;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
@@ -183,7 +183,7 @@
             tlpBuscar.Name = "tlpBuscar";
             tlpBuscar.RowCount = 1;
             tlpBuscar.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpBuscar.Size = new Size(461, 92);
+            tlpBuscar.Size = new Size(565, 92);
             tlpBuscar.TabIndex = 22;
             // 
             // cmbCategoria
@@ -191,10 +191,10 @@
             cmbCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbCategoria.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCategoria.FormattingEnabled = true;
-            cmbCategoria.Location = new Point(240, 24);
+            cmbCategoria.Location = new Point(292, 24);
             cmbCategoria.Margin = new Padding(8);
             cmbCategoria.Name = "cmbCategoria";
-            cmbCategoria.Size = new Size(210, 43);
+            cmbCategoria.Size = new Size(262, 43);
             cmbCategoria.TabIndex = 35;
             // 
             // lblId
@@ -203,10 +203,10 @@
             lblId.AutoSize = true;
             lblId.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblId.ForeColor = Color.DarkSlateGray;
-            lblId.Location = new Point(3, 11);
+            lblId.Location = new Point(3, 28);
             lblId.Margin = new Padding(0);
             lblId.Name = "lblId";
-            lblId.Size = new Size(226, 70);
+            lblId.Size = new Size(278, 35);
             lblId.TabIndex = 18;
             lblId.Text = "Categoría Buscada:";
             lblId.TextAlign = ContentAlignment.MiddleCenter;
@@ -224,7 +224,7 @@
             btnBuscar.Location = new Point(0, 273);
             btnBuscar.Margin = new Padding(0);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(461, 65);
+            btnBuscar.Size = new Size(565, 65);
             btnBuscar.TabIndex = 21;
             btnBuscar.Text = "Buscar Categoria";
             btnBuscar.UseVisualStyleBackColor = false;
@@ -239,11 +239,11 @@
             grbGrillaClientes.FlatStyle = FlatStyle.Flat;
             grbGrillaClientes.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbGrillaClientes.ForeColor = Color.DarkSlateGray;
-            grbGrillaClientes.Location = new Point(489, 5);
+            grbGrillaClientes.Location = new Point(593, 5);
             grbGrillaClientes.Margin = new Padding(2);
             grbGrillaClientes.Name = "grbGrillaClientes";
             grbGrillaClientes.Padding = new Padding(5);
-            grbGrillaClientes.Size = new Size(584, 354);
+            grbGrillaClientes.Size = new Size(711, 354);
             grbGrillaClientes.TabIndex = 18;
             grbGrillaClientes.TabStop = false;
             grbGrillaClientes.Text = "Grilla de Categorias";
@@ -253,7 +253,7 @@
             btnRefrescar.FlatAppearance.BorderSize = 0;
             btnRefrescar.FlatStyle = FlatStyle.Flat;
             btnRefrescar.Font = new Font("Calibri", 16F, FontStyle.Bold);
-            btnRefrescar.Location = new Point(542, -6);
+            btnRefrescar.Location = new Point(663, -3);
             btnRefrescar.Name = "btnRefrescar";
             btnRefrescar.Size = new Size(40, 43);
             btnRefrescar.TabIndex = 3;
@@ -269,39 +269,39 @@
             dgvCategorias.AllowUserToResizeRows = false;
             dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCategorias.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvCategorias.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvCategorias.DefaultCellStyle = dataGridViewCellStyle2;
             dgvCategorias.Dock = DockStyle.Fill;
             dgvCategorias.Location = new Point(5, 40);
             dgvCategorias.Margin = new Padding(20);
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvCategorias.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvCategorias.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvCategorias.RowHeadersVisible = false;
             dgvCategorias.RowHeadersWidth = 62;
-            dgvCategorias.Size = new Size(574, 309);
+            dgvCategorias.Size = new Size(701, 309);
             dgvCategorias.TabIndex = 1;
             // 
             // tlpBotones
@@ -322,7 +322,7 @@
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.Size = new Size(1078, 100);
+            tlpBotones.Size = new Size(1309, 100);
             tlpBotones.TabIndex = 23;
             // 
             // btnAgregarCategoria
@@ -336,7 +336,7 @@
             btnAgregarCategoria.Location = new Point(3, 3);
             btnAgregarCategoria.Margin = new Padding(0);
             btnAgregarCategoria.Name = "btnAgregarCategoria";
-            btnAgregarCategoria.Size = new Size(265, 94);
+            btnAgregarCategoria.Size = new Size(323, 94);
             btnAgregarCategoria.TabIndex = 4;
             btnAgregarCategoria.Text = "Agregar ➕";
             btnAgregarCategoria.UseVisualStyleBackColor = true;
@@ -350,10 +350,10 @@
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEliminar.ForeColor = Color.DarkSlateGray;
-            btnEliminar.Location = new Point(541, 5);
+            btnEliminar.Location = new Point(657, 5);
             btnEliminar.Margin = new Padding(2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(261, 90);
+            btnEliminar.Size = new Size(319, 90);
             btnEliminar.TabIndex = 19;
             btnEliminar.Text = "Eliminar 🗑️";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -367,10 +367,10 @@
             btnModificar.FlatStyle = FlatStyle.Flat;
             btnModificar.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnModificar.ForeColor = Color.DarkSlateGray;
-            btnModificar.Location = new Point(273, 5);
+            btnModificar.Location = new Point(331, 5);
             btnModificar.Margin = new Padding(2);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(261, 90);
+            btnModificar.Size = new Size(319, 90);
             btnModificar.TabIndex = 19;
             btnModificar.Text = "Modificar 🛠️";
             btnModificar.UseVisualStyleBackColor = false;
@@ -384,10 +384,10 @@
             btnBuscarCategoria.FlatStyle = FlatStyle.Flat;
             btnBuscarCategoria.Font = new Font("Calibri", 20F, FontStyle.Bold);
             btnBuscarCategoria.ForeColor = Color.DarkSlateGray;
-            btnBuscarCategoria.Location = new Point(807, 3);
+            btnBuscarCategoria.Location = new Point(981, 3);
             btnBuscarCategoria.Margin = new Padding(0);
             btnBuscarCategoria.Name = "btnBuscarCategoria";
-            btnBuscarCategoria.Size = new Size(268, 94);
+            btnBuscarCategoria.Size = new Size(325, 94);
             btnBuscarCategoria.TabIndex = 10;
             btnBuscarCategoria.Text = "Buscar 🔍";
             btnBuscarCategoria.UseVisualStyleBackColor = true;
@@ -416,7 +416,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(988, 0);
+            btnSalir.Location = new Point(1219, 0);
             btnSalir.Margin = new Padding(2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(90, 80);
@@ -435,7 +435,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(2);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(1078, 80);
+            pnelppaltitulo.Size = new Size(1309, 80);
             pnelppaltitulo.TabIndex = 14;
             // 
             // lblTituloGR
@@ -445,7 +445,7 @@
             lblTituloGR.BackColor = Color.Transparent;
             lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
             lblTituloGR.ForeColor = Color.White;
-            lblTituloGR.Location = new Point(302, 8);
+            lblTituloGR.Location = new Point(417, 8);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
             lblTituloGR.Size = new Size(549, 68);
@@ -457,13 +457,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1078, 544);
+            ClientSize = new Size(1309, 544);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(4);
-            MaximumSize = new Size(1100, 600);
-            MinimumSize = new Size(1100, 600);
+            MaximumSize = new Size(1331, 600);
+            MinimumSize = new Size(1331, 600);
             Name = "Gestion_de_Rubros";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Categorías";

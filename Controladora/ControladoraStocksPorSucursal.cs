@@ -104,7 +104,7 @@ namespace Controladora
         }
         public void InicializarStockParaSucursalNueva(int sucursalId)
         {
-            var productos = ControladoraProductos.Instancia().ObtenerProducto();
+            var productos = ControladoraProductos.Instancia().ObtenerProductos();
             foreach (var producto in productos)
             {
                 var nuevoStock = new StockPorSucursal();

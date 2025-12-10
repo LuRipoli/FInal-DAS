@@ -145,6 +145,7 @@ namespace Vista
             dgvCategorias.DataSource = controladoraCategorias.ObtenerCategorias().OrderBy(x => x.Nombre).ToList();
             if (dgvCategorias.Columns["Id"] != null)
                 dgvCategorias.Columns["Id"].Visible = false;
+            dgvCategorias.ClearSelection();
             CargarComboCategorias();
 
         }

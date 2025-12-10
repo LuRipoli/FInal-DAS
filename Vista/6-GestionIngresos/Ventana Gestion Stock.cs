@@ -17,10 +17,7 @@ namespace Vista
         public Ventana_Gestion_Stock()
         {
             InitializeComponent();
-            CargarCombos();
-            Refrescar();
-            LimpiarCampos();
-            dgvStock.CellFormatting += dgvStock_CellFormatting;
+        
         }
         #region HELPER
         private void Refrescar()
@@ -28,6 +25,8 @@ namespace Vista
             var controladora = ControladoraStocksPorSucursal.Instancia();
             var lista = controladora.ObtenerStocks().OrderBy(s => s.Sucursal.Nombre).ThenBy(s => s.Cantidad).Select(s => new { Sucursal = s.Sucursal.Nombre, Producto = s.Producto.Nombre, Stock = s.Cantidad }).ToList();
             dgvStock.DataSource = lista;
+            AplicarColoresStock();
+            dgvStock.ClearSelection();
         }
 
         private void CargarCombos()
@@ -35,7 +34,7 @@ namespace Vista
             var ctrlProductos = ControladoraProductos.Instancia();
             var ctrlSucursales = ControladoraSucursales.Instancia();
 
-            cmbProducto.DataSource = ctrlProductos.ObtenerProducto().ToList();
+            cmbProducto.DataSource = ctrlProductos.ObtenerProductos().ToList();
             cmbProducto.DisplayMember = "Nombre";
             cmbProducto.ValueMember = "Id";
 
@@ -51,40 +50,35 @@ namespace Vista
 
         private void LimpiarCampos()
         {
-            cmbSucursales.SelectedIndex=-1;
+            cmbSucursales.SelectedIndex = -1;
             nudCantidadIngresada.Value = 0;
 
-            if (cmbProducto.Items.Count > 0) cmbProducto.SelectedIndex = 0;
-            if (cmbSucursal.Items.Count > 0) cmbSucursal.SelectedIndex = 0;
+            if (cmbProducto.Items.Count > 0) cmbProducto.SelectedIndex = -1;
+            if (cmbSucursal.Items.Count > 0) cmbSucursal.SelectedIndex = -1;
         }
-        private void dgvStock_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void AplicarColoresStock()
         {
-            if (dgvStock.Columns[e.ColumnIndex].Name == "Stock" && e.Value != null)
+            if (!dgvStock.Columns.Contains("Stock"))
+                return;
+
+            foreach (DataGridViewRow row in dgvStock.Rows)
             {
-                if (int.TryParse(e.Value.ToString(), out int stock))
+                if (!int.TryParse(row.Cells["Stock"].Value?.ToString(), out int stock))
+                    continue;
+
+                row.DefaultCellStyle.ForeColor = Color.Black;
+
+                if (stock <= 10)
                 {
-                    if (stock <= 10)
-                    {
-                        e.CellStyle.BackColor = Color.Red;
-                        e.CellStyle.ForeColor = Color.White;
-                    }
-                    else if (stock <= 15)
-                    {
-                        e.CellStyle.BackColor = Color.Orange;
-                        e.CellStyle.ForeColor = Color.Black;
-                    }
-                    else if (stock <= 25)
-                    {
-                        e.CellStyle.BackColor = Color.Yellow;
-                        e.CellStyle.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        e.CellStyle.BackColor = Color.Green;
-                        e.CellStyle.ForeColor = Color.Black;
-                    }
+                    row.DefaultCellStyle.BackColor = Color.IndianRed;
+                    row.DefaultCellStyle.ForeColor = Color.White;
                 }
+                else if (stock <= 25)
+                    row.DefaultCellStyle.BackColor = Color.Gold;
+                else
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
             }
+
         }
         #endregion
 
@@ -187,6 +181,13 @@ namespace Vista
             }
             tlpBuscar.Enabled = false;
             btnBuscar.Enabled = false;
+        }
+
+        private void Ventana_Gestion_Stock_Load(object sender, EventArgs e)
+        {
+            CargarCombos();
+            Refrescar();
+            LimpiarCampos();
         }
     }
 }

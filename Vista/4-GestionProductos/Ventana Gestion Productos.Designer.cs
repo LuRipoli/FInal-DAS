@@ -272,10 +272,10 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -359,6 +359,7 @@
             nudPrecio.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nudPrecio.Location = new Point(306, 170);
             nudPrecio.Margin = new Padding(4);
+            nudPrecio.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
             nudPrecio.Name = "nudPrecio";
             nudPrecio.Size = new Size(288, 42);
             nudPrecio.TabIndex = 32;

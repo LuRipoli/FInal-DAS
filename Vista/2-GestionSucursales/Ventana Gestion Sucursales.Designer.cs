@@ -163,7 +163,7 @@
             dgvSucursales.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
@@ -511,6 +511,7 @@
             Name = "Ventana_Gestion_Sucursales";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sucursales";
+            Load += Ventana_Gestion_Sucursales_Load;
             pnelppalmedio.ResumeLayout(false);
             pnelppalmedio.PerformLayout();
             tlpDivision.ResumeLayout(false);

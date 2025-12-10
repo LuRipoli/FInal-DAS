@@ -13,43 +13,39 @@ namespace Vista
         {
             Refrescar();
         }
-   
+
         #region HELPER
         private void Refrescar()
         {
-            var controladoraStockPorSucursal = ControladoraStocksPorSucursal.Instancia();
-            var productosBajoStock = controladoraStockPorSucursal.ObtenerProductosBajoStockPorSucursal().Select(s => new { Producto = s.Producto.Nombre, Sucursal = s.Sucursal.Nombre, StockRestante = s.Cantidad }).ToList();
-            dgvProductosBajoStock.DataSource = productosBajoStock;
-            dgvProductosBajoStock.Columns["StockRestante"].HeaderText = "Stock Restante";
+            dgvProductosBajoStock.DataSource = ControladoraStocksPorSucursal.Instancia().ObtenerProductosBajoStockPorSucursal().Select(s => new { Producto = s.Producto.Nombre, Sucursal = s.Sucursal.Nombre, Stock = s.Cantidad }).OrderBy(x => x.Stock).ToList();
+            dgvProductosBajoStock.Columns["Stock"].HeaderText = "Stock Restante";
+            dgvProductosBajoStock.ClearSelection();
             AplicarColoresProductosBajoStock();
-            var controladoraVentas = ControladoraVentas.Instancia();
-            var ventasSemanales = controladoraVentas.ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = v.Total, Descuento = v.Descuento }).ToList();
-            dgvVentasSemanales.DataSource = ventasSemanales;
+
+            dgvVentasSemanales.DataSource = ControladoraVentas.Instancia().ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = v.Total, Descuento = v.Descuento }).ToList();
             dgvVentasSemanales.Columns["MetodoDePago"].HeaderText = "Método de Pago";
+            dgvVentasSemanales.ClearSelection();
         }
 
         private void AplicarColoresProductosBajoStock()
         {
+            if (!dgvProductosBajoStock.Columns.Contains("Stock")) 
+                return;
+
             foreach (DataGridViewRow row in dgvProductosBajoStock.Rows)
             {
-                if (row.Cells["Stock"].Value != null && int.TryParse(row.Cells["Stock"].Value.ToString(), out int stock))
-                {
-                    if (stock <= 10)
-                    {
-                        row.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
-                        row.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-                    }
-                    else if (stock > 10 && stock <= 15)
-                    {
-                        row.DefaultCellStyle.BackColor = System.Drawing.Color.Orange;
-                        row.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
-                    else if (stock <= 25)
-                    {
-                        row.DefaultCellStyle.BackColor = System.Drawing.Color.Yellow;
-                        row.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    }
+                if (!int.TryParse(row.Cells["Stock"].Value?.ToString(), out int stock)) 
+                    continue;
+
+                row.DefaultCellStyle.ForeColor = Color.Black;
+                if (stock <= 10) 
+                { row.DefaultCellStyle.BackColor = Color.IndianRed; 
+                    row.DefaultCellStyle.ForeColor = Color.White; 
                 }
+                else if (stock <= 25) 
+                    row.DefaultCellStyle.BackColor = Color.Gold;
+                else 
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
             }
         }
         #endregion
