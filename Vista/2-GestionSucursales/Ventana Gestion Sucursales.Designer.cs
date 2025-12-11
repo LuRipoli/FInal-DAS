@@ -122,10 +122,10 @@
             btnRefrescar.FlatAppearance.BorderSize = 0;
             btnRefrescar.FlatStyle = FlatStyle.Flat;
             btnRefrescar.Font = new Font("Calibri", 16F, FontStyle.Bold);
-            btnRefrescar.Location = new Point(638, -8);
+            btnRefrescar.Location = new Point(638, -10);
             btnRefrescar.Margin = new Padding(2);
             btnRefrescar.Name = "btnRefrescar";
-            btnRefrescar.Size = new Size(40, 42);
+            btnRefrescar.Size = new Size(40, 46);
             btnRefrescar.TabIndex = 2;
             btnRefrescar.Text = "🔄";
             btnRefrescar.UseVisualStyleBackColor = true;
@@ -159,6 +159,7 @@
             dgvSucursales.Dock = DockStyle.Fill;
             dgvSucursales.Location = new Point(2, 37);
             dgvSucursales.Margin = new Padding(20);
+            dgvSucursales.MultiSelect = false;
             dgvSucursales.Name = "dgvSucursales";
             dgvSucursales.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -171,8 +172,10 @@
             dgvSucursales.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvSucursales.RowHeadersVisible = false;
             dgvSucursales.RowHeadersWidth = 62;
+            dgvSucursales.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSucursales.Size = new Size(678, 334);
             dgvSucursales.TabIndex = 1;
+            dgvSucursales.SelectionChanged += dgvSucursales_SelectionChanged;
             // 
             // grbManejodeDatos
             // 
@@ -229,7 +232,7 @@
             // txtDireccion
             // 
             txtDireccion.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtDireccion.Font = new Font("Segoe UI", 12F);
+            txtDireccion.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDireccion.Location = new Point(282, 93);
             txtDireccion.Margin = new Padding(4);
             txtDireccion.Multiline = true;
@@ -255,11 +258,11 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombre.Font = new Font("Segoe UI", 12F);
-            txtNombre.Location = new Point(282, 19);
+            txtNombre.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombre.Location = new Point(282, 22);
             txtNombre.Margin = new Padding(4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(264, 39);
+            txtNombre.Size = new Size(264, 32);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -279,6 +282,7 @@
             btnLimpiarCampos.TabIndex = 23;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
+            btnLimpiarCampos.Click += btnLimpiarCampos_Click_1;
             // 
             // tlpBuscar
             // 
@@ -301,12 +305,12 @@
             // cmbSucursal
             // 
             cmbSucursal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbSucursal.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursal.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursal.FormattingEnabled = true;
-            cmbSucursal.Location = new Point(282, 13);
+            cmbSucursal.Location = new Point(282, 19);
             cmbSucursal.Margin = new Padding(4);
             cmbSucursal.Name = "cmbSucursal";
-            cmbSucursal.Size = new Size(264, 43);
+            cmbSucursal.Size = new Size(264, 32);
             cmbSucursal.TabIndex = 23;
             // 
             // lblId

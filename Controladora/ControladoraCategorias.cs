@@ -92,5 +92,9 @@ namespace Controladora
                 throw new EntidadNoEncontradaException("No se encontró la categoría especificada.");
             return categoria;
         }
+        public int ObtenerCantidadProductosPorCategoria(int idCategoria)
+        {
+            return repositorio.ContarProductosPorCategoria(idCategoria);
+        }
     }
 }

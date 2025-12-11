@@ -43,6 +43,7 @@ namespace Vista
                 dgvClientes.Columns["TipoCliente"].HeaderText = "Tipo de Cliente";
             dgvClientes.ClearSelection();
             CargarComboClientes();
+            LimpiarCampos();
         }
         private void CargarComboClientes()
         {
@@ -52,6 +53,32 @@ namespace Vista
             foreach (var cliente in clientes)
             {
                 cmbClientes.Items.Add(cliente.Nombre);
+            }
+        }
+        private void dgvClientes_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvClientes.CurrentRow == null || dgvClientes.SelectedRows.Count == 0)
+                return;
+
+            txtNombre.Text = dgvClientes.CurrentRow.Cells["Nombre"].Value.ToString();
+            txtEmail.Text = dgvClientes.CurrentRow.Cells["Email"].Value.ToString();
+
+            string tipo = dgvClientes.CurrentRow.Cells["TipoCliente"].Value.ToString();
+
+            if (tipo == "Minorista")
+            {
+                rdbMinorista.Checked = true;
+                rdbMayorista.Checked = false;
+            }
+            else if (tipo == "Mayorista")
+            {
+                rdbMinorista.Checked = false;
+                rdbMayorista.Checked = true;
+            }
+            else
+            {
+                rdbMinorista.Checked = false;
+                rdbMayorista.Checked = false;
             }
         }
         private void LimpiarCampos()
@@ -101,7 +128,6 @@ namespace Vista
                 MessageBox.Show("Cliente agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Refrescar();
-                LimpiarCampos();
             }
             catch (DatosInvalidosException ex)
             {
@@ -127,7 +153,6 @@ namespace Vista
                     controladoraClientes.ModificarCliente((int)id, nombre, email, tipoCliente);
                     MessageBox.Show("Cliente modificado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Refrescar();
-                    LimpiarCampos();
                 }
                 else
                 {
@@ -231,6 +256,11 @@ namespace Vista
         {
             Refrescar();
             LimpiarCampos();
+        }
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            Refrescar();
         }
     }
 }

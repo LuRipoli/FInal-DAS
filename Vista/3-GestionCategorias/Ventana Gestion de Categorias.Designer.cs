@@ -144,11 +144,11 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombre.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(292, 27);
+            txtNombre.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombre.Location = new Point(292, 32);
             txtNombre.Margin = new Padding(8);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(262, 42);
+            txtNombre.Size = new Size(262, 32);
             txtNombre.TabIndex = 0;
             txtNombre.TextAlign = HorizontalAlignment.Center;
             // 
@@ -168,6 +168,7 @@
             btnLimpiarCampos.TabIndex = 23;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
+            btnLimpiarCampos.Click += btnLimpiarCampos_Click_1;
             // 
             // tlpBuscar
             // 
@@ -189,12 +190,12 @@
             // cmbCategoria
             // 
             cmbCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbCategoria.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbCategoria.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCategoria.FormattingEnabled = true;
-            cmbCategoria.Location = new Point(292, 24);
+            cmbCategoria.Location = new Point(292, 30);
             cmbCategoria.Margin = new Padding(8);
             cmbCategoria.Name = "cmbCategoria";
-            cmbCategoria.Size = new Size(262, 43);
+            cmbCategoria.Size = new Size(262, 32);
             cmbCategoria.TabIndex = 35;
             // 
             // lblId
@@ -281,7 +282,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -289,6 +290,7 @@
             dgvCategorias.Dock = DockStyle.Fill;
             dgvCategorias.Location = new Point(5, 40);
             dgvCategorias.Margin = new Padding(20);
+            dgvCategorias.MultiSelect = false;
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -301,8 +303,10 @@
             dgvCategorias.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvCategorias.RowHeadersVisible = false;
             dgvCategorias.RowHeadersWidth = 62;
+            dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCategorias.Size = new Size(701, 309);
             dgvCategorias.TabIndex = 1;
+            dgvCategorias.SelectionChanged += dgvCategorias_SelectionChanged;
             // 
             // tlpBotones
             // 
@@ -345,6 +349,7 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.PaleTurquoise;
+            btnEliminar.Cursor = Cursors.Hand;
             btnEliminar.Dock = DockStyle.Fill;
             btnEliminar.FlatAppearance.BorderSize = 0;
             btnEliminar.FlatStyle = FlatStyle.Flat;
@@ -362,6 +367,7 @@
             // btnModificar
             // 
             btnModificar.BackColor = Color.PaleTurquoise;
+            btnModificar.Cursor = Cursors.Hand;
             btnModificar.Dock = DockStyle.Fill;
             btnModificar.FlatAppearance.BorderSize = 0;
             btnModificar.FlatStyle = FlatStyle.Flat;

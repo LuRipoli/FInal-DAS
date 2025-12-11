@@ -22,8 +22,8 @@ namespace Vista
             dgvProductosBajoStock.ClearSelection();
             AplicarColoresProductosBajoStock();
 
-            dgvVentasSemanales.DataSource = ControladoraVentas.Instancia().ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = v.Total, Descuento = v.Descuento }).ToList();
-            dgvVentasSemanales.Columns["MetodoDePago"].HeaderText = "Método de Pago";
+            dgvVentasSemanales.DataSource = ControladoraVentas.Instancia().ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = (v.Producto.Precio * v.Cantidad).ToString("$#,0.00"), Descuento = ((int)v.Descuento).ToString() + "%", Resultado = v.Total.ToString("$#,0.00") }).ToList();
+            dgvVentasSemanales.Columns["MetodoDePago"].HeaderText = "Método";
             dgvVentasSemanales.ClearSelection();
         }
 

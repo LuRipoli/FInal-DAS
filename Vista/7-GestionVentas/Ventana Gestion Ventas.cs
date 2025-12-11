@@ -81,10 +81,11 @@ namespace Vista
         }
         private void Refrescar()
         {
-            var ventas = controladora.ObtenerVentas().Select(v => new { v.Id, Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Cliente = v.Cliente.Nombre, Producto = v.Producto.Nombre, Sucursal = v.Sucursal.Nombre, Metodo = v.MetodoPago.ToString(), v.Descuento, v.Cantidad, v.Total, Vendedor = v.NombreVendedor }).OrderBy(x => x.Fecha).ToList();
+            dgvVentas.DataSource = controladora.ObtenerVentas().OrderBy(v => v.Fecha).Select(v => new { v.Id, Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Cliente = v.Cliente.Nombre, Producto = v.Producto.Nombre, Sucursal = v.Sucursal.Nombre, Metodo = v.MetodoPago.ToString(), v.Cantidad, Total = (v.Producto.Precio * v.Cantidad).ToString("$#,0.00"), Descuento = v.Descuento.ToString("#,0") + "%", Resultado = v.Total.ToString("$#,0.00"), Vendedor = v.NombreVendedor }).ToList();
 
-            dgvVentas.DataSource = null;
-            dgvVentas.DataSource = ventas;
+            if (dgvVentas.Columns["Id"] != null)
+                dgvVentas.Columns["Id"].Visible = false;
+
             dgvVentas.ClearSelection();
         }
         private void LimpiarCampos()

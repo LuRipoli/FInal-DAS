@@ -96,6 +96,15 @@ namespace Controladora
                 throw new EntidadNoEncontradaException("No se encontró la sucursal especificada.");
             return sucursal;
         }
+        public Sucursal BuscarSucursalPorId(int id)
+        {
+            if (id <= 0)
+                throw new DatosInvalidosException("El identificador de la sucursal no es válido.");
+            var sucursal = repositorio.ObtenerSucursalPorId(id);
+            if (sucursal == null)
+                throw new EntidadNoEncontradaException("No se encontró la sucursal especificada.");
+            return sucursal;
+        }
     }
 }
 

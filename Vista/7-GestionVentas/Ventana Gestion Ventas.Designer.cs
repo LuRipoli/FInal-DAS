@@ -131,6 +131,7 @@
             // btnBuscar
             // 
             btnBuscar.BackColor = Color.DarkSlateGray;
+            btnBuscar.Cursor = Cursors.Hand;
             btnBuscar.Dock = DockStyle.Bottom;
             btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.FlatStyle = FlatStyle.Flat;
@@ -207,22 +208,22 @@
             // 
             txtTotal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtTotal.Enabled = false;
-            txtTotal.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTotal.Location = new Point(308, 417);
+            txtTotal.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTotal.Location = new Point(308, 420);
             txtTotal.Margin = new Padding(8);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
-            txtTotal.Size = new Size(476, 42);
+            txtTotal.Size = new Size(476, 32);
             txtTotal.TabIndex = 35;
             // 
             // txtNombreVendedor
             // 
             txtNombreVendedor.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombreVendedor.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombreVendedor.Location = new Point(308, 185);
+            txtNombreVendedor.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombreVendedor.Location = new Point(308, 188);
             txtNombreVendedor.Margin = new Padding(8);
             txtNombreVendedor.Name = "txtNombreVendedor";
-            txtNombreVendedor.Size = new Size(476, 42);
+            txtNombreVendedor.Size = new Size(476, 32);
             txtNombreVendedor.TabIndex = 34;
             // 
             // label9
@@ -241,12 +242,12 @@
             // nudCantidad
             // 
             nudCantidad.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            nudCantidad.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudCantidad.Location = new Point(308, 243);
+            nudCantidad.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nudCantidad.Location = new Point(308, 246);
             nudCantidad.Margin = new Padding(8);
             nudCantidad.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudCantidad.Name = "nudCantidad";
-            nudCantidad.Size = new Size(476, 42);
+            nudCantidad.Size = new Size(476, 32);
             nudCantidad.TabIndex = 32;
             nudCantidad.TextAlign = HorizontalAlignment.Center;
             nudCantidad.ValueChanged += nudCantidad_ValueChanged;
@@ -347,11 +348,11 @@
             // nudDescuento
             // 
             nudDescuento.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            nudDescuento.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudDescuento.Location = new Point(308, 301);
+            nudDescuento.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nudDescuento.Location = new Point(308, 304);
             nudDescuento.Margin = new Padding(8);
             nudDescuento.Name = "nudDescuento";
-            nudDescuento.Size = new Size(476, 42);
+            nudDescuento.Size = new Size(476, 32);
             nudDescuento.TabIndex = 28;
             nudDescuento.TextAlign = HorizontalAlignment.Center;
             nudDescuento.ValueChanged += nudDescuento_ValueChanged;
@@ -411,12 +412,12 @@
             // cmbProducto
             // 
             cmbProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbProducto.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProducto.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProducto.FormattingEnabled = true;
-            cmbProducto.Location = new Point(308, 11);
+            cmbProducto.Location = new Point(308, 14);
             cmbProducto.Margin = new Padding(8);
             cmbProducto.Name = "cmbProducto";
-            cmbProducto.Size = new Size(476, 43);
+            cmbProducto.Size = new Size(476, 32);
             cmbProducto.TabIndex = 21;
             cmbProducto.SelectedIndexChanged += cmbProducto_SelectedIndexChanged;
             // 
@@ -436,34 +437,34 @@
             // cmbSucursales
             // 
             cmbSucursales.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbSucursales.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursales.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursales.FormattingEnabled = true;
-            cmbSucursales.Location = new Point(308, 69);
+            cmbSucursales.Location = new Point(308, 72);
             cmbSucursales.Margin = new Padding(8);
             cmbSucursales.Name = "cmbSucursales";
-            cmbSucursales.Size = new Size(476, 43);
+            cmbSucursales.Size = new Size(476, 32);
             cmbSucursales.TabIndex = 22;
             // 
             // cmbClientes
             // 
             cmbClientes.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbClientes.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbClientes.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.FormattingEnabled = true;
-            cmbClientes.Location = new Point(308, 127);
+            cmbClientes.Location = new Point(308, 130);
             cmbClientes.Margin = new Padding(8);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(476, 43);
+            cmbClientes.Size = new Size(476, 32);
             cmbClientes.TabIndex = 21;
             // 
             // dtpFecha
             // 
             dtpFecha.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpFecha.CalendarFont = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFecha.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFecha.Location = new Point(308, 476);
+            dtpFecha.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFecha.Location = new Point(308, 481);
             dtpFecha.Margin = new Padding(8);
             dtpFecha.Name = "dtpFecha";
-            dtpFecha.Size = new Size(476, 42);
+            dtpFecha.Size = new Size(476, 32);
             dtpFecha.TabIndex = 26;
             // 
             // lblCantidad
@@ -498,11 +499,11 @@
             // 
             dtpFechaBuscada.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpFechaBuscada.CalendarFont = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaBuscada.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaBuscada.Location = new Point(308, 18);
+            dtpFechaBuscada.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFechaBuscada.Location = new Point(308, 23);
             dtpFechaBuscada.Margin = new Padding(8);
             dtpFechaBuscada.Name = "dtpFechaBuscada";
-            dtpFechaBuscada.Size = new Size(476, 42);
+            dtpFechaBuscada.Size = new Size(476, 32);
             dtpFechaBuscada.TabIndex = 27;
             // 
             // label6
@@ -569,7 +570,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -611,6 +612,7 @@
             // 
             // btnAgregar
             // 
+            btnAgregar.Cursor = Cursors.Hand;
             btnAgregar.Dock = DockStyle.Fill;
             btnAgregar.FlatAppearance.BorderSize = 0;
             btnAgregar.FlatStyle = FlatStyle.Flat;
@@ -627,6 +629,7 @@
             // 
             // btnBuscarVenta
             // 
+            btnBuscarVenta.Cursor = Cursors.Hand;
             btnBuscarVenta.Dock = DockStyle.Fill;
             btnBuscarVenta.FlatAppearance.BorderSize = 0;
             btnBuscarVenta.FlatStyle = FlatStyle.Flat;

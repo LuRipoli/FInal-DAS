@@ -130,6 +130,7 @@
             // btnAplicarFiltros
             // 
             btnAplicarFiltros.BackColor = Color.DarkSlateGray;
+            btnAplicarFiltros.Cursor = Cursors.Hand;
             btnAplicarFiltros.Dock = DockStyle.Bottom;
             btnAplicarFiltros.FlatAppearance.BorderSize = 0;
             btnAplicarFiltros.FlatStyle = FlatStyle.Flat;
@@ -213,22 +214,22 @@
             // 
             dtpFechaHasta.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpFechaHasta.CalendarFont = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaHasta.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaHasta.Location = new Point(291, 108);
+            dtpFechaHasta.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFechaHasta.Location = new Point(291, 113);
             dtpFechaHasta.Margin = new Padding(8);
             dtpFechaHasta.Name = "dtpFechaHasta";
-            dtpFechaHasta.Size = new Size(448, 42);
+            dtpFechaHasta.Size = new Size(448, 32);
             dtpFechaHasta.TabIndex = 35;
             // 
             // cmbVendedor
             // 
             cmbVendedor.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbVendedor.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbVendedor.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbVendedor.FormattingEnabled = true;
-            cmbVendedor.Location = new Point(291, 538);
+            cmbVendedor.Location = new Point(291, 544);
             cmbVendedor.Margin = new Padding(8);
             cmbVendedor.Name = "cmbVendedor";
-            cmbVendedor.Size = new Size(448, 43);
+            cmbVendedor.Size = new Size(448, 32);
             cmbVendedor.TabIndex = 34;
             // 
             // lblNombreVendedor
@@ -340,12 +341,12 @@
             // cmbProducto
             // 
             cmbProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbProducto.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProducto.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProducto.FormattingEnabled = true;
-            cmbProducto.Location = new Point(291, 366);
+            cmbProducto.Location = new Point(291, 371);
             cmbProducto.Margin = new Padding(8);
             cmbProducto.Name = "cmbProducto";
-            cmbProducto.Size = new Size(448, 43);
+            cmbProducto.Size = new Size(448, 32);
             cmbProducto.TabIndex = 21;
             // 
             // lblSucursal
@@ -364,23 +365,23 @@
             // cmbSucursales
             // 
             cmbSucursales.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbSucursales.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursales.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursales.FormattingEnabled = true;
-            cmbSucursales.Location = new Point(291, 194);
+            cmbSucursales.Location = new Point(291, 199);
             cmbSucursales.Margin = new Padding(8);
             cmbSucursales.Name = "cmbSucursales";
-            cmbSucursales.Size = new Size(448, 43);
+            cmbSucursales.Size = new Size(448, 32);
             cmbSucursales.TabIndex = 22;
             // 
             // dtpFechaDesde
             // 
             dtpFechaDesde.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpFechaDesde.CalendarFont = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaDesde.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaDesde.Location = new Point(291, 23);
+            dtpFechaDesde.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFechaDesde.Location = new Point(291, 28);
             dtpFechaDesde.Margin = new Padding(8);
             dtpFechaDesde.Name = "dtpFechaDesde";
-            dtpFechaDesde.Size = new Size(448, 42);
+            dtpFechaDesde.Size = new Size(448, 32);
             dtpFechaDesde.TabIndex = 26;
             // 
             // lblFechaHasta
@@ -399,12 +400,12 @@
             // cmbClientes
             // 
             cmbClientes.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbClientes.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbClientes.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.FormattingEnabled = true;
-            cmbClientes.Location = new Point(291, 280);
+            cmbClientes.Location = new Point(291, 285);
             cmbClientes.Margin = new Padding(8);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(448, 43);
+            cmbClientes.Size = new Size(448, 32);
             cmbClientes.TabIndex = 21;
             // 
             // lblCliente
@@ -525,6 +526,7 @@
             // 
             // btnReporteVenta
             // 
+            btnReporteVenta.Cursor = Cursors.Hand;
             btnReporteVenta.Dock = DockStyle.Fill;
             btnReporteVenta.FlatAppearance.BorderSize = 0;
             btnReporteVenta.FlatStyle = FlatStyle.Flat;
@@ -541,6 +543,7 @@
             // 
             // btnReporteSucursal
             // 
+            btnReporteSucursal.Cursor = Cursors.Hand;
             btnReporteSucursal.Dock = DockStyle.Fill;
             btnReporteSucursal.FlatAppearance.BorderSize = 0;
             btnReporteSucursal.FlatStyle = FlatStyle.Flat;
@@ -557,6 +560,7 @@
             // 
             // btnReporteProducto
             // 
+            btnReporteProducto.Cursor = Cursors.Hand;
             btnReporteProducto.Dock = DockStyle.Fill;
             btnReporteProducto.FlatAppearance.BorderSize = 0;
             btnReporteProducto.FlatStyle = FlatStyle.Flat;
@@ -573,6 +577,7 @@
             // 
             // btnReporteCliente
             // 
+            btnReporteCliente.Cursor = Cursors.Hand;
             btnReporteCliente.Dock = DockStyle.Fill;
             btnReporteCliente.FlatAppearance.BorderSize = 0;
             btnReporteCliente.FlatStyle = FlatStyle.Flat;

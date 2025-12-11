@@ -100,10 +100,7 @@ namespace Vista
             Application.Exit();
         }
 
-        private void btnLimpiarCampos_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
+       
 
         private void btnBuscarCategoria_Click(object sender, EventArgs e)
         {
@@ -141,11 +138,19 @@ namespace Vista
         #region HELPER
         private void Refrescar()
         {
-            var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
-            dgvCategorias.DataSource = controladoraCategorias.ObtenerCategorias().OrderBy(x => x.Nombre).ToList();
-            if (dgvCategorias.Columns["Id"] != null)
-                dgvCategorias.Columns["Id"].Visible = false;
+            var ctrlCat = Controladora.ControladoraCategorias.Instancia();
+            var ctrlProd = Controladora.ControladoraProductos.Instancia();
+
+            var categorias = ctrlCat.ObtenerCategorias().OrderBy(c => c.Nombre).ToList();
+            var productos = ctrlProd.ObtenerProductos().ToList();
+
+            dgvCategorias.DataSource = categorias.Select(c => new { Id = c.Id, Nombre = c.Nombre, ProductosRegistrados = productos.Count(p => p.CategoriaId == c.Id) }).ToList();
+
+            dgvCategorias.Columns["Id"].Visible = false;
+            dgvCategorias.Columns["ProductosRegistrados"].HeaderText = "Productos Registrados";
+
             dgvCategorias.ClearSelection();
+            LimpiarCampos();
             CargarComboCategorias();
 
         }
@@ -180,6 +185,13 @@ namespace Vista
             }
             return null;
         }
+        private void dgvCategorias_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCategorias.CurrentRow == null || dgvCategorias.SelectedRows.Count == 0)
+                return;
+
+            txtNombre.Text = dgvCategorias.CurrentRow.Cells["Nombre"].Value?.ToString() ?? "";
+        }
         #endregion
 
         private void btnRefrescar_Click(object sender, EventArgs e)
@@ -192,7 +204,7 @@ namespace Vista
             var controladoraCategorias = Controladora.ControladoraCategorias.Instancia();
             try
             {
-                if (cmbCategoria.SelectedIndex!= -1)
+                if (cmbCategoria.SelectedIndex != -1)
                 {
                     string nombre = cmbCategoria.Text.Trim();
                     var categoria = controladoraCategorias.BuscarCategoriaPorNombre(nombre);
@@ -227,6 +239,11 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnLimpiarCampos_Click_1(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }

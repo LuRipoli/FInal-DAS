@@ -24,19 +24,19 @@ namespace Vista
         {
             Refrescar();
             CargarCampos();
-            LimpiarCampos();
         }
         #region HELPER
         private void Refrescar()
         {
             var controladoraProductos = ControladoraProductos.Instancia();
             dgvProductos.DataSource = null;
-            dgvProductos.DataSource = controladoraProductos.ObtenerProductos().OrderBy(x => x.Categoria.Nombre).ThenBy(x => x.Nombre).Select(x => new { x.Nombre, x.Descripcion, x.Precio, Categoria = x.Categoria.Nombre }).ToList();
+            dgvProductos.DataSource = controladoraProductos.ObtenerProductos().OrderBy(x => x.Categoria.Nombre).ThenBy(x => x.Nombre).Select(x => new { x.Id, x.Nombre, x.Descripcion, Precio = x.Precio.ToString("$#,0.00"), Categoria = x.Categoria.Nombre }).ToList();
 
             if (dgvProductos.Columns["Id"] != null) dgvProductos.Columns["Id"].Visible = false;
             if (dgvProductos.Columns["CategoriaId"] != null) dgvProductos.Columns["CategoriaId"].Visible = false;
 
             dgvProductos.ClearSelection();
+            LimpiarCampos();
         }
         private void LimpiarCampos()
         {
@@ -45,7 +45,29 @@ namespace Vista
             cmbCategoria.SelectedIndex = -1;
             cmbProducto.SelectedIndex = -1;
         }
-        
+        private void dgvProductos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvProductos.CurrentRow == null || dgvProductos.SelectedRows.Count == 0)
+                return;
+
+            txtNombre.Text = dgvProductos.CurrentRow.Cells["Nombre"].Value?.ToString() ?? "";
+            txtDescripcion.Text = dgvProductos.CurrentRow.Cells["Descripcion"].Value?.ToString() ?? "";
+
+            if (decimal.TryParse(dgvProductos.CurrentRow.Cells["Precio"].Value?.ToString(), out decimal precio))
+                nudPrecio.Value = precio;
+
+            string categoriaNombre = dgvProductos.CurrentRow.Cells["Categoria"].Value?.ToString() ?? "";
+
+            for (int i = 0; i < cmbCategoria.Items.Count; i++)
+            {
+                var cat = (Categoria)cmbCategoria.Items[i];
+                if (cat.Nombre == categoriaNombre)
+                {
+                    cmbCategoria.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
         private void CargarCampos()
         {
             var controladoraCategorias = ControladoraCategorias.Instancia();

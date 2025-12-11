@@ -20,14 +20,6 @@ namespace Vista
             InitializeComponent();
 
         }
-
-
-
-        private void btnLimpiarCampos_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             Form1 menu = new Form1();
@@ -138,12 +130,15 @@ namespace Vista
         #region HELPER
         public void Refrescar()
         {
-            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
-            var listaSucursales = controladoraSucursales.ObtenerSucursales().OrderBy(x => x.Nombre).ToList();
-            dgvSucursales.DataSource = listaSucursales;
+            var controladoraSucursales = ControladoraSucursales.Instancia();
+
+            dgvSucursales.DataSource = controladoraSucursales.ObtenerSucursales().OrderBy(s => s.Nombre).Select(s => new { s.Id, s.Nombre, s.Direccion }).ToList();
+
             if (dgvSucursales.Columns["Id"] != null)
                 dgvSucursales.Columns["Id"].Visible = false;
+
             dgvSucursales.ClearSelection();
+            LimpiarCampos();
             CargarComboSucursales();
         }
         public void LimpiarCampos()
@@ -169,6 +164,14 @@ namespace Vista
                 return null;
             }
         }
+        private void dgvSucursales_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvSucursales.CurrentRow == null || dgvSucursales.SelectedRows.Count == 0)
+                return;
+
+            txtNombre.Text = dgvSucursales.CurrentRow.Cells["Nombre"].Value?.ToString() ?? "";
+            txtDireccion.Text = dgvSucursales.CurrentRow.Cells["Direccion"].Value?.ToString() ?? "";
+        }
         #endregion
 
         private void btnRefrescar_Click(object sender, EventArgs e)
@@ -177,51 +180,41 @@ namespace Vista
         }
         private void CargarComboSucursales()
         {
-            cmbSucursal.Items.Clear();
-            var controladoraSucursales = Controladora.ControladoraSucursales.Instancia();
-            var lista = controladoraSucursales.ObtenerSucursales();
+            var lista = ControladoraSucursales.Instancia().ObtenerSucursales().ToList();
 
-            foreach (var sucursal in lista)
-            {
-                cmbSucursal.Items.Add(sucursal.Nombre);
-            }
+            cmbSucursal.DataSource = lista;
+            cmbSucursal.DisplayMember = "Nombre";
+            cmbSucursal.ValueMember = "Id";
+
+            cmbSucursal.SelectedIndex = -1;
 
         }
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            var controladoraSucursales = ControladoraSucursales.Instancia();
+            var controladora = ControladoraSucursales.Instancia();
+
             try
             {
                 if (cmbSucursal.SelectedIndex != -1)
                 {
-                    string nombreBuscado = cmbSucursal.Text;
-                    var sucursal = controladoraSucursales.BuscarSucursalPorNombre(nombreBuscado);
-                    if (sucursal != null)
+                    int id = (int)cmbSucursal.SelectedValue;
+
+                    var sucursal = controladora.BuscarSucursalPorId(id);
+                    if (sucursal == null)
                     {
-                        var listaSucursales = new List<Entidades.Sucursal>();
-                        listaSucursales.Add(sucursal);
-                        dgvSucursales.DataSource = listaSucursales;
-                        if (dgvSucursales.Columns["Id"] != null)
-                            dgvSucursales.Columns["Id"].Visible = false; btnBuscar.Enabled = false;
-                        tlpBuscar.Enabled = false;
-                        cmbSucursal.SelectedIndex = -1;
+                        MessageBox.Show("No se encontró la sucursal.", "Información",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
-                    else
-                    {
-                        MessageBox.Show("No se encontró ningún cliente con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnBuscar.Enabled = false;
-                        tlpBuscar.Enabled = false;
-                    }
+
+                    dgvSucursales.DataSource = new[] { new { sucursal.Id, sucursal.Nombre, sucursal.Direccion } }.ToList();
+                    dgvSucursales.Columns["Id"].Visible = false;
+
+                    tlpBuscar.Enabled = false;
+                    btnBuscar.Enabled = false;
+                    cmbSucursal.SelectedIndex = -1;
                 }
-            }
-            catch (DatosInvalidosException ex)
-            {
-                MessageBox.Show(ex.Message, "Error de datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (EntidadNoEncontradaException ex)
-            {
-                MessageBox.Show(ex.Message, "Error de entidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -232,6 +225,11 @@ namespace Vista
         private void Ventana_Gestion_Sucursales_Load(object sender, EventArgs e)
         {
             Refrescar();
+            LimpiarCampos();
+        }
+
+        private void btnLimpiarCampos_Click_1(object sender, EventArgs e)
+        {
             LimpiarCampos();
         }
     }

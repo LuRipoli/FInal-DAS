@@ -42,5 +42,9 @@ namespace Modelo
         {
             return context.Categorias.FirstOrDefault(c => c.Nombre == nombreCategoria);
         }
+        public int ContarProductosPorCategoria(int idCategoria)
+        {
+            return context.Productos.Count(p => p.CategoriaId == idCategoria);
+        }
     }
 }

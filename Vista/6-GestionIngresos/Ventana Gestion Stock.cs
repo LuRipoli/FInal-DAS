@@ -27,6 +27,19 @@ namespace Vista
             dgvStock.DataSource = lista;
             AplicarColoresStock();
             dgvStock.ClearSelection();
+            LimpiarCampos();
+        }
+        private void MostrarSucursal()
+        {
+            int idSucursal = (int)cmbSucursales.SelectedValue;
+            var controladora = ControladoraStocksPorSucursal.Instancia();
+            var lista = controladora.ObtenerStocks().Where(s => s.Sucursal.Id == idSucursal).OrderBy(s => s.Cantidad).Select(s => new { Sucursal = s.Sucursal.Nombre, Producto = s.Producto.Nombre, Stock = s.Cantidad }).ToList();
+
+            if (lista.Count == 0)
+                throw new EntidadNoEncontradaException("No hay stocks para esa sucursal.");
+
+            dgvStock.DataSource = lista;
+            AplicarColoresStock();
         }
 
         private void CargarCombos()
@@ -42,15 +55,46 @@ namespace Vista
             cmbSucursal.DisplayMember = "Nombre";
             cmbSucursal.ValueMember = "Id";
 
-            foreach (var sucursal in ctrlSucursales.ObtenerSucursales())
-            {
-                cmbSucursales.Items.Add(sucursal.Id);
-            }
-        }
+            var sucursales = ctrlSucursales.ObtenerSucursales().ToList();
 
+            cmbSucursales.DataSource = sucursales;
+            cmbSucursales.DisplayMember = "Nombre"; 
+            cmbSucursales.ValueMember = "Id";       
+            cmbSucursales.SelectedIndex = -1;
+        }
+        private void dgvStock_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvStock.CurrentRow == null || dgvStock.SelectedRows.Count == 0)
+                return;
+
+            string productoNombre = dgvStock.CurrentRow.Cells["Producto"].Value.ToString();
+            cmbProducto.SelectedItem = null;
+            for (int i = 0; i < cmbProducto.Items.Count; i++)
+            {
+                var item = cmbProducto.Items[i] as Entidades.Producto;
+                if (item != null && item.Nombre == productoNombre)
+                {
+                    cmbProducto.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            string sucursalNombre = dgvStock.CurrentRow.Cells["Sucursal"].Value.ToString();
+            cmbSucursal.SelectedItem = null;
+            for (int i = 0; i < cmbSucursal.Items.Count; i++)
+            {
+                var item = cmbSucursal.Items[i] as Entidades.Sucursal;
+                if (item != null && item.Nombre == sucursalNombre)
+                {
+                    cmbSucursal.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            nudCantidadIngresada.Value = 0;
+        }
         private void LimpiarCampos()
         {
-            cmbSucursales.SelectedIndex = -1;
             nudCantidadIngresada.Value = 0;
 
             if (cmbProducto.Items.Count > 0) cmbProducto.SelectedIndex = -1;
@@ -102,8 +146,10 @@ namespace Vista
                 controladora.ModificarStock(productoId, sucursalId, cantidad, 1);
 
                 MessageBox.Show("Stock agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Refrescar();
+                if(cmbSucursales.SelectedIndex != -1)
+                    MostrarSucursal();
+                else
+                    Refrescar();
                 LimpiarCampos();
             }
             catch (DatosInvalidosException ex)
@@ -151,20 +197,12 @@ namespace Vista
         {
             try
             {
-                if (cmbSucursales.SelectedIndex != -1)
-                    throw new DatosInvalidosException("Debe ingresar un ID de sucursal.");
+                if (cmbSucursales.SelectedIndex == -1)
+                    throw new DatosInvalidosException("Debe seleccionar una sucursal.");
 
-                int idSucursal = int.Parse(cmbSucursales.Text.Trim());
-
-                var controladora = ControladoraStocksPorSucursal.Instancia();
-                var lista = controladora.ObtenerStocks().Where(s => s.Sucursal.Id == idSucursal).OrderBy(s => s.Cantidad).Select(s => new { Sucursal = s.Sucursal.Nombre, Producto = s.Producto.Nombre, Stock = s.Cantidad }).ToList();
-                if (lista.Count == 0)
-                    throw new EntidadNoEncontradaException("No hay stocks para esa sucursal.");
-
-                dgvStock.DataSource = lista;
+                MostrarSucursal();
                 tlpBuscar.Enabled = false;
                 btnBuscar.Enabled = false;
-                cmbSucursales.SelectedIndex = -1;
             }
             catch (DatosInvalidosException ex)
             {
@@ -179,8 +217,6 @@ namespace Vista
                 MessageBox.Show("Error inesperado: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            tlpBuscar.Enabled = false;
-            btnBuscar.Enabled = false;
         }
 
         private void Ventana_Gestion_Stock_Load(object sender, EventArgs e)

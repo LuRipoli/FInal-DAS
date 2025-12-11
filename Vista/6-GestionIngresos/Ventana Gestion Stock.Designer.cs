@@ -146,7 +146,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -154,7 +154,9 @@
             dgvStock.Dock = DockStyle.Fill;
             dgvStock.Location = new Point(5, 40);
             dgvStock.Margin = new Padding(2);
+            dgvStock.MultiSelect = false;
             dgvStock.Name = "dgvStock";
+            dgvStock.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
             dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
@@ -165,8 +167,10 @@
             dgvStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvStock.RowHeadersVisible = false;
             dgvStock.RowHeadersWidth = 62;
+            dgvStock.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvStock.Size = new Size(695, 391);
             dgvStock.TabIndex = 1;
+            dgvStock.SelectionChanged += dgvStock_SelectionChanged;
             // 
             // grbDatos
             // 
@@ -239,12 +243,12 @@
             // cmbProducto
             // 
             cmbProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbProducto.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbProducto.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProducto.FormattingEnabled = true;
-            cmbProducto.Location = new Point(292, 12);
+            cmbProducto.Location = new Point(292, 18);
             cmbProducto.Margin = new Padding(4);
             cmbProducto.Name = "cmbProducto";
-            cmbProducto.Size = new Size(275, 43);
+            cmbProducto.Size = new Size(275, 32);
             cmbProducto.TabIndex = 21;
             // 
             // lblSucursal
@@ -263,24 +267,24 @@
             // nudCantidadIngresada
             // 
             nudCantidadIngresada.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            nudCantidadIngresada.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudCantidadIngresada.Location = new Point(292, 144);
+            nudCantidadIngresada.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nudCantidadIngresada.Location = new Point(292, 149);
             nudCantidadIngresada.Margin = new Padding(4);
             nudCantidadIngresada.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nudCantidadIngresada.Name = "nudCantidadIngresada";
-            nudCantidadIngresada.Size = new Size(275, 42);
+            nudCantidadIngresada.Size = new Size(275, 32);
             nudCantidadIngresada.TabIndex = 23;
             nudCantidadIngresada.TextAlign = HorizontalAlignment.Center;
             // 
             // cmbSucursal
             // 
             cmbSucursal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbSucursal.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursal.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursal.FormattingEnabled = true;
-            cmbSucursal.Location = new Point(292, 77);
+            cmbSucursal.Location = new Point(292, 83);
             cmbSucursal.Margin = new Padding(4);
             cmbSucursal.Name = "cmbSucursal";
-            cmbSucursal.Size = new Size(275, 43);
+            cmbSucursal.Size = new Size(275, 32);
             cmbSucursal.TabIndex = 22;
             // 
             // lblCantidad
@@ -316,12 +320,12 @@
             // cmbSucursales
             // 
             cmbSucursales.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbSucursales.Font = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbSucursales.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursales.FormattingEnabled = true;
-            cmbSucursales.Location = new Point(292, 20);
+            cmbSucursales.Location = new Point(292, 25);
             cmbSucursales.Margin = new Padding(4);
             cmbSucursales.Name = "cmbSucursales";
-            cmbSucursales.Size = new Size(275, 43);
+            cmbSucursales.Size = new Size(275, 32);
             cmbSucursales.TabIndex = 23;
             // 
             // lblId
