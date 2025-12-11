@@ -36,99 +36,141 @@ namespace Vista
 
         }
         #region HELPER
+        private void MostrarDashboard(bool mostrar)
+        {
+            tlpZona1.Visible = mostrar;
+            tlpZona2.Visible = mostrar;
+            tlpZona3.Visible = mostrar;
+
+            dgvReportes.Visible = !mostrar;
+
+            if (!mostrar)
+                dgvReportes.BringToFront();   
+            else
+            {
+                tlpZona1.BringToFront();
+                tlpZona2.BringToFront();
+                tlpZona3.BringToFront();
+            }
+        }
         private void MostrarDashboardInicial()
         {
-            lblDashBoard.Visible = true;
-            dgvReportes.Visible = false;
-
-            Refrescar();
+            MostrarDashboard(true);   
+            Refrescar();             
         }
-
         private void Refrescar()  //En su mayoria este método lo hizo todo ChatGpt, pero quedo muy bien y habia que dejarlo. 
         {
-
             var ventas = ControladoraVentas.Instancia().ObtenerVentas().OrderByDescending(v => v.Fecha).ToList();
 
+            // -------------------------------------------------------------------
+            // CASO SIN VENTAS
+            // -------------------------------------------------------------------
             if (ventas.Count == 0)
             {
-                lblDashBoard.Font = new Font("Calibri", 16, FontStyle.Bold);
-                lblDashBoard.ForeColor = Color.DarkSlateGray;
-                lblDashBoard.TextAlign = ContentAlignment.MiddleCenter;
-                lblDashBoard.BackColor = Color.Transparent;
-                lblDashBoard.Text =
-                    "📭 SIN DATOS DISPONIBLES\n\n" +
-                    "Aún no hay ventas registradas en el sistema.\n" +
-                    "Cuando ingreses tu primera venta, verás aquí un resumen completo\n" +
-                    "con métricas, estadísticas y tendencias.";
-                dgvReportes.Visible = false;
+                // CARDS
+                lblCard1Valor.Text = "0";
+                lblCard2Valor.Text = "$0";
+                lblCard3Valor.Text = "$0";
+
+                lblCard1Sub.Text = "📄 Acumuladas";
+                lblCard2Sub.Text = "⏱ Histórico";
+                lblCard3Sub.Text = "📊 Por venta";
+
+                // RESUMEN DE TABLA
+                lblVentasTotalesValor.Text = "0";
+                lblIngresosValor.Text = "$0";
+                lblTicketValor.Text = "$0";
+                lblVentaMasAltaValor.Text = "-";
+                lblVentaMasBajaValor.Text = "-";
+                lblMejorVendedorValor.Text = "-";
+
+                // MÉTODOS DE PAGO
+                pbEfectivo.Value = pbTransferencia.Value = pbTarjeta.Value = 0;
+                lblPorcentajeEfectivo.Text = "0%";
+                lblPorcentajeTransferencia.Text = "0%";
+                lblPorcentajeTarjeta.Text = "0%";
+
+                // TOP 5
+                lblTop5Contenido.Text = "No hay productos vendidos todavía.";
+
                 return;
             }
 
+            // -------------------------------------------------------------------
+            // CALCULOS BASE
+            // -------------------------------------------------------------------
             int totalVentas = ventas.Count;
             decimal ingresosTotales = ventas.Sum(v => v.Total);
             decimal ticketPromedio = ingresosTotales / totalVentas;
 
-            var ultimaVenta = ventas.First();
             var ventaMax = ventas.OrderByDescending(v => v.Total).First();
             var ventaMin = ventas.OrderBy(v => v.Total).First();
 
-            var vendedorTop = ventas.GroupBy(v => v.NombreVendedor).Select(g => new { Nombre = g.Key, Cant = g.Count() }).OrderByDescending(x => x.Cant).First();
-            var metodoTop = ventas.GroupBy(v => v.MetodoPago).Select(g => new { Metodo = g.Key, Cant = g.Count() }).OrderByDescending(x => x.Cant).First();
-            int porcentajeMetodoTop = (int)((double)metodoTop.Cant / totalVentas * 100);
+            var vendedorTop = ventas
+                .GroupBy(v => v.NombreVendedor)
+                .Select(g => new { Nombre = g.Key, Cant = g.Count() })
+                .OrderByDescending(x => x.Cant)
+                .First();
 
-            // ===== BARRITAS ASCII =====
-            string Barras(int porcentaje) => new string('█', porcentaje / 5).PadRight(20, ' ');
+            // -------------------------------------------------------------------
+            // ZONA 1 – CARDS SUPERIORES
+            // -------------------------------------------------------------------
+            lblCard1Titulo.Text = "Ventas Totales";
+            lblCard1Valor.Text = totalVentas.ToString();
+            lblCard1Sub.Text = "📄 Acumuladas";
 
-            // MÉTODOS DE PAGO
-            var gruposPago = ventas.GroupBy(v => v.MetodoPago).Select(g => new { Metodo = g.Key, Porcentaje = (int)((double)g.Count() / totalVentas * 100) }).OrderByDescending(x => x.Porcentaje).ToList();
-            string asciiPago = "📈 DISTRIBUCIÓN MÉTODO DE PAGO\n\n" + string.Concat(gruposPago.Select(g => $"{g.Metodo.ToString().PadRight(14)} {Barras(g.Porcentaje)} {g.Porcentaje}%\n"));
+            lblCard2Titulo.Text = "Ingresos Acumulados";
+            lblCard2Valor.Text = $"${ingresosTotales:N0}";
+            lblCard2Sub.Text = "⏱ Histórico";
 
-            // TOP PRODUCTOS
-            var topProductos = ventas.GroupBy(v => v.Producto.Nombre).Select(g => new { Nombre = g.Key, Unidades = g.Count() }).OrderByDescending(x => x.Unidades).Take(5).ToList();
-            string topProdText = "\n🏆 TOP 5 PRODUCTOS MÁS VENDIDOS\n\n" + string.Concat(topProductos.Select((p, i) => $"{i + 1}. {p.Nombre} — {p.Unidades} unidades\n"));
+            lblCard3Titulo.Text = "Ticket Promedio";
+            lblCard3Valor.Text = $"${ticketPromedio:N0}";
+            lblCard3Sub.Text = "📊 Por venta";
 
-            // TOP CATEGORÍAS
-            var topCategorias = ventas.GroupBy(v => v.Producto.Categoria.Nombre).Select(g => new { Categoria = g.Key, Porcentaje = (int)((double)g.Count() / totalVentas * 100) }).OrderByDescending(x => x.Porcentaje).Take(5).ToList();
-            string topCatText = "\n🏪 TOP CATEGORÍAS\n\n" + string.Concat(topCategorias.Select(c => $"{c.Categoria} — {c.Porcentaje}%\n"));
+            // -------------------------------------------------------------------
+            // ZONA 2 – TABLA RESUMEN COMPLETO
+            // -------------------------------------------------------------------
+            lblVentasTotalesValor.Text = totalVentas.ToString();
+            lblIngresosValor.Text = $"${ingresosTotales:N0}";
+            lblTicketValor.Text = $"${ticketPromedio:N0}";
+            lblVentaMasAltaValor.Text = $"${ventaMax.Total:N0} — {ventaMax.Producto.Nombre}";
+            lblVentaMasBajaValor.Text = $"${ventaMin.Total:N0} — {ventaMin.Producto.Nombre}";
+            lblMejorVendedorValor.Text = $"{vendedorTop.Nombre} ({vendedorTop.Cant} ventas)";
 
-            // TOP VENDEDORES
-            var topVendedores = ventas.GroupBy(v => v.NombreVendedor).Select(g => new { Nombre = g.Key, Cant = g.Count() }).OrderByDescending(x => x.Cant).Take(5).ToList();
-            string topVendText = "\n🧍 TOP 5 VENDEDORES\n\n" + string.Concat(topVendedores.Select((v, i) => $"{i + 1}. {v.Nombre} — {v.Cant} ventas\n"));
+            // -------------------------------------------------------------------
+            // ZONA 3 – MÉTODOS DE PAGO
+            // -------------------------------------------------------------------
+            int cantEfectivo = ventas.Count(v => v.MetodoPago == MetodoPago.Efectivo);
+            int cantTransfer = ventas.Count(v => v.MetodoPago == MetodoPago.Transferencia);
+            int cantTarjeta = ventas.Count(v => v.MetodoPago == MetodoPago.Tarjeta);
 
-            // ÚLTIMOS 7 DÍAS
-            var ultimos7 = ventas.GroupBy(v => v.Fecha.Date).Select(g => new { Fecha = g.Key, Cant = g.Count() }).OrderByDescending(g => g.Fecha).Take(7).OrderBy(x => x.Fecha).ToList();
-            string ascii7dias = "\n📆 ÚLTIMOS 7 DÍAS\n\n" + string.Concat(ultimos7.Select(d => $"{d.Fecha:dd/MM} {Barras(d.Cant * 5)} {d.Cant} ventas\n"));
+            int porcEfectivo = (int)(cantEfectivo * 100.0 / totalVentas);
+            int porcTransfer = (int)(cantTransfer * 100.0 / totalVentas);
+            int porcTarjeta = (int)(cantTarjeta * 100.0 / totalVentas);
 
-            // POR HORA
-            Func<int, string> HoraLabel = h => h switch { 0 => "09–12 hs", 1 => "12–15 hs", 2 => "15–18 hs", 3 => "18–21 hs", _ => "Otros" };
-            var ventasPorHora = ventas.GroupBy(v => v.Fecha.Hour < 12 ? 0 : v.Fecha.Hour < 15 ? 1 : v.Fecha.Hour < 18 ? 2 : 3).Select(g => new { Franja = HoraLabel(g.Key), Cant = g.Count() }).OrderBy(x => x.Franja).ToList();
-            string asciiHoras = "\n⏱ VENTAS POR FRANJA HORARIA\n\n" + string.Concat(ventasPorHora.Select(h => $"{h.Franja.PadRight(10)} {Barras(h.Cant * 5)} {h.Cant} ventas\n"));
+            pbEfectivo.Maximum = pbTransferencia.Maximum = pbTarjeta.Maximum = 100;
 
-            // ÚLTIMAS 5 VENTAS
-            var ultimas5 = ventas.Take(5).ToList();
-            string ultimasText = "\n🕒 ÚLTIMAS 5 VENTAS\n\n" + string.Concat(ultimas5.Select(v => $"{v.Fecha:dd/MM HH:mm} — {v.Producto.Nombre} — ${v.Total} — {v.NombreVendedor} — {v.MetodoPago}\n"));
+            pbEfectivo.Value = porcEfectivo;
+            pbTransferencia.Value = porcTransfer;
+            pbTarjeta.Value = porcTarjeta;
 
-            // SALIDA FINAL
-            lblDashBoard.Text =
-                $"📊 RESUMEN GENERAL\n\n" +
-                $"Ventas totales: {totalVentas}\n" +
-                $"Ingresos acumulados: ${ingresosTotales:N0}\n" +
-                $"Ticket promedio: ${ticketPromedio:N0}\n" +
-                $"Venta más alta: ${ventaMax.Total} ({ventaMax.Producto.Nombre} — {ventaMax.NombreVendedor})\n" +
-                $"Venta más baja: ${ventaMin.Total} ({ventaMin.Producto.Nombre} — {ventaMin.NombreVendedor})\n" +
-                $"Última venta: {ultimaVenta.Fecha:dd/MM/yyyy HH:mm}\n" +
-                $"Vendedor top: {vendedorTop.Nombre} ({vendedorTop.Cant} ventas)\n" +
-                $"Método de pago más usado: {metodoTop.Metodo} ({porcentajeMetodoTop}%)\n\n" +
-                asciiPago + "\n" +
-                topProdText + "\n" +
-                topCatText + "\n" +
-                topVendText + "\n" +
-                ascii7dias + "\n" +
-                asciiHoras + "\n" +
-                ultimasText;
+            lblPorcentajeEfectivo.Text = $"{porcEfectivo}%";
+            lblPorcentajeTransferencia.Text = $"{porcTransfer}%";
+            lblPorcentajeTarjeta.Text = $"{porcTarjeta}%";
 
-            dgvReportes.DataSource = ultimas5;
-            dgvReportes.Visible = false;
+            // -------------------------------------------------------------------
+            // ZONA 4 – TOP 5 PRODUCTOS MÁS VENDIDOS
+            // -------------------------------------------------------------------
+            var top5 = ventas
+                .GroupBy(v => v.Producto.Nombre)
+                .Select(g => new { Nombre = g.Key, Cant = g.Count() })
+                .OrderByDescending(x => x.Cant)
+                .Take(5)
+                .ToList();
+
+            lblTop5Contenido.Text = string.Join("\n",
+                top5.Select((p, i) => $"{i + 1}. {p.Nombre} — {p.Cant} unidad(es)")
+            );
         }
         private void ResetearColoresBotones()
         {
@@ -356,12 +398,12 @@ namespace Vista
                     case ModoReporte.Ventas:
                         FiltrarVentas();
                         break;
+
                     case ModoReporte.General:
-                        
                         break;
 
                     default:
-                        MessageBox.Show("Seleccione un tipo de reporte antes de aplicar filtros.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Seleccione un tipo de reporte antes de aplicar filtros.");
                         break;
                 }
             }
@@ -376,9 +418,7 @@ namespace Vista
             modoActual = ModoReporte.Sucursales;
             ActivarBoton(btnReporteSucursal);
 
-            lblDashBoard.Visible = false;
-            dgvReportes.Visible = true;
-
+            MostrarDashboard(false);  
             ActivarFiltros(false, true, false, false, false, false);
 
             FiltrarSucursales();
@@ -390,9 +430,7 @@ namespace Vista
             modoActual = ModoReporte.Productos;
             ActivarBoton(btnReporteProducto);
 
-            lblDashBoard.Visible = false;
-            dgvReportes.Visible = true;
-
+            MostrarDashboard(false);
             ActivarFiltros(false, false, false, true, false, false);
 
             FiltrarProductos();
@@ -404,14 +442,10 @@ namespace Vista
             modoActual = ModoReporte.Ventas;
             ActivarBoton(btnReporteVenta);
 
-            lblDashBoard.Visible = false;
-            dgvReportes.Visible = true;
-
+            MostrarDashboard(false);
             ActivarFiltros(true, true, true, true, true, true);
 
             FiltrarVentas();
-
-
         }
 
         private void btnReporteCliente_Click(object sender, EventArgs e)
@@ -419,14 +453,10 @@ namespace Vista
             modoActual = ModoReporte.Clientes;
             ActivarBoton(btnReporteCliente);
 
-            lblDashBoard.Visible = false;
-            dgvReportes.Visible = true;
-
+            MostrarDashboard(false);
             ActivarFiltros(false, false, true, false, false, false);
 
             FiltrarClientes();
-
-
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -439,14 +469,12 @@ namespace Vista
             modoActual = ModoReporte.General;
             ActivarBoton(btnReporteGeneral);
 
-            btnLimpiarCampos.Enabled = false; 
-
-            dgvReportes.Visible = false;
-            lblDashBoard.Visible = true;
+            btnLimpiarCampos.Enabled = false;
 
             ActivarFiltros(false, false, false, false, false, false);
 
             LimpiarCampos();
+            MostrarDashboard(true);  
             Refrescar();
         }
     }
