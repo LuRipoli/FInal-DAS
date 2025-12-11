@@ -37,6 +37,26 @@ namespace Vista
 
             dgvProductos.ClearSelection();
             LimpiarCampos();
+            ConfigurarGrid(dgvProductos);
+        }
+        private void ConfigurarGrid(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 245);
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ClearSelection();
         }
         private void LimpiarCampos()
         {
@@ -256,6 +276,8 @@ namespace Vista
                         if (dgvProductos.Columns["CategoriaId"] != null)
                             dgvProductos.Columns["CategoriaId"].Visible = false;
                         cmbProducto.SelectedIndex = -1;
+                        ConfigurarGrid(dgvProductos);
+                        dgvProductos.ClearSelection();
                     }
                     else
                     {

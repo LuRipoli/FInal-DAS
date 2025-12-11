@@ -85,8 +85,27 @@ namespace Vista
 
             if (dgvVentas.Columns["Id"] != null)
                 dgvVentas.Columns["Id"].Visible = false;
-
+            ConfigurarGrid(dgvVentas);
             dgvVentas.ClearSelection();
+        }
+        private void ConfigurarGrid(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 245);
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ClearSelection();
         }
         private void LimpiarCampos()
         {
@@ -138,6 +157,15 @@ namespace Vista
                 dgvVentas.DataSource = ventas;
                 tlpBuscar.Enabled = false;
                 btnBuscar.Enabled = false;
+                if (dgvVentas.Columns["Id"] != null)
+                    dgvVentas.Columns["Id"].Visible = false;
+                if(dgvVentas.Columns["ClienteId"] != null)
+                    dgvVentas.Columns["ClienteId"].Visible = false;
+                if(dgvVentas.Columns["ProductoId"] != null)
+                    dgvVentas.Columns["ProductoId"].Visible = false;
+                if(dgvVentas.Columns["SucursalId"] != null)
+                    dgvVentas.Columns["SucursalId"].Visible = false;
+                ConfigurarGrid(dgvVentas);
             }
             catch (Exception ex)
             {

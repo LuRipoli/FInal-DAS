@@ -44,6 +44,26 @@ namespace Vista
             dgvClientes.ClearSelection();
             CargarComboClientes();
             LimpiarCampos();
+            ConfigurarGrid(dgvClientes);
+        }
+        private void ConfigurarGrid(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 245);
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ClearSelection();
         }
         private void CargarComboClientes()
         {
@@ -229,6 +249,8 @@ namespace Vista
                         btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
                         cmbClientes.SelectedIndex = -1;
+                        dgvClientes.ClearSelection();
+                        ConfigurarGrid(dgvClientes);
                     }
                     else
                     {

@@ -21,7 +21,7 @@ namespace Modelo
 
         public IReadOnlyCollection<Entidades.Producto> ObtenerProducto()
         {
-            return context.Productos.Include(p => p.Categoria).ToList().AsReadOnly();
+            return context.Productos.Include(p => p.Categoria).Include(p => p.StocksPorSucursal).ThenInclude(s => s.Sucursal).ToList();
         }
         public void AgregarProducto (Entidades.Producto producto)
         {

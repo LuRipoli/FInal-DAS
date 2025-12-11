@@ -15,7 +15,7 @@ namespace Modelo
 
         public IReadOnlyCollection<Entidades.StockPorSucursal> ObtenerStocks()
         {
-            return context.StockPorSucursales.Include(s => s.Producto).Include(s => s.Sucursal).ToList().AsReadOnly();
+            return context.StockPorSucursales.Include(s => s.Producto).ThenInclude(p => p.Categoria).Include(s => s.Sucursal).ToList();
         }
         public StockPorSucursal? ObtenerStockPorSucursal(int productoId, int sucursalId)
         {

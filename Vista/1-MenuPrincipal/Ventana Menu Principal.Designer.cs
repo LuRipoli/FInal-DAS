@@ -335,7 +335,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
@@ -394,7 +394,7 @@
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = SystemColors.Window;
             dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
@@ -427,7 +427,8 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(4);
-            MinimumSize = new Size(1630, 830);
+            MaximumSize = new Size(1720, 830);
+            MinimumSize = new Size(1720, 830);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu Principal";

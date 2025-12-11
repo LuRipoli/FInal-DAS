@@ -25,6 +25,27 @@ namespace Vista
             dgvVentasSemanales.DataSource = ControladoraVentas.Instancia().ObtenerVentasdelaSemana().Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy"), Cliente = v.Cliente.Nombre, MetodoDePago = v.MetodoPago.ToString(), Total = (v.Producto.Precio * v.Cantidad).ToString("$#,0.00"), Descuento = ((int)v.Descuento).ToString() + "%", Resultado = v.Total.ToString("$#,0.00") }).ToList();
             dgvVentasSemanales.Columns["MetodoDePago"].HeaderText = "Método";
             dgvVentasSemanales.ClearSelection();
+            ConfigurarGrid(dgvVentasSemanales);
+            ConfigurarGrid(dgvProductosBajoStock);
+        }
+        private void ConfigurarGrid(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 245);
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ClearSelection();
         }
 
         private void AplicarColoresProductosBajoStock()

@@ -19,7 +19,8 @@ namespace Vista
         Sucursales,
         Productos,
         Ventas,
-        Clientes
+        Clientes,
+        General
     }
     public partial class Ventana_Reportes_Y_Consultas : Form
     {
@@ -29,7 +30,6 @@ namespace Vista
         public Ventana_Reportes_Y_Consultas()
         {
             InitializeComponent();
-            LimpiarCampos();
             ResetearColoresBotones();
             MostrarDashboardInicial();
             CargarCampos();
@@ -141,10 +141,11 @@ namespace Vista
         {
             ResetearColoresBotones();
             btn.BackColor = Color.FromArgb(102, 205, 205);
+            btnLimpiarCampos.Enabled = true;
         }
         private void LimpiarCampos()
         {
-            dtpFechaDesde.Value = DateTime.Today;
+            dtpFechaDesde.Value = new DateTime(2000, 1, 1);
             dtpFechaHasta.Value = DateTime.Today;
 
             cmbSucursales.SelectedIndex = -1;
@@ -198,41 +199,85 @@ namespace Vista
             rdbTransferencia.Enabled = metodoPago;
             rdbTarjeta.Enabled = metodoPago;
         }
+        private void ConfigurarGrid(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 245);
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ClearSelection();
+        }
         private void FiltrarSucursales()
         {
-            var lista = ControladoraSucursales.Instancia().ObtenerSucursales();
+            var ventas = ControladoraVentas.Instancia().ObtenerVentas().ToList();
+            var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales();
 
             if (cmbSucursales.SelectedIndex != -1)
-            {
-                string nombre = cmbSucursales.Text.Trim();
-                lista = lista.Where(s => s.Nombre.Contains(nombre)).ToList();
-            }
+                sucursales = sucursales.Where(s => s.Nombre.Contains(cmbSucursales.Text.Trim())).ToList();
+
+            var lista = sucursales.Select(s => new { Sucursal = s.Nombre, Dirección = s.Direccion, StockTotal = s.StocksPorSucursal.Sum(x => x.Cantidad), ProductosSinStock = s.StocksPorSucursal.Count(x => x.Cantidad == 0), TotalVentas = ventas.Count(v => v.SucursalId == s.Id), TotalProductosVendidos = ventas.Where(v => v.SucursalId == s.Id).Sum(v => v.Cantidad), TotalRecaudado = ventas.Where(v => v.SucursalId == s.Id).Sum(v => v.Total) }).OrderByDescending(x => x.TotalRecaudado).ToList();
 
             dgvReportes.DataSource = lista;
+            ConfigurarGrid(dgvReportes);
+            dgvReportes.Columns["Sucursal"].HeaderText = "Sucursal";
+            dgvReportes.Columns["Dirección"].HeaderText = "Dirección";
+            dgvReportes.Columns["StockTotal"].HeaderText = "Stock total";
+            dgvReportes.Columns["ProductosSinStock"].HeaderText = "Productos sin stock";
+            dgvReportes.Columns["TotalVentas"].HeaderText = "Ventas";
+            dgvReportes.Columns["TotalProductosVendidos"].HeaderText = "Productos vendidos";
+            dgvReportes.Columns["TotalRecaudado"].HeaderText = "Recaudación";
+
+            dgvReportes.Columns["StockTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["ProductosSinStock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["TotalVentas"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["TotalProductosVendidos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["TotalRecaudado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["TotalRecaudado"].DefaultCellStyle.Format = "C0";
         }
         private void FiltrarClientes()
         {
-            var lista = ControladoraClientes.Instancia().ObtenerClientes();
+            var ventas = ControladoraVentas.Instancia().ObtenerVentas().ToList();
+            var clientes = ControladoraClientes.Instancia().ObtenerClientes();
 
             if (cmbClientes.SelectedIndex != -1)
-            {
-                string nombre = cmbClientes.Text.Trim();
-                lista = lista.Where(c => c.Nombre.Contains(nombre)).ToList();
-            }
+                clientes = clientes.Where(c => c.Nombre.Contains(cmbClientes.Text.Trim())).ToList();
+
+            var lista = clientes.Select(c => new { Cliente = c.Nombre, Email = c.Email, Tipo = c.TipoCliente.ToString(), Compras = ventas.Count(v => v.ClienteId == c.Id), ProductosComprados = ventas.Where(v => v.ClienteId == c.Id).Sum(v => v.Cantidad), TotalGastado = ventas.Where(v => v.ClienteId == c.Id).Sum(v => v.Total) }).OrderByDescending(x => x.TotalGastado).ToList();
 
             dgvReportes.DataSource = lista;
+            ConfigurarGrid(dgvReportes);
+
+            dgvReportes.Columns["Compras"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["ProductosComprados"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["TotalGastado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["TotalGastado"].DefaultCellStyle.Format = "C0";
         }
         private void FiltrarProductos()
         {
-            var lista = ControladoraProductos.Instancia().ObtenerProductos();
+            var ventas = ControladoraVentas.Instancia().ObtenerVentas().ToList();
+            var productos = ControladoraProductos.Instancia().ObtenerProductos();
 
             if (cmbProducto.SelectedIndex != -1)
-            {
-                string nombre = cmbProducto.Text.Trim();
-                lista = lista.Where(p => p.Nombre.Contains(nombre)).ToList();
-            }
+                productos = productos.Where(p => p.Nombre.Contains(cmbProducto.Text.Trim())).ToList();
+
+            var lista = productos.Select(p => new { Producto = p.Nombre, Categoría = p.Categoria.Nombre, Precio = p.Precio, StockTotal = p.StocksPorSucursal.Sum(s => s.Cantidad), SucursalesConStock = p.StocksPorSucursal.Count(s => s.Cantidad > 0), Vendido = ventas.Where(v => v.ProductoId == p.Id).Sum(v => v.Cantidad), Recaudado = ventas.Where(v => v.ProductoId == p.Id).Sum(v => v.Total) }).OrderByDescending(x => x.Vendido).ToList();
 
             dgvReportes.DataSource = lista;
+            ConfigurarGrid(dgvReportes);
+
+            dgvReportes.Columns["Precio"].DefaultCellStyle.Format = "C0";
+            dgvReportes.Columns["Recaudado"].DefaultCellStyle.Format = "C0";
         }
         private void FiltrarVentas()
         {
@@ -244,13 +289,10 @@ namespace Vista
 
             if (cmbSucursales.SelectedIndex != -1)
                 lista = lista.Where(v => v.Sucursal.Nombre == cmbSucursales.Text).ToList();
-
             if (cmbClientes.SelectedIndex != -1)
                 lista = lista.Where(v => v.Cliente.Nombre == cmbClientes.Text).ToList();
-
             if (cmbProducto.SelectedIndex != -1)
                 lista = lista.Where(v => v.Producto.Nombre == cmbProducto.Text).ToList();
-
             if (cmbVendedor.SelectedIndex != -1)
                 lista = lista.Where(v => v.NombreVendedor == cmbVendedor.Text).ToList();
             if (rdbEfectivo.Checked)
@@ -260,7 +302,13 @@ namespace Vista
             else if (rdbTarjeta.Checked)
                 lista = lista.Where(v => v.MetodoPago == MetodoPago.Tarjeta).ToList();
 
-            dgvReportes.DataSource = lista;
+            var final = lista.OrderByDescending(v => v.Fecha).Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Producto = v.Producto.Nombre, Cliente = v.Cliente.Nombre, Vendedor = v.NombreVendedor, Método = v.MetodoPago.ToString(), Cantidad = v.Cantidad, Total = v.Total, Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento}%" }).ToList();
+
+            dgvReportes.DataSource = final;
+            ConfigurarGrid(dgvReportes);
+
+            dgvReportes.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvReportes.Columns["Total"].DefaultCellStyle.Format = "C0";
         }
         #endregion 
         private void pnelppalmedio_Paint(object sender, PaintEventArgs e)
@@ -308,6 +356,9 @@ namespace Vista
                     case ModoReporte.Ventas:
                         FiltrarVentas();
                         break;
+                    case ModoReporte.General:
+                        
+                        break;
 
                     default:
                         MessageBox.Show("Seleccione un tipo de reporte antes de aplicar filtros.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -330,8 +381,8 @@ namespace Vista
 
             ActivarFiltros(false, true, false, false, false, false);
 
-            var lista = ControladoraSucursales.Instancia().ObtenerSucursales().Select(s => new { Sucursal = s.Nombre, Dirección = s.Direccion, ProductosDistintos = s.StocksPorSucursal.Count, StockTotal = s.StocksPorSucursal.Sum(x => x.Cantidad), StockPromedio = s.StocksPorSucursal.Count == 0 ? 0 : (int)s.StocksPorSucursal.Average(x => x.Cantidad) }).OrderBy(x => x.Sucursal).ToList();
-            dgvReportes.DataSource = lista;
+            FiltrarSucursales();
+
         }
 
         private void btnReporteProducto_Click(object sender, EventArgs e)
@@ -344,8 +395,8 @@ namespace Vista
 
             ActivarFiltros(false, false, false, true, false, false);
 
-            var lista = ControladoraProductos.Instancia().ObtenerProductos().Select(p => new { Producto = p.Nombre, Categoría = p.Categoria.Nombre, Precio = $"${p.Precio:N0}", Vendido = ControladoraVentas.Instancia().ObtenerVentas().Where(v => v.Producto.Id == p.Id).Sum(v => v.Cantidad), StockTotal = p.StocksPorSucursal.Sum(s => s.Cantidad), SucursalesDisponibles = p.StocksPorSucursal.Count }).OrderBy(p => p.Categoría).ThenBy(p => p.Producto).ToList();
-            dgvReportes.DataSource = lista;
+            FiltrarProductos();
+
         }
 
         private void btnReporteVenta_Click(object sender, EventArgs e)
@@ -358,8 +409,9 @@ namespace Vista
 
             ActivarFiltros(true, true, true, true, true, true);
 
-            var lista = ControladoraVentas.Instancia().ObtenerVentas().OrderByDescending(v => v.Fecha).Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Producto = v.Producto.Nombre, Cliente = v.Cliente.Nombre, Vendedor = v.NombreVendedor, Método = v.MetodoPago.ToString(), Cantidad = v.Cantidad, Total = $"${v.Total:N0}", Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento}%" }).ToList();
-            dgvReportes.DataSource = lista;
+            FiltrarVentas();
+
+
         }
 
         private void btnReporteCliente_Click(object sender, EventArgs e)
@@ -372,8 +424,9 @@ namespace Vista
 
             ActivarFiltros(false, false, true, false, false, false);
 
-            var lista = ControladoraClientes.Instancia().ObtenerClientes().Select(c => new { Cliente = c.Nombre, Email = c.Email, Tipo = c.TipoCliente.ToString(), Compras = ControladoraVentas.Instancia().ObtenerVentas().Count(v => v.Cliente.Id == c.Id), TotalGastado = $"${ControladoraVentas.Instancia().ObtenerVentas().Where(v => v.Cliente.Id == c.Id).Sum(v => v.Total):N0}" }).OrderByDescending(c => c.Compras).ToList();
-            dgvReportes.DataSource = lista;
+            FiltrarClientes();
+
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -383,8 +436,10 @@ namespace Vista
 
         private void btnReporteGeneral_Click(object sender, EventArgs e)
         {
-            modoActual = ModoReporte.Ninguno;
+            modoActual = ModoReporte.General;
             ActivarBoton(btnReporteGeneral);
+
+            btnLimpiarCampos.Enabled = false; 
 
             dgvReportes.Visible = false;
             lblDashBoard.Visible = true;
@@ -392,7 +447,6 @@ namespace Vista
             ActivarFiltros(false, false, false, false, false, false);
 
             LimpiarCampos();
-
             Refrescar();
         }
     }

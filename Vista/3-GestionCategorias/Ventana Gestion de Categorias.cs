@@ -152,6 +152,7 @@ namespace Vista
             dgvCategorias.ClearSelection();
             LimpiarCampos();
             CargarComboCategorias();
+            ConfigurarGrid(dgvCategorias);
 
         }
         private void CargarComboCategorias()
@@ -164,6 +165,25 @@ namespace Vista
             {
                 cmbCategoria.Items.Add(sucursal.Nombre);
             }
+        }
+        private void ConfigurarGrid(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.ReadOnly = true;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 245);
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ClearSelection();
         }
         private void LimpiarCampos()
         {
@@ -218,6 +238,8 @@ namespace Vista
                         btnBuscar.Enabled = false;
                         tlpBuscar.Enabled = false;
                         cmbCategoria.SelectedIndex = -1;
+                        dgvCategorias.ClearSelection();
+                        ConfigurarGrid(dgvCategorias);
                     }
                     else
                     {
