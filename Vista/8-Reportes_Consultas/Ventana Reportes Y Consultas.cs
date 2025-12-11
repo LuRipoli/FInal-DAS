@@ -62,43 +62,32 @@ namespace Vista
         {
             var ventas = ControladoraVentas.Instancia().ObtenerVentas().OrderByDescending(v => v.Fecha).ToList();
 
-            // -------------------------------------------------------------------
-            // CASO SIN VENTAS
-            // -------------------------------------------------------------------
-            if (ventas.Count == 0)
+            // =====================================================================
+            // 1) CUANDO NO HAY VENTAS
+            // =====================================================================
+            if (!ventas.Any())
             {
-                // CARDS
                 lblCard1Valor.Text = "0";
                 lblCard2Valor.Text = "$0";
                 lblCard3Valor.Text = "$0";
 
-                lblCard1Sub.Text = "📄 Acumuladas";
-                lblCard2Sub.Text = "⏱ Histórico";
-                lblCard3Sub.Text = "📊 Por venta";
-
-                // RESUMEN DE TABLA
-                lblVentasTotalesValor.Text = "0";
-                lblIngresosValor.Text = "$0";
                 lblTicketValor.Text = "$0";
                 lblVentaMasAltaValor.Text = "-";
                 lblVentaMasBajaValor.Text = "-";
                 lblMejorVendedorValor.Text = "-";
+                lblProductoMasVendidoValor.Text = "-";
+                lblSucursalMasVentasValor.Text = "-";
 
-                // MÉTODOS DE PAGO
                 pbEfectivo.Value = pbTransferencia.Value = pbTarjeta.Value = 0;
-                lblPorcentajeEfectivo.Text = "0%";
-                lblPorcentajeTransferencia.Text = "0%";
-                lblPorcentajeTarjeta.Text = "0%";
+                lblPorcentajeEfectivo.Text = lblPorcentajeTransferencia.Text = lblPorcentajeTarjeta.Text = "0%";
 
-                // TOP 5
                 lblTop5Contenido.Text = "No hay productos vendidos todavía.";
-
                 return;
             }
 
-            // -------------------------------------------------------------------
-            // CALCULOS BASE
-            // -------------------------------------------------------------------
+            // =====================================================================
+            // 2) CÁLCULOS BASE
+            // =====================================================================
             int totalVentas = ventas.Count;
             decimal ingresosTotales = ventas.Sum(v => v.Total);
             decimal ticketPromedio = ingresosTotales / totalVentas;
@@ -112,65 +101,67 @@ namespace Vista
                 .OrderByDescending(x => x.Cant)
                 .First();
 
-            // -------------------------------------------------------------------
-            // ZONA 1 – CARDS SUPERIORES
-            // -------------------------------------------------------------------
-            lblCard1Titulo.Text = "Ventas Totales";
-            lblCard1Valor.Text = totalVentas.ToString();
-            lblCard1Sub.Text = "📄 Acumuladas";
+            var productoTop = ventas
+                .GroupBy(v => v.Producto.Nombre)
+                .Select(g => new { Nombre = g.Key, Cant = g.Sum(v => v.Cantidad) }) // ⭐ SUMA UNIDADES
+                .OrderByDescending(x => x.Cant)
+                .First();
 
-            lblCard2Titulo.Text = "Ingresos Acumulados";
+            var sucursalTop = ventas
+                .GroupBy(v => v.Sucursal.Nombre)
+                .Select(g => new { Nombre = g.Key, Cant = g.Count() })
+                .OrderByDescending(x => x.Cant)
+                .First();
+
+            // =====================================================================
+            // 3) CARDS SUPERIORES
+            // =====================================================================
+            lblCard1Valor.Text = $"{totalVentas}";
             lblCard2Valor.Text = $"${ingresosTotales:N0}";
-            lblCard2Sub.Text = "⏱ Histórico";
-
-            lblCard3Titulo.Text = "Ticket Promedio";
             lblCard3Valor.Text = $"${ticketPromedio:N0}";
-            lblCard3Sub.Text = "📊 Por venta";
 
-            // -------------------------------------------------------------------
-            // ZONA 2 – TABLA RESUMEN COMPLETO
-            // -------------------------------------------------------------------
-            lblVentasTotalesValor.Text = totalVentas.ToString();
-            lblIngresosValor.Text = $"${ingresosTotales:N0}";
-            lblTicketValor.Text = $"${ticketPromedio:N0}";
+            // =====================================================================
+            // 4) TABLA DE RESUMEN COMPLETO
+            // =====================================================================
             lblVentaMasAltaValor.Text = $"${ventaMax.Total:N0} — {ventaMax.Producto.Nombre}";
             lblVentaMasBajaValor.Text = $"${ventaMin.Total:N0} — {ventaMin.Producto.Nombre}";
             lblMejorVendedorValor.Text = $"{vendedorTop.Nombre} ({vendedorTop.Cant} ventas)";
+            lblProductoMasVendidoValor.Text = $"{productoTop.Nombre} ({productoTop.Cant} unidades)";
+            lblSucursalMasVentasValor.Text = $"{sucursalTop.Nombre} ({sucursalTop.Cant} ventas)";
 
-            // -------------------------------------------------------------------
-            // ZONA 3 – MÉTODOS DE PAGO
-            // -------------------------------------------------------------------
-            int cantEfectivo = ventas.Count(v => v.MetodoPago == MetodoPago.Efectivo);
-            int cantTransfer = ventas.Count(v => v.MetodoPago == MetodoPago.Transferencia);
-            int cantTarjeta = ventas.Count(v => v.MetodoPago == MetodoPago.Tarjeta);
+            // =====================================================================
+            // 5) MÉTODOS DE PAGO (con lambdas de 1 línea)
+            // =====================================================================
+            int cantEf = ventas.Count(v => v.MetodoPago == MetodoPago.Efectivo);
+            int cantTr = ventas.Count(v => v.MetodoPago == MetodoPago.Transferencia);
+            int cantTa = ventas.Count(v => v.MetodoPago == MetodoPago.Tarjeta);
 
-            int porcEfectivo = (int)(cantEfectivo * 100.0 / totalVentas);
-            int porcTransfer = (int)(cantTransfer * 100.0 / totalVentas);
-            int porcTarjeta = (int)(cantTarjeta * 100.0 / totalVentas);
+            int porcEf = (int)(cantEf * 100.0 / totalVentas);
+            int porcTr = (int)(cantTr * 100.0 / totalVentas);
+            int porcTa = (int)(cantTa * 100.0 / totalVentas);
 
             pbEfectivo.Maximum = pbTransferencia.Maximum = pbTarjeta.Maximum = 100;
 
-            pbEfectivo.Value = porcEfectivo;
-            pbTransferencia.Value = porcTransfer;
-            pbTarjeta.Value = porcTarjeta;
+            pbEfectivo.Value = porcEf;
+            pbTransferencia.Value = porcTr;
+            pbTarjeta.Value = porcTa;
 
-            lblPorcentajeEfectivo.Text = $"{porcEfectivo}%";
-            lblPorcentajeTransferencia.Text = $"{porcTransfer}%";
-            lblPorcentajeTarjeta.Text = $"{porcTarjeta}%";
+            lblPorcentajeEfectivo.Text = $"{porcEf}%";
+            lblPorcentajeTransferencia.Text = $"{porcTr}%";
+            lblPorcentajeTarjeta.Text = $"{porcTa}%";
 
-            // -------------------------------------------------------------------
-            // ZONA 4 – TOP 5 PRODUCTOS MÁS VENDIDOS
-            // -------------------------------------------------------------------
+            // =====================================================================
+            // 6) TOP 5 PRODUCTOS MÁS VENDIDOS
+            // =====================================================================
             var top5 = ventas
                 .GroupBy(v => v.Producto.Nombre)
-                .Select(g => new { Nombre = g.Key, Cant = g.Count() })
+                .Select(g => new { Nombre = g.Key, Cant = g.Sum(v => v.Cantidad) }) // ⭐ SUMA UNIDADES
                 .OrderByDescending(x => x.Cant)
                 .Take(5)
                 .ToList();
 
-            lblTop5Contenido.Text = string.Join("\n",
-                top5.Select((p, i) => $"{i + 1}. {p.Nombre} — {p.Cant} unidad(es)")
-            );
+            lblTop5Contenido.Text = string.Join("\n", top5.Select((p, i) => $"{i + 1}. {p.Nombre} — {p.Cant} unidad(es)"));
+
         }
         private void ResetearColoresBotones()
         {
@@ -178,6 +169,7 @@ namespace Vista
             btnReporteCliente.BackColor = Color.PaleTurquoise;
             btnReporteVenta.BackColor = Color.PaleTurquoise;
             btnReporteProducto.BackColor = Color.PaleTurquoise;
+            btnReporteGeneral.BackColor = Color.PaleTurquoise;
         }
         private void ActivarBoton(Button btn)
         {
@@ -272,20 +264,24 @@ namespace Vista
 
             dgvReportes.DataSource = lista;
             ConfigurarGrid(dgvReportes);
-            dgvReportes.Columns["Sucursal"].HeaderText = "Sucursal";
-            dgvReportes.Columns["Dirección"].HeaderText = "Dirección";
             dgvReportes.Columns["StockTotal"].HeaderText = "Stock total";
             dgvReportes.Columns["ProductosSinStock"].HeaderText = "Productos sin stock";
             dgvReportes.Columns["TotalVentas"].HeaderText = "Ventas";
             dgvReportes.Columns["TotalProductosVendidos"].HeaderText = "Productos vendidos";
             dgvReportes.Columns["TotalRecaudado"].HeaderText = "Recaudación";
+            dgvReportes.Columns["Sucursal"].HeaderText = "Sucursal";
+            dgvReportes.Columns["Dirección"].HeaderText = "Dirección";
 
-            dgvReportes.Columns["StockTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvReportes.Columns["ProductosSinStock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvReportes.Columns["TotalVentas"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvReportes.Columns["TotalProductosVendidos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvReportes.Columns["TotalRecaudado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvReportes.Columns["TotalRecaudado"].DefaultCellStyle.Format = "C0";
+        
+            dgvReportes.Columns["Sucursal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Dirección"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            dgvReportes.Columns["StockTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["ProductosSinStock"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["TotalVentas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["TotalProductosVendidos"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["TotalRecaudado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
         private void FiltrarClientes()
         {
@@ -300,10 +296,16 @@ namespace Vista
             dgvReportes.DataSource = lista;
             ConfigurarGrid(dgvReportes);
 
-            dgvReportes.Columns["Compras"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvReportes.Columns["ProductosComprados"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvReportes.Columns["TotalGastado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvReportes.Columns["TotalGastado"].DefaultCellStyle.Format = "C0";
+            dgvReportes.Columns["TotalGastado"].HeaderCell.Value = "Total gastado";
+            dgvReportes.Columns["ProductosComprados"].HeaderText = "Productos comprados";
+            dgvReportes.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["Email"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["Tipo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Compras"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["ProductosComprados"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["TotalGastado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
         }
         private void FiltrarProductos()
         {
@@ -318,8 +320,18 @@ namespace Vista
             dgvReportes.DataSource = lista;
             ConfigurarGrid(dgvReportes);
 
+            dgvReportes.Columns["StockTotal"].HeaderText = "Stock Total";
+            dgvReportes.Columns["SucursalesConStock"].HeaderText = "Sucursales con stock";
+
             dgvReportes.Columns["Precio"].DefaultCellStyle.Format = "C0";
             dgvReportes.Columns["Recaudado"].DefaultCellStyle.Format = "C0";
+            dgvReportes.Columns["Precio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Categoría"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["StockTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["SucursalesConStock"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["Vendido"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Recaudado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
         private void FiltrarVentas()
         {
@@ -344,13 +356,19 @@ namespace Vista
             else if (rdbTarjeta.Checked)
                 lista = lista.Where(v => v.MetodoPago == MetodoPago.Tarjeta).ToList();
 
-            var final = lista.OrderByDescending(v => v.Fecha).Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Producto = v.Producto.Nombre, Cliente = v.Cliente.Nombre, Vendedor = v.NombreVendedor, Método = v.MetodoPago.ToString(), Cantidad = v.Cantidad, Total = v.Total, Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento}%" }).ToList();
-
+            var final = lista.OrderByDescending(v => v.Fecha).Select(v => new {Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"),Producto = v.Producto.Nombre,Cliente = v.Cliente.Nombre,Vendedor = v.NombreVendedor,Método = v.MetodoPago.ToString(),Cantidad = v.Cantidad,Total = v.Total,Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento:0}%"}).ToList();
             dgvReportes.DataSource = final;
             ConfigurarGrid(dgvReportes);
-
-            dgvReportes.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvReportes.Columns["Total"].DefaultCellStyle.Format = "C0";
+
+            dgvReportes.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvReportes.Columns["Vendedor"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvReportes.Columns["Método"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Total"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvReportes.Columns["Descuento"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
         #endregion 
         private void pnelppalmedio_Paint(object sender, PaintEventArgs e)

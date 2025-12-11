@@ -148,7 +148,7 @@ namespace Vista
             try
             {
                 DateTime fechaBuscada = dtpFechaBuscada.Value.Date;
-                var ventas = controladora.ObtenerVentas().Where(v => v.Fecha.Date == fechaBuscada).ToList();
+                var ventas = controladora.ObtenerVentas().Where(v => v.Fecha.Date == fechaBuscada.Date).OrderBy(v => v.Fecha).Select(v => new { v.Id, Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Cliente = v.Cliente.Nombre, Producto = v.Producto.Nombre, Sucursal = v.Sucursal.Nombre, Metodo = v.MetodoPago.ToString(), v.Cantidad, Total = (v.Producto.Precio * v.Cantidad).ToString("$#,0.00"), Descuento = v.Descuento.ToString("#,0") + "%", Resultado = v.Total.ToString("$#,0.00"), Vendedor = v.NombreVendedor }).ToList();
 
                 if (ventas.Count == 0)
                     MessageBox.Show("No se encontraron ventas para la fecha seleccionada.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
