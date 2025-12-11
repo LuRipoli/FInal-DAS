@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnelppalmedio = new Panel();
             tlpDivision = new TableLayoutPanel();
             Grpfiltros = new GroupBox();
@@ -57,14 +57,13 @@
             btnlimpiar = new Button();
             groupBox1 = new GroupBox();
             lblDashBoard = new Label();
-            dgvVentas = new DataGridView();
+            dgvReportes = new DataGridView();
             tlpBotones = new TableLayoutPanel();
+            btnReporteGeneral = new Button();
             btnReporteVenta = new Button();
             btnReporteSucursal = new Button();
             btnReporteProducto = new Button();
             btnReporteCliente = new Button();
-            btnRefrescar = new Button();
-            dgvReportes = new DataGridView();
             pnelppaltitulo = new Panel();
             lblTituloGR = new Label();
             btnSalir = new Button();
@@ -75,9 +74,8 @@
             tlpRegistroStock.SuspendLayout();
             tlpMetodoPago.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
-            tlpBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReportes).BeginInit();
+            tlpBotones.SuspendLayout();
             pnelppaltitulo.SuspendLayout();
             SuspendLayout();
             // 
@@ -434,7 +432,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(lblDashBoard);
-            groupBox1.Controls.Add(dgvVentas);
+            groupBox1.Controls.Add(dgvReportes);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.DarkSlateGray;
@@ -457,63 +455,65 @@
             lblDashBoard.TabIndex = 3;
             lblDashBoard.Text = "DashBoard";
             // 
-            // dgvVentas
+            // dgvReportes
             // 
-            dgvVentas.AllowUserToAddRows = false;
-            dgvVentas.AllowUserToDeleteRows = false;
-            dgvVentas.AllowUserToResizeColumns = false;
-            dgvVentas.AllowUserToResizeRows = false;
-            dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvVentas.BackgroundColor = SystemColors.GrayText;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.DarkSlateGray;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvVentas.DefaultCellStyle = dataGridViewCellStyle5;
-            dgvVentas.Dock = DockStyle.Fill;
-            dgvVentas.Location = new Point(5, 40);
-            dgvVentas.Margin = new Padding(20);
-            dgvVentas.Name = "dgvVentas";
-            dgvVentas.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Calibri", 10F, FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvVentas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dgvVentas.RowHeadersVisible = false;
-            dgvVentas.RowHeadersWidth = 62;
-            dgvVentas.Size = new Size(1129, 738);
-            dgvVentas.TabIndex = 2;
-            dgvVentas.Visible = false;
+            dgvReportes.AllowUserToAddRows = false;
+            dgvReportes.AllowUserToDeleteRows = false;
+            dgvReportes.AllowUserToResizeColumns = false;
+            dgvReportes.AllowUserToResizeRows = false;
+            dgvReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvReportes.BackgroundColor = SystemColors.GrayText;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvReportes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvReportes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvReportes.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvReportes.Dock = DockStyle.Fill;
+            dgvReportes.Location = new Point(5, 40);
+            dgvReportes.Margin = new Padding(20);
+            dgvReportes.Name = "dgvReportes";
+            dgvReportes.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvReportes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvReportes.RowHeadersVisible = false;
+            dgvReportes.RowHeadersWidth = 62;
+            dgvReportes.Size = new Size(1129, 738);
+            dgvReportes.TabIndex = 2;
+            dgvReportes.Visible = false;
             // 
             // tlpBotones
             // 
             tlpBotones.BackColor = Color.PaleTurquoise;
             tlpBotones.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
-            tlpBotones.ColumnCount = 4;
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpBotones.Controls.Add(btnReporteVenta, 2, 0);
-            tlpBotones.Controls.Add(btnReporteSucursal, 0, 0);
-            tlpBotones.Controls.Add(btnReporteProducto, 1, 0);
-            tlpBotones.Controls.Add(btnReporteCliente, 3, 0);
+            tlpBotones.ColumnCount = 5;
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBotones.Controls.Add(btnReporteGeneral, 0, 0);
+            tlpBotones.Controls.Add(btnReporteVenta, 3, 0);
+            tlpBotones.Controls.Add(btnReporteSucursal, 1, 0);
+            tlpBotones.Controls.Add(btnReporteProducto, 2, 0);
+            tlpBotones.Controls.Add(btnReporteCliente, 4, 0);
             tlpBotones.Cursor = Cursors.No;
             tlpBotones.Dock = DockStyle.Top;
             tlpBotones.Location = new Point(0, 0);
@@ -524,6 +524,23 @@
             tlpBotones.Size = new Size(1915, 100);
             tlpBotones.TabIndex = 24;
             // 
+            // btnReporteGeneral
+            // 
+            btnReporteGeneral.Cursor = Cursors.Hand;
+            btnReporteGeneral.Dock = DockStyle.Fill;
+            btnReporteGeneral.FlatAppearance.BorderSize = 0;
+            btnReporteGeneral.FlatStyle = FlatStyle.Flat;
+            btnReporteGeneral.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReporteGeneral.ForeColor = Color.DarkSlateGray;
+            btnReporteGeneral.Location = new Point(3, 3);
+            btnReporteGeneral.Margin = new Padding(0);
+            btnReporteGeneral.Name = "btnReporteGeneral";
+            btnReporteGeneral.Size = new Size(379, 94);
+            btnReporteGeneral.TabIndex = 11;
+            btnReporteGeneral.Text = "General 🗃️";
+            btnReporteGeneral.UseVisualStyleBackColor = true;
+            btnReporteGeneral.Click += btnReporteGeneral_Click;
+            // 
             // btnReporteVenta
             // 
             btnReporteVenta.Cursor = Cursors.Hand;
@@ -532,10 +549,10 @@
             btnReporteVenta.FlatStyle = FlatStyle.Flat;
             btnReporteVenta.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteVenta.ForeColor = Color.DarkSlateGray;
-            btnReporteVenta.Location = new Point(959, 3);
+            btnReporteVenta.Location = new Point(1149, 3);
             btnReporteVenta.Margin = new Padding(0);
             btnReporteVenta.Name = "btnReporteVenta";
-            btnReporteVenta.Size = new Size(475, 94);
+            btnReporteVenta.Size = new Size(379, 94);
             btnReporteVenta.TabIndex = 4;
             btnReporteVenta.Text = "Venta 📊";
             btnReporteVenta.UseVisualStyleBackColor = true;
@@ -549,10 +566,10 @@
             btnReporteSucursal.FlatStyle = FlatStyle.Flat;
             btnReporteSucursal.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteSucursal.ForeColor = Color.DarkSlateGray;
-            btnReporteSucursal.Location = new Point(3, 3);
+            btnReporteSucursal.Location = new Point(385, 3);
             btnReporteSucursal.Margin = new Padding(0);
             btnReporteSucursal.Name = "btnReporteSucursal";
-            btnReporteSucursal.Size = new Size(475, 94);
+            btnReporteSucursal.Size = new Size(379, 94);
             btnReporteSucursal.TabIndex = 10;
             btnReporteSucursal.Text = "Sucursal 🏢";
             btnReporteSucursal.UseVisualStyleBackColor = true;
@@ -566,10 +583,10 @@
             btnReporteProducto.FlatStyle = FlatStyle.Flat;
             btnReporteProducto.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteProducto.ForeColor = Color.DarkSlateGray;
-            btnReporteProducto.Location = new Point(481, 3);
+            btnReporteProducto.Location = new Point(767, 3);
             btnReporteProducto.Margin = new Padding(0);
             btnReporteProducto.Name = "btnReporteProducto";
-            btnReporteProducto.Size = new Size(475, 94);
+            btnReporteProducto.Size = new Size(379, 94);
             btnReporteProducto.TabIndex = 6;
             btnReporteProducto.Text = "Producto 📦";
             btnReporteProducto.UseVisualStyleBackColor = true;
@@ -583,37 +600,14 @@
             btnReporteCliente.FlatStyle = FlatStyle.Flat;
             btnReporteCliente.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteCliente.ForeColor = Color.DarkSlateGray;
-            btnReporteCliente.Location = new Point(1437, 3);
+            btnReporteCliente.Location = new Point(1531, 3);
             btnReporteCliente.Margin = new Padding(0);
             btnReporteCliente.Name = "btnReporteCliente";
-            btnReporteCliente.Size = new Size(475, 94);
+            btnReporteCliente.Size = new Size(381, 94);
             btnReporteCliente.TabIndex = 5;
             btnReporteCliente.Text = "Cliente 👤";
             btnReporteCliente.UseVisualStyleBackColor = true;
             btnReporteCliente.Click += btnReporteCliente_Click;
-            // 
-            // btnRefrescar
-            // 
-            btnRefrescar.FlatAppearance.BorderSize = 0;
-            btnRefrescar.FlatStyle = FlatStyle.Flat;
-            btnRefrescar.Font = new Font("Calibri", 16F, FontStyle.Bold);
-            btnRefrescar.ForeColor = Color.DarkSlateGray;
-            btnRefrescar.Location = new Point(764, -3);
-            btnRefrescar.Name = "btnRefrescar";
-            btnRefrescar.Size = new Size(40, 43);
-            btnRefrescar.TabIndex = 26;
-            btnRefrescar.Text = "🔄";
-            btnRefrescar.UseVisualStyleBackColor = true;
-            btnRefrescar.Click += btnRefrescar_Click;
-            // 
-            // dgvReportes
-            // 
-            dgvReportes.ColumnHeadersHeight = 34;
-            dgvReportes.Location = new Point(0, 0);
-            dgvReportes.Name = "dgvReportes";
-            dgvReportes.RowHeadersWidth = 62;
-            dgvReportes.Size = new Size(240, 150);
-            dgvReportes.TabIndex = 0;
             // 
             // pnelppaltitulo
             // 
@@ -696,9 +690,8 @@
             tlpMetodoPago.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
-            tlpBotones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvReportes).EndInit();
+            tlpBotones.ResumeLayout(false);
             pnelppaltitulo.ResumeLayout(false);
             pnelppaltitulo.PerformLayout();
             ResumeLayout(false);
@@ -708,7 +701,6 @@
 
         private Panel pnelppalmedio;
         private GroupBox grbGrillaClientes;
-        private DataGridView dgvReportes;
         private Panel pnelppaltitulo;
         private Button btnReporteSucursal;
         private Button btnVolver;
@@ -750,6 +742,7 @@
         private Label lblDashBoard;
         private Button btnRefrescar;
         private GroupBox groupBox1;
-        private DataGridView dgvVentas;
+        private DataGridView dgvReportes;
+        private Button btnReporteGeneral;
     }
 }

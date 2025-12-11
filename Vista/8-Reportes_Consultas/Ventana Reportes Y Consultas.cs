@@ -198,10 +198,74 @@ namespace Vista
             rdbTransferencia.Enabled = metodoPago;
             rdbTarjeta.Enabled = metodoPago;
         }
+        private void FiltrarSucursales()
+        {
+            var lista = ControladoraSucursales.Instancia().ObtenerSucursales();
+
+            if (cmbSucursales.SelectedIndex != -1)
+            {
+                string nombre = cmbSucursales.Text.Trim();
+                lista = lista.Where(s => s.Nombre.Contains(nombre)).ToList();
+            }
+
+            dgvReportes.DataSource = lista;
+        }
+        private void FiltrarClientes()
+        {
+            var lista = ControladoraClientes.Instancia().ObtenerClientes();
+
+            if (cmbClientes.SelectedIndex != -1)
+            {
+                string nombre = cmbClientes.Text.Trim();
+                lista = lista.Where(c => c.Nombre.Contains(nombre)).ToList();
+            }
+
+            dgvReportes.DataSource = lista;
+        }
+        private void FiltrarProductos()
+        {
+            var lista = ControladoraProductos.Instancia().ObtenerProductos();
+
+            if (cmbProducto.SelectedIndex != -1)
+            {
+                string nombre = cmbProducto.Text.Trim();
+                lista = lista.Where(p => p.Nombre.Contains(nombre)).ToList();
+            }
+
+            dgvReportes.DataSource = lista;
+        }
+        private void FiltrarVentas()
+        {
+            var lista = ControladoraVentas.Instancia().ObtenerVentas();
+
+            DateTime desde = dtpFechaDesde.Value.Date;
+            DateTime hasta = dtpFechaHasta.Value.Date.AddDays(1).AddSeconds(-1);
+            lista = lista.Where(v => v.Fecha >= desde && v.Fecha <= hasta).ToList();
+
+            if (cmbSucursales.SelectedIndex != -1)
+                lista = lista.Where(v => v.Sucursal.Nombre == cmbSucursales.Text).ToList();
+
+            if (cmbClientes.SelectedIndex != -1)
+                lista = lista.Where(v => v.Cliente.Nombre == cmbClientes.Text).ToList();
+
+            if (cmbProducto.SelectedIndex != -1)
+                lista = lista.Where(v => v.Producto.Nombre == cmbProducto.Text).ToList();
+
+            if (cmbVendedor.SelectedIndex != -1)
+                lista = lista.Where(v => v.NombreVendedor == cmbVendedor.Text).ToList();
+            if (rdbEfectivo.Checked)
+                lista = lista.Where(v => v.MetodoPago == MetodoPago.Efectivo).ToList();
+            else if (rdbTransferencia.Checked)
+                lista = lista.Where(v => v.MetodoPago == MetodoPago.Transferencia).ToList();
+            else if (rdbTarjeta.Checked)
+                lista = lista.Where(v => v.MetodoPago == MetodoPago.Tarjeta).ToList();
+
+            dgvReportes.DataSource = lista;
+        }
         #endregion 
         private void pnelppalmedio_Paint(object sender, PaintEventArgs e)
         {
-
+            //EXPLOTA EL PROGRAMA SI LO BORRO, NO TOCAR
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -225,7 +289,35 @@ namespace Vista
 
         private void btnAplicarFiltros_Click(object sender, EventArgs e)
         {
+            try
+            {
+                switch (modoActual)
+                {
+                    case ModoReporte.Sucursales:
+                        FiltrarSucursales();
+                        break;
 
+                    case ModoReporte.Clientes:
+                        FiltrarClientes();
+                        break;
+
+                    case ModoReporte.Productos:
+                        FiltrarProductos();
+                        break;
+
+                    case ModoReporte.Ventas:
+                        FiltrarVentas();
+                        break;
+
+                    default:
+                        MessageBox.Show("Seleccione un tipo de reporte antes de aplicar filtros.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al aplicar filtros: " + ex.Message);
+            }
         }
 
         private void btnReporteSucursal_Click(object sender, EventArgs e)
@@ -238,11 +330,8 @@ namespace Vista
 
             ActivarFiltros(false, true, false, false, false, false);
 
-            var sucursales = ControladoraSucursales.Instancia().ObtenerSucursales();
-            dgvReportes.DataSource = sucursales;
-
-            if (dgvReportes.Columns["Id"] != null)
-                dgvReportes.Columns["Id"].Visible = false;
+            var lista = ControladoraSucursales.Instancia().ObtenerSucursales().Select(s => new { Sucursal = s.Nombre, Dirección = s.Direccion, ProductosDistintos = s.StocksPorSucursal.Count, StockTotal = s.StocksPorSucursal.Sum(x => x.Cantidad), StockPromedio = s.StocksPorSucursal.Count == 0 ? 0 : (int)s.StocksPorSucursal.Average(x => x.Cantidad) }).OrderBy(x => x.Sucursal).ToList();
+            dgvReportes.DataSource = lista;
         }
 
         private void btnReporteProducto_Click(object sender, EventArgs e)
@@ -255,11 +344,8 @@ namespace Vista
 
             ActivarFiltros(false, false, false, true, false, false);
 
-            var productos = ControladoraProductos.Instancia().ObtenerProductos().ToList();
-            dgvReportes.DataSource = productos;
-
-            if (dgvReportes.Columns["CategoriaId"] != null)
-                dgvReportes.Columns["CategoriaId"].Visible = false;
+            var lista = ControladoraProductos.Instancia().ObtenerProductos().Select(p => new { Producto = p.Nombre, Categoría = p.Categoria.Nombre, Precio = $"${p.Precio:N0}", Vendido = ControladoraVentas.Instancia().ObtenerVentas().Where(v => v.Producto.Id == p.Id).Sum(v => v.Cantidad), StockTotal = p.StocksPorSucursal.Sum(s => s.Cantidad), SucursalesDisponibles = p.StocksPorSucursal.Count }).OrderBy(p => p.Categoría).ThenBy(p => p.Producto).ToList();
+            dgvReportes.DataSource = lista;
         }
 
         private void btnReporteVenta_Click(object sender, EventArgs e)
@@ -272,11 +358,8 @@ namespace Vista
 
             ActivarFiltros(true, true, true, true, true, true);
 
-            var ventas = ControladoraVentas.Instancia().ObtenerVentas();
-            dgvReportes.DataSource = ventas;
-
-            if (dgvReportes.Columns["Id"] != null)
-                dgvReportes.Columns["Id"].Visible = false;
+            var lista = ControladoraVentas.Instancia().ObtenerVentas().OrderByDescending(v => v.Fecha).Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Producto = v.Producto.Nombre, Cliente = v.Cliente.Nombre, Vendedor = v.NombreVendedor, Método = v.MetodoPago.ToString(), Cantidad = v.Cantidad, Total = $"${v.Total:N0}", Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento}%" }).ToList();
+            dgvReportes.DataSource = lista;
         }
 
         private void btnReporteCliente_Click(object sender, EventArgs e)
@@ -289,16 +372,28 @@ namespace Vista
 
             ActivarFiltros(false, false, true, false, false, false);
 
-            var clientes = ControladoraClientes.Instancia().ObtenerClientes();
-            dgvReportes.DataSource = clientes;
-
-            if (dgvReportes.Columns["Id"] != null)
-                dgvReportes.Columns["Id"].Visible = false;
+            var lista = ControladoraClientes.Instancia().ObtenerClientes().Select(c => new { Cliente = c.Nombre, Email = c.Email, Tipo = c.TipoCliente.ToString(), Compras = ControladoraVentas.Instancia().ObtenerVentas().Count(v => v.Cliente.Id == c.Id), TotalGastado = $"${ControladoraVentas.Instancia().ObtenerVentas().Where(v => v.Cliente.Id == c.Id).Sum(v => v.Total):N0}" }).OrderByDescending(c => c.Compras).ToList();
+            dgvReportes.DataSource = lista;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnReporteGeneral_Click(object sender, EventArgs e)
+        {
+            modoActual = ModoReporte.Ninguno;
+            ActivarBoton(btnReporteGeneral);
+
+            dgvReportes.Visible = false;
+            lblDashBoard.Visible = true;
+
+            ActivarFiltros(false, false, false, false, false, false);
+
+            LimpiarCampos();
+
+            Refrescar();
         }
     }
 }

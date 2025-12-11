@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Modelo
 {
@@ -18,7 +19,7 @@ namespace Modelo
 
         public IReadOnlyCollection<Entidades.Sucursal> ObtenerSucursales()
         {
-            return context.Sucursales.ToList().AsReadOnly();
+            return context.Sucursales.Include(s => s.StocksPorSucursal).ThenInclude(sp => sp.Producto).ToList();
         }
 
         public void AgregarSucursal(Entidades.Sucursal sucursal)
