@@ -1562,8 +1562,8 @@
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Margin = new Padding(2, 4, 2, 4);
-            MaximumSize = new Size(2340, 946);
-            MinimumSize = new Size(1917, 946);
+            MaximumSize = new Size(2193, 946);
+            MinimumSize = new Size(2193, 946);
             Name = "Ventana_Reportes_Y_Consultas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Reportes ";
