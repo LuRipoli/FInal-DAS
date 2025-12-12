@@ -117,6 +117,7 @@
             pnelCard3Titulo = new Panel();
             lblCard3Titulo = new Label();
             tlpBotones = new TableLayoutPanel();
+            btnImprimir = new Button();
             btnReporteGeneral = new Button();
             btnReporteVenta = new Button();
             btnReporteSucursal = new Button();
@@ -170,10 +171,10 @@
             pnelppalmedio.Controls.Add(tlpDivision);
             pnelppalmedio.Controls.Add(tlpBotones);
             pnelppalmedio.Dock = DockStyle.Fill;
-            pnelppalmedio.Location = new Point(0, 80);
+            pnelppalmedio.Location = new Point(0, 64);
             pnelppalmedio.Margin = new Padding(1);
             pnelppalmedio.Name = "pnelppalmedio";
-            pnelppalmedio.Size = new Size(2318, 812);
+            pnelppalmedio.Size = new Size(1539, 657);
             pnelppalmedio.TabIndex = 15;
             pnelppalmedio.Paint += pnelppalmedio_Paint;
             // 
@@ -185,11 +186,12 @@
             tlpDivision.Controls.Add(Grpfiltros, 0, 0);
             tlpDivision.Controls.Add(grbReportes, 1, 0);
             tlpDivision.Dock = DockStyle.Fill;
-            tlpDivision.Location = new Point(0, 100);
+            tlpDivision.Location = new Point(0, 80);
+            tlpDivision.Margin = new Padding(2);
             tlpDivision.Name = "tlpDivision";
             tlpDivision.RowCount = 1;
             tlpDivision.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDivision.Size = new Size(2318, 712);
+            tlpDivision.Size = new Size(1539, 577);
             tlpDivision.TabIndex = 25;
             // 
             // Grpfiltros
@@ -200,11 +202,11 @@
             Grpfiltros.Dock = DockStyle.Fill;
             Grpfiltros.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Grpfiltros.ForeColor = Color.DarkSlateGray;
-            Grpfiltros.Location = new Point(4, 5);
-            Grpfiltros.Margin = new Padding(4, 5, 4, 5);
+            Grpfiltros.Location = new Point(3, 4);
+            Grpfiltros.Margin = new Padding(3, 4, 3, 4);
             Grpfiltros.Name = "Grpfiltros";
-            Grpfiltros.Padding = new Padding(4, 5, 4, 5);
-            Grpfiltros.Size = new Size(687, 702);
+            Grpfiltros.Padding = new Padding(3, 4, 3, 4);
+            Grpfiltros.Size = new Size(455, 569);
             Grpfiltros.TabIndex = 19;
             Grpfiltros.TabStop = false;
             Grpfiltros.Text = "Filtros";
@@ -218,10 +220,10 @@
             btnAplicarFiltros.FlatStyle = FlatStyle.Flat;
             btnAplicarFiltros.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAplicarFiltros.ForeColor = Color.White;
-            btnAplicarFiltros.Location = new Point(4, 632);
+            btnAplicarFiltros.Location = new Point(3, 513);
             btnAplicarFiltros.Margin = new Padding(2);
             btnAplicarFiltros.Name = "btnAplicarFiltros";
-            btnAplicarFiltros.Size = new Size(679, 65);
+            btnAplicarFiltros.Size = new Size(449, 52);
             btnAplicarFiltros.TabIndex = 29;
             btnAplicarFiltros.Text = "Aplicar Filtros";
             btnAplicarFiltros.UseVisualStyleBackColor = false;
@@ -237,10 +239,10 @@
             btnLimpiarCampos.FlatStyle = FlatStyle.Flat;
             btnLimpiarCampos.Font = new Font("Calibri", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLimpiarCampos.ForeColor = Color.White;
-            btnLimpiarCampos.Location = new Point(4, 40);
+            btnLimpiarCampos.Location = new Point(3, 33);
             btnLimpiarCampos.Margin = new Padding(0);
             btnLimpiarCampos.Name = "btnLimpiarCampos";
-            btnLimpiarCampos.Size = new Size(679, 65);
+            btnLimpiarCampos.Size = new Size(449, 52);
             btnLimpiarCampos.TabIndex = 28;
             btnLimpiarCampos.Text = "Limpiar Campos";
             btnLimpiarCampos.UseVisualStyleBackColor = false;
@@ -267,7 +269,8 @@
             tlpRegistroStock.Controls.Add(lblFechaHasta, 0, 1);
             tlpRegistroStock.Controls.Add(cmbClientes, 1, 3);
             tlpRegistroStock.Controls.Add(lblCliente, 0, 3);
-            tlpRegistroStock.Location = new Point(4, 108);
+            tlpRegistroStock.Location = new Point(-45, 93);
+            tlpRegistroStock.Margin = new Padding(2);
             tlpRegistroStock.Name = "tlpRegistroStock";
             tlpRegistroStock.RowCount = 7;
             tlpRegistroStock.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857132F));
@@ -277,7 +280,7 @@
             tlpRegistroStock.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
             tlpRegistroStock.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
             tlpRegistroStock.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
-            tlpRegistroStock.Size = new Size(683, 523);
+            tlpRegistroStock.Size = new Size(546, 418);
             tlpRegistroStock.TabIndex = 27;
             // 
             // lblFechaDesde
@@ -286,9 +289,10 @@
             lblFechaDesde.AutoSize = true;
             lblFechaDesde.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFechaDesde.ForeColor = Color.DarkSlateGray;
-            lblFechaDesde.Location = new Point(6, 21);
+            lblFechaDesde.Location = new Point(5, 16);
+            lblFechaDesde.Margin = new Padding(2, 0, 2, 0);
             lblFechaDesde.Name = "lblFechaDesde";
-            lblFechaDesde.Size = new Size(213, 35);
+            lblFechaDesde.Size = new Size(170, 29);
             lblFechaDesde.TabIndex = 36;
             lblFechaDesde.Text = "Desde la Fecha:";
             lblFechaDesde.TextAlign = ContentAlignment.MiddleCenter;
@@ -298,10 +302,10 @@
             dtpFechaHasta.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpFechaHasta.CalendarFont = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpFechaHasta.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaHasta.Location = new Point(233, 96);
-            dtpFechaHasta.Margin = new Padding(8);
+            dtpFechaHasta.Location = new Point(186, 76);
+            dtpFechaHasta.Margin = new Padding(6);
             dtpFechaHasta.Name = "dtpFechaHasta";
-            dtpFechaHasta.Size = new Size(439, 32);
+            dtpFechaHasta.Size = new Size(351, 28);
             dtpFechaHasta.TabIndex = 35;
             // 
             // cmbVendedor
@@ -309,10 +313,10 @@
             cmbVendedor.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbVendedor.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbVendedor.FormattingEnabled = true;
-            cmbVendedor.Location = new Point(233, 467);
-            cmbVendedor.Margin = new Padding(8);
+            cmbVendedor.Location = new Point(186, 371);
+            cmbVendedor.Margin = new Padding(6);
             cmbVendedor.Name = "cmbVendedor";
-            cmbVendedor.Size = new Size(439, 32);
+            cmbVendedor.Size = new Size(351, 29);
             cmbVendedor.TabIndex = 34;
             // 
             // lblNombreVendedor
@@ -321,9 +325,10 @@
             lblNombreVendedor.AutoSize = true;
             lblNombreVendedor.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNombreVendedor.ForeColor = Color.DarkSlateGray;
-            lblNombreVendedor.Location = new Point(6, 466);
+            lblNombreVendedor.Location = new Point(5, 371);
+            lblNombreVendedor.Margin = new Padding(2, 0, 2, 0);
             lblNombreVendedor.Name = "lblNombreVendedor";
-            lblNombreVendedor.Size = new Size(213, 35);
+            lblNombreVendedor.Size = new Size(170, 29);
             lblNombreVendedor.TabIndex = 33;
             lblNombreVendedor.Text = "Vendedor:";
             lblNombreVendedor.TextAlign = ContentAlignment.MiddleCenter;
@@ -339,12 +344,12 @@
             tlpMetodoPago.Controls.Add(rdbEfectivo, 0, 0);
             tlpMetodoPago.Dock = DockStyle.Fill;
             tlpMetodoPago.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tlpMetodoPago.Location = new Point(225, 373);
+            tlpMetodoPago.Location = new Point(180, 298);
             tlpMetodoPago.Margin = new Padding(0);
             tlpMetodoPago.Name = "tlpMetodoPago";
             tlpMetodoPago.RowCount = 1;
             tlpMetodoPago.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetodoPago.Size = new Size(455, 71);
+            tlpMetodoPago.Size = new Size(363, 56);
             tlpMetodoPago.TabIndex = 29;
             // 
             // rdbTarjeta
@@ -353,10 +358,9 @@
             rdbTarjeta.Dock = DockStyle.Fill;
             rdbTarjeta.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbTarjeta.ForeColor = Color.DarkSlateGray;
-            rdbTarjeta.Location = new Point(344, 4);
-            rdbTarjeta.Margin = new Padding(4);
+            rdbTarjeta.Location = new Point(274, 3);
             rdbTarjeta.Name = "rdbTarjeta";
-            rdbTarjeta.Size = new Size(107, 63);
+            rdbTarjeta.Size = new Size(86, 50);
             rdbTarjeta.TabIndex = 21;
             rdbTarjeta.TabStop = true;
             rdbTarjeta.Text = "Tarjeta";
@@ -369,10 +373,9 @@
             rdbTransferencia.AutoSize = true;
             rdbTransferencia.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbTransferencia.ForeColor = Color.DarkSlateGray;
-            rdbTransferencia.Location = new Point(140, 19);
-            rdbTransferencia.Margin = new Padding(4);
+            rdbTransferencia.Location = new Point(111, 14);
             rdbTransferencia.Name = "rdbTransferencia";
-            rdbTransferencia.Size = new Size(196, 33);
+            rdbTransferencia.Size = new Size(157, 28);
             rdbTransferencia.TabIndex = 22;
             rdbTransferencia.TabStop = true;
             rdbTransferencia.Text = "Transferencia";
@@ -385,10 +388,9 @@
             rdbEfectivo.AutoSize = true;
             rdbEfectivo.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbEfectivo.ForeColor = Color.DarkSlateGray;
-            rdbEfectivo.Location = new Point(4, 19);
-            rdbEfectivo.Margin = new Padding(4);
+            rdbEfectivo.Location = new Point(3, 14);
             rdbEfectivo.Name = "rdbEfectivo";
-            rdbEfectivo.Size = new Size(128, 33);
+            rdbEfectivo.Size = new Size(102, 28);
             rdbEfectivo.TabIndex = 20;
             rdbEfectivo.TabStop = true;
             rdbEfectivo.Text = "Efectivo";
@@ -401,9 +403,10 @@
             lblMetodoPago.AutoSize = true;
             lblMetodoPago.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMetodoPago.ForeColor = Color.DarkSlateGray;
-            lblMetodoPago.Location = new Point(6, 391);
+            lblMetodoPago.Location = new Point(5, 298);
+            lblMetodoPago.Margin = new Padding(2, 0, 2, 0);
             lblMetodoPago.Name = "lblMetodoPago";
-            lblMetodoPago.Size = new Size(213, 35);
+            lblMetodoPago.Size = new Size(170, 56);
             lblMetodoPago.TabIndex = 27;
             lblMetodoPago.Text = "Método de Pago:";
             lblMetodoPago.TextAlign = ContentAlignment.MiddleCenter;
@@ -414,9 +417,10 @@
             lblProducto.AutoSize = true;
             lblProducto.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblProducto.ForeColor = Color.DarkSlateGray;
-            lblProducto.Location = new Point(6, 317);
+            lblProducto.Location = new Point(5, 252);
+            lblProducto.Margin = new Padding(2, 0, 2, 0);
             lblProducto.Name = "lblProducto";
-            lblProducto.Size = new Size(213, 35);
+            lblProducto.Size = new Size(170, 29);
             lblProducto.TabIndex = 6;
             lblProducto.Text = "Producto:";
             lblProducto.TextAlign = ContentAlignment.MiddleCenter;
@@ -426,10 +430,10 @@
             cmbProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbProducto.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbProducto.FormattingEnabled = true;
-            cmbProducto.Location = new Point(233, 318);
-            cmbProducto.Margin = new Padding(8);
+            cmbProducto.Location = new Point(186, 252);
+            cmbProducto.Margin = new Padding(6);
             cmbProducto.Name = "cmbProducto";
-            cmbProducto.Size = new Size(439, 32);
+            cmbProducto.Size = new Size(351, 29);
             cmbProducto.TabIndex = 21;
             // 
             // lblSucursal
@@ -438,9 +442,10 @@
             lblSucursal.AutoSize = true;
             lblSucursal.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSucursal.ForeColor = Color.DarkSlateGray;
-            lblSucursal.Location = new Point(6, 169);
+            lblSucursal.Location = new Point(5, 134);
+            lblSucursal.Margin = new Padding(2, 0, 2, 0);
             lblSucursal.Name = "lblSucursal";
-            lblSucursal.Size = new Size(213, 35);
+            lblSucursal.Size = new Size(170, 29);
             lblSucursal.TabIndex = 18;
             lblSucursal.Text = "Sucursal:";
             lblSucursal.TextAlign = ContentAlignment.MiddleCenter;
@@ -450,10 +455,10 @@
             cmbSucursales.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbSucursales.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbSucursales.FormattingEnabled = true;
-            cmbSucursales.Location = new Point(233, 170);
-            cmbSucursales.Margin = new Padding(8);
+            cmbSucursales.Location = new Point(186, 134);
+            cmbSucursales.Margin = new Padding(6);
             cmbSucursales.Name = "cmbSucursales";
-            cmbSucursales.Size = new Size(439, 32);
+            cmbSucursales.Size = new Size(351, 29);
             cmbSucursales.TabIndex = 22;
             // 
             // dtpFechaDesde
@@ -461,10 +466,10 @@
             dtpFechaDesde.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpFechaDesde.CalendarFont = new Font("Calibri", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpFechaDesde.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaDesde.Location = new Point(233, 22);
-            dtpFechaDesde.Margin = new Padding(8);
+            dtpFechaDesde.Location = new Point(186, 17);
+            dtpFechaDesde.Margin = new Padding(6);
             dtpFechaDesde.Name = "dtpFechaDesde";
-            dtpFechaDesde.Size = new Size(439, 32);
+            dtpFechaDesde.Size = new Size(351, 28);
             dtpFechaDesde.TabIndex = 26;
             dtpFechaDesde.Value = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
@@ -474,9 +479,10 @@
             lblFechaHasta.AutoSize = true;
             lblFechaHasta.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFechaHasta.ForeColor = Color.DarkSlateGray;
-            lblFechaHasta.Location = new Point(6, 95);
+            lblFechaHasta.Location = new Point(5, 75);
+            lblFechaHasta.Margin = new Padding(2, 0, 2, 0);
             lblFechaHasta.Name = "lblFechaHasta";
-            lblFechaHasta.Size = new Size(213, 35);
+            lblFechaHasta.Size = new Size(170, 29);
             lblFechaHasta.TabIndex = 20;
             lblFechaHasta.Text = "Hasta la Fecha:";
             lblFechaHasta.TextAlign = ContentAlignment.MiddleCenter;
@@ -486,10 +492,10 @@
             cmbClientes.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbClientes.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.FormattingEnabled = true;
-            cmbClientes.Location = new Point(233, 244);
-            cmbClientes.Margin = new Padding(8);
+            cmbClientes.Location = new Point(186, 193);
+            cmbClientes.Margin = new Padding(6);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(439, 32);
+            cmbClientes.Size = new Size(351, 29);
             cmbClientes.TabIndex = 21;
             // 
             // lblCliente
@@ -498,9 +504,10 @@
             lblCliente.AutoSize = true;
             lblCliente.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCliente.ForeColor = Color.DarkSlateGray;
-            lblCliente.Location = new Point(6, 243);
+            lblCliente.Location = new Point(5, 193);
+            lblCliente.Margin = new Padding(2, 0, 2, 0);
             lblCliente.Name = "lblCliente";
-            lblCliente.Size = new Size(213, 35);
+            lblCliente.Size = new Size(170, 29);
             lblCliente.TabIndex = 24;
             lblCliente.Text = "Cliente:";
             lblCliente.TextAlign = ContentAlignment.MiddleCenter;
@@ -513,11 +520,11 @@
             grbReportes.Dock = DockStyle.Fill;
             grbReportes.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbReportes.ForeColor = Color.DarkSlateGray;
-            grbReportes.Location = new Point(700, 5);
-            grbReportes.Margin = new Padding(5);
+            grbReportes.Location = new Point(465, 4);
+            grbReportes.Margin = new Padding(4);
             grbReportes.Name = "grbReportes";
-            grbReportes.Padding = new Padding(5);
-            grbReportes.Size = new Size(1613, 702);
+            grbReportes.Padding = new Padding(4);
+            grbReportes.Size = new Size(1070, 569);
             grbReportes.TabIndex = 20;
             grbReportes.TabStop = false;
             grbReportes.Text = "Reportes Generales del Sistema:";
@@ -532,7 +539,7 @@
             dgvReportes.BackgroundColor = SystemColors.GrayText;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -541,20 +548,20 @@
             dgvReportes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = Color.DarkSlateGray;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvReportes.DefaultCellStyle = dataGridViewCellStyle2;
             dgvReportes.Dock = DockStyle.Bottom;
-            dgvReportes.Location = new Point(5, 43);
-            dgvReportes.Margin = new Padding(20);
+            dgvReportes.Location = new Point(4, 42);
+            dgvReportes.Margin = new Padding(16);
             dgvReportes.Name = "dgvReportes";
             dgvReportes.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Calibri", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
@@ -562,7 +569,7 @@
             dgvReportes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvReportes.RowHeadersVisible = false;
             dgvReportes.RowHeadersWidth = 62;
-            dgvReportes.Size = new Size(1603, 654);
+            dgvReportes.Size = new Size(1062, 523);
             dgvReportes.TabIndex = 5;
             // 
             // pnelContenidoResumen
@@ -570,9 +577,10 @@
             pnelContenidoResumen.Controls.Add(tlpZona3);
             pnelContenidoResumen.Controls.Add(tlpZona2);
             pnelContenidoResumen.Dock = DockStyle.Fill;
-            pnelContenidoResumen.Location = new Point(5, 157);
+            pnelContenidoResumen.Location = new Point(4, 127);
+            pnelContenidoResumen.Margin = new Padding(2);
             pnelContenidoResumen.Name = "pnelContenidoResumen";
-            pnelContenidoResumen.Size = new Size(1603, 540);
+            pnelContenidoResumen.Size = new Size(1062, 438);
             pnelContenidoResumen.TabIndex = 4;
             // 
             // tlpZona3
@@ -583,11 +591,12 @@
             tlpZona3.Controls.Add(pnelIzq, 0, 0);
             tlpZona3.Controls.Add(pnelDer, 1, 0);
             tlpZona3.Dock = DockStyle.Bottom;
-            tlpZona3.Location = new Point(0, 334);
+            tlpZona3.Location = new Point(0, 273);
+            tlpZona3.Margin = new Padding(2);
             tlpZona3.Name = "tlpZona3";
             tlpZona3.RowCount = 1;
             tlpZona3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpZona3.Size = new Size(1603, 206);
+            tlpZona3.Size = new Size(1062, 165);
             tlpZona3.TabIndex = 0;
             // 
             // pnelIzq
@@ -596,10 +605,11 @@
             pnelIzq.Controls.Add(pnelIzqContenido);
             pnelIzq.Controls.Add(pnelTituloMP);
             pnelIzq.Dock = DockStyle.Fill;
-            pnelIzq.Location = new Point(3, 3);
+            pnelIzq.Location = new Point(2, 2);
+            pnelIzq.Margin = new Padding(2);
             pnelIzq.Name = "pnelIzq";
-            pnelIzq.Padding = new Padding(10);
-            pnelIzq.Size = new Size(795, 200);
+            pnelIzq.Padding = new Padding(8);
+            pnelIzq.Size = new Size(527, 161);
             pnelIzq.TabIndex = 0;
             // 
             // pnelIzqContenido
@@ -607,10 +617,10 @@
             pnelIzqContenido.Controls.Add(tlpMetodosPago);
             pnelIzqContenido.Controls.Add(lblMetodosPagoContenido);
             pnelIzqContenido.Dock = DockStyle.Fill;
-            pnelIzqContenido.Location = new Point(10, 40);
+            pnelIzqContenido.Location = new Point(8, 32);
             pnelIzqContenido.Margin = new Padding(0);
             pnelIzqContenido.Name = "pnelIzqContenido";
-            pnelIzqContenido.Size = new Size(775, 150);
+            pnelIzqContenido.Size = new Size(511, 121);
             pnelIzqContenido.TabIndex = 2;
             // 
             // tlpMetodosPago
@@ -630,13 +640,14 @@
             tlpMetodosPago.Controls.Add(lblEfectivo, 0, 0);
             tlpMetodosPago.Controls.Add(pbEfectivo, 1, 0);
             tlpMetodosPago.Dock = DockStyle.Bottom;
-            tlpMetodosPago.Location = new Point(0, 35);
+            tlpMetodosPago.Location = new Point(0, 29);
+            tlpMetodosPago.Margin = new Padding(2);
             tlpMetodosPago.Name = "tlpMetodosPago";
             tlpMetodosPago.RowCount = 3;
             tlpMetodosPago.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tlpMetodosPago.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tlpMetodosPago.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tlpMetodosPago.Size = new Size(775, 115);
+            tlpMetodosPago.Size = new Size(511, 92);
             tlpMetodosPago.TabIndex = 1;
             // 
             // lblPorcentajeTarjeta
@@ -645,9 +656,10 @@
             lblPorcentajeTarjeta.AutoSize = true;
             lblPorcentajeTarjeta.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPorcentajeTarjeta.ForeColor = Color.DarkSlateGray;
-            lblPorcentajeTarjeta.Location = new Point(660, 77);
+            lblPorcentajeTarjeta.Location = new Point(434, 61);
+            lblPorcentajeTarjeta.Margin = new Padding(2, 0, 2, 0);
             lblPorcentajeTarjeta.Name = "lblPorcentajeTarjeta";
-            lblPorcentajeTarjeta.Size = new Size(109, 35);
+            lblPorcentajeTarjeta.Size = new Size(72, 28);
             lblPorcentajeTarjeta.TabIndex = 33;
             lblPorcentajeTarjeta.Text = "0%";
             lblPorcentajeTarjeta.TextAlign = ContentAlignment.MiddleCenter;
@@ -658,9 +670,10 @@
             lblPorcentajeTransferencia.AutoSize = true;
             lblPorcentajeTransferencia.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPorcentajeTransferencia.ForeColor = Color.DarkSlateGray;
-            lblPorcentajeTransferencia.Location = new Point(660, 40);
+            lblPorcentajeTransferencia.Location = new Point(434, 32);
+            lblPorcentajeTransferencia.Margin = new Padding(2, 0, 2, 0);
             lblPorcentajeTransferencia.Name = "lblPorcentajeTransferencia";
-            lblPorcentajeTransferencia.Size = new Size(109, 34);
+            lblPorcentajeTransferencia.Size = new Size(72, 26);
             lblPorcentajeTransferencia.TabIndex = 32;
             lblPorcentajeTransferencia.Text = "0%";
             lblPorcentajeTransferencia.TextAlign = ContentAlignment.MiddleCenter;
@@ -671,9 +684,10 @@
             lblPorcentajeEfectivo.AutoSize = true;
             lblPorcentajeEfectivo.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPorcentajeEfectivo.ForeColor = Color.DarkSlateGray;
-            lblPorcentajeEfectivo.Location = new Point(660, 3);
+            lblPorcentajeEfectivo.Location = new Point(434, 3);
+            lblPorcentajeEfectivo.Margin = new Padding(2, 0, 2, 0);
             lblPorcentajeEfectivo.Name = "lblPorcentajeEfectivo";
-            lblPorcentajeEfectivo.Size = new Size(109, 34);
+            lblPorcentajeEfectivo.Size = new Size(72, 26);
             lblPorcentajeEfectivo.TabIndex = 31;
             lblPorcentajeEfectivo.Text = "0%";
             lblPorcentajeEfectivo.TextAlign = ContentAlignment.MiddleCenter;
@@ -681,9 +695,10 @@
             // pbTarjeta
             // 
             pbTarjeta.Dock = DockStyle.Fill;
-            pbTarjeta.Location = new Point(276, 80);
+            pbTarjeta.Location = new Point(182, 63);
+            pbTarjeta.Margin = new Padding(2);
             pbTarjeta.Name = "pbTarjeta";
-            pbTarjeta.Size = new Size(375, 29);
+            pbTarjeta.Size = new Size(245, 24);
             pbTarjeta.TabIndex = 30;
             // 
             // lblTarjeta
@@ -692,9 +707,10 @@
             lblTarjeta.AutoSize = true;
             lblTarjeta.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTarjeta.ForeColor = Color.DarkSlateGray;
-            lblTarjeta.Location = new Point(6, 77);
+            lblTarjeta.Location = new Point(5, 61);
+            lblTarjeta.Margin = new Padding(2, 0, 2, 0);
             lblTarjeta.Name = "lblTarjeta";
-            lblTarjeta.Size = new Size(261, 35);
+            lblTarjeta.Size = new Size(170, 28);
             lblTarjeta.TabIndex = 29;
             lblTarjeta.Text = "Tarjeta:";
             lblTarjeta.TextAlign = ContentAlignment.MiddleLeft;
@@ -702,9 +718,10 @@
             // pbTransferencia
             // 
             pbTransferencia.Dock = DockStyle.Fill;
-            pbTransferencia.Location = new Point(276, 43);
+            pbTransferencia.Location = new Point(182, 34);
+            pbTransferencia.Margin = new Padding(2);
             pbTransferencia.Name = "pbTransferencia";
-            pbTransferencia.Size = new Size(375, 28);
+            pbTransferencia.Size = new Size(245, 22);
             pbTransferencia.TabIndex = 28;
             // 
             // lblTransferencia
@@ -713,9 +730,10 @@
             lblTransferencia.AutoSize = true;
             lblTransferencia.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTransferencia.ForeColor = Color.DarkSlateGray;
-            lblTransferencia.Location = new Point(6, 40);
+            lblTransferencia.Location = new Point(5, 32);
+            lblTransferencia.Margin = new Padding(2, 0, 2, 0);
             lblTransferencia.Name = "lblTransferencia";
-            lblTransferencia.Size = new Size(261, 34);
+            lblTransferencia.Size = new Size(170, 26);
             lblTransferencia.TabIndex = 27;
             lblTransferencia.Text = "Transferencia:";
             lblTransferencia.TextAlign = ContentAlignment.MiddleLeft;
@@ -726,9 +744,10 @@
             lblEfectivo.AutoSize = true;
             lblEfectivo.Font = new Font("Calibri", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEfectivo.ForeColor = Color.DarkSlateGray;
-            lblEfectivo.Location = new Point(6, 3);
+            lblEfectivo.Location = new Point(5, 3);
+            lblEfectivo.Margin = new Padding(2, 0, 2, 0);
             lblEfectivo.Name = "lblEfectivo";
-            lblEfectivo.Size = new Size(261, 34);
+            lblEfectivo.Size = new Size(170, 26);
             lblEfectivo.TabIndex = 25;
             lblEfectivo.Text = "Efectivo:";
             lblEfectivo.TextAlign = ContentAlignment.MiddleLeft;
@@ -736,9 +755,10 @@
             // pbEfectivo
             // 
             pbEfectivo.Dock = DockStyle.Fill;
-            pbEfectivo.Location = new Point(276, 6);
+            pbEfectivo.Location = new Point(182, 5);
+            pbEfectivo.Margin = new Padding(2);
             pbEfectivo.Name = "pbEfectivo";
-            pbEfectivo.Size = new Size(375, 28);
+            pbEfectivo.Size = new Size(245, 22);
             pbEfectivo.TabIndex = 26;
             // 
             // lblMetodosPagoContenido
@@ -746,18 +766,19 @@
             lblMetodosPagoContenido.Dock = DockStyle.Fill;
             lblMetodosPagoContenido.Font = new Font("Calibri", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMetodosPagoContenido.Location = new Point(0, 0);
+            lblMetodosPagoContenido.Margin = new Padding(2, 0, 2, 0);
             lblMetodosPagoContenido.Name = "lblMetodosPagoContenido";
-            lblMetodosPagoContenido.Size = new Size(775, 150);
+            lblMetodosPagoContenido.Size = new Size(511, 121);
             lblMetodosPagoContenido.TabIndex = 0;
             // 
             // pnelTituloMP
             // 
             pnelTituloMP.Controls.Add(lblTituloMP);
             pnelTituloMP.Dock = DockStyle.Top;
-            pnelTituloMP.Location = new Point(10, 10);
+            pnelTituloMP.Location = new Point(8, 8);
             pnelTituloMP.Margin = new Padding(0);
             pnelTituloMP.Name = "pnelTituloMP";
-            pnelTituloMP.Size = new Size(775, 30);
+            pnelTituloMP.Size = new Size(511, 24);
             pnelTituloMP.TabIndex = 1;
             // 
             // lblTituloMP
@@ -766,8 +787,9 @@
             lblTituloMP.Dock = DockStyle.Top;
             lblTituloMP.Font = new Font("Calibri", 16F, FontStyle.Bold);
             lblTituloMP.Location = new Point(0, 0);
+            lblTituloMP.Margin = new Padding(2, 0, 2, 0);
             lblTituloMP.Name = "lblTituloMP";
-            lblTituloMP.Size = new Size(281, 39);
+            lblTituloMP.Size = new Size(235, 33);
             lblTituloMP.TabIndex = 0;
             lblTituloMP.Text = "MÉTODOS DE PAGO";
             lblTituloMP.TextAlign = ContentAlignment.MiddleLeft;
@@ -778,20 +800,21 @@
             pnelDer.Controls.Add(pnelDerContenido);
             pnelDer.Controls.Add(pnelTituloTop5);
             pnelDer.Dock = DockStyle.Fill;
-            pnelDer.Location = new Point(804, 3);
+            pnelDer.Location = new Point(533, 2);
+            pnelDer.Margin = new Padding(2);
             pnelDer.Name = "pnelDer";
-            pnelDer.Padding = new Padding(10);
-            pnelDer.Size = new Size(796, 200);
+            pnelDer.Padding = new Padding(8);
+            pnelDer.Size = new Size(527, 161);
             pnelDer.TabIndex = 1;
             // 
             // pnelDerContenido
             // 
             pnelDerContenido.Controls.Add(lblTop5Contenido);
             pnelDerContenido.Dock = DockStyle.Fill;
-            pnelDerContenido.Location = new Point(10, 40);
+            pnelDerContenido.Location = new Point(8, 32);
             pnelDerContenido.Margin = new Padding(0);
             pnelDerContenido.Name = "pnelDerContenido";
-            pnelDerContenido.Size = new Size(776, 150);
+            pnelDerContenido.Size = new Size(511, 121);
             pnelDerContenido.TabIndex = 4;
             // 
             // lblTop5Contenido
@@ -799,18 +822,19 @@
             lblTop5Contenido.Dock = DockStyle.Fill;
             lblTop5Contenido.Font = new Font("Calibri", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTop5Contenido.Location = new Point(0, 0);
+            lblTop5Contenido.Margin = new Padding(2, 0, 2, 0);
             lblTop5Contenido.Name = "lblTop5Contenido";
-            lblTop5Contenido.Size = new Size(776, 150);
+            lblTop5Contenido.Size = new Size(511, 121);
             lblTop5Contenido.TabIndex = 0;
             // 
             // pnelTituloTop5
             // 
             pnelTituloTop5.Controls.Add(lblTituloTop5);
             pnelTituloTop5.Dock = DockStyle.Top;
-            pnelTituloTop5.Location = new Point(10, 10);
+            pnelTituloTop5.Location = new Point(8, 8);
             pnelTituloTop5.Margin = new Padding(0);
             pnelTituloTop5.Name = "pnelTituloTop5";
-            pnelTituloTop5.Size = new Size(776, 30);
+            pnelTituloTop5.Size = new Size(511, 24);
             pnelTituloTop5.TabIndex = 3;
             // 
             // lblTituloTop5
@@ -819,8 +843,9 @@
             lblTituloTop5.Dock = DockStyle.Top;
             lblTituloTop5.Font = new Font("Calibri", 16F, FontStyle.Bold);
             lblTituloTop5.Location = new Point(0, 0);
+            lblTituloTop5.Margin = new Padding(2, 0, 2, 0);
             lblTituloTop5.Name = "lblTituloTop5";
-            lblTituloTop5.Size = new Size(486, 39);
+            lblTituloTop5.Size = new Size(408, 33);
             lblTituloTop5.TabIndex = 0;
             lblTituloTop5.Text = "TOP 5 PRODUCTOS MÁS VENDIDOS";
             lblTituloTop5.TextAlign = ContentAlignment.MiddleLeft;
@@ -832,10 +857,11 @@
             tlpZona2.Controls.Add(pnelResumen, 0, 0);
             tlpZona2.Dock = DockStyle.Top;
             tlpZona2.Location = new Point(0, 0);
+            tlpZona2.Margin = new Padding(2);
             tlpZona2.Name = "tlpZona2";
             tlpZona2.RowCount = 1;
             tlpZona2.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
-            tlpZona2.Size = new Size(1603, 331);
+            tlpZona2.Size = new Size(1062, 265);
             tlpZona2.TabIndex = 0;
             // 
             // pnelResumen
@@ -843,10 +869,11 @@
             pnelResumen.BackColor = Color.WhiteSmoke;
             pnelResumen.Controls.Add(tlpZonaMedia);
             pnelResumen.Dock = DockStyle.Fill;
-            pnelResumen.Location = new Point(3, 3);
+            pnelResumen.Location = new Point(2, 2);
+            pnelResumen.Margin = new Padding(2);
             pnelResumen.Name = "pnelResumen";
-            pnelResumen.Padding = new Padding(10);
-            pnelResumen.Size = new Size(1597, 325);
+            pnelResumen.Padding = new Padding(8);
+            pnelResumen.Size = new Size(1058, 261);
             pnelResumen.TabIndex = 1;
             // 
             // tlpZonaMedia
@@ -856,12 +883,13 @@
             tlpZonaMedia.Controls.Add(tableLayoutPanel1, 0, 1);
             tlpZonaMedia.Controls.Add(label1, 0, 0);
             tlpZonaMedia.Dock = DockStyle.Fill;
-            tlpZonaMedia.Location = new Point(10, 10);
+            tlpZonaMedia.Location = new Point(8, 8);
+            tlpZonaMedia.Margin = new Padding(2);
             tlpZonaMedia.Name = "tlpZonaMedia";
             tlpZonaMedia.RowCount = 2;
             tlpZonaMedia.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tlpZonaMedia.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            tlpZonaMedia.Size = new Size(1577, 305);
+            tlpZonaMedia.Size = new Size(1042, 245);
             tlpZonaMedia.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -881,7 +909,8 @@
             tableLayoutPanel1.Controls.Add(lblVentaMasBaja, 0, 1);
             tableLayoutPanel1.Controls.Add(lblVentaMasAlta, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(3, 48);
+            tableLayoutPanel1.Location = new Point(2, 38);
+            tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
@@ -889,7 +918,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Size = new Size(1571, 254);
+            tableLayoutPanel1.Size = new Size(1038, 205);
             tableLayoutPanel1.TabIndex = 28;
             // 
             // lblSucursalMasVentas
@@ -898,9 +927,10 @@
             lblSucursalMasVentas.AutoSize = true;
             lblSucursalMasVentas.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblSucursalMasVentas.ForeColor = Color.DarkSlateGray;
-            lblSucursalMasVentas.Location = new Point(6, 208);
+            lblSucursalMasVentas.Location = new Point(5, 167);
+            lblSucursalMasVentas.Margin = new Padding(2, 0, 2, 0);
             lblSucursalMasVentas.Name = "lblSucursalMasVentas";
-            lblSucursalMasVentas.Size = new Size(501, 37);
+            lblSucursalMasVentas.Size = new Size(330, 31);
             lblSucursalMasVentas.TabIndex = 43;
             lblSucursalMasVentas.Text = "Sucursal con más Ventas";
             lblSucursalMasVentas.TextAlign = ContentAlignment.MiddleLeft;
@@ -911,9 +941,10 @@
             lblMejorVendedorValor.AutoSize = true;
             lblMejorVendedorValor.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblMejorVendedorValor.ForeColor = Color.DarkSlateGray;
-            lblMejorVendedorValor.Location = new Point(516, 108);
+            lblMejorVendedorValor.Location = new Point(342, 86);
+            lblMejorVendedorValor.Margin = new Padding(2, 0, 2, 0);
             lblMejorVendedorValor.Name = "lblMejorVendedorValor";
-            lblMejorVendedorValor.Size = new Size(1049, 37);
+            lblMejorVendedorValor.Size = new Size(691, 31);
             lblMejorVendedorValor.TabIndex = 42;
             lblMejorVendedorValor.Text = "-";
             lblMejorVendedorValor.TextAlign = ContentAlignment.MiddleLeft;
@@ -924,9 +955,10 @@
             lblVentaMasBajaValor.AutoSize = true;
             lblVentaMasBajaValor.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblVentaMasBajaValor.ForeColor = Color.DarkSlateGray;
-            lblVentaMasBajaValor.Location = new Point(516, 58);
+            lblVentaMasBajaValor.Location = new Point(342, 46);
+            lblVentaMasBajaValor.Margin = new Padding(2, 0, 2, 0);
             lblVentaMasBajaValor.Name = "lblVentaMasBajaValor";
-            lblVentaMasBajaValor.Size = new Size(1049, 37);
+            lblVentaMasBajaValor.Size = new Size(691, 31);
             lblVentaMasBajaValor.TabIndex = 41;
             lblVentaMasBajaValor.Text = "$0";
             lblVentaMasBajaValor.TextAlign = ContentAlignment.MiddleLeft;
@@ -937,9 +969,10 @@
             lblVentaMasAltaValor.AutoSize = true;
             lblVentaMasAltaValor.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblVentaMasAltaValor.ForeColor = Color.DarkSlateGray;
-            lblVentaMasAltaValor.Location = new Point(516, 8);
+            lblVentaMasAltaValor.Location = new Point(342, 6);
+            lblVentaMasAltaValor.Margin = new Padding(2, 0, 2, 0);
             lblVentaMasAltaValor.Name = "lblVentaMasAltaValor";
-            lblVentaMasAltaValor.Size = new Size(1049, 37);
+            lblVentaMasAltaValor.Size = new Size(691, 31);
             lblVentaMasAltaValor.TabIndex = 40;
             lblVentaMasAltaValor.Text = "$0";
             lblVentaMasAltaValor.TextAlign = ContentAlignment.MiddleLeft;
@@ -950,9 +983,10 @@
             lblSucursalMasVentasValor.AutoSize = true;
             lblSucursalMasVentasValor.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblSucursalMasVentasValor.ForeColor = Color.DarkSlateGray;
-            lblSucursalMasVentasValor.Location = new Point(516, 208);
+            lblSucursalMasVentasValor.Location = new Point(342, 167);
+            lblSucursalMasVentasValor.Margin = new Padding(2, 0, 2, 0);
             lblSucursalMasVentasValor.Name = "lblSucursalMasVentasValor";
-            lblSucursalMasVentasValor.Size = new Size(1049, 37);
+            lblSucursalMasVentasValor.Size = new Size(691, 31);
             lblSucursalMasVentasValor.TabIndex = 38;
             lblSucursalMasVentasValor.Text = "-";
             lblSucursalMasVentasValor.TextAlign = ContentAlignment.MiddleLeft;
@@ -963,9 +997,10 @@
             lblProductoMasVendidoValor.AutoSize = true;
             lblProductoMasVendidoValor.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblProductoMasVendidoValor.ForeColor = Color.DarkSlateGray;
-            lblProductoMasVendidoValor.Location = new Point(516, 158);
+            lblProductoMasVendidoValor.Location = new Point(342, 126);
+            lblProductoMasVendidoValor.Margin = new Padding(2, 0, 2, 0);
             lblProductoMasVendidoValor.Name = "lblProductoMasVendidoValor";
-            lblProductoMasVendidoValor.Size = new Size(1049, 37);
+            lblProductoMasVendidoValor.Size = new Size(691, 31);
             lblProductoMasVendidoValor.TabIndex = 37;
             lblProductoMasVendidoValor.Text = "-";
             lblProductoMasVendidoValor.TextAlign = ContentAlignment.MiddleLeft;
@@ -976,9 +1011,10 @@
             lblProductoMasVendido.AutoSize = true;
             lblProductoMasVendido.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblProductoMasVendido.ForeColor = Color.DarkSlateGray;
-            lblProductoMasVendido.Location = new Point(6, 158);
+            lblProductoMasVendido.Location = new Point(5, 126);
+            lblProductoMasVendido.Margin = new Padding(2, 0, 2, 0);
             lblProductoMasVendido.Name = "lblProductoMasVendido";
-            lblProductoMasVendido.Size = new Size(501, 37);
+            lblProductoMasVendido.Size = new Size(330, 31);
             lblProductoMasVendido.TabIndex = 36;
             lblProductoMasVendido.Text = "Producto más Vendido";
             lblProductoMasVendido.TextAlign = ContentAlignment.MiddleLeft;
@@ -989,9 +1025,10 @@
             lblMejorVendedor.AutoSize = true;
             lblMejorVendedor.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblMejorVendedor.ForeColor = Color.DarkSlateGray;
-            lblMejorVendedor.Location = new Point(6, 108);
+            lblMejorVendedor.Location = new Point(5, 86);
+            lblMejorVendedor.Margin = new Padding(2, 0, 2, 0);
             lblMejorVendedor.Name = "lblMejorVendedor";
-            lblMejorVendedor.Size = new Size(501, 37);
+            lblMejorVendedor.Size = new Size(330, 31);
             lblMejorVendedor.TabIndex = 27;
             lblMejorVendedor.Text = "Mejor Vendedor:";
             lblMejorVendedor.TextAlign = ContentAlignment.MiddleLeft;
@@ -1002,9 +1039,10 @@
             lblVentaMasBaja.AutoSize = true;
             lblVentaMasBaja.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblVentaMasBaja.ForeColor = Color.DarkSlateGray;
-            lblVentaMasBaja.Location = new Point(6, 58);
+            lblVentaMasBaja.Location = new Point(5, 46);
+            lblVentaMasBaja.Margin = new Padding(2, 0, 2, 0);
             lblVentaMasBaja.Name = "lblVentaMasBaja";
-            lblVentaMasBaja.Size = new Size(501, 37);
+            lblVentaMasBaja.Size = new Size(330, 31);
             lblVentaMasBaja.TabIndex = 6;
             lblVentaMasBaja.Text = "Venta más Baja";
             lblVentaMasBaja.TextAlign = ContentAlignment.MiddleLeft;
@@ -1015,9 +1053,10 @@
             lblVentaMasAlta.AutoSize = true;
             lblVentaMasAlta.Font = new Font("Calibri", 15F, FontStyle.Bold);
             lblVentaMasAlta.ForeColor = Color.DarkSlateGray;
-            lblVentaMasAlta.Location = new Point(6, 8);
+            lblVentaMasAlta.Location = new Point(5, 6);
+            lblVentaMasAlta.Margin = new Padding(2, 0, 2, 0);
             lblVentaMasAlta.Name = "lblVentaMasAlta";
-            lblVentaMasAlta.Size = new Size(501, 37);
+            lblVentaMasAlta.Size = new Size(330, 31);
             lblVentaMasAlta.TabIndex = 24;
             lblVentaMasAlta.Text = "Venta más Alta:";
             lblVentaMasAlta.TextAlign = ContentAlignment.MiddleLeft;
@@ -1027,9 +1066,10 @@
             label1.AutoSize = true;
             label1.Dock = DockStyle.Top;
             label1.Font = new Font("Calibri", 16F, FontStyle.Bold);
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(2, 0);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(1571, 39);
+            label1.Size = new Size(1038, 33);
             label1.TabIndex = 1;
             label1.Text = "RESUMEN COMPLETO DEL SISTEMA";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -1038,9 +1078,10 @@
             // 
             pnelZona1.Controls.Add(tlpZona1);
             pnelZona1.Dock = DockStyle.Top;
-            pnelZona1.Location = new Point(5, 40);
+            pnelZona1.Location = new Point(4, 33);
+            pnelZona1.Margin = new Padding(2);
             pnelZona1.Name = "pnelZona1";
-            pnelZona1.Size = new Size(1603, 117);
+            pnelZona1.Size = new Size(1062, 94);
             pnelZona1.TabIndex = 3;
             // 
             // tlpZona1
@@ -1054,10 +1095,11 @@
             tlpZona1.Controls.Add(pnelTicket, 2, 0);
             tlpZona1.Dock = DockStyle.Fill;
             tlpZona1.Location = new Point(0, 0);
+            tlpZona1.Margin = new Padding(2);
             tlpZona1.Name = "tlpZona1";
             tlpZona1.RowCount = 1;
             tlpZona1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpZona1.Size = new Size(1603, 117);
+            tlpZona1.Size = new Size(1062, 94);
             tlpZona1.TabIndex = 0;
             // 
             // pnelVentas
@@ -1068,19 +1110,21 @@
             pnelVentas.Controls.Add(pnelMedio);
             pnelVentas.Controls.Add(pnelTitulo);
             pnelVentas.Dock = DockStyle.Fill;
-            pnelVentas.Location = new Point(3, 3);
+            pnelVentas.Location = new Point(2, 2);
+            pnelVentas.Margin = new Padding(2);
             pnelVentas.Name = "pnelVentas";
-            pnelVentas.Padding = new Padding(10, 8, 10, 8);
-            pnelVentas.Size = new Size(528, 111);
+            pnelVentas.Padding = new Padding(8, 6, 8, 6);
+            pnelVentas.Size = new Size(350, 90);
             pnelVentas.TabIndex = 0;
             // 
             // pnelCard1Sub
             // 
             pnelCard1Sub.Controls.Add(lblCard1Sub);
             pnelCard1Sub.Dock = DockStyle.Top;
-            pnelCard1Sub.Location = new Point(10, 80);
+            pnelCard1Sub.Location = new Point(8, 63);
+            pnelCard1Sub.Margin = new Padding(2);
             pnelCard1Sub.Name = "pnelCard1Sub";
-            pnelCard1Sub.Size = new Size(506, 22);
+            pnelCard1Sub.Size = new Size(332, 18);
             pnelCard1Sub.TabIndex = 2;
             // 
             // lblCard1Sub
@@ -1090,8 +1134,9 @@
             lblCard1Sub.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCard1Sub.ForeColor = Color.DimGray;
             lblCard1Sub.Location = new Point(0, 0);
+            lblCard1Sub.Margin = new Padding(2, 0, 2, 0);
             lblCard1Sub.Name = "lblCard1Sub";
-            lblCard1Sub.Size = new Size(138, 24);
+            lblCard1Sub.Size = new Size(121, 21);
             lblCard1Sub.TabIndex = 2;
             lblCard1Sub.Text = "\U0001f9fe Acumuladas";
             lblCard1Sub.TextAlign = ContentAlignment.MiddleLeft;
@@ -1100,9 +1145,10 @@
             // 
             pnelMedio.Controls.Add(lblCard1Valor);
             pnelMedio.Dock = DockStyle.Top;
-            pnelMedio.Location = new Point(10, 36);
+            pnelMedio.Location = new Point(8, 28);
+            pnelMedio.Margin = new Padding(2);
             pnelMedio.Name = "pnelMedio";
-            pnelMedio.Size = new Size(506, 44);
+            pnelMedio.Size = new Size(332, 35);
             pnelMedio.TabIndex = 1;
             // 
             // lblCard1Valor
@@ -1112,8 +1158,9 @@
             lblCard1Valor.Font = new Font("Calibri", 20F, FontStyle.Bold);
             lblCard1Valor.ForeColor = Color.Teal;
             lblCard1Valor.Location = new Point(0, 0);
+            lblCard1Valor.Margin = new Padding(2, 0, 2, 0);
             lblCard1Valor.Name = "lblCard1Valor";
-            lblCard1Valor.Size = new Size(42, 49);
+            lblCard1Valor.Size = new Size(35, 41);
             lblCard1Valor.TabIndex = 1;
             lblCard1Valor.Text = "0";
             lblCard1Valor.TextAlign = ContentAlignment.MiddleLeft;
@@ -1122,10 +1169,10 @@
             // 
             pnelTitulo.Controls.Add(lblCard1Titulo);
             pnelTitulo.Dock = DockStyle.Top;
-            pnelTitulo.Location = new Point(10, 8);
+            pnelTitulo.Location = new Point(8, 6);
             pnelTitulo.Margin = new Padding(0);
             pnelTitulo.Name = "pnelTitulo";
-            pnelTitulo.Size = new Size(506, 28);
+            pnelTitulo.Size = new Size(332, 22);
             pnelTitulo.TabIndex = 0;
             // 
             // lblCard1Titulo
@@ -1134,8 +1181,9 @@
             lblCard1Titulo.Dock = DockStyle.Fill;
             lblCard1Titulo.Font = new Font("Calibri", 13F, FontStyle.Bold);
             lblCard1Titulo.Location = new Point(0, 0);
+            lblCard1Titulo.Margin = new Padding(2, 0, 2, 0);
             lblCard1Titulo.Name = "lblCard1Titulo";
-            lblCard1Titulo.Size = new Size(169, 32);
+            lblCard1Titulo.Size = new Size(145, 27);
             lblCard1Titulo.TabIndex = 0;
             lblCard1Titulo.Text = "Ventas Totales";
             lblCard1Titulo.TextAlign = ContentAlignment.MiddleLeft;
@@ -1148,19 +1196,21 @@
             pnelIngresos.Controls.Add(pnelCard2Valor);
             pnelIngresos.Controls.Add(pnelCard2Titulo);
             pnelIngresos.Dock = DockStyle.Fill;
-            pnelIngresos.Location = new Point(537, 3);
+            pnelIngresos.Location = new Point(356, 2);
+            pnelIngresos.Margin = new Padding(2);
             pnelIngresos.Name = "pnelIngresos";
-            pnelIngresos.Padding = new Padding(10);
-            pnelIngresos.Size = new Size(528, 111);
+            pnelIngresos.Padding = new Padding(8);
+            pnelIngresos.Size = new Size(350, 90);
             pnelIngresos.TabIndex = 1;
             // 
             // pnelCard2Sub
             // 
             pnelCard2Sub.Controls.Add(lblCard2Sub);
             pnelCard2Sub.Dock = DockStyle.Top;
-            pnelCard2Sub.Location = new Point(10, 82);
+            pnelCard2Sub.Location = new Point(8, 65);
+            pnelCard2Sub.Margin = new Padding(2);
             pnelCard2Sub.Name = "pnelCard2Sub";
-            pnelCard2Sub.Size = new Size(506, 22);
+            pnelCard2Sub.Size = new Size(332, 18);
             pnelCard2Sub.TabIndex = 5;
             // 
             // lblCard2Sub
@@ -1170,8 +1220,9 @@
             lblCard2Sub.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCard2Sub.ForeColor = Color.DimGray;
             lblCard2Sub.Location = new Point(0, 0);
+            lblCard2Sub.Margin = new Padding(2, 0, 2, 0);
             lblCard2Sub.Name = "lblCard2Sub";
-            lblCard2Sub.Size = new Size(110, 24);
+            lblCard2Sub.Size = new Size(99, 21);
             lblCard2Sub.TabIndex = 2;
             lblCard2Sub.Text = "💰 Histórico";
             lblCard2Sub.TextAlign = ContentAlignment.MiddleLeft;
@@ -1180,9 +1231,10 @@
             // 
             pnelCard2Valor.Controls.Add(lblCard2Valor);
             pnelCard2Valor.Dock = DockStyle.Top;
-            pnelCard2Valor.Location = new Point(10, 38);
+            pnelCard2Valor.Location = new Point(8, 30);
+            pnelCard2Valor.Margin = new Padding(2);
             pnelCard2Valor.Name = "pnelCard2Valor";
-            pnelCard2Valor.Size = new Size(506, 44);
+            pnelCard2Valor.Size = new Size(332, 35);
             pnelCard2Valor.TabIndex = 4;
             // 
             // lblCard2Valor
@@ -1192,8 +1244,9 @@
             lblCard2Valor.Font = new Font("Calibri", 20F, FontStyle.Bold);
             lblCard2Valor.ForeColor = Color.Teal;
             lblCard2Valor.Location = new Point(0, 0);
+            lblCard2Valor.Margin = new Padding(2, 0, 2, 0);
             lblCard2Valor.Name = "lblCard2Valor";
-            lblCard2Valor.Size = new Size(62, 49);
+            lblCard2Valor.Size = new Size(52, 41);
             lblCard2Valor.TabIndex = 1;
             lblCard2Valor.Text = "$0";
             lblCard2Valor.TextAlign = ContentAlignment.MiddleLeft;
@@ -1202,10 +1255,10 @@
             // 
             pnelCard2Titulo.Controls.Add(lblCard2Titulo);
             pnelCard2Titulo.Dock = DockStyle.Top;
-            pnelCard2Titulo.Location = new Point(10, 10);
+            pnelCard2Titulo.Location = new Point(8, 8);
             pnelCard2Titulo.Margin = new Padding(0);
             pnelCard2Titulo.Name = "pnelCard2Titulo";
-            pnelCard2Titulo.Size = new Size(506, 28);
+            pnelCard2Titulo.Size = new Size(332, 22);
             pnelCard2Titulo.TabIndex = 3;
             // 
             // lblCard2Titulo
@@ -1214,8 +1267,9 @@
             lblCard2Titulo.Dock = DockStyle.Fill;
             lblCard2Titulo.Font = new Font("Calibri", 13F, FontStyle.Bold);
             lblCard2Titulo.Location = new Point(0, 0);
+            lblCard2Titulo.Margin = new Padding(2, 0, 2, 0);
             lblCard2Titulo.Name = "lblCard2Titulo";
-            lblCard2Titulo.Size = new Size(242, 32);
+            lblCard2Titulo.Size = new Size(207, 27);
             lblCard2Titulo.TabIndex = 0;
             lblCard2Titulo.Text = "Ingresos Acumulados";
             lblCard2Titulo.TextAlign = ContentAlignment.MiddleLeft;
@@ -1228,19 +1282,21 @@
             pnelTicket.Controls.Add(pnelCard3Valor);
             pnelTicket.Controls.Add(pnelCard3Titulo);
             pnelTicket.Dock = DockStyle.Fill;
-            pnelTicket.Location = new Point(1071, 3);
+            pnelTicket.Location = new Point(710, 2);
+            pnelTicket.Margin = new Padding(2);
             pnelTicket.Name = "pnelTicket";
-            pnelTicket.Padding = new Padding(10);
-            pnelTicket.Size = new Size(529, 111);
+            pnelTicket.Padding = new Padding(8);
+            pnelTicket.Size = new Size(350, 90);
             pnelTicket.TabIndex = 2;
             // 
             // pnelCard3Sub
             // 
             pnelCard3Sub.Controls.Add(lblCard3Sub);
             pnelCard3Sub.Dock = DockStyle.Top;
-            pnelCard3Sub.Location = new Point(10, 82);
+            pnelCard3Sub.Location = new Point(8, 65);
+            pnelCard3Sub.Margin = new Padding(2);
             pnelCard3Sub.Name = "pnelCard3Sub";
-            pnelCard3Sub.Size = new Size(507, 22);
+            pnelCard3Sub.Size = new Size(332, 18);
             pnelCard3Sub.TabIndex = 8;
             // 
             // lblCard3Sub
@@ -1250,8 +1306,9 @@
             lblCard3Sub.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCard3Sub.ForeColor = Color.DimGray;
             lblCard3Sub.Location = new Point(0, 0);
+            lblCard3Sub.Margin = new Padding(2, 0, 2, 0);
             lblCard3Sub.Name = "lblCard3Sub";
-            lblCard3Sub.Size = new Size(117, 24);
+            lblCard3Sub.Size = new Size(104, 21);
             lblCard3Sub.TabIndex = 2;
             lblCard3Sub.Text = "📊 Por Venta";
             lblCard3Sub.TextAlign = ContentAlignment.MiddleLeft;
@@ -1260,9 +1317,10 @@
             // 
             pnelCard3Valor.Controls.Add(lblCard3Valor);
             pnelCard3Valor.Dock = DockStyle.Top;
-            pnelCard3Valor.Location = new Point(10, 38);
+            pnelCard3Valor.Location = new Point(8, 30);
+            pnelCard3Valor.Margin = new Padding(2);
             pnelCard3Valor.Name = "pnelCard3Valor";
-            pnelCard3Valor.Size = new Size(507, 44);
+            pnelCard3Valor.Size = new Size(332, 35);
             pnelCard3Valor.TabIndex = 7;
             // 
             // lblCard3Valor
@@ -1272,8 +1330,9 @@
             lblCard3Valor.Font = new Font("Calibri", 20F, FontStyle.Bold);
             lblCard3Valor.ForeColor = Color.Teal;
             lblCard3Valor.Location = new Point(0, 0);
+            lblCard3Valor.Margin = new Padding(2, 0, 2, 0);
             lblCard3Valor.Name = "lblCard3Valor";
-            lblCard3Valor.Size = new Size(62, 49);
+            lblCard3Valor.Size = new Size(52, 41);
             lblCard3Valor.TabIndex = 1;
             lblCard3Valor.Text = "$0";
             lblCard3Valor.TextAlign = ContentAlignment.MiddleLeft;
@@ -1282,10 +1341,10 @@
             // 
             pnelCard3Titulo.Controls.Add(lblCard3Titulo);
             pnelCard3Titulo.Dock = DockStyle.Top;
-            pnelCard3Titulo.Location = new Point(10, 10);
+            pnelCard3Titulo.Location = new Point(8, 8);
             pnelCard3Titulo.Margin = new Padding(0);
             pnelCard3Titulo.Name = "pnelCard3Titulo";
-            pnelCard3Titulo.Size = new Size(507, 28);
+            pnelCard3Titulo.Size = new Size(332, 22);
             pnelCard3Titulo.TabIndex = 6;
             // 
             // lblCard3Titulo
@@ -1294,8 +1353,9 @@
             lblCard3Titulo.Dock = DockStyle.Fill;
             lblCard3Titulo.Font = new Font("Calibri", 13F, FontStyle.Bold);
             lblCard3Titulo.Location = new Point(0, 0);
+            lblCard3Titulo.Margin = new Padding(2, 0, 2, 0);
             lblCard3Titulo.Name = "lblCard3Titulo";
-            lblCard3Titulo.Size = new Size(188, 32);
+            lblCard3Titulo.Size = new Size(161, 27);
             lblCard3Titulo.TabIndex = 0;
             lblCard3Titulo.Text = "Ticket Promedio";
             lblCard3Titulo.TextAlign = ContentAlignment.MiddleLeft;
@@ -1304,12 +1364,14 @@
             // 
             tlpBotones.BackColor = Color.PaleTurquoise;
             tlpBotones.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
-            tlpBotones.ColumnCount = 5;
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBotones.ColumnCount = 6;
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
+            tlpBotones.Controls.Add(btnImprimir, 5, 0);
             tlpBotones.Controls.Add(btnReporteGeneral, 0, 0);
             tlpBotones.Controls.Add(btnReporteVenta, 3, 0);
             tlpBotones.Controls.Add(btnReporteSucursal, 1, 0);
@@ -1322,9 +1384,26 @@
             tlpBotones.Name = "tlpBotones";
             tlpBotones.RowCount = 1;
             tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpBotones.Size = new Size(2318, 100);
+            tlpBotones.Size = new Size(1539, 80);
             tlpBotones.TabIndex = 24;
+            tlpBotones.Paint += tlpBotones_Paint;
+            // 
+            // btnImprimir
+            // 
+            btnImprimir.Cursor = Cursors.Hand;
+            btnImprimir.Dock = DockStyle.Fill;
+            btnImprimir.FlatAppearance.BorderSize = 0;
+            btnImprimir.FlatStyle = FlatStyle.Flat;
+            btnImprimir.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnImprimir.ForeColor = Color.DarkSlateGray;
+            btnImprimir.Location = new Point(1283, 3);
+            btnImprimir.Margin = new Padding(0);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(253, 74);
+            btnImprimir.TabIndex = 12;
+            btnImprimir.Text = "Imprimir 📄";
+            btnImprimir.UseVisualStyleBackColor = true;
+            btnImprimir.Click += btnImprimir_Click;
             // 
             // btnReporteGeneral
             // 
@@ -1337,7 +1416,7 @@
             btnReporteGeneral.Location = new Point(3, 3);
             btnReporteGeneral.Margin = new Padding(0);
             btnReporteGeneral.Name = "btnReporteGeneral";
-            btnReporteGeneral.Size = new Size(460, 94);
+            btnReporteGeneral.Size = new Size(253, 74);
             btnReporteGeneral.TabIndex = 11;
             btnReporteGeneral.Text = "General 🗃️";
             btnReporteGeneral.UseVisualStyleBackColor = true;
@@ -1351,10 +1430,10 @@
             btnReporteVenta.FlatStyle = FlatStyle.Flat;
             btnReporteVenta.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteVenta.ForeColor = Color.DarkSlateGray;
-            btnReporteVenta.Location = new Point(1392, 3);
+            btnReporteVenta.Location = new Point(771, 3);
             btnReporteVenta.Margin = new Padding(0);
             btnReporteVenta.Name = "btnReporteVenta";
-            btnReporteVenta.Size = new Size(460, 94);
+            btnReporteVenta.Size = new Size(253, 74);
             btnReporteVenta.TabIndex = 4;
             btnReporteVenta.Text = "Venta 📊";
             btnReporteVenta.UseVisualStyleBackColor = true;
@@ -1368,10 +1447,10 @@
             btnReporteSucursal.FlatStyle = FlatStyle.Flat;
             btnReporteSucursal.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteSucursal.ForeColor = Color.DarkSlateGray;
-            btnReporteSucursal.Location = new Point(466, 3);
+            btnReporteSucursal.Location = new Point(259, 3);
             btnReporteSucursal.Margin = new Padding(0);
             btnReporteSucursal.Name = "btnReporteSucursal";
-            btnReporteSucursal.Size = new Size(460, 94);
+            btnReporteSucursal.Size = new Size(253, 74);
             btnReporteSucursal.TabIndex = 10;
             btnReporteSucursal.Text = "Sucursal 🏢";
             btnReporteSucursal.UseVisualStyleBackColor = true;
@@ -1385,10 +1464,10 @@
             btnReporteProducto.FlatStyle = FlatStyle.Flat;
             btnReporteProducto.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteProducto.ForeColor = Color.DarkSlateGray;
-            btnReporteProducto.Location = new Point(929, 3);
+            btnReporteProducto.Location = new Point(515, 3);
             btnReporteProducto.Margin = new Padding(0);
             btnReporteProducto.Name = "btnReporteProducto";
-            btnReporteProducto.Size = new Size(460, 94);
+            btnReporteProducto.Size = new Size(253, 74);
             btnReporteProducto.TabIndex = 6;
             btnReporteProducto.Text = "Producto 📦";
             btnReporteProducto.UseVisualStyleBackColor = true;
@@ -1402,10 +1481,10 @@
             btnReporteCliente.FlatStyle = FlatStyle.Flat;
             btnReporteCliente.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReporteCliente.ForeColor = Color.DarkSlateGray;
-            btnReporteCliente.Location = new Point(1855, 3);
+            btnReporteCliente.Location = new Point(1027, 3);
             btnReporteCliente.Margin = new Padding(0);
             btnReporteCliente.Name = "btnReporteCliente";
-            btnReporteCliente.Size = new Size(460, 94);
+            btnReporteCliente.Size = new Size(253, 74);
             btnReporteCliente.TabIndex = 5;
             btnReporteCliente.Text = "Cliente 👤";
             btnReporteCliente.UseVisualStyleBackColor = true;
@@ -1421,7 +1500,7 @@
             pnelppaltitulo.Location = new Point(0, 0);
             pnelppaltitulo.Margin = new Padding(1);
             pnelppaltitulo.Name = "pnelppaltitulo";
-            pnelppaltitulo.Size = new Size(2318, 80);
+            pnelppaltitulo.Size = new Size(1539, 64);
             pnelppaltitulo.TabIndex = 14;
             // 
             // lblTituloGR
@@ -1431,10 +1510,10 @@
             lblTituloGR.BackColor = Color.Transparent;
             lblTituloGR.Font = new Font("Calibri", 28F, FontStyle.Bold);
             lblTituloGR.ForeColor = Color.White;
-            lblTituloGR.Location = new Point(893, 6);
+            lblTituloGR.Location = new Point(556, 5);
             lblTituloGR.Margin = new Padding(2, 0, 2, 0);
             lblTituloGR.Name = "lblTituloGR";
-            lblTituloGR.Size = new Size(513, 68);
+            lblTituloGR.Size = new Size(432, 58);
             lblTituloGR.TabIndex = 15;
             lblTituloGR.Text = "Reportes y Consultas";
             lblTituloGR.TextAlign = ContentAlignment.MiddleCenter;
@@ -1446,10 +1525,10 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Calibri", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(2228, 0);
-            btnSalir.Margin = new Padding(2, 4, 2, 4);
+            btnSalir.Location = new Point(1467, 0);
+            btnSalir.Margin = new Padding(2, 3, 2, 3);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(90, 80);
+            btnSalir.Size = new Size(72, 64);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "❌";
             btnSalir.UseVisualStyleBackColor = true;
@@ -1463,9 +1542,9 @@
             btnVolver.Font = new Font("Calibri", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnVolver.ForeColor = Color.White;
             btnVolver.Location = new Point(0, 0);
-            btnVolver.Margin = new Padding(2, 4, 2, 4);
+            btnVolver.Margin = new Padding(2, 3, 2, 3);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(90, 80);
+            btnVolver.Size = new Size(72, 64);
             btnVolver.TabIndex = 9;
             btnVolver.Text = "↩️";
             btnVolver.UseVisualStyleBackColor = true;
@@ -1473,15 +1552,15 @@
             // 
             // Ventana_Reportes_Y_Consultas
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2318, 892);
+            ClientSize = new Size(1539, 721);
             Controls.Add(pnelppalmedio);
             Controls.Add(pnelppaltitulo);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            Margin = new Padding(2, 4, 2, 4);
-            MaximumSize = new Size(2340, 948);
-            MinimumSize = new Size(2340, 948);
+            Margin = new Padding(2, 3, 2, 3);
+            MaximumSize = new Size(1876, 768);
+            MinimumSize = new Size(1538, 768);
             Name = "Ventana_Reportes_Y_Consultas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Reportes ";
@@ -1648,5 +1727,6 @@
         private Label lblSucursalMasVentasValor;
         private Label lblProductoMasVendidoValor;
         private Label lblSucursalMasVentas;
+        private Button btnImprimir;
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace Vista
 {
@@ -45,7 +46,7 @@ namespace Vista
             dgvReportes.Visible = !mostrar;
 
             if (!mostrar)
-                dgvReportes.BringToFront();   
+                dgvReportes.BringToFront();
             else
             {
                 tlpZona1.BringToFront();
@@ -55,8 +56,8 @@ namespace Vista
         }
         private void MostrarDashboardInicial()
         {
-            MostrarDashboard(true);   
-            Refrescar();             
+            MostrarDashboard(true);
+            Refrescar();
         }
         private void Refrescar()  //En su mayoria este método lo hizo todo ChatGpt, pero quedo muy bien y habia que dejarlo. 
         {
@@ -273,7 +274,7 @@ namespace Vista
             dgvReportes.Columns["Dirección"].HeaderText = "Dirección";
 
             dgvReportes.Columns["TotalRecaudado"].DefaultCellStyle.Format = "C0";
-        
+
             dgvReportes.Columns["Sucursal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvReportes.Columns["Dirección"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
@@ -356,7 +357,7 @@ namespace Vista
             else if (rdbTarjeta.Checked)
                 lista = lista.Where(v => v.MetodoPago == MetodoPago.Tarjeta).ToList();
 
-            var final = lista.OrderByDescending(v => v.Fecha).Select(v => new {Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"),Producto = v.Producto.Nombre,Cliente = v.Cliente.Nombre,Vendedor = v.NombreVendedor,Método = v.MetodoPago.ToString(),Cantidad = v.Cantidad,Total = v.Total,Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento:0}%"}).ToList();
+            var final = lista.OrderByDescending(v => v.Fecha).Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Producto = v.Producto.Nombre, Cliente = v.Cliente.Nombre, Vendedor = v.NombreVendedor, Método = v.MetodoPago.ToString(), Cantidad = v.Cantidad, Total = v.Total, Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento:0}%" }).ToList();
             dgvReportes.DataSource = final;
             ConfigurarGrid(dgvReportes);
             dgvReportes.Columns["Total"].DefaultCellStyle.Format = "C0";
@@ -373,7 +374,7 @@ namespace Vista
         #endregion 
         private void pnelppalmedio_Paint(object sender, PaintEventArgs e)
         {
-            //EXPLOTA EL PROGRAMA SI LO BORRO, NO TOCAR
+            //EXPLOTA EL PROGRAMA SI LO BORRO, NO TOCAR                        JAJAJA OK, fingimos demencia 
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -436,7 +437,7 @@ namespace Vista
             modoActual = ModoReporte.Sucursales;
             ActivarBoton(btnReporteSucursal);
 
-            MostrarDashboard(false);  
+            MostrarDashboard(false);
             ActivarFiltros(false, true, false, false, false, false);
 
             FiltrarSucursales();
@@ -492,8 +493,109 @@ namespace Vista
             ActivarFiltros(false, false, false, false, false, false);
 
             LimpiarCampos();
-            MostrarDashboard(true);  
+            MostrarDashboard(true);
             Refrescar();
         }
+
+        private void tlpBotones_Paint(object sender, PaintEventArgs e)
+        {
+            // no tocar, el codigo hace pum
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            //copio linea por linea el reporte general en un excel(use un nuget nuevo y meti una funcion para que si el valos esta vacio no reviente)
+
+            try
+            {
+                using (var sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "Excel Workbook|*.xlsx";
+                    sfd.FileName = "ReporteDashboard.xlsx";
+                    if (sfd.ShowDialog() != DialogResult.OK)
+                        return;
+
+                    using (var wb = new XLWorkbook())
+                    {
+                        var ws = wb.Worksheets.Add("Dashboard");
+
+                        // titulo no toquen nada porfa
+                        var titleRange = ws.Range(1, 1, 1, 2);
+                        titleRange.Merge();
+                        titleRange.Value = "Informe General";
+                        titleRange.Style.Font.Bold = true;
+                        titleRange.Style.Font.FontSize = 14;
+
+                        int row = 3;
+
+                        //esta es la funcion que hace que si hay algo vacio no se rompa
+                        string GetText(Label lbl) => lbl?.Text ?? string.Empty;
+
+                        // Filas 
+                        ws.Cell(row, 1).Value = "Ventas totales";
+                        ws.Cell(row, 2).Value = GetText(lblCard1Valor); row++;
+
+                        ws.Cell(row, 1).Value = "Ingresos totales";
+                        ws.Cell(row, 2).Value = GetText(lblCard2Valor); row++;
+
+                        ws.Cell(row, 1).Value = "promedio";
+                        ws.Cell(row, 2).Value = GetText(lblCard3Valor); row++;
+                        /*
+                        ws.Cell(row, 1).Value = "Ticket (valor)";
+                        ws.Cell(row, 2).Value = GetText(lblTicketValor); row++;
+                        */
+
+                        ws.Cell(row, 1).Value = "Venta más alta";
+                        ws.Cell(row, 2).Value = GetText(lblVentaMasAltaValor); row++;
+
+                        ws.Cell(row, 1).Value = "Venta más baja";
+                        ws.Cell(row, 2).Value = GetText(lblVentaMasBajaValor); row++;
+
+                        ws.Cell(row, 1).Value = "Mejor vendedor";
+                        ws.Cell(row, 2).Value = GetText(lblMejorVendedorValor); row++;
+
+                        ws.Cell(row, 1).Value = "Producto más vendido";
+                        ws.Cell(row, 2).Value = GetText(lblProductoMasVendidoValor); row++;
+
+                        ws.Cell(row, 1).Value = "Sucursal con más ventas";
+                        ws.Cell(row, 2).Value = GetText(lblSucursalMasVentasValor); row++;
+
+                        ws.Cell(row, 1).Value = "Método: Efectivo (%)";
+                        ws.Cell(row, 2).Value = GetText(lblPorcentajeEfectivo); row++;
+
+                        ws.Cell(row, 1).Value = "Método: Transferencia (%)";
+                        ws.Cell(row, 2).Value = GetText(lblPorcentajeTransferencia); row++;
+
+                        ws.Cell(row, 1).Value = "Método: Tarjeta (%)";
+                        ws.Cell(row, 2).Value = GetText(lblPorcentajeTarjeta); row++;
+
+                        // Top 5 productos 
+                        ws.Cell(row, 1).Value = "Top 5 productos";
+                        var top5Range = ws.Range(row, 2, row + 4, 2);
+                        top5Range.Merge();
+                        var top5Text = GetText(lblTop5Contenido);
+                        if (!string.IsNullOrEmpty(top5Text))
+                            top5Range.Value = top5Text;
+                        top5Range.Style.Alignment.WrapText = true;
+                        row += 5;
+
+                       
+                        ws.Column(1).Width = 30;
+                        ws.Column(2).Width = 50;
+                        ws.Columns().AdjustToContents();
+
+                        
+                        wb.SaveAs(sfd.FileName);
+                    }
+
+                    MessageBox.Show("Exportado correctamente a Excel.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
+
 }
