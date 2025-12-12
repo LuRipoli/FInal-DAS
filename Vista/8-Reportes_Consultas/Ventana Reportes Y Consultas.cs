@@ -1,4 +1,5 @@
-﻿using Controladora;
+﻿using ClosedXML.Excel;
+using Controladora;
 using Entidades;
 using Modelo;
 using System;
@@ -6,17 +7,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClosedXML.Excel;
 
 namespace Vista
 {
     public enum ModoReporte
     {
-        Ninguno,
         Sucursales,
         Productos,
         Ventas,
@@ -26,17 +26,16 @@ namespace Vista
     public partial class Ventana_Reportes_Y_Consultas : Form
     {
 
-        private ModoReporte modoActual = ModoReporte.Ninguno;
-
+        private ModoReporte modoActual = ModoReporte.General;
         public Ventana_Reportes_Y_Consultas()
         {
             InitializeComponent();
             ResetearColoresBotones();
             MostrarDashboardInicial();
             CargarCampos();
-
+            ActivarBoton(btnReporteGeneral);
         }
-        #region HELPER
+        #region HELPER FORM
         private void MostrarDashboard(bool mostrar)
         {
             tlpZona1.Visible = mostrar;
@@ -371,7 +370,396 @@ namespace Vista
             dgvReportes.Columns["Total"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvReportes.Columns["Descuento"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
-        #endregion 
+        #endregion
+
+        //HELPER EXCEL (Nunca usamos Exportación a Excel y no sabíamos muy bien como implementarlo, asi qué los métodos y el formateo del Excel son completamente generados por IA)
+        #region HELPER EXCEL
+        private string ObtenerRutaExcel()
+        {
+            string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string carpeta = Path.Combine(
+                escritorio,
+                "Reportes SGSE (Sistema Gestión Stock de Electrodomésticos)"
+            );
+
+            if (!Directory.Exists(carpeta))
+                Directory.CreateDirectory(carpeta);
+
+            return Path.Combine(carpeta, "Reportes_SGE.xlsx");
+        }
+
+        private XLWorkbook ObtenerWorkbook(string path)
+        {
+            XLWorkbook wb = File.Exists(path)
+                ? new XLWorkbook(path)
+                : new XLWorkbook();
+
+            string[] hojas = { "General", "Sucursales", "Productos", "Ventas", "Clientes" };
+
+            foreach (string h in hojas)
+                if (!wb.Worksheets.Any(ws => ws.Name == h))
+                    wb.Worksheets.Add(h);
+
+            return wb;
+        }
+
+        private bool HayFiltrosActivos()
+        {
+            return
+                dtpFechaDesde.Value.Date != new DateTime(2000, 1, 1) ||
+                dtpFechaHasta.Value.Date != DateTime.Today ||
+                cmbSucursales.SelectedIndex != -1 ||
+                cmbClientes.SelectedIndex != -1 ||
+                cmbProducto.SelectedIndex != -1 ||
+                cmbVendedor.SelectedIndex != -1 ||
+                rdbEfectivo.Checked ||
+                rdbTransferencia.Checked ||
+                rdbTarjeta.Checked;
+        }
+
+        private void AplicarBordes(IXLRange range)
+        {
+            range.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+            range.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+        }
+
+        private void OrdenarHojasReporte(XLWorkbook wb)
+        {
+            var orden = new List<string>
+            {
+                "General",
+                "Sucursales",
+                "Productos",
+                "Ventas",
+                "Clientes"
+            };
+
+            int pos = 1;
+
+            foreach (string nombreHoja in orden)
+            {
+                var ws = wb.Worksheets.FirstOrDefault(w => w.Name == nombreHoja);
+                if (ws != null)
+                {
+                    ws.Position = pos;
+                    pos++;
+                }
+            }
+        }
+
+        private void ExportarDesdeGrid(XLWorkbook wb, string nombreHoja)
+        {
+            if (dgvReportes.Rows.Count == 0)
+                return;
+
+            // 🔥 Reset real de la hoja
+            if (wb.Worksheets.Any(w => w.Name == nombreHoja))
+                wb.Worksheets.Delete(nombreHoja);
+
+            var ws = wb.Worksheets.Add(nombreHoja);
+
+            int colCount = dgvReportes.Columns.Count;
+            int rowCount = dgvReportes.Rows.Count;
+
+            // =====================
+            // HEADER
+            // =====================
+            for (int c = 0; c < colCount; c++)
+            {
+                ws.Cell(1, c + 1).SetValue(dgvReportes.Columns[c].HeaderText);
+            }
+
+            // =====================
+            // DATA
+            // =====================
+            for (int r = 0; r < rowCount; r++)
+            {
+                for (int c = 0; c < colCount; c++)
+                {
+                    object valor = dgvReportes.Rows[r].Cells[c].Value;
+                    SetearValorCelda(ws.Cell(r + 2, c + 1), valor);
+                }
+            }
+
+            // =====================
+            // TABLA
+            // =====================
+            var rango = ws.Range(1, 1, rowCount + 1, colCount);
+            var tabla = rango.CreateTable();
+            tabla.Theme = XLTableTheme.TableStyleMedium9;
+
+            // =====================
+            // HEADER STYLE
+            // =====================
+            ws.Row(1).Style.Font.Bold = true;
+            ws.Row(1).Style.Font.FontSize = 11;
+            ws.Row(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            ws.Row(1).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            ws.Row(1).Style.Alignment.WrapText = true;
+            ws.Row(1).Height = 28;
+
+            ws.SheetView.FreezeRows(1);
+            AplicarBordes(rango);
+
+            // =====================
+            // FORMATO POR COLUMNA
+            // =====================
+            int filaInicio = 2;
+            int filaFin = rowCount + 1;
+
+            for (int c = 0; c < colCount; c++)
+            {
+                string header = dgvReportes.Columns[c].HeaderText;
+                AplicarFormatoPorColumna(ws, filaInicio, filaFin, c + 1, header);
+            }
+
+            // =====================
+            // AJUSTE DE ANCHOS (CORRECTO)
+            // =====================
+
+            // 1️⃣ Ajuste libre (sin min/max)
+            ws.Columns().AdjustToContents();
+
+            // 2️⃣ Corrección manual por tipo
+            for (int c = 0; c < colCount; c++)
+            {
+                string h = dgvReportes.Columns[c].HeaderText.ToLower();
+                var col = ws.Column(c + 1);
+
+                // Texto largo
+                if (h.Contains("cliente") || h.Contains("producto") || h.Contains("email") ||
+                    h.Contains("sucursal") || h.Contains("dirección") || h.Contains("vendedor"))
+                {
+                    col.Width = Math.Min(Math.Max(col.Width, 28), 45);
+                }
+                // Dinero
+                else if (h.Contains("precio") || h.Contains("recaud") || h.Contains("total gast"))
+                {
+                    col.Width = Math.Min(Math.Max(col.Width, 18), 30);
+                }
+                // Fechas
+                else if (h.Contains("fecha"))
+                {
+                    col.Width = Math.Max(col.Width, 20);
+                }
+                // Numéricos chicos
+                else
+                {
+                    col.Width = Math.Max(col.Width, 12);
+                }
+            }
+        }
+
+        private void ExportarGeneral(XLWorkbook wb)
+        {
+            if (wb.Worksheets.Any(w => w.Name == "General"))
+                wb.Worksheets.Delete("General");
+
+            var ws = wb.Worksheets.Add("General");
+
+            ws.Column(1).Width = 38;
+            ws.Column(2).Width = 65;
+
+            int row = 1;
+
+            // =====================
+            // TÍTULO
+            // =====================
+            ws.Cell(row, 1).SetValue("INFORME GENERAL");
+            ws.Range(row, 1, row, 2).Merge();
+            ws.Range(row, 1, row, 2).Style.Font.Bold = true;
+            ws.Range(row, 1, row, 2).Style.Font.FontSize = 18;
+            ws.Range(row, 1, row, 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            ws.Row(row).Height = 32;
+
+            row += 1;
+
+            // =====================
+            // HELPER FILA
+            // =====================
+            void Fila(string label, string value, bool kpi = false)
+            {
+                ws.Cell(row, 1).SetValue(label);
+                ws.Cell(row, 2).SetValue(value);
+
+                var rango = ws.Range(row, 1, row, 2);
+
+                rango.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                rango.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
+                rango.Style.Fill.BackgroundColor = kpi
+                    ? XLColor.FromHtml("#BDD7EE")
+                    : XLColor.FromHtml("#DEEAF6");
+
+                ws.Cell(row, 1).Style.Font.Bold = true;
+                ws.Cell(row, 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+
+                row++;
+            }
+
+            // =====================
+            // KPIs
+            // =====================
+            Fila("Ventas totales", lblCard1Valor.Text, true);
+            Fila("Ingresos totales", lblCard2Valor.Text, true);
+            Fila("Ticket promedio", lblCard3Valor.Text, true);
+
+            // =====================
+            // DESTACADOS
+            // =====================
+            Fila("Venta más alta", lblVentaMasAltaValor.Text);
+            Fila("Venta más baja", lblVentaMasBajaValor.Text);
+            Fila("Mejor vendedor", lblMejorVendedorValor.Text);
+            Fila("Producto más vendido", lblProductoMasVendidoValor.Text);
+            Fila("Sucursal con más ventas", lblSucursalMasVentasValor.Text);
+
+            // =====================
+            // MÉTODOS DE PAGO
+            // =====================
+            Fila("Efectivo (%)", lblPorcentajeEfectivo.Text);
+            Fila("Transferencia (%)", lblPorcentajeTransferencia.Text);
+            Fila("Tarjeta (%)", lblPorcentajeTarjeta.Text);
+
+            // =====================
+            // TOP 5 PRODUCTOS (BLOQUE CERRADO)
+            // =====================
+            int inicioTop = row;
+
+            ws.Cell(row, 1).SetValue("TOP 5 PRODUCTOS");
+            ws.Range(row, 1, row, 2).Merge();
+            ws.Range(row, 1, row, 2).Style.Font.Bold = true;
+            ws.Range(row, 1, row, 2).Style.Font.FontSize = 13;
+            ws.Range(row, 1, row, 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            ws.Range(row, 1, row, 2).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDD7EE");
+
+            row++;
+
+            ws.Range(row, 1, row + 4, 2).Merge();
+            ws.Range(row, 1, row + 4, 2).SetValue(lblTop5Contenido.Text);
+            ws.Range(row, 1, row + 4, 2).Style.Alignment.WrapText = true;
+            ws.Range(row, 1, row + 4, 2).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+            ws.Range(row, 1, row + 4, 2).Style.Fill.BackgroundColor = XLColor.FromHtml("#DEEAF6");
+
+            AplicarBordes(ws.Range(inicioTop, 1, row + 4, 2));
+        }
+
+
+        private void SetearValorCelda(IXLCell cell, object valor)
+        {
+            if (valor == null)
+            {
+                cell.SetValue("");
+                return;
+            }
+
+            if (valor is DateTime dt) { cell.SetValue(dt); return; }
+            if (valor is int i) { cell.SetValue(i); return; }
+            if (valor is long l) { cell.SetValue(l); return; }
+            if (valor is decimal dec) { cell.SetValue(dec); return; }
+            if (valor is double dbl) { cell.SetValue(dbl); return; }
+            if (valor is float fl) { cell.SetValue((double)fl); return; }
+
+            string s = valor.ToString()?.Trim() ?? "";
+
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                cell.SetValue("");
+                return;
+            }
+
+            if (DateTime.TryParseExact(
+                s,
+                "dd/MM/yyyy HH:mm",
+                CultureInfo.GetCultureInfo("es-AR"),
+                DateTimeStyles.None,
+                out DateTime dt2))
+            {
+                cell.SetValue(dt2);
+                return;
+            }
+
+            string limpio = s.Replace("$", "").Replace(".", "").Replace(",", ".");
+
+            if (decimal.TryParse(limpio, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d))
+            {
+                cell.SetValue(d);
+                return;
+            }
+
+            cell.SetValue(s);
+        }
+
+        private void AplicarFormatoPorColumna(
+            IXLWorksheet ws,
+            int filaInicioDatos,
+            int filaFinDatos,
+            int col,
+            string header)
+                {
+            string h = (header ?? "").Trim().ToLower();
+            var rango = ws.Range(filaInicioDatos, col, filaFinDatos, col);
+
+            // =========================
+            // MONEDA ($)
+            // =========================
+            if (
+                h == "total" ||
+                h.Contains("precio") ||
+                h.Contains("recaud") ||
+                h.Contains("total gast") ||
+                h.Contains("ingreso") ||
+                h.Contains("importe")
+            )
+            {
+                rango.Style.NumberFormat.Format = "$ #,##0";
+                rango.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                return;
+            }
+
+            // =========================
+            // FECHA
+            // =========================
+            if (h.Contains("fecha"))
+            {
+                rango.Style.DateFormat.Format = "dd/MM/yyyy HH:mm";
+                rango.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                return;
+            }
+
+            // =========================
+            // PORCENTAJE
+            // =========================
+            if (h.Contains("descuento") || h.Contains("porcentaje"))
+            {
+                rango.Style.NumberFormat.Format = "0%";
+                rango.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                return;
+            }
+
+            // =========================
+            // NUMÉRICO (NO MONEDA)
+            // =========================
+            if (
+                h.Contains("stock") ||
+                h.Contains("ventas") ||
+                h.Contains("vendido") ||
+                h.Contains("cantidad") ||
+                h.Contains("compras") ||
+                h.Contains("productos")
+            )
+            {
+                rango.Style.NumberFormat.Format = "0";
+                rango.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                return;
+            }
+
+            // =========================
+            // TEXTO
+            // =========================
+            rango.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+        }
+        #endregion
         private void pnelppalmedio_Paint(object sender, PaintEventArgs e)
         {
             //EXPLOTA EL PROGRAMA SI LO BORRO, NO TOCAR                        JAJAJA OK, fingimos demencia 
@@ -386,7 +774,7 @@ namespace Vista
 
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
-            modoActual = ModoReporte.Ninguno;
+            modoActual = ModoReporte.General;
             ResetearColoresBotones();
             MostrarDashboardInicial();
         }
@@ -504,96 +892,52 @@ namespace Vista
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            //copio linea por linea el reporte general en un excel(use un nuget nuevo y meti una funcion para que si el valos esta vacio no reviente)
+            if (HayFiltrosActivos())
+            {
+                MessageBox.Show("No se puede exportar con filtros activos.\nLimpie los filtros para exportar.", "Exportación bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string path = ObtenerRutaExcel();
 
             try
             {
-                using (var sfd = new SaveFileDialog())
+                var wb = ObtenerWorkbook(path);
+
+                switch (modoActual)
                 {
-                    sfd.Filter = "Excel Workbook|*.xlsx";
-                    sfd.FileName = "ReporteDashboard.xlsx";
-                    if (sfd.ShowDialog() != DialogResult.OK)
+                    case ModoReporte.General:
+                        ExportarGeneral(wb);
+                        break;
+
+                    case ModoReporte.Sucursales:
+                        ExportarDesdeGrid(wb, "Sucursales");
+                        break;
+
+                    case ModoReporte.Productos:
+                        ExportarDesdeGrid(wb, "Productos");
+                        break;
+
+                    case ModoReporte.Ventas:
+                        ExportarDesdeGrid(wb, "Ventas");
+                        break;
+
+                    case ModoReporte.Clientes:
+                        ExportarDesdeGrid(wb, "Clientes");
+                        break;
+
+                    default:
+                        MessageBox.Show("Seleccione un reporte.");
                         return;
-
-                    using (var wb = new XLWorkbook())
-                    {
-                        var ws = wb.Worksheets.Add("Dashboard");
-
-                        // titulo no toquen nada porfa
-                        var titleRange = ws.Range(1, 1, 1, 2);
-                        titleRange.Merge();
-                        titleRange.Value = "Informe General";
-                        titleRange.Style.Font.Bold = true;
-                        titleRange.Style.Font.FontSize = 14;
-
-                        int row = 3;
-
-                        //esta es la funcion que hace que si hay algo vacio no se rompa
-                        string GetText(Label lbl) => lbl?.Text ?? string.Empty;
-
-                        // Filas 
-                        ws.Cell(row, 1).Value = "Ventas totales";
-                        ws.Cell(row, 2).Value = GetText(lblCard1Valor); row++;
-
-                        ws.Cell(row, 1).Value = "Ingresos totales";
-                        ws.Cell(row, 2).Value = GetText(lblCard2Valor); row++;
-
-                        ws.Cell(row, 1).Value = "promedio";
-                        ws.Cell(row, 2).Value = GetText(lblCard3Valor); row++;
-                        /*
-                        ws.Cell(row, 1).Value = "Ticket (valor)";
-                        ws.Cell(row, 2).Value = GetText(lblTicketValor); row++;
-                        */
-
-                        ws.Cell(row, 1).Value = "Venta más alta";
-                        ws.Cell(row, 2).Value = GetText(lblVentaMasAltaValor); row++;
-
-                        ws.Cell(row, 1).Value = "Venta más baja";
-                        ws.Cell(row, 2).Value = GetText(lblVentaMasBajaValor); row++;
-
-                        ws.Cell(row, 1).Value = "Mejor vendedor";
-                        ws.Cell(row, 2).Value = GetText(lblMejorVendedorValor); row++;
-
-                        ws.Cell(row, 1).Value = "Producto más vendido";
-                        ws.Cell(row, 2).Value = GetText(lblProductoMasVendidoValor); row++;
-
-                        ws.Cell(row, 1).Value = "Sucursal con más ventas";
-                        ws.Cell(row, 2).Value = GetText(lblSucursalMasVentasValor); row++;
-
-                        ws.Cell(row, 1).Value = "Método: Efectivo (%)";
-                        ws.Cell(row, 2).Value = GetText(lblPorcentajeEfectivo); row++;
-
-                        ws.Cell(row, 1).Value = "Método: Transferencia (%)";
-                        ws.Cell(row, 2).Value = GetText(lblPorcentajeTransferencia); row++;
-
-                        ws.Cell(row, 1).Value = "Método: Tarjeta (%)";
-                        ws.Cell(row, 2).Value = GetText(lblPorcentajeTarjeta); row++;
-
-                        // Top 5 productos 
-                        ws.Cell(row, 1).Value = "Top 5 productos";
-                        var top5Range = ws.Range(row, 2, row + 4, 2);
-                        top5Range.Merge();
-                        var top5Text = GetText(lblTop5Contenido);
-                        if (!string.IsNullOrEmpty(top5Text))
-                            top5Range.Value = top5Text;
-                        top5Range.Style.Alignment.WrapText = true;
-                        row += 5;
-
-                       
-                        ws.Column(1).Width = 30;
-                        ws.Column(2).Width = 50;
-                        ws.Columns().AdjustToContents();
-
-                        
-                        wb.SaveAs(sfd.FileName);
-                    }
-
-                    MessageBox.Show("Exportado correctamente a Excel.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                OrdenarHojasReporte(wb);
+                wb.SaveAs(path);
+
+                MessageBox.Show("Reporte exportado correctamente.\n\nUbicación:\n" + Path.GetDirectoryName(path), "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (IOException)
             {
-                MessageBox.Show("Error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El archivo Excel está abierto.\nCierrelo e intente nuevamente.", "Archivo en uso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
