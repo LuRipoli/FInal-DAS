@@ -76,28 +76,24 @@ namespace Controladora
             controladoraStock.ModificarStock(producto.Id, sucursal.Id, cantidad, 0);
         }
 
-        public void EliminarVenta(int idVenta)
+        /*public void EliminarVenta(int idVenta)
         {
             if (idVenta <= 0)
                 throw new DatosInvalidosException("El ID de la venta no es válido.");
 
-            var venta = repositorio.ObtenerVentaPorId(idVenta);
+            var venta = repositorio.ObtenerVentaPorId(idVenta);           //Lo mismo que explicamos en el repo, no tiene mucho sentido eliminar una venta ya realizada (El modificar lo eliminamos je)
             if (venta == null)
                 throw new EntidadNoEncontradaException("No se encontró la venta especificada.");
             repositorio.EliminarVenta(venta);
-        }
-
+        }*/
+   
         public Venta ObtenerVentaPorId(int idVenta)
         {
             if (idVenta <= 0)
-            {
                 throw new DatosInvalidosException("El ID de la venta no es válido.");
-            }
             var venta = repositorio.ObtenerVentaPorId(idVenta);
             if (venta == null)
-            {
                 throw new EntidadNoEncontradaException("No se encontró la venta especificada.");
-            }
             return venta;
         }
     }

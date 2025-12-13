@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public enum ModoReporte
+    public enum ModoReporte //Para modularizar mejor el código, se nos ocurrió la idea de fijar modos segun el botón apretado. 
     {
         Sucursales,
         Productos,
@@ -26,7 +26,7 @@ namespace Vista
     public partial class Ventana_Reportes_Y_Consultas : Form
     {
 
-        private ModoReporte modoActual = ModoReporte.General;
+        private ModoReporte modoActual = ModoReporte.General; //Cuando se arranca el form, mostramos el menu general
         public Ventana_Reportes_Y_Consultas()
         {
             InitializeComponent();
@@ -62,9 +62,7 @@ namespace Vista
         {
             var ventas = ControladoraVentas.Instancia().ObtenerVentas().OrderByDescending(v => v.Fecha).ToList();
 
-            // =====================================================================
-            // 1) CUANDO NO HAY VENTAS
-            // =====================================================================
+            //Analizamos la existencia de las ventas, de no haber, seteamos los valores en 0 para evitar errores y marcar la ausencia.
             if (!ventas.Any())
             {
                 lblCard1Valor.Text = "0";
@@ -85,83 +83,57 @@ namespace Vista
                 return;
             }
 
-            // =====================================================================
-            // 2) CÁLCULOS BASE
-            // =====================================================================
+            // 1 - Calculamos los valores que van a ir en los títulos de arriba. 
             int totalVentas = ventas.Count;
-            decimal ingresosTotales = ventas.Sum(v => v.Total);
+            decimal ingresosTotales = ventas.Sum(v => v.Total); //Aclarar que son ingresos Brutos, algo que podemos hacer en el futuro es que el programa reste costos y salarios. (Agregar clase Personal - Empleado - Vendedor)
             decimal ticketPromedio = ingresosTotales / totalVentas;
-
+            // 2 - 
+            //Buscamos venta más cara y más barata.
             var ventaMax = ventas.OrderByDescending(v => v.Total).First();
             var ventaMin = ventas.OrderBy(v => v.Total).First();
+            
+            //Buscamos al vendedor con más ventas
+            var vendedorMasVentas = ventas.GroupBy(v => v.NombreVendedor).Select(g => new { Nombre = g.Key, Cant = g.Count() }).OrderByDescending(x => x.Cant).First();
+            //Producto con más ventas
+            var productoMasVendido = ventas.GroupBy(v => v.Producto.Nombre).Select(g => new { Nombre = g.Key, Cant = g.Sum(v => v.Cantidad) }) .OrderByDescending(x => x.Cant).First();
 
-            var vendedorTop = ventas
-                .GroupBy(v => v.NombreVendedor)
-                .Select(g => new { Nombre = g.Key, Cant = g.Count() })
-                .OrderByDescending(x => x.Cant)
-                .First();
+            var sucursalMasVentas = ventas.GroupBy(v => v.Sucursal.Nombre).Select(g => new { Nombre = g.Key, Cant = g.Count() }).OrderByDescending(x => x.Cant).First();
 
-            var productoTop = ventas
-                .GroupBy(v => v.Producto.Nombre)
-                .Select(g => new { Nombre = g.Key, Cant = g.Sum(v => v.Cantidad) }) // ⭐ SUMA UNIDADES
-                .OrderByDescending(x => x.Cant)
-                .First();
-
-            var sucursalTop = ventas
-                .GroupBy(v => v.Sucursal.Nombre)
-                .Select(g => new { Nombre = g.Key, Cant = g.Count() })
-                .OrderByDescending(x => x.Cant)
-                .First();
-
-            // =====================================================================
-            // 3) CARDS SUPERIORES
-            // =====================================================================
+            //1 - Pasamos esos valores que obtuvimos a los labels de arriba.
             lblCard1Valor.Text = $"{totalVentas}";
-            lblCard2Valor.Text = $"${ingresosTotales:N0}";
+            lblCard2Valor.Text = $"${ingresosTotales:N0}";  //N0 Viene de Number Format, le asignamos que tenga 0 decimales (redondea para arriba)
             lblCard3Valor.Text = $"${ticketPromedio:N0}";
 
-            // =====================================================================
-            // 4) TABLA DE RESUMEN COMPLETO
-            // =====================================================================
-            lblVentaMasAltaValor.Text = $"${ventaMax.Total:N0} — {ventaMax.Producto.Nombre}";
+            //2 - Los otros valores los pasamos al resumen general.  Podemos usar atributos de otras clases, gracias a que es un objeto Venta y desde el repo incluimos las relaciones.
+            lblVentaMasAltaValor.Text = $"${ventaMax.Total:N0} — {ventaMax.Producto.Nombre}";  
             lblVentaMasBajaValor.Text = $"${ventaMin.Total:N0} — {ventaMin.Producto.Nombre}";
-            lblMejorVendedorValor.Text = $"{vendedorTop.Nombre} ({vendedorTop.Cant} ventas)";
-            lblProductoMasVendidoValor.Text = $"{productoTop.Nombre} ({productoTop.Cant} unidades)";
-            lblSucursalMasVentasValor.Text = $"{sucursalTop.Nombre} ({sucursalTop.Cant} ventas)";
+            lblMejorVendedorValor.Text = $"{vendedorMasVentas.Nombre} ({vendedorMasVentas.Cant} ventas)";
+            lblProductoMasVendidoValor.Text = $"{productoMasVendido.Nombre} ({productoMasVendido.Cant} unidades)";
+            lblSucursalMasVentasValor.Text = $"{sucursalMasVentas.Nombre} ({sucursalMasVentas.Cant} ventas)";
 
-            // =====================================================================
-            // 5) MÉTODOS DE PAGO (con lambdas de 1 línea)
-            // =====================================================================
+            //3 - Contamos cuantos usaron cada método de pago, para luego calcular el porcentaje y setear las barras de progreso.
             int cantEf = ventas.Count(v => v.MetodoPago == MetodoPago.Efectivo);
             int cantTr = ventas.Count(v => v.MetodoPago == MetodoPago.Transferencia);
             int cantTa = ventas.Count(v => v.MetodoPago == MetodoPago.Tarjeta);
 
             double porcEfReal = cantEf * 100.0 / totalVentas;
             double porcTrReal = cantTr * 100.0 / totalVentas;
-            double porcTaReal = 100.0 - porcEfReal - porcTrReal; // ajuste para cerrar en 100
+            double porcTaReal = 100.0 - porcEfReal - porcTrReal; // ajuste para cerrar en 100, sino a veces da 100,1 100,2 99,9. 
 
-            pbEfectivo.Maximum = pbTransferencia.Maximum = pbTarjeta.Maximum = 100;
+            pbEfectivo.Maximum = pbTransferencia.Maximum = pbTarjeta.Maximum = 100; //fiamos máximo en 100. 
 
-            pbEfectivo.Value = (int)Math.Round(porcEfReal);
+            pbEfectivo.Value = (int)Math.Round(porcEfReal);  //los progressbar solo aceptan enteros y aprovechamos a redondear.
             pbTransferencia.Value = (int)Math.Round(porcTrReal);
             pbTarjeta.Value = 100 - pbEfectivo.Value - pbTransferencia.Value;
 
             lblPorcentajeEfectivo.Text = $"{porcEfReal:0.00}%";
             lblPorcentajeTransferencia.Text = $"{porcTrReal:0.00}%";
             lblPorcentajeTarjeta.Text = $"{porcTaReal:0.00}%";
-
-            // =====================================================================
-            // 6) TOP 5 PRODUCTOS MÁS VENDIDOS
-            // =====================================================================
-            var top5 = ventas
-                .GroupBy(v => v.Producto.Nombre)
-                .Select(g => new { Nombre = g.Key, Cant = g.Sum(v => v.Cantidad) }) // ⭐ SUMA UNIDADES
-                .OrderByDescending(x => x.Cant)
-                .Take(5)
-                .ToList();
-
-            lblTop5Contenido.Text = string.Join("\n", top5.Select((p, i) => $"{i + 1}. {p.Nombre} — {p.Cant} unidad(es)"));
-
+            //4 - Top 5 productos más vendidos
+            var top5 = ventas.GroupBy(v => v.Producto.Nombre).Select(g => new { Nombre = g.Key, Cant = g.Sum(v => v.Cantidad) }).OrderByDescending(x => x.Cant).Take(5).ToList();
+            
+            //Linea hecha con IA para formatear el top 5.
+            lblTop5Contenido.Text = string.Join("\n",top5.Select((p, i) =>$"{i + 1}. {p.Nombre} — {p.Cant} {(p.Cant == 1 ? "unidad" : "unidades")}"));
         }
         private void ResetearColoresBotones()
         {
@@ -171,13 +143,13 @@ namespace Vista
             btnReporteProducto.BackColor = Color.PaleTurquoise;
             btnReporteGeneral.BackColor = Color.PaleTurquoise;
         }
-        private void ActivarBoton(Button btn)
+        private void ActivarBoton(Button btn) //cada vez que apretamos un boton de reporte, se activa este metodo para cambiar el color del boton y decir al usuario en qué modo está.
         {
             ResetearColoresBotones();
-            btn.BackColor = Color.FromArgb(102, 205, 205);
+            btn.BackColor = Color.MediumTurquoise;
             btnLimpiarCampos.Enabled = true;
         }
-        private void LimpiarCampos()
+        private void LimpiarCampos() 
         {
             dtpFechaDesde.Value = new DateTime(2000, 1, 1);
             dtpFechaHasta.Value = DateTime.Today;
@@ -192,7 +164,7 @@ namespace Vista
             rdbTarjeta.Checked = false;
         }
 
-        private void CargarCampos()
+        private void CargarCampos() //Usamos nombres para filtrar busquedas aca. 
         {
             cmbSucursales.DataSource = null;
             cmbSucursales.Items.Clear();
@@ -233,7 +205,7 @@ namespace Vista
             rdbTransferencia.Enabled = metodoPago;
             rdbTarjeta.Enabled = metodoPago;
         }
-        private void ConfigurarGrid(DataGridView dgv)
+        private void ConfigurarGrid(DataGridView dgv) 
         {
             if (dgv == null) return;
 
@@ -263,6 +235,9 @@ namespace Vista
             var lista = sucursales.Select(s => new { Sucursal = s.Nombre, Dirección = s.Direccion, StockTotal = s.StocksPorSucursal.Sum(x => x.Cantidad), ProductosSinStock = s.StocksPorSucursal.Count(x => x.Cantidad == 0), TotalVentas = ventas.Count(v => v.SucursalId == s.Id), TotalProductosVendidos = ventas.Where(v => v.SucursalId == s.Id).Sum(v => v.Cantidad), TotalRecaudado = ventas.Where(v => v.SucursalId == s.Id).Sum(v => v.Total) }).OrderByDescending(x => x.TotalRecaudado).ToList();
 
             dgvReportes.DataSource = lista;
+            
+            //Todo esto es formateo de DGV para que quede más lindo
+
             ConfigurarGrid(dgvReportes);
             dgvReportes.Columns["StockTotal"].HeaderText = "Stock total";
             dgvReportes.Columns["ProductosSinStock"].HeaderText = "Productos sin stock";
@@ -294,8 +269,10 @@ namespace Vista
             var lista = clientes.Select(c => new { Cliente = c.Nombre, Email = c.Email, Tipo = c.TipoCliente.ToString(), Compras = ventas.Count(v => v.ClienteId == c.Id), ProductosComprados = ventas.Where(v => v.ClienteId == c.Id).Sum(v => v.Cantidad), TotalGastado = ventas.Where(v => v.ClienteId == c.Id).Sum(v => v.Total) }).OrderByDescending(x => x.TotalGastado).ToList();
 
             dgvReportes.DataSource = lista;
-            ConfigurarGrid(dgvReportes);
+            
+            //Todo esto es formateo de DGV para que quede más lindo
 
+            ConfigurarGrid(dgvReportes);
             dgvReportes.Columns["TotalGastado"].DefaultCellStyle.Format = "C0";
             dgvReportes.Columns["TotalGastado"].HeaderCell.Value = "Total gastado";
             dgvReportes.Columns["ProductosComprados"].HeaderText = "Productos comprados";
@@ -318,8 +295,10 @@ namespace Vista
             var lista = productos.Select(p => new { Producto = p.Nombre, Categoría = p.Categoria.Nombre, Precio = p.Precio, StockTotal = p.StocksPorSucursal.Sum(s => s.Cantidad), SucursalesConStock = p.StocksPorSucursal.Count(s => s.Cantidad > 0), Vendido = ventas.Where(v => v.ProductoId == p.Id).Sum(v => v.Cantidad), Recaudado = ventas.Where(v => v.ProductoId == p.Id).Sum(v => v.Total) }).OrderByDescending(x => x.Vendido).ToList();
 
             dgvReportes.DataSource = lista;
-            ConfigurarGrid(dgvReportes);
+            
+            //Todo esto es formateo de DGV para que quede más lindo
 
+            ConfigurarGrid(dgvReportes);
             dgvReportes.Columns["StockTotal"].HeaderText = "Stock Total";
             dgvReportes.Columns["SucursalesConStock"].HeaderText = "Sucursales con stock";
 
@@ -358,9 +337,11 @@ namespace Vista
 
             var final = lista.OrderByDescending(v => v.Fecha).Select(v => new { Fecha = v.Fecha.ToString("dd/MM/yyyy HH:mm"), Producto = v.Producto.Nombre, Cliente = v.Cliente.Nombre, Vendedor = v.NombreVendedor, Método = v.MetodoPago.ToString(), Cantidad = v.Cantidad, Total = v.Total, Descuento = v.Descuento == 0 ? "-" : $"{v.Descuento:0}%" }).ToList();
             dgvReportes.DataSource = final;
+            
+            //Todo esto es formateo de DGV para que quede más lindo
+
             ConfigurarGrid(dgvReportes);
             dgvReportes.Columns["Total"].DefaultCellStyle.Format = "C0";
-
             dgvReportes.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvReportes.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvReportes.Columns["Vendedor"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -762,7 +743,7 @@ namespace Vista
         #endregion
         private void pnelppalmedio_Paint(object sender, PaintEventArgs e)
         {
-            //EXPLOTA EL PROGRAMA SI LO BORRO, NO TOCAR                        JAJAJA OK, fingimos demencia 
+            //EXPLOTA EL PROGRAMA SI LO BORRO, NO TOCAR (Gaspar)                JAJAJA OK, fingimos demencia (Lucas)
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -798,7 +779,7 @@ namespace Vista
                         FiltrarClientes();
                         break;
 
-                    case ModoReporte.Productos:
+                    case ModoReporte.Productos:               //Aca se ve mejor la utilidad del enum ModoReporte
                         FiltrarProductos();
                         break;
 
@@ -887,7 +868,7 @@ namespace Vista
 
         private void tlpBotones_Paint(object sender, PaintEventArgs e)
         {
-            // no tocar, el codigo hace pum
+            // no tocar, el codigo hace pum (Lucas)           //Qué tipazo che (Gaspar) 
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
@@ -915,7 +896,7 @@ namespace Vista
                         break;
 
                     case ModoReporte.Productos:
-                        ExportarDesdeGrid(wb, "Productos");
+                        ExportarDesdeGrid(wb, "Productos");        //Lo mismo, exportamos a Excel segun el modo actual. 
                         break;
 
                     case ModoReporte.Ventas:

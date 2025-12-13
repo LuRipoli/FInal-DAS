@@ -111,7 +111,7 @@ namespace Controladora
                 nuevoStock.ProductoId = producto.Id;
                 nuevoStock.SucursalId = sucursalId;
                 nuevoStock.Cantidad = 0;
-
+                
                 repositorio.AgregarStockPorSucursal(nuevoStock);
             }
         }

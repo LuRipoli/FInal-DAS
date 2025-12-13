@@ -28,17 +28,17 @@ namespace Modelo
             context.SaveChanges();
         }
 
-        public void EliminarVenta(Entidades.Venta venta)
+        /*public void EliminarVenta(Entidades.Venta venta)
         {
             context.Ventas.Remove(venta);
             context.SaveChanges();
         }
-
+                                                                  //No tiene mucho sentido Modificar o Eliminar una venta ya realizada. Pero dejamos el método para mostrarlo.
         public void ModificarVenta(Entidades.Venta venta)
         {
             context.Ventas.Update(venta);
             context.SaveChanges();
-        }
+        }*/
 
         public Venta? ObtenerVentaPorId(int idVenta)
         {

@@ -38,7 +38,6 @@ namespace Controladora
                 throw new EntidadYaExistenteException("Ya existe una sucursal con ese nombre.");
             if (string.IsNullOrWhiteSpace(direccion)) 
             throw new DatosInvalidosException("La dirección no puede estar vacía.");
-
              if (listasucursales.Any(s => s.Direccion.ToLower() == direccion.ToLower()))
                 throw new EntidadYaExistenteException("Ya existe una sucursal en esa dirección.");
 
@@ -47,6 +46,7 @@ namespace Controladora
             nuevaSucursal.Direccion = direccion;
             repositorio.AgregarSucursal(nuevaSucursal);
             var controladoraStock = ControladoraStocksPorSucursal.Instancia();
+            //Inicializar stock para la nueva sucursal (A cada producto registrado le ponemos stock 0). 
             controladoraStock.InicializarStockParaSucursalNueva(nuevaSucursal.Id);
         }
 
