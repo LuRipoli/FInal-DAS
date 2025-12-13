@@ -132,19 +132,27 @@ namespace Vista
                 if (!int.TryParse(row.Cells["Stock"].Value?.ToString(), out int stock))
                     continue;
 
+                row.DefaultCellStyle.BackColor = Color.White;
                 row.DefaultCellStyle.ForeColor = Color.Black;
 
-                if (stock <= 10)
+                if (stock < 5)
                 {
                     row.DefaultCellStyle.BackColor = Color.IndianRed;
                     row.DefaultCellStyle.ForeColor = Color.White;
                 }
-                else if (stock <= 25)
+                else if (stock < 10)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Orange;
+                }
+                else if (stock < 20)
+                {
                     row.DefaultCellStyle.BackColor = Color.Gold;
+                }
                 else
+                {
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
+                }
             }
-
         }
         #endregion
 

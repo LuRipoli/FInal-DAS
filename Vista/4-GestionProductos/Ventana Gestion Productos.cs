@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,8 +74,7 @@ namespace Vista
             txtNombre.Text = dgvProductos.CurrentRow.Cells["Nombre"].Value?.ToString() ?? "";
             txtDescripcion.Text = dgvProductos.CurrentRow.Cells["Descripcion"].Value?.ToString() ?? "";
 
-            if (decimal.TryParse(dgvProductos.CurrentRow.Cells["Precio"].Value?.ToString(), out decimal precio))
-                nudPrecio.Value = precio;
+            if (decimal.TryParse(dgvProductos.CurrentRow.Cells["Precio"].Value?.ToString()?.Replace("$", "").Replace(".", "").Replace(",", "."),NumberStyles.Any, CultureInfo.InvariantCulture, out decimal precio)) nudPrecio.Value = precio;
 
             string categoriaNombre = dgvProductos.CurrentRow.Cells["Categoria"].Value?.ToString() ?? "";
 
@@ -269,7 +269,8 @@ namespace Vista
                     var producto = controladora.ObtenerProductoPorNombre(nombreBuscado);
                     if (producto != null)
                     {
-                        var lista = new List<Producto> { producto };
+                        // Lo hago lista asi puedo meterlo a la grilla.
+                        var lista = new[] { new { producto.Id, producto.Nombre, producto.Descripcion, Precio = producto.Precio.ToString("$#,0.00"), Categoria = producto.Categoria.Nombre}}.ToList();
                         dgvProductos.DataSource = lista;
                         if (dgvProductos.Columns["Id"] != null)
                             dgvProductos.Columns["Id"].Visible = false;
@@ -297,7 +298,7 @@ namespace Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                }
+        }
 
         private void btnLimpiarCampos_Click_1(object sender, EventArgs e)
         {

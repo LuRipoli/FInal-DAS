@@ -136,19 +136,19 @@ namespace Vista
             int cantTr = ventas.Count(v => v.MetodoPago == MetodoPago.Transferencia);
             int cantTa = ventas.Count(v => v.MetodoPago == MetodoPago.Tarjeta);
 
-            int porcEf = (int)(cantEf * 100.0 / totalVentas);
-            int porcTr = (int)(cantTr * 100.0 / totalVentas);
-            int porcTa = (int)(cantTa * 100.0 / totalVentas);
+            double porcEfReal = cantEf * 100.0 / totalVentas;
+            double porcTrReal = cantTr * 100.0 / totalVentas;
+            double porcTaReal = 100.0 - porcEfReal - porcTrReal; // ajuste para cerrar en 100
 
             pbEfectivo.Maximum = pbTransferencia.Maximum = pbTarjeta.Maximum = 100;
 
-            pbEfectivo.Value = porcEf;
-            pbTransferencia.Value = porcTr;
-            pbTarjeta.Value = porcTa;
+            pbEfectivo.Value = (int)Math.Round(porcEfReal);
+            pbTransferencia.Value = (int)Math.Round(porcTrReal);
+            pbTarjeta.Value = 100 - pbEfectivo.Value - pbTransferencia.Value;
 
-            lblPorcentajeEfectivo.Text = $"{porcEf}%";
-            lblPorcentajeTransferencia.Text = $"{porcTr}%";
-            lblPorcentajeTarjeta.Text = $"{porcTa}%";
+            lblPorcentajeEfectivo.Text = $"{porcEfReal:0.00}%";
+            lblPorcentajeTransferencia.Text = $"{porcTrReal:0.00}%";
+            lblPorcentajeTarjeta.Text = $"{porcTaReal:0.00}%";
 
             // =====================================================================
             // 6) TOP 5 PRODUCTOS MÁS VENDIDOS
