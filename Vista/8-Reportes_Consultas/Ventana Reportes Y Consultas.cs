@@ -69,7 +69,7 @@ namespace Vista
                 lblCard2Valor.Text = "$0";
                 lblCard3Valor.Text = "$0";
 
-                lblTicketValor.Text = "$0";
+                //lblTicketValor.Text = "$0";
                 lblVentaMasAltaValor.Text = "-";
                 lblVentaMasBajaValor.Text = "-";
                 lblMejorVendedorValor.Text = "-";

@@ -12,8 +12,8 @@ using Modelo;
 namespace Modelo.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20251211190857_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251215105350_InicialCreate")]
+    partial class InicialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,41 +64,6 @@ namespace Modelo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("Entidades.Consulta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SucursalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("VendedorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("ProductoId");
-
-                    b.HasIndex("SucursalId");
-
-                    b.ToTable("Consultas");
                 });
 
             modelBuilder.Entity("Entidades.Producto", b =>
@@ -222,33 +187,6 @@ namespace Modelo.Migrations
                     b.HasIndex("SucursalId");
 
                     b.ToTable("Ventas");
-                });
-
-            modelBuilder.Entity("Entidades.Consulta", b =>
-                {
-                    b.HasOne("Entidades.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entidades.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entidades.Sucursal", "Sucursal")
-                        .WithMany()
-                        .HasForeignKey("SucursalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Producto");
-
-                    b.Navigation("Sucursal");
                 });
 
             modelBuilder.Entity("Entidades.Producto", b =>

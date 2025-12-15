@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Modelo.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InicialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,41 +71,6 @@ namespace Modelo.Migrations
                         name: "FK_Productos_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "Categorias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Consultas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    ProductoId = table.Column<int>(type: "int", nullable: false),
-                    SucursalId = table.Column<int>(type: "int", nullable: false),
-                    VendedorId = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Consultas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Consultas_Clientes_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Clientes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Consultas_Productos_ProductoId",
-                        column: x => x.ProductoId,
-                        principalTable: "Productos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Consultas_Sucursales_SucursalId",
-                        column: x => x.SucursalId,
-                        principalTable: "Sucursales",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -177,21 +142,6 @@ namespace Modelo.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consultas_ClienteId",
-                table: "Consultas",
-                column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Consultas_ProductoId",
-                table: "Consultas",
-                column: "ProductoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Consultas_SucursalId",
-                table: "Consultas",
-                column: "SucursalId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Productos_CategoriaId",
                 table: "Productos",
                 column: "CategoriaId");
@@ -225,9 +175,6 @@ namespace Modelo.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Consultas");
-
             migrationBuilder.DropTable(
                 name: "StockPorSucursales");
 
